@@ -29,7 +29,7 @@ export const Root = () => {
           <nav>
             <ul>
               <li>
-                <a href={`/contacts/1`}>Your Name</a>
+                <a className="text-3xl font-bold underline" href={`/contacts/1`}>Your Name</a>
               </li>
               <li>
                 <a href={`/contacts/2`}>Your Friend</a>
@@ -41,3 +41,4 @@ export const Root = () => {
       </>
     );
   }
+  
