@@ -1,11 +1,7 @@
-
 const App = (): JSX.Element => {
 
-  return (
-    <>
-      
-    </>
-  )
+  return (<>
+  </>)
 }
 
 export default App

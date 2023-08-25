@@ -6,12 +6,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "../src/css/index.css"
-import { Aside } from './routes/aside';
+import { Login } from './Components/IniciarSesion/Login';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Aside />,
+    element: <Login />,
   },
 ]);
 

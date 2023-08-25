@@ -6,10 +6,11 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
   },
-  darkMode:"class",
+  darkMode: "class",
   plugins: [nextui()],
 }
