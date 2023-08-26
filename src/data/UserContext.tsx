@@ -17,9 +17,7 @@ export function UserContextProvider({ children }: Props) {
     }
 
     return (
-        <UserContext.Provider value={
-            login
-        }>
+        <UserContext.Provider value={Inicio}>
             {children}
         </UserContext.Provider>
     )

@@ -6,12 +6,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "../src/css/index.css"
-import { Inventarios } from './Components/pages/Inventarios';
+import LoginPage from '../src/pages/LoginPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Inventarios />,
+    element: <LoginPage />,
   },
 ]);
 

@@ -1,12 +1,10 @@
-import { UserType } from "../Components/types.d"
+import { UserType, data } from "../Components/types.d"
 
 interface Props {
-    data: UserType
+    formData: data
 }
 
-var url = ""
-
-
+var url = "https://acldev.tech/sistemagestionbodega/api/v1/auth/login"
 
 export async function getData() {
     let response = await fetch(url)
@@ -14,15 +12,17 @@ export async function getData() {
     return response.json()
 }
 
-export async function login(data: Props) {
-    let response = await fetch(url, {
+export async function IniciarSesion(formData: data) {
+    const data = JSON.stringify(formData)
+    const queryString = new URLSearchParams(data).toString()
+    const baseUrl = `https://acldev.tech/sistemagestionbodega/api/v1/auth/login?username=${formData.usuario}&password=${formData.password}`
+
+    let response = await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
     })
-
     return response.json()
 }
