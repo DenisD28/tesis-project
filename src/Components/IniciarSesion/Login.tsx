@@ -8,8 +8,6 @@ interface Props {
 
 export const Login: React.FC<Props> = ({ inicio }) => {
     const [formData, setFormData] = useState<data>({ usuario: "", password: "" })
-    const [usuario, setUsuario] = useState("")
-    const [password, setPassword] = useState("")
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
