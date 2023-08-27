@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 import "../src/css/index.css"
 import LoginPage from '../src/pages/LoginPage';
-import { Aside } from './routes/aside';
 import { Inventarios } from './pages/Inventarios';
+import { IngresoProducto } from './pages/IngresoProducto';
+import { ProductoTerminado } from './pages/IngresoProductoTerminal';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: "/inventario",
     element: <Inventarios />
+  },
+  {
+    path: "/createProductos",
+    element: <IngresoProducto />
+  },
+  {
+    path: "/createProductosFinal",
+    element: <ProductoTerminado />
   }
 ]);
 

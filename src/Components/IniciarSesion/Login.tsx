@@ -6,7 +6,7 @@ interface Props {
     inicio: (formData: data) => void
 }
 
-export const Login: React.FC<Props> = ({ inicio }) => {
+export const Login: React.FC<Props> = () => {
     const [formData, setFormData] = useState<data>({ usuario: "", password: "" })
 
 
@@ -20,9 +20,6 @@ export const Login: React.FC<Props> = ({ inicio }) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        inicio(
-            formData
-        )
     }
 
     return (
@@ -49,3 +46,4 @@ export const Login: React.FC<Props> = ({ inicio }) => {
         </div>
     )
 }
+

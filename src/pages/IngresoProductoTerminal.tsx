@@ -1,4 +1,4 @@
-export const IngresoProducto = () => {
+export const ProductoTerminado = () => {
     return (<>
         <div className="form tabla">
             <form action="">

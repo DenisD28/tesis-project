@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react"
 import "../../css/App.css"
+import listaInventario from "../../services/Services"
+import { inventario } from "../types.d"
 
-export const Tablas = () => {
+export const Tablas: React.FC = () => {
+
+    const [product, setProduct] = useState<inventario[]>([])
+
+    useEffect(() => {
+        const lista = async () => {
+            try {
+                const inven = await listaInventario.listaInventario()
+                console.log(inven)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        lista()
+    }, [])
     return (
         <div className="tabla">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -8,16 +25,16 @@ export const Tablas = () => {
                     <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                Column1
+                                Id
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Column2
+                                Tipo
                             </th>
                             <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                Column3
+                                Stock
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Column4
+                                Unidad de medida
                             </th>
                         </tr>
                     </thead>

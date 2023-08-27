@@ -1,28 +1,28 @@
-import { UserType, data } from "../Components/types.d"
+import axios from "axios";
+import { Post, User, inventario } from "../Components/types.d";
 
-interface Props {
-    formData: data
+const baseUrl = `https://acldev.tech/sistemagestionbodega/api/v1/auth/login?username=SGB_Admin&password=SistemaBodega2023`
+
+const login = async (newPost: Post): Promise<User> => {
+    const url = `https://acldev.tech/sistemagestionbodega/api/v1/auth/login?username=SGB_Admin&password=SistemaBodega2023`
+    const response = await axios.post(url)
+
+    return response.data
 }
 
-var url = "https://acldev.tech/sistemagestionbodega/api/v1/auth/login"
+const listaInventario = async (): Promise<inventario> => {
+    const token = localStorage.getItem("userToken");
+    const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=MP"
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
 
-export async function getData() {
-    let response = await fetch(url)
-
-    return response.json()
-}
-
-export async function IniciarSesion(formData: data) {
-    const data = JSON.stringify(formData)
-    const queryString = new URLSearchParams(data).toString()
-    const baseUrl = `https://acldev.tech/sistemagestionbodega/api/v1/auth/login?username=${formData.usuario}&password=${formData.password}`
-
-    let response = await fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
+    const response = await axios.get(url, {
+        headers: headers
     })
-    return response.json()
+
+    return response.data
 }
+
+export default { login, listaInventario }
