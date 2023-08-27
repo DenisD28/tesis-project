@@ -1,3 +1,9 @@
+:root {
+  --title-color: #01A5E4;
+  --white-color: #FFFFFF;
+  --black-color: #000000;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -7,9 +13,53 @@
 }
 
 .tabla {
-  margin-top: 200px;
+  margin-top: 50px;
+  width: 100%;
+  display: block;
+  float: right;
+  padding: 50px;
+}
+
+.tabla td {}
+
+.contenedor {
   width: 80%;
   display: block;
   float: right;
   padding: 50px;
+}
+
+.form {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 50px;
+}
+
+.buttons {
+  margin-top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+  font-size: 30px;
+  font-family: sans-serif;
+  color: var(--title-color);
+  font-weight: bolder;
+}
+
+.nav {
+  height: 70px;
+  width: 100%;
+  border: #bdc3c7 1px solid;
 }

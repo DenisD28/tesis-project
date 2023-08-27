@@ -9,7 +9,8 @@ import "../src/css/index.css"
 import LoginPage from '../src/pages/LoginPage';
 import { Inventarios } from './pages/Inventarios';
 import { IngresoProducto } from './pages/IngresoProducto';
-import { ProductoTerminado } from './pages/IngresoProductoTerminal';
+import { Salir } from './Components/IniciarSesion/Salir';
+import { Organizaciones } from './pages/Organizaciones';
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
     element: <IngresoProducto />
   },
   {
-    path: "/createProductosFinal",
-    element: <ProductoTerminado />
+    path: "/Organizaciones",
+    element: <Organizaciones />
+  },
+  {
+    path: "/logout",
+    element: <Salir />
   }
 ]);
 

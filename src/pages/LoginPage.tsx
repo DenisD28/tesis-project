@@ -1,9 +1,10 @@
 import { useState } from "react"
 import login from "../services/Services"
 import { Post } from "../Components/types.d"
+import { useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
-
+    const navigate = useNavigate()
     const [formtext, setFormText] = useState<Post>({ usuario: "", password: "" })
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,10 +19,11 @@ export default function LoginPage() {
         e.preventDefault()
         try {
             const userToken = await login.login(formtext)
-            localStorage.setItem("token", JSON.stringify(userToken.token))
+            localStorage.setItem("token", userToken.token)
         } catch (e) {
 
         }
+        navigate("/inventario")
     }
 
     return (
