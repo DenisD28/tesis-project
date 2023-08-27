@@ -78,10 +78,10 @@
   font-size: 25px;
 }
 
-.button {
+.buttonLogin {
   background-color: var(--green-color);
 }
 
-.button:hover {
+.buttonLogin:hover {
   background-color: var(--green-color2);
 }
