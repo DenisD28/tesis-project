@@ -2,6 +2,8 @@
   --title-color: #01A5E4;
   --white-color: #FFFFFF;
   --black-color: #000000;
+  --green-color: #2DB667;
+  --green-color2: #2BA860;
 }
 
 .container {
@@ -62,4 +64,24 @@
   height: 70px;
   width: 100%;
   border: #bdc3c7 1px solid;
+}
+
+.tituloInicio {
+  color: var(--title-color);
+  font-weight: bolder;
+  font-size: 35px;
+}
+
+.subtituloInicio {
+  color: var(--green-color);
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.button {
+  background-color: var(--green-color);
+}
+
+.button:hover {
+  background-color: var(--green-color2);
 }
