@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import "../../css/App.css"
-import listaInventario from "../../services/Services"
-import { inventario, listProduct } from "../types.d"
+import listaInventario, { listaProductoFaltante } from "../../services/Services"
+import { listProduct } from "../types.d"
 
-export const Tablas: React.FC = () => {
+export const TablaProductoFaltante: React.FC = () => {
 
     const [product, setProduct] = useState<listProduct>([])
     let state = { links: [], meta: [], inventario: [] }
@@ -11,14 +11,13 @@ export const Tablas: React.FC = () => {
     useEffect(() => {
         const lista = async () => {
             try {
-                const { links, meta, inventario } = await listaInventario.listaInventario()
+                const { links, meta, inventario } = await listaProductoFaltante()
                 state = ({
                     links,
                     meta,
                     inventario
                 })
                 setProduct(inventario)
-
             } catch (e) {
                 console.log(e)
             }
@@ -29,7 +28,7 @@ export const Tablas: React.FC = () => {
 
     return (
         <div className="body contenedor">
-            <h2 className="titulo">Lista de Inventario</h2>
+            <h2 className="titulo">Dashboard</h2>
             <div className="tabla">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -58,6 +57,7 @@ export const Tablas: React.FC = () => {
                                         <td className="px-6 py-4">{pro.stock}</td>
                                         <td className="px-6 py-4">{pro.status}</td>
                                     </tr>
+
                                 ))
                             }
                         </tbody>

@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react"
 import "../../css/App.css"
-import listaInventario from "../../services/Services"
-import { inventario, listProduct } from "../types.d"
+import { listaProductoTerminado } from "../../services/Services"
+import { listProduct } from "../types.d"
+import { useNavigate } from "react-router-dom"
 
-export const Tablas: React.FC = () => {
+export const TablaProductoTerminado: React.FC = () => {
 
+    const navigate = useNavigate()
     const [product, setProduct] = useState<listProduct>([])
     let state = { links: [], meta: [], inventario: [] }
 
     useEffect(() => {
         const lista = async () => {
             try {
-                const { links, meta, inventario } = await listaInventario.listaInventario()
+                const { links, meta, inventario } = await listaProductoTerminado()
                 state = ({
                     links,
                     meta,
                     inventario
                 })
                 setProduct(inventario)
-
             } catch (e) {
                 console.log(e)
             }
@@ -27,9 +28,15 @@ export const Tablas: React.FC = () => {
         lista()
     }, [])
 
+    const agregar = (id: number, nombre: string) => {
+        localStorage.setItem("idProducto", JSON.stringify(id))
+        localStorage.setItem("nombre", JSON.stringify(nombre))
+        navigate("/ingresoProducto")
+    }
+
     return (
         <div className="body contenedor">
-            <h2 className="titulo">Lista de Inventario</h2>
+            <h2 className="titulo">Lista de Producto Terminado</h2>
             <div className="tabla">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -47,6 +54,9 @@ export const Tablas: React.FC = () => {
                                 <th scope="col" className="px-6 py-3">
                                     Disponibilidad
                                 </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Acciones
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +67,9 @@ export const Tablas: React.FC = () => {
                                         <td className="px-6 py-4">{pro.product}</td>
                                         <td className="px-6 py-4">{pro.stock}</td>
                                         <td className="px-6 py-4">{pro.status}</td>
+                                        <td>
+                                            <button onClick={() => agregar(pro.id, pro.product)}>Agregar</button>
+                                        </td>
                                     </tr>
                                 ))
                             }

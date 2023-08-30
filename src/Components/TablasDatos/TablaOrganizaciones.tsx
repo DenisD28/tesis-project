@@ -2,14 +2,12 @@ import { useEffect, useState } from "react"
 import "../../css/App.css"
 import listaOrganizaciones, { listaInventario } from "../../services/Services"
 import { listOrg } from "../types.d"
-import axios from "axios"
 
 export const TablasOrganizaciones: React.FC = () => {
 
     const [listOrg, setOrg] = useState<listOrg>([])
     const [next, setNext] = useState("")
     let state = { links: [], meta: [], organizaciones: [] }
-
 
     useEffect(() => {
         lista()
@@ -24,7 +22,6 @@ export const TablasOrganizaciones: React.FC = () => {
                 organizaciones
             })
             setOrg(organizaciones)
-            console.log(meta.last_page)
         } catch (e) {
             console.log(e)
         }

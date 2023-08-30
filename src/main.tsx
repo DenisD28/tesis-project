@@ -11,6 +11,9 @@ import { Inventarios } from './pages/Inventarios';
 import { IngresoProducto } from './pages/IngresoProducto';
 import { Salir } from './Components/IniciarSesion/Salir';
 import { Organizaciones } from './pages/Organizaciones';
+import { Dashboard } from './pages/dashboard';
+import { IngresoProductoTerminado } from './pages/IngresoProductoTerminado';
+import { SalidaDeMateriaPrima } from './pages/SalidaDeMateriaPrima';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,18 @@ const router = createBrowserRouter([
   {
     path: "/Organizaciones",
     element: <Organizaciones />
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />
+  },
+  {
+    path: "/pTerminado",
+    element: <IngresoProductoTerminado />
+  },
+  {
+    path: "/ingresoProducto",
+    element: <SalidaDeMateriaPrima />
   },
   {
     path: "/logout",

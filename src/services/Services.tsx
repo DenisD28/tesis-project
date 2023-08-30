@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Post, User, inven, inventario, listOrg, listProduct } from "../Components/types.d";
+import { Post, User, inven } from "../Components/types.d";
 
 const login = async (newPost: Post): Promise<User> => {
     const url = `https://acldev.tech/sistemagestionbodega/api/v1/auth/login?username=${newPost.usuario}&password=${newPost.password}`
@@ -8,9 +8,39 @@ const login = async (newPost: Post): Promise<User> => {
     return response.data
 }
 
-export const listaInventario = async (): Promise<listProduct> => {
+export const listaInventario = async () => {
     const token = localStorage.getItem('token')
-    console.log(token)
+    const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=MP"
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const listaProductoTerminado = async () => {
+    const token = localStorage.getItem('token')
+    const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=PT"
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const listaProductoFaltante = async () => {
+    const token = localStorage.getItem('token')
+    //const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventario/min-stock"
     const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=MP"
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -26,27 +56,44 @@ export const listaInventario = async (): Promise<listProduct> => {
 
 export const agregarInventario = async (formProduct: inven) => {
     const token = localStorage.getItem('token')
-
-    const params = {
-        type: formProduct.type,
-        stock_min: formProduct.stock_min,
-        unit_of_measurement: formProduct.unit_of_measurement,
-        code: formProduct.code,
-        description: formProduct.description
-    }
-
-    const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?"
+    console.log(formProduct)
+    const url = `https://acldev.tech/sistemagestionbodega/api/v1/inventory?product_id=18&type=MP&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&location&lot_number=&note&code=${formProduct.code}&description=${formProduct.description}`
     const headers = {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json',
-        'data': `${params}`
+        'Accept': 'application/json'
     }
 
-    const response = await axios.post(url, {
+    const body = ""
+
+    const response = await axios.post(url, body, {
         headers: headers
     })
+    return response.data
+}
 
-    return response
+export const agregarProductoTerminado = async (data: string, cantidad: string) => {
+    console.log(data)
+    const token = localStorage.getItem('token')
+    const id = localStorage.getItem('idProducto')
+
+    try {
+        const url = `https://acldev.tech/sistemagestionbodega/api/v1/register/finished_product?inventory_id=${id}&quantity=${cantidad}`
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+        }
+        const body = data
+
+        const response = await axios.post(url, body, {
+            headers
+        })
+        console.log(response)
+    } catch (error) {
+        console.error(error)
+    }
+
+
 }
 
 export const listaOrganizaciones = async () => {
@@ -64,4 +111,19 @@ export const listaOrganizaciones = async () => {
     return response.data
 }
 
-export default { login, listaInventario, agregarInventario, listaOrganizaciones }
+export const listaProductos = async () => {
+    const token = localStorage.getItem('token')
+    const url = "https://acldev.tech/sistemagestionbodega/api/v1/products/Harina/search"
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export default { login, listaInventario, agregarInventario, listaOrganizaciones, listaProductos, listaProductoTerminado }
