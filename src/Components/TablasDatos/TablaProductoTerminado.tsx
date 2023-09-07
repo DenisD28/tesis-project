@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
 import "../../css/App.css"
-import { listaProductoTerminado } from "../../services/Services"
 import { listProduct } from "../types.d"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-
+import { listaProductoTerminado } from "../../services/Services"
 export const TablaProductoTerminado: React.FC = () => {
 
     const navigate = useNavigate()

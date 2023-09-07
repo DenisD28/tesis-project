@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
 import "../../css/App.css"
-import listaOrganizaciones, { listaInventario } from "../../services/Services"
 import { listOrg } from "../types.d"
+import { useEffect, useState } from "react"
+import { listaOrganizaciones } from "../../services/Services"
 
 export const TablasOrganizaciones: React.FC = () => {
 
@@ -15,7 +15,7 @@ export const TablasOrganizaciones: React.FC = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, organizaciones } = await listaOrganizaciones.listaOrganizaciones()
+            const { links, meta, organizaciones } = await listaOrganizaciones()
             state = ({
                 links,
                 meta,

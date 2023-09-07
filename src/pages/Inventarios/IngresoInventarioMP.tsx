@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react"
-import { Aside } from "../routes/aside"
-import { inven, listProd } from "../Components/types.d"
-import { agregarInventario, listaProductos } from "../services/Services"
-import { Nav } from "../Components/nav/Nav"
 import { useNavigate } from "react-router-dom"
+import { inven, listProd } from "../../Components/types.d"
+import { agregarInventario, listaProductos } from "../../services/Services"
 
-
-export const IngresoProducto = () => {
+export const IngresoInventarioMP = () => {
     const [formProducto, setFormProduct] = useState<inven>({ type: "", stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0 })
     const [list, setProducto] = useState<listProd>([])
     const navigation = useNavigate()
@@ -39,7 +36,6 @@ export const IngresoProducto = () => {
         }));
     };
 
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
@@ -58,8 +54,6 @@ export const IngresoProducto = () => {
     }
 
     return (<>
-        <Nav />
-        <Aside />
         <div className="body contenedor">
             <h2 className="titulo">Ingreso de Productos</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -84,7 +78,6 @@ export const IngresoProducto = () => {
                             <input name="stock_min" value={formProducto.stock_min} onChange={handleInputChange} type="number" id="floating_outlined" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" " required />
                         </div>
                     </div>
-
                     <div className="right">
                         <div className="relative">
                             <label htmlFor="floating_outlined" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unidad de medida</label>
@@ -98,9 +91,7 @@ export const IngresoProducto = () => {
                             <label htmlFor="floating_outlined" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripcion</label>
                             <input name="description" value={formProducto.description} onChange={handleInputChange} type="text" id="floating_outlined" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descripcion adicional " required />
                         </div>
-
                     </div>
-
                 </div>
                 <div className="buttons">
                     <div className="button">

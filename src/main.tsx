@@ -1,19 +1,20 @@
-import React, { Children } from 'react'
 import ReactDOM from 'react-dom/client'
 import { NextUIProvider } from '@nextui-org/react'
 import {
   createBrowserRouter,
-  RouterProvider,
+  RouterProvider
 } from "react-router-dom";
 import "../src/css/index.css"
-import LoginPage from '../src/pages/LoginPage';
-import { Inventarios } from './pages/Inventarios';
-import { IngresoProducto } from './pages/IngresoProducto';
+import { Inventarios } from './pages/Inventarios/Inventarios';
+import { IngresoInventarioMP } from './pages/Inventarios/IngresoInventarioMP';
 import { Salir } from './Components/IniciarSesion/Salir';
-import { Organizaciones } from './pages/Organizaciones';
-import { Dashboard } from './pages/dashboard';
-import { IngresoProductoTerminado } from './pages/IngresoProductoTerminado';
-import { SalidaDeMateriaPrima } from './pages/SalidaDeMateriaPrima';
+import { Organizaciones } from './pages/Organizaciones/Organizaciones';
+import { IngresoProductoTerminado } from './pages/Inventarios/IngresoProductoTerminado';
+import { SalidaDeMateriaPrima } from './pages/Inventarios/SalidaDeMateriaPrima';
+import React from 'react';
+import { AddNewProduct } from './pages/Productos/AddNewProduct';
+import LoginPage from './pages/Login/LoginPage';
+import { Aside } from './routes/aside';
 
 const router = createBrowserRouter([
   {
@@ -25,17 +26,17 @@ const router = createBrowserRouter([
     element: <Inventarios />
   },
   {
-    path: "/createProductos",
-    element: <IngresoProducto />
+    path: "/IngresoInventarioMP",
+    element: <IngresoInventarioMP />
   },
   {
     path: "/Organizaciones",
     element: <Organizaciones />
   },
-  {
-    path: "/dashboard",
-    element: <Dashboard />
-  },
+  // {
+  //   path: "/dashboard",
+  //   element: <Dashboard />
+  // },
   {
     path: "/pTerminado",
     element: <IngresoProductoTerminado />
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/logout",
     element: <Salir />
+  },
+  {
+    path: "/AddNewProduct",
+    element: <AddNewProduct />
   }
 ]);
 

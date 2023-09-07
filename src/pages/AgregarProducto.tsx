@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 import { inven, listProd } from "../Components/types.d"
-import { Aside } from "../routes/aside"
-import { Nav } from "../Components/nav/Nav"
 import { agregarInventario, listaProductos } from "../services/Services"
 
 export const AgregarProducto = () => {
@@ -36,7 +34,6 @@ export const AgregarProducto = () => {
         }));
     };
 
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
@@ -52,8 +49,6 @@ export const AgregarProducto = () => {
     }
 
     return (<>
-        <Nav />
-        <Aside />
         <div className="body contenedor">
             <h2 className="titulo">Ingreso de Productos</h2>
             <form onSubmit={(e) => handleSubmit(e)}>

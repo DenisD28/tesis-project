@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "../../css/App.css"
-import listaInventario, { listaProductoFaltante } from "../../services/Services"
+import { listaProductoFaltante } from "../../services/Services"
 import { listProduct } from "../types.d"
 
 export const TablaProductoFaltante: React.FC = () => {

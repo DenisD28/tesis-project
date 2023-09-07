@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Post, User, inven } from "../Components/types.d";
+import { Post, User, inven, newProduct } from "../Components/types.d";
 
-const login = async (newPost: Post): Promise<User> => {
+export const login = async (newPost: Post): Promise<User> => {
     const url = `https://acldev.tech/sistemagestionbodega/api/v1/auth/login?username=${newPost.usuario}&password=${newPost.password}`
     const response = await axios.post(url)
 
@@ -11,6 +11,7 @@ const login = async (newPost: Post): Promise<User> => {
 export const listaInventario = async () => {
     const token = localStorage.getItem('token')
     const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=MP"
+
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
@@ -26,6 +27,7 @@ export const listaInventario = async () => {
 export const listaProductoTerminado = async () => {
     const token = localStorage.getItem('token')
     const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=PT"
+
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
@@ -40,8 +42,8 @@ export const listaProductoTerminado = async () => {
 
 export const listaProductoFaltante = async () => {
     const token = localStorage.getItem('token')
-    //const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventario/min-stock"
     const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=MP"
+
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
@@ -56,8 +58,8 @@ export const listaProductoFaltante = async () => {
 
 export const agregarInventario = async (formProduct: inven) => {
     const token = localStorage.getItem('token')
-    console.log(formProduct)
     const url = `https://acldev.tech/sistemagestionbodega/api/v1/inventory?product_id=18&type=MP&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&location&lot_number=&note&code=${formProduct.code}&description=${formProduct.description}`
+
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
@@ -68,6 +70,7 @@ export const agregarInventario = async (formProduct: inven) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
+
     return response.data
 }
 
@@ -92,13 +95,12 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
     } catch (error) {
         console.error(error)
     }
-
-
 }
 
 export const listaOrganizaciones = async () => {
     const token = localStorage.getItem('token')
     const url = "https://acldev.tech/sistemagestionbodega/api/v1/organizations?"
+
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
@@ -114,6 +116,7 @@ export const listaOrganizaciones = async () => {
 export const listaProductos = async () => {
     const token = localStorage.getItem('token')
     const url = "https://acldev.tech/sistemagestionbodega/api/v1/products/Harina/search"
+
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
@@ -126,4 +129,20 @@ export const listaProductos = async () => {
     return response.data
 }
 
-export default { login, listaInventario, agregarInventario, listaOrganizaciones, listaProductos, listaProductoTerminado }
+//por probar
+export const newAddProduct = async (newProducto: newProduct) => {
+    const token = localStorage.getItem('token')
+    const url = `product?name=${newProducto.name}&measurement_type=${newProducto.measurement_type}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.post(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+

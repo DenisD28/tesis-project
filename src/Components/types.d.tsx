@@ -47,16 +47,26 @@ export interface purchase {
     observation: string
 }
 
+//Usuarios
 export type UserType = User
 export type user = Pick<User, 'username' | 'password'>
 export type ListOfUser = User[]
+
+//Iniciar sesion
 export type formData = Post
+
+//Inventario
 export type inventario = Inventary
 export type inven = Pick<Inventary, 'type' | 'stock_min' | 'unit_of_measurement' | 'code' | 'description' | 'id'>
 export type listProduct = Inventary[]
+
+//Organizacion
 export type listOrg = Organizacion[]
 export type organi = Pick<Organizacion, 'id' | 'name' | 'ruc' | 'address'>
+
+//Lista Producto
 export type listProd = Producto[]
 export type agreagarProd = Producto
 export type listInven = Pick<Producto, 'id' | 'quantity'>[]
 export type invent = Pick<purchase, 'detail_purchase_id' | 'quantity' | 'observation'>
+export type newProduct = Pick<Producto, 'name' | 'measurement_type'>
