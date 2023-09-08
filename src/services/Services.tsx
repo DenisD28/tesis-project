@@ -132,7 +132,7 @@ export const listaProductos = async () => {
 //por probar
 export const newAddProduct = async (newProducto: newProduct) => {
     const token = localStorage.getItem('token')
-    const url = `product?name=${newProducto.name}&measurement_type=${newProducto.measurement_type}`
+    const url = `https://acldev.tech/sistemagestionbodega/api/v1/product?name=${newProducto.name}&measurement_type=${newProducto.measurement_type}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,

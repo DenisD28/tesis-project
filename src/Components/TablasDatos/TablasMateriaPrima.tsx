@@ -1,56 +1,9 @@
 import "../../css/App.css"
-import {
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
-    Input,
-    Button,
-    DropdownTrigger,
-    Dropdown,
-    DropdownMenu,
-    DropdownItem,
-    Chip,
-    User,
-    Pagination,
-    Selection,
-    ChipProps,
-    SortDescriptor
-} from "@nextui-org/react";
-import { PlusIcon } from "../ComponetesTabla/PlusIcon"
-import { VerticalDotsIcon } from "../ComponetesTabla/VerticalDotsIcon";
-import { ChevronDownIcon } from "../ComponetesTabla/ChevronDownIcon";
-import { SearchIcon } from "../ComponetesTabla/SearchIcon.jsx";
-import { columns, users, statusOptions } from "../ComponetesTabla/data.js";
-import { capitalize } from "../ComponetesTabla/utils";
-
-import { listaInventario } from "../../services/Services"
+import { useEffect, useState } from "react"
 import { listProduct } from "../types.d"
-import { Key, useCallback, useEffect, useMemo, useState } from "react"
-
-const statusColorMap: Record<string, ChipProps["color"]> = {
-    active: "success",
-    paused: "danger",
-    vacation: "warning",
-};
-
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
-
-type User = typeof users[0];
+import { listaInventario } from "../../services/Services"
 
 export const Tablas: React.FC = () => {
-
-    const [filterValue, setFilterValue] = useState("");
-    const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
-    const [visibleColumns, setVisibleColumns] = useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
-    const [statusFilter, setStatusFilter] = useState<Selection>("all");
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-        column: "age",
-        direction: "ascending",
-    });
 
     //**********************************Consulta a base de datos******************************************
     const [product, setProduct] = useState<listProduct>([])
@@ -72,325 +25,112 @@ export const Tablas: React.FC = () => {
         }
         lista()
     }, [])
+
     //**********************************Consulta a base de datos******************************************
 
-    const [page, setPage] = useState(1);
-
-    const hasSearchFilter = Boolean(filterValue);
-
-    const headerColumns = useMemo(() => {
-        if (visibleColumns === "all") return columns;
-
-        return columns.filter((column: { uid: Key; }) => Array.from(visibleColumns).includes(column.uid));
-    }, [visibleColumns]);
-
-    const filteredItems = useMemo(() => {
-        let filteredUsers = [...users];
-
-        if (hasSearchFilter) {
-            filteredUsers = filteredUsers.filter((user) =>
-                user.name.toLowerCase().includes(filterValue.toLowerCase()),
-            );
-        }
-        if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-            filteredUsers = filteredUsers.filter((user) =>
-                Array.from(statusFilter).includes(user.status),
-            );
-        }
-
-        return filteredUsers;
-    }, [users, filterValue, statusFilter]);
-
-    const pages = Math.ceil(filteredItems.length / rowsPerPage);
-
-    const items = useMemo(() => {
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-
-        return filteredItems.slice(start, end);
-    }, [page, filteredItems, rowsPerPage]);
-
-    const sortedItems = useMemo(() => {
-        return [...items].sort((a: User, b: User) => {
-            const first = a[sortDescriptor.column as keyof User] as number;
-            const second = b[sortDescriptor.column as keyof User] as number;
-            const cmp = first < second ? -1 : first > second ? 1 : 0;
-
-            return sortDescriptor.direction === "descending" ? -cmp : cmp;
-        });
-    }, [sortDescriptor, items]);
-
-    const renderCell = useCallback((user: User, columnKey: React.Key) => {
-        const cellValue = user[columnKey];
-
-        switch (columnKey) {
-            case "name":
-                return (
-                    <User
-                        avatarProps={{ radius: "lg", src: user.avatar }}
-                        description={user.email}
-                        name={cellValue}
-                    >
-                        {user.email}
-                    </User>
-                );
-            case "role":
-                return (
-                    <div className="flex flex-col">
-                        <p className="text-bold text-small capitalize">{cellValue}</p>
-                        <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
-                    </div>
-                );
-            case "status":
-                return (
-                    <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-                        {cellValue}
-                    </Chip>
-                );
-            case "actions":
-                return (
-                    <div className="relative flex justify-end items-center gap-2">
-                        <Dropdown>
-                            <DropdownTrigger>
-                                <Button isIconOnly size="sm" variant="light">
-                                    <VerticalDotsIcon className="text-default-300" />
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu>
-                                <DropdownItem>View</DropdownItem>
-                                <DropdownItem>Edit</DropdownItem>
-                                <DropdownItem>Delete</DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
-                    </div>
-                );
-            default:
-                return cellValue;
-        }
-    }, []);
-
-    const onNextPage = useCallback(() => {
-        if (page < pages) {
-            setPage(page + 1);
-        }
-    }, [page, pages]);
-
-    const onPreviousPage = useCallback(() => {
-        if (page > 1) {
-            setPage(page - 1);
-        }
-    }, [page]);
-
-    const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-        setRowsPerPage(Number(e.target.value));
-        setPage(1);
-    }, []);
-
-    const onSearchChange = useCallback((value?: string) => {
-        if (value) {
-            setFilterValue(value);
-            setPage(1);
-        } else {
-            setFilterValue("");
-        }
-    }, []);
-
-    const onClear = useCallback(() => {
-        setFilterValue("")
-        setPage(1)
-    }, [])
-
-    const topContent = useMemo(() => {
-        return (
-            <div className="flex flex-col gap-4">
-                <div className="flex justify-between gap-3 items-end">
-                    <Input
-                        isClearable
-                        className="w-full sm:max-w-[44%]"
-                        placeholder="Search by name..."
-                        startContent={<SearchIcon />}
-                        value={filterValue}
-                        onClear={() => onClear()}
-                        onValueChange={onSearchChange}
-                    />
-                    <div className="flex gap-3">
-                        <Dropdown>
-                            <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                                    Status
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                disallowEmptySelection
-                                aria-label="Table Columns"
-                                closeOnSelect={false}
-                                selectedKeys={statusFilter}
-                                selectionMode="multiple"
-                                onSelectionChange={setStatusFilter}
-                            >
-                                {statusOptions.map((status: { uid: string | number | undefined; name: any; }) => (
-                                    <DropdownItem key={status.uid} className="capitalize">
-                                        {capitalize(status.name)}
-                                    </DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </Dropdown>
-                        <Dropdown>
-                            <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                                    Columns
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                disallowEmptySelection
-                                aria-label="Table Columns"
-                                closeOnSelect={false}
-                                selectedKeys={visibleColumns}
-                                selectionMode="multiple"
-                                onSelectionChange={setVisibleColumns}
-                            >
-                                {columns.map((column: { uid: string | number | undefined; name: any; }) => (
-                                    <DropdownItem key={column.uid} className="capitalize">
-                                        {capitalize(column.name)}
-                                    </DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </Dropdown>
-                        <Button color="primary" endContent={<PlusIcon />}>
-                            Add New
-                        </Button>
-                    </div>
-                </div>
-                <div className="flex justify-between items-center">
-                    <span className="text-default-400 text-small">Total {users.length} users</span>
-                    <label className="flex items-center text-default-400 text-small">
-                        Rows per page:
-                        <select
-                            className="bg-transparent outline-none text-default-400 text-small"
-                            onChange={onRowsPerPageChange}
-                        >
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
-        );
-    }, [
-        filterValue,
-        statusFilter,
-        visibleColumns,
-        onSearchChange,
-        onRowsPerPageChange,
-        users.length,
-        hasSearchFilter,
-    ]);
-
-    const bottomContent = useMemo(() => {
-        return (
-            <div className="py-2 px-2 flex justify-between items-center">
-                <span className="w-[30%] text-small text-default-400">
-                    {selectedKeys === "all"
-                        ? "All items selected"
-                        : `${selectedKeys.size} of ${filteredItems.length} selected`}
-                </span>
-                <Pagination
-                    isCompact
-                    showControls
-                    showShadow
-                    color="primary"
-                    page={page}
-                    total={pages}
-                    onChange={setPage}
-                />
-                <div className="hidden sm:flex w-[30%] justify-end gap-2">
-                    <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
-                        Previous
-                    </Button>
-                    <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
-                        Next
-                    </Button>
-                </div>
-            </div>
-        );
-    }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
     return (
-        <Table
-            aria-label="Example table with custom cells, pagination and sorting"
-            isHeaderSticky
-            bottomContent={bottomContent}
-            bottomContentPlacement="outside"
-            classNames={{
-                wrapper: "max-h-[382px]",
-            }}
-            selectedKeys={selectedKeys}
-            selectionMode="multiple"
-            sortDescriptor={sortDescriptor}
-            topContent={topContent}
-            topContentPlacement="outside"
-            onSelectionChange={setSelectedKeys}
-            onSortChange={setSortDescriptor}
-        >
-            <TableHeader columns={headerColumns}>
-                {(column) => (
-                    <TableColumn
-                        key={column.uid}
-                        align={column.uid === "actions" ? "center" : "start"}
-                        allowsSorting={column.sortable}
-                    >
-                        {column.name}
-                    </TableColumn>
-                )}
-            </TableHeader>
-            <TableBody emptyContent={"No users found"} items={sortedItems}>
-                {(item) => (
-                    <TableRow key={item.id}>
-                        {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
-    );
-
-    // return (
-    //     <div className="Container">
-    //         <h2 className="titulo">Lista de Inventario</h2>
-    //         <div className="tabla">
-    //             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-    //                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    //                     <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
-    //                         <tr>
-    //                             <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-    //                                 Codigo
-    //                             </th>
-    //                             <th scope="col" className="px-6 py-3">
-    //                                 Nombre
-    //                             </th>
-    //                             <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-    //                                 Stock
-    //                             </th>
-    //                             <th scope="col" className="px-6 py-3">
-    //                                 Disponibilidad
-    //                             </th>
-    //                         </tr>
-    //                     </thead>
-    //                     <tbody>
-    //                         {
-    //                             product.map(pro => (
-    //                                 <tr key={pro.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-    //                                     <td className="px-6 py-4">{pro.code}</td>
-    //                                     <td className="px-6 py-4">{pro.product}</td>
-    //                                     <td className="px-6 py-4">{pro.stock}</td>
-    //                                     <td className="px-6 py-4">{pro.status}</td>
-    //                                 </tr>
-    //                             ))
-    //                         }
-    //                     </tbody>
-    //                 </table>
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
+        <div className="Container">
+            <h2 className="titulo">Lista de Materia Prima</h2>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="p-4">
+                                <div className="flex items-center">
+                                    <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                    <label htmlFor="checkbox-all-search" className="sr-only">checkbox</label>
+                                </div>
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Codigo
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Nombre
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Stock
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Disponibilidad
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td className="w-4 p-4">
+                                <div className="flex items-center">
+                                    <input id="checkbox-table-search-3" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                    <label htmlFor="checkbox-table-search-3" className="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Apple iMac
+                            </th>
+                            <td className="px-6 py-4">
+                                Silver
+                            </td>
+                            <td className="px-6 py-4">
+                                PC
+                            </td>
+                            <td className="px-6 py-4">
+                                $2999
+                            </td>
+                            <td className="px-6 py-4">
+                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        {
+                            product.map(pro => (
+                                <tr key={pro.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td className="w-4 p-4">
+                                        <div className="flex items-center">
+                                            <input id="checkbox-table-search-3" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                            <label htmlFor="checkbox-table-search-3" className="sr-only">checkbox</label>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">{pro.code}</td>
+                                    <td className="px-6 py-4">{pro.product}</td>
+                                    <td className="px-6 py-4">{pro.stock}</td>
+                                    <td className="px-6 py-4">{pro.status}</td>
+                                    <td className="px-6 py-4">
+                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+                <nav className="flex items-center justify-between pt-4" aria-label="Table navigation">
+                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span className="font-semibold text-gray-900 dark:text-white">1-10</span> of <span className="font-semibold text-gray-900 dark:text-white">1000</span></span>
+                    <ul className="inline-flex -space-x-px text-sm h-8">
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                        </li>
+                        <li>
+                            <a href="#" aria-current="page" className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    )
 }

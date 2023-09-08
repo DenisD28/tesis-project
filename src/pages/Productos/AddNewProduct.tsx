@@ -1,6 +1,6 @@
-import { Input, Button } from "@nextui-org/react";
 import { useState } from "react";
 import { newProduct } from "../../Components/types.d";
+import { newAddProduct } from "../../services/Services";
 
 export const AddNewProduct = () => {
 
@@ -18,7 +18,8 @@ export const AddNewProduct = () => {
         e.preventDefault()
         try {
             //consulta
-
+            const response = await newAddProduct(formProducto)
+            console.log(response)
         } catch (e) {
             console.log(e)
         }
@@ -37,36 +38,7 @@ export const AddNewProduct = () => {
                 </div>
                 <div>
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <div>
-                            <Input
-                                isRequired
-                                type="text"
-                                label="Nombre Producto"
-                                value={formProducto.name}
-                                className="max-w-xs"
-                                name="name"
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div>
-                            <Input
-                                isRequired
-                                type="text"
-                                label="Tipo de Medición"
-                                value={formProducto.measurement_type}
-                                className="max-w-xs"
-                                name="measurement_type"
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div>
-                            <Button color="danger" onClick={cancelar}>
-                                Cancelar
-                            </Button>
-                            <Button color="primary" type="submit">
-                                Registrar
-                            </Button>
-                        </div>
+
                     </form>
                 </div>
             </div >
