@@ -1,20 +1,16 @@
-import ReactDOM from 'react-dom/client'
-import { NextUIProvider } from '@nextui-org/react'
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
+import React from 'react';
 import "../src/css/index.css"
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Inventarios } from './pages/Inventarios/Inventarios';
 import { IngresoInventarioMP } from './pages/Inventarios/IngresoInventarioMP';
 import { Salir } from './Components/IniciarSesion/Salir';
 import { Organizaciones } from './pages/Organizaciones/Organizaciones';
 import { IngresoProductoTerminado } from './pages/Inventarios/IngresoProductoTerminado';
 import { SalidaDeMateriaPrima } from './pages/Inventarios/SalidaDeMateriaPrima';
-import React from 'react';
 import { AddNewProduct } from './pages/Productos/AddNewProduct';
 import LoginPage from './pages/Login/LoginPage';
-import { Aside } from './routes/aside';
+import { Dashboard } from './pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -33,10 +29,6 @@ const router = createBrowserRouter([
     path: "/Organizaciones",
     element: <Organizaciones />
   },
-  // {
-  //   path: "/dashboard",
-  //   element: <Dashboard />
-  // },
   {
     path: "/pTerminado",
     element: <IngresoProductoTerminado />
@@ -52,13 +44,15 @@ const router = createBrowserRouter([
   {
     path: "/AddNewProduct",
     element: <AddNewProduct />
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <NextUIProvider>
-      <RouterProvider router={router} />
-    </NextUIProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

@@ -21,10 +21,12 @@ export interface Inventary {
     stock: number
     quantity: string
 }
+
 export interface Post {
     usuario: string
     password: string
 }
+
 export interface Organizacion {
 
     id: number
@@ -57,7 +59,7 @@ export type formData = Post
 
 //Inventario
 export type inventario = Inventary
-export type inven = Pick<Inventary, 'type' | 'stock_min' | 'unit_of_measurement' | 'code' | 'description' | 'id'>
+export type inven = Pick<Inventary, 'stock_min' | 'unit_of_measurement' | 'code' | 'description' | 'id'>
 export type listProduct = Inventary[]
 
 //Organizacion

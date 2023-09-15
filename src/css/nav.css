@@ -1,0 +1,12 @@
+.nav {
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+    border: #c0c0c0 1px solid;
+}
+
+.div-left {}
+
+.div-rigth .div-user {
+    display: flex;
+}

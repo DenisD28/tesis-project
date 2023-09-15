@@ -2,6 +2,7 @@ import "../../css/App.css"
 import { useState } from "react"
 import { Post, User } from "../../Components/types.d"
 import { useNavigate } from "react-router-dom"
+import { Image } from "@nextui-org/react";
 import { login } from "../../services/Services";
 
 export default function LoginPage() {
@@ -21,7 +22,8 @@ export default function LoginPage() {
         let userToken: User
         try {
             userToken = await login(formtext)
-            localStorage.setItem("token", userToken.token)
+            console.log(userToken)
+            //localStorage.setItem("token", userToken.token)
 
             if (userToken.token != "") {
                 navigate("/inventario")
@@ -34,7 +36,11 @@ export default function LoginPage() {
     return (
         <div className="container">
             <div>
-
+                <Image
+                    width={500}
+                    alt="NextUI hero Image"
+                    src="src\img\panadero.jpg"
+                />
             </div>
             <div>
                 <div className="Form">
@@ -62,7 +68,6 @@ export default function LoginPage() {
                 </div>
             </div>
         </div>
-
 
     )
 }
