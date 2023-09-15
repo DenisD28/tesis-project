@@ -59,3 +59,57 @@ img {
     font-size: 14px;
     width: 200px;
 }
+
+
+@media and (min-width: 768px) {
+
+    img {
+        justify-self: start;
+        width: 50%;
+    }
+
+    .Form {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        padding: 20px;
+        justify-content: space-around;
+        padding-left: 10px;
+    }
+
+
+    .input {
+        border: #bdc3c7 1px solid;
+        border-radius: 12px;
+        width: 300px;
+    }
+
+    .formClass {
+        padding-bottom: 10px;
+    }
+
+    .btnLogin {
+        background-color: var(--first-color);
+        padding: 10px;
+        color: #FFFFFF;
+        border-radius: 12px;
+        height: 35px;
+        font-size: 14px;
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    img {
+        display: none;
+    }
+
+    .Form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+}

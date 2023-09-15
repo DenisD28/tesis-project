@@ -34,7 +34,6 @@ export default function LoginPage() {
 
     return (
         <div className="container">
-
             <img src="src\img\pexels-ivan-j.jpg" alt="" />
             <div>
                 <div className="Form">
