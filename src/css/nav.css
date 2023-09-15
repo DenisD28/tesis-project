@@ -1,10 +1,98 @@
-.nav {
-    display: flex;
-    justify-content: end;
-    padding: 20px;
-    border: #c0c0c0 1px solid;
+:root {
+    --second-color: #ecf0f1;
 }
 
-.div-rigth .div-user {
+.nav {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: #c0c0c0 1px solid;
+    padding-right: 20px;
+}
+
+.div-left,
+.div.rigth,
+.div-user {
+    display: flex;
+    align-items: center;
+}
+
+.buscador {
+    display: flex;
+    background-color: var(--second-color);
+    height: 40px;
+    padding: 10px;
+    border-radius: 15px;
+    width: 500px;
+    margin-right: 10px;
+}
+
+.buscador input {
+    background-color: var(--second-color);
+    border: none;
+    width: 100%;
+}
+
+.separate {
+    height: 60px;
+    border-left: var(--second-color) 2px solid;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.message,
+.notification {
+    background-color: var(--second-color);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.div-user {
+    height: 40px;
+    background-color: var(--second-color);
+    padding: 10px;
+    border-radius: 15px;
+    justify-content: space-around;
+}
+
+.div-user .userSiglas {
+    background-color: #fbc531;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.div-user .nombre {
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.div-user .Rol {
+    font-size: 10px;
+    font-weight: bold;
+    color: #95a5a6;
+}
+
+.logout button {
+    background-color: #ffffff;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout button svg {
+    width: 20px;
 }
