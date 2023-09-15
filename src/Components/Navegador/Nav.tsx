@@ -1,6 +1,5 @@
 import "../../css/nav.css"
 
-
 export const Nav = () => {
     return (
         <>

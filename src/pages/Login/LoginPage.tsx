@@ -1,8 +1,7 @@
-import "../../css/App.css"
+import "../../css/login.css"
 import { useState } from "react"
 import { Post, User } from "../../Components/types.d"
 import { useNavigate } from "react-router-dom"
-import { Image } from "@nextui-org/react";
 import { login } from "../../services/Services";
 
 export default function LoginPage() {
@@ -35,27 +34,22 @@ export default function LoginPage() {
 
     return (
         <div className="container">
-            <div>
-                <Image
-                    width={500}
-                    alt="NextUI hero Image"
-                    src="src\img\panadero.jpg"
-                />
-            </div>
+
+            <img src="src\img\pexels-ivan-j.jpg" alt="" />
             <div>
                 <div className="Form">
                     <div className="title">
                         <h2 className="tituloInicio">Bienvenido</h2>
-                        <h3 className="subtituloInicio">Inicia sesion</h3>
+                        <h2 className="subtituloInicio">Inicia Sesión</h2>
                     </div>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="mb-6 ">
-                            <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
-                            <input name="usuario" value={formtext.usuario} onChange={handleInputChange} type="text" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Usuario" required />
+                            <label htmlFor="username" className="labels">Usuario</label>
+                            <input name="usuario" value={formtext.usuario} onChange={handleInputChange} type="text" id="username" className="input" placeholder="Usuario" required />
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                            <input name="password" value={formtext.password} onChange={handleInputChange} type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Contraseña" required />
+                            <label htmlFor="password" className="labels">Contraseña</label>
+                            <input name="password" value={formtext.password} onChange={handleInputChange} type="password" id="password" className="input" placeholder="Contraseña" required />
                         </div>
                         <div className="flex items-start mb-6">
                             <div className="flex items-center h-5">
@@ -63,7 +57,7 @@ export default function LoginPage() {
                             </div>
                             <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recuerdarme</label>
                         </div>
-                        <button type="submit" className=" buttonLogin text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar Sesion</button>
+                        <button type="submit" className="btnLogin">Iniciar Sesion</button>
                     </form>
                 </div>
             </div>
