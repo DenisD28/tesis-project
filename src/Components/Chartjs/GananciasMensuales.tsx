@@ -58,9 +58,9 @@ const midata = {
             'rgba(153, 102, 255, 0.2)',
         ],
         borderWidth: 1
-      }]
+    }]
 }
 
 export default function GananciasMensuales() {
-  return <Line data={midata} />
+    return <Line data={midata} />
 }

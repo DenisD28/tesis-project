@@ -1,6 +1,6 @@
 import { Nav } from "../Components/Navegador/Nav"
-import { TablaProductoFaltante } from "../Components/TablasDatos/TablaProductoFaltante"
 import { Menu } from "../routes/Menu"
+import Home from "./Home/Home"
 
 export const Dashboard = () => {
     return (<>
@@ -13,7 +13,7 @@ export const Dashboard = () => {
                     <Nav />
                 </div>
                 <div className="contenido">
-                    <TablaProductoFaltante />
+                    <Home />
                 </div>
             </div>
         </div>

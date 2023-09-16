@@ -25,7 +25,7 @@ export default function LoginPage() {
             //localStorage.setItem("token", userToken.token)
 
             if (userToken.token != "") {
-                navigate("/inventario")
+                navigate("/dashboard")
             }
         } catch (error) {
             alert("Credenciales incorrectas")
