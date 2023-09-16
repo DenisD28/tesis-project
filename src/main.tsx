@@ -12,6 +12,7 @@ import { AddNewProduct } from './pages/Productos/AddNewProduct';
 import LoginPage from './pages/Login/LoginPage';
 import { Dashboard } from './pages/Dashboard';
 import  Home from './pages/Home/Home';
+import AddClient from './pages/Clients/AddClient';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />
+  },
+  {
+    path: "/AddNewClient",
+    element: <AddClient />
   }
 ]);
 
