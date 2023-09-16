@@ -1,0 +1,9 @@
+.hidden-scroll::-webkit-scrollbar{
+    display: none;
+}
+.hidden-scroll::-webkit-scrollbar-track{
+    display: none;
+}
+.hidden-scroll::-webkit-scrollbar-thumb{
+    display: none;
+}
