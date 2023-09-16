@@ -1,0 +1,90 @@
+.contenedor {
+    display: flex;
+}
+
+.Menu2 {
+    display: none;
+}
+
+.div-dashboard {
+    width: 100%;
+}
+
+.contenido {
+    padding: 50px;
+}
+
+.Menu {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fcfcfc;
+    height: 100vh;
+    border: #bdc3c7 1px solid;
+    width: 20vw;
+}
+
+.organizacion {
+    display: flex;
+}
+
+.items {
+    padding-top: 25px;
+}
+
+.organizacion h2 {
+    font-size: 18px;
+    color: #000;
+    font-weight: bolder;
+}
+
+.link-item {
+    display: flex;
+    padding-top: 20px;
+    grid-gap: 10px;
+}
+
+.link-item span {
+    color: #95a5a6;
+    font-weight: bolder;
+}
+
+.items .title h3 {
+    font-weight: bolder;
+    color: #7f8c8d;
+}
+
+@media (max-width: 1024px) {
+    .link-item {
+        display: flex;
+        padding-top: 10px;
+        grid-gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Menu {
+        display: none;
+    }
+
+    .Menu2 {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: #fcfcfc;
+        height: 100vh;
+        border: #bdc3c7 1px solid;
+        width: 8vw;
+    }
+}
+
+@media (max-width: 425px) {
+
+    .Menu,
+    .Menu2 {
+        display: none;
+    }
+
+
+
+}

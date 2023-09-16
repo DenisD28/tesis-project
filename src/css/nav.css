@@ -23,7 +23,7 @@
     height: 40px;
     padding: 10px;
     border-radius: 15px;
-    width: 500px;
+    width: 30vw;
     margin-right: 10px;
 }
 
@@ -95,4 +95,24 @@
 
 .logout button svg {
     width: 20px;
+}
+
+@media (min-width: 768px) {
+    .div-user .nombre {
+        font-weight: bold;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 425px) {
+    .buscador {
+        display: none;
+    }
+
+    .div-user .nombre,
+    .div-user .Rol {
+        display: none;
+    }
+
 }
