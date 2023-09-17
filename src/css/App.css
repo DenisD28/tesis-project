@@ -2,3 +2,54 @@
     display: block;
     width: 200px;
 }
+
+.form-salida {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 148px;
+    background-color: #ECF0F1;
+    width: 363px;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card p span {
+    color: #777777;
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+.card p {
+    color: #000000;
+    font-size: 15px;
+
+}
+
+.card .producto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+}
+
+.card .producto h1 {
+    color: #000000;
+    font-size: 26px;
+    font-weight: bolder;
+}
+
+.column1,
+.column2 {
+    width: 48%;
+}
+
+.form-salidaMP {
+    display: flex;
+}
