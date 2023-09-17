@@ -12,6 +12,9 @@ import { AddNewProduct } from './pages/Productos/AddNewProduct';
 import LoginPage from './pages/Login/LoginPage';
 import { Dashboard } from './pages/Dashboard';
 import AddClient from './pages/Clients/AddClient';
+import AddOrganizacion from './pages/Organizaciones/AddOrganizacion';
+import AddProveedores from './pages/Proveedores/AddProveedores';
+import { Usuarios } from './pages/Usuarios/Usuarios';
 
 const router = createBrowserRouter([
   {
@@ -51,16 +54,28 @@ const router = createBrowserRouter([
     element: <Dashboard />
   },
   {
-    path: "/home",
-    element: <Home />
-  },
-  {
     path: "/AddNewClient",
     element: <AddClient />
   },
   {
     path: "/inventarioTP",
     element: <IngresoProductoTerminado />
+  },
+  {
+    path: "/clientes",
+    element: <AddClient />
+  },
+  {
+    path: "/addorganizacion",
+    element: <AddOrganizacion />
+  },
+  {
+    path: "/addproveedores",
+    element: <AddProveedores />
+  },
+  {
+    path: "/usuarios",
+    element: <Usuarios />
   }
 ]);
 

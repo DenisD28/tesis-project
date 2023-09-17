@@ -8,15 +8,17 @@ import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
-    { name: "Ruc", prop: "ruc" },
     { name: "Nombre", prop: "nombre" },
-    { name: "Telefono", prop: "Telefono" },
-    { name: "Acciones", prop: "acciones" }
+    { name: "Estado", prop: "estado" },
+    { name: "Rol", prop: "Rol" },
+    { name: "Ultima Conexion", prop: "ultimaConexion" },
+    { name: "Accion", prop: "accion" },
+
 ]
 
-const titleTable = 'Organizaciones'
+const titleTable = 'Usuarios del Sistema'
 
-export const TablasOrganizaciones: React.FC = () => {
+export const TablasUsuarios: React.FC = () => {
 
     const [data, setOrg] = useState<listOrg>([])
     const [next, setNext] = useState("")
@@ -43,7 +45,7 @@ export const TablasOrganizaciones: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        navigation("/addorganizacion")
+        navigation("#")
     }
 
     return (
