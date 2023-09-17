@@ -10,7 +10,6 @@ import { IngresoProductoTerminado } from './pages/Inventarios/IngresoProductoTer
 import { SalidaDeMateriaPrima } from './pages/Inventarios/SalidaDeMateriaPrima';
 import { AddNewProduct } from './pages/Productos/AddNewProduct';
 import LoginPage from './pages/Login/LoginPage';
-import Home from './pages/Home/Home';
 import { Dashboard } from './pages/Dashboard';
 
 const router = createBrowserRouter([

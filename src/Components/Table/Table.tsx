@@ -1,122 +1,34 @@
 import './Table.css'
 import Head from './Head/Head'
 import { HeadType } from './types/HeadType'
+import { listProduct } from '../types.d'
 
-const headers: HeadType[] = [
-    { name: "Codigo", prop: "codigo"},
-    { name: "Nombre", prop: "nombre"},
-    { name: "Stock", prop: "stock"},
-]
 
-const data = [
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear nuevgo", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-    { nombre: "Harina", codigo: "M-2034", stock: 45},
-    { nombre: "Azucar", codigo: "M-2034", stock: 32},
-    { nombre: "Levadura", codigo: "M-2034", stock: 19},
-    { nombre: "Aceite", codigo: "M-2034", stock: 56},
-    { nombre: "Polvo de hornear", codigo: "M-2034", stock: 12},
-]
+interface Props {
+    headers: HeadType[]
+    data: listProduct
+    titleTable: string
+}
 
-const titleTable = 'Productos con stock minimo'
-
-export default function Table() {
-  return (
+export const Table: React.FC<Props> = ({ headers, data, titleTable }) => {
+    return (
         <div className='px-8 rounded-xl bg-white md:h-96 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
             <h1 className='sm:text-2xl text-lg font-bold my-4 h-16 w-full sticky top-0 left-0 bg-white pt-4 text-[#4F46E5]'>{titleTable}</h1>
             <table className='w-full h-full'>
                 <Head headers={headers} />
                 <tbody>
                     {data.map((dat, index) => (
-                        <tr 
+                        <tr
                             key={index}
                             className='border-b-[1px] border-[#eee] h-14 sm:h-12'
                         >
                             {headers.map((h, i) => (
-                                <td 
+                                <td
                                     key={i}
                                     className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                        {
-                                            dat[h.prop]
-                                        }
+                                    {
+                                        dat[h.prop]
+                                    }
                                 </td>
                             ))}
                         </tr>
@@ -124,5 +36,5 @@ export default function Table() {
                 </tbody>
             </table>
         </div>
-  )
+    )
 }

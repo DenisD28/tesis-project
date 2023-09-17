@@ -1,6 +1,7 @@
 import Table from "../../Components/Table/Table"
 import GananciasMensuales from "../../Components/Chartjs/GananciasMensuales"
 import Ganancias from "../../Components/Earnings/Ganancias"
+import { TablaProductoFaltante } from "../../Components/TablasDatos/TablaProductoFaltante"
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
           <GananciasMensuales />
         </section>
         <section className="col-span-12">
-          <Table />
+          <TablaProductoFaltante />
         </section>
       </div>
     </div>

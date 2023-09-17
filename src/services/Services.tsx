@@ -42,7 +42,7 @@ export const listaProductoTerminado = async () => {
 
 export const listaProductoFaltante = async () => {
     const token = localStorage.getItem('token')
-    const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventory?type=MP"
+    const url = "https://acldev.tech/sistemagestionbodega/api/v1/inventario/min-stock"
 
     const headers = {
         'Authorization': `Bearer ${token}`,
