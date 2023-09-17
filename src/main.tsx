@@ -11,6 +11,7 @@ import { SalidaDeMateriaPrima } from './pages/Inventarios/SalidaDeMateriaPrima';
 import { AddNewProduct } from './pages/Productos/AddNewProduct';
 import LoginPage from './pages/Login/LoginPage';
 import { Dashboard } from './pages/Dashboard';
+import AddClient from './pages/Clients/AddClient';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,14 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />
+  },
+  {
+    path: "/home",
+    element: <Home />
+  },
+  {
+    path: "/AddNewClient",
+    element: <AddClient />
   },
   {
     path: "/inventarioTP",
