@@ -22,7 +22,7 @@ export default function LoginPage() {
         try {
             userToken = await login(formtext)
             console.log(userToken)
-            //localStorage.setItem("token", userToken.token)
+            localStorage.setItem("token", userToken.token)
 
             if (userToken.token != "") {
                 navigate("/dashboard")

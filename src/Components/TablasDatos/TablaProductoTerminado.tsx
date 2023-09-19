@@ -7,11 +7,10 @@ import Head from "../Table/Head/Head"
 import { HeadType } from "../Table/types/HeadType"
 
 const headers: HeadType[] = [
-    { name: "Codigo", prop: "codigo" },
-    { name: "Nombre", prop: "nombre" },
+    { name: "Codigo", prop: "id" },
+    { name: "Nombre", prop: "product" },
     { name: "Stock", prop: "stock" },
     { name: "Acciones", prop: "acciones" }
-
 ]
 
 const titleTable = 'Productos Terminados'

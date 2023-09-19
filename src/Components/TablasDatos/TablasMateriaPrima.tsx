@@ -8,8 +8,8 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { useNavigate } from "react-router-dom"
 
 const headers: HeadType[] = [
-    { name: "Codigo", prop: "codigo" },
-    { name: "Nombre", prop: "nombre" },
+    { name: "Codigo", prop: "id" },
+    { name: "Nombre", prop: "product" },
     { name: "Stock", prop: "stock" },
 ]
 
@@ -31,6 +31,7 @@ export const Tablas: React.FC = () => {
                     meta,
                     inventario
                 })
+                console.log(inventario)
                 setProduct(inventario)
             } catch (e) {
                 console.log(e)

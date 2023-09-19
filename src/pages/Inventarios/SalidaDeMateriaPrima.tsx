@@ -10,8 +10,8 @@ import InputsForm from "../../Components/Forms/InputsComponents/InputsForm"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
-    { name: "Codigo", prop: "codigo" },
-    { name: "Nombre", prop: "nombre" },
+    { name: "Codigo", prop: "id" },
+    { name: "Nombre", prop: "product" },
     { name: "Stock", prop: "stock" },
     { name: "Accion", prop: "accion" }
 ]
@@ -28,7 +28,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
     const [cantidad, setCantidad] = useState("")
     const [product, setProduct] = useState<listProduct>([])
     const [cant, setCant] = useState("")
-    const [list, setList] = useState<invent[]>([])
+    const [list, setList] = useState<listProduct>([])
     let state = { links: [], meta: [], inventario: [] }
     let id = localStorage.getItem('idProducto')
     let nombre = localStorage.getItem('nombre')
@@ -114,7 +114,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                                                         </td>
                                                     ))}
                                                     <td className="px-6 py-4">
-                                                        <button onClick={() => agregar(dat.id)}>Agregar</button>
+                                                        <button onClick={() => agregar(dat)}>Agregar</button>
                                                     </td>
                                                 </tr>
                                             ))}
