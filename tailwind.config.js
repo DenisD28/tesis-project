@@ -8,7 +8,11 @@ export default {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'purple-icons': '#4F46E5'
+      }
+    },
   },
   darkMode: "class",
   plugins: [require('flowbite/plugin')],

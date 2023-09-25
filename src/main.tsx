@@ -16,6 +16,7 @@ import AddOrganizacion from './pages/Organizaciones/AddOrganizacion';
 import AddProveedores from './pages/Proveedores/AddProveedores';
 import { Usuarios } from './pages/Usuarios/Usuarios';
 import Purchases from './pages/Purchases/Purchases';
+import AddPurchases from './pages/Purchases/AddPurchases';
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
   {
     path: "/compras",
     element: <Purchases />
+  },
+  {
+    path: "/addcompras",
+    element: <AddPurchases />
   }
 ]);
 
