@@ -34,6 +34,9 @@ export interface Organizacion {
     ruc: string
     address: string
     phone_main: string
+    second_phone: string
+    cite: number
+    municipalities: number
 }
 
 export interface Producto {
@@ -48,6 +51,13 @@ export interface purchase {
     quantity: string
     observation: string
 }
+
+export interface departamento {
+    id: number
+    name: string
+}
+
+export type ciudad = departamento[]
 
 //Usuarios
 export type UserType = User
@@ -65,6 +75,7 @@ export type listProduct = Inventary[]
 //Organizacion
 export type listOrg = Organizacion[]
 export type organi = Pick<Organizacion, 'id' | 'name' | 'ruc' | 'address'>
+export type organizacion = Organizacion
 
 //Lista Producto
 export type listProd = Producto[]
