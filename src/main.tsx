@@ -15,6 +15,7 @@ import AddClient from './pages/Clients/AddClient';
 import AddOrganizacion from './pages/Organizaciones/AddOrganizacion';
 import AddProveedores from './pages/Proveedores/AddProveedores';
 import { Usuarios } from './pages/Usuarios/Usuarios';
+import Purchases from './pages/Purchases/Purchases';
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
   {
     path: "/usuarios",
     element: <Usuarios />
+  },
+  {
+    path: "/compras",
+    element: <Purchases />
   }
 ]);
 
