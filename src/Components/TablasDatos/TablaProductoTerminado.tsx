@@ -39,9 +39,10 @@ export const TablaProductoTerminado: React.FC = () => {
         lista()
     }, [])
 
-    const agregar = (id: number, nombre: string) => {
+    const agregar = (id: number, nombre: string, codigo: string) => {
         localStorage.setItem("idProducto", JSON.stringify(id))
         localStorage.setItem("nombre", JSON.stringify(nombre))
+        localStorage.setItem("codigo", JSON.stringify(codigo))
         navigate("/ingresoProducto")
     }
 
@@ -67,7 +68,7 @@ export const TablaProductoTerminado: React.FC = () => {
                                     </td>
                                 ))}
                                 <td>
-                                    <button onClick={() => agregar(dat.id, dat.product)}>Agregar</button>
+                                    <button onClick={() => agregar(dat.id, dat.product, dat.code)}>Agregar</button>
                                 </td>
                             </tr>
                         ))}

@@ -141,6 +141,40 @@ export const newAddProduct = async (newProducto: newProduct) => {
         headers: headers
     })
 
+    console.log(response.data)
+
+    return response.data
+}
+
+export const departamentos = async () => {
+    const token = localStorage.getItem('token')
+    const url = `${import.meta.env.VITE_API_URL}cities`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const municipio = async (id: number) => {
+    const token = localStorage.getItem('token')
+    const url = `${import.meta.env.VITE_API_URL}city/${id}/municipalities`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.post(url, {
+        headers: headers
+    })
+
     return response.data
 }
 
