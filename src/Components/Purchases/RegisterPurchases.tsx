@@ -46,10 +46,9 @@ export default function RegisterPurchases() {
             <button className='bg-purple-icons h-10 px-8 text-white font-semibold rounded-md'>Agregar producto</button>
         </section>
         <section className='border-2 h-auto mt-4 rounded-md p-2 flex justify-start items-start flex-col gap-2'>
-            {
+            {/* {
                 products.length === 0 ? <h1 className='text-lg w-full font-medium text-red-600/50 text-center'>No hay productos seleccionados</h1> : <></>
-            }
-            {/* <BoxProduct />
+            } */}
             <BoxProduct />
             <BoxProduct />
             <BoxProduct />
@@ -63,11 +62,12 @@ export default function RegisterPurchases() {
             <BoxProduct />
             <BoxProduct />
             <BoxProduct />
-            <BoxProduct /> */}
+            <BoxProduct />
+            <BoxProduct />
         </section>
-        <div className=' bg-[#000] fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full'>
+        {/* <div className=' bg-[#000] fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full'>
             <h1>hola</h1>
-        </div>
+        </div> */}
     </>
   )
 }

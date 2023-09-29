@@ -4,6 +4,6 @@ export const Prueba = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (<>
-        <button className="" onClick={()}>Abrir</button>
+        <button className="">Abrir</button>
     </>)
 }
