@@ -1,8 +1,28 @@
+import { useEffect, useState } from "react"
 import "../../css/nav.css"
+import { ListOfUser } from "../types.d"
+import { infoGeneral } from "../../services/Services"
 
 
 
 export const Nav = () => {
+    // const [userInfo, setInfo] = useState<ListOfUser>()
+    // let state = { usuario: [] }
+
+    // useEffect(() => {
+    //     const getInfo = async () => {
+    //         try {
+    //             const { usuario } = await infoGeneral()
+    //             state = ({
+    //                 usuario
+    //             })
+    //             setInfo(usuario)
+    //         } catch (e) {
+    //             console.log(e)
+    //         }
+    //     }
+    //     getInfo()
+    // }, [])
     return (
         <>
             <div className="nav">
@@ -23,7 +43,7 @@ export const Nav = () => {
                     <div className="div-user">
                         <div className="userSiglas"><p>AC</p></div>
                         <div>
-                            <div className="nombre">Andres Alexander Cornejo Lira</div>
+                            <div className="nombre">hola</div>
                             <div className="Rol">Admin</div>
                         </div>
                         <div className="logout">

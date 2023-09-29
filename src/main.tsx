@@ -16,6 +16,9 @@ import AddOrganizacion from './pages/Organizaciones/AddOrganizacion';
 import AddProveedores from './pages/Proveedores/AddProveedores';
 import { Usuarios } from './pages/Usuarios/Usuarios';
 import Purchases from './pages/Purchases/Purchases';
+import { TablasCliente } from './Components/TablasDatos/TablaCliente';
+import { TablasProveedores } from './Components/TablasDatos/TablaProveedores';
+import { Prueba } from './pages/PruebaModal/prueba';
 
 const router = createBrowserRouter([
   {
@@ -64,11 +67,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/clientes",
+    element: <TablasCliente />
+  },
+  {
+    path: "/addcliente",
     element: <AddClient />
   },
   {
     path: "/addorganizacion",
     element: <AddOrganizacion />
+  },
+  {
+    path: "/proveedores",
+    element: <TablasProveedores />
   },
   {
     path: "/addproveedores",
@@ -81,7 +92,12 @@ const router = createBrowserRouter([
   {
     path: "/compras",
     element: <Purchases />
+  },
+  {
+    path: "/prueba",
+    element: <Prueba />
   }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

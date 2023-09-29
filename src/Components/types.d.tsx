@@ -5,6 +5,7 @@ export interface User {
     username: string
     password: string
     token: string
+    organization: Organizacion
 }
 export interface Inventary {
     id: number
@@ -47,9 +48,14 @@ export interface Producto {
 }
 
 export interface purchase {
+    id: number
+    provider: string
+    date: string
+    total: number
     detail_purchase_id: number
-    quantity: string
-    observation: string
+    quantity: number
+    observation: number
+
 }
 
 export interface departamento {
@@ -82,4 +88,5 @@ export type listProd = Producto[]
 export type agreagarProd = Producto
 export type listInven = Pick<Producto, 'id' | 'quantity'>[]
 export type invent = Pick<purchase, 'detail_purchase_id' | 'quantity' | 'observation'>
+export type purchases = Pick<purchase, 'id' | 'provider' | 'date' | 'total'>[]
 export type newProduct = Pick<Producto, 'name' | 'measurement_type'>
