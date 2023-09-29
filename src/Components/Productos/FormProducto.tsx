@@ -18,13 +18,11 @@ export const FormProducto = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            //consulta
             const response = await newAddProduct(formProducto)
             console.log(response)
         } catch (e) {
             console.log(e)
         }
-        alert("Producto agregado")
     }
 
     const cancelar = () => {
@@ -46,7 +44,7 @@ export const FormProducto = () => {
                         </div>
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="medicion">Tipo de Medicion</label>
-                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="measurement_type" value={formProducto.measurement_type} onChange={handleInputChange} placeholder="Escribe su forma de medicion " required />
+                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="measurement_type" value={formProducto.measurement_type} onChange={handleInputChange} placeholder="Escribe su forma de medicion" required />
                         </div>
                         <ButtonForm dataButton={{
                             'title': 'Cancelar',

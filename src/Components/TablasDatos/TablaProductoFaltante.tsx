@@ -3,30 +3,11 @@ import "../../css/App.css"
 import { listaProductoFaltante } from "../../services/Services"
 import { listProduct } from "../types.d"
 import { HeadType } from "../Table/types/HeadType"
-import { Table } from "../Table/Table"
 import Head from "../Table/Head/Head"
 
-const data = [
-    {
-        codigo: "m-124",
-        nombre: "Vinagre de frutas",
-        stock: 0
-    },
-    {
-        codigo: "m-127",
-        nombre: "Agua",
-        stock: 0
-    },
-    {
-        codigo: "m-126",
-        nombre: "Vinagre de arroz",
-        stock: 0
-    }
-]
-
 let headers: HeadType[] = [
-    { name: "Codigo", prop: "codigo" },
-    { name: "Nombre", prop: "nombre" },
+    { name: "Codigo", prop: "id" },
+    { name: "Nombre", prop: "product_name" },
     { name: "Stock", prop: "stock" },
 ]
 
@@ -34,29 +15,28 @@ const titleTable = 'Productos con stock minimo'
 
 export const TablaProductoFaltante: React.FC = () => {
 
-    // const [data, setProduct] = useState<listProduct>([])
-    let state = { links: [], meta: [], inventario: [] }
+    const [data, setProduct] = useState<listProduct>([])
+    let state = { links: [], meta: [], inventario_stock_min: [] }
 
 
-    // useEffect(() => {
-    //     const lista = async () => {
-    //         try {
-    //             const { links, meta, inventario } = await listaProductoFaltante()
-    //             state = ({
-    //                 links,
-    //                 meta,
-    //                 inventario
-    //             })
-    //             setProduct(inventario)
-    //         } catch (e) {
-    //             console.log(e)
-    //         }
-    //     }
+    useEffect(() => {
+        const lista = async () => {
+            try {
+                const { links, meta, inventario_stock_min } = await listaProductoFaltante()
+                state = ({
+                    links,
+                    meta,
+                    inventario_stock_min
+                })
+                setProduct(inventario_stock_min)
+            } catch (e) {
+                console.log(e)
+            }
+        }
 
-    //     lista()
-    // }, [])
+        lista()
+    }, [])
 
-    //temporal, por revisar en backend
     return (
         <div className='px-8 rounded-xl bg-white md:h-96 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
             <h1 className='sm:text-2xl text-lg font-bold my-4 h-16 w-full sticky top-0 left-0 bg-white pt-4 text-[#4F46E5]'>{titleTable}</h1>

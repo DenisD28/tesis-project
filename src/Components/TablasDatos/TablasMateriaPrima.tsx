@@ -31,7 +31,6 @@ export const Tablas: React.FC = () => {
                     meta,
                     inventario
                 })
-                console.log(inventario)
                 setProduct(inventario)
             } catch (e) {
                 console.log(e)
@@ -60,7 +59,6 @@ export const Tablas: React.FC = () => {
                 </div>
             </form>
             <Table
-
                 headers={headers}
                 data={data}
                 titleTable={titleTable}

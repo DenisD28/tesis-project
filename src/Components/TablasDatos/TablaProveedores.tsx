@@ -1,25 +1,26 @@
-import { purchases } from "../types.d"
+import "../../css/App.css"
+import { listOrg } from "../types.d"
 import { useEffect, useState } from "react"
-import { listaCompras } from "../../services/Services"
+import { listaCliente, listaOrganizaciones } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import Head from "../Table/Head/Head"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
-    { name: "N° Factura", prop: "id" },
-    { name: "Proveedor", prop: "provider" },
-    { name: "Fecha", prop: "date" },
-    { name: "Total", prop: "total" },
+    { name: "Nombre", prop: "name" },
+    { name: "Telefono", prop: "phone_main" },
+    { name: "Direccion", prop: "address" },
+    { name: "Acciones", prop: "acciones" }
 ]
 
-const titleTable = 'Registro de compras'
+const titleTable = 'Proveedores'
 
-export const TablasCompras: React.FC = () => {
+export const TablasProveedores: React.FC = () => {
 
-    const [data, setOrg] = useState<purchases>([])
+    const [data, setOrg] = useState<listOrg>([])
     const [next, setNext] = useState("")
-    let state = { links: [], meta: [], purchases: [] }
+    let state = { links: [], meta: [], proveedores: [] }
     const navigation = useNavigate()
 
     useEffect(() => {
@@ -28,13 +29,13 @@ export const TablasCompras: React.FC = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, purchases } = await listaCompras()
+            const { links, meta, proveedores } = await listaCliente()
             state = ({
                 links,
                 meta,
-                purchases
+                proveedores
             })
-            setOrg(purchases)
+            setOrg(proveedores)
         } catch (e) {
             console.log(e)
         }
@@ -42,13 +43,13 @@ export const TablasCompras: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        navigation("/addcompras")
+        navigation("/addcliente")
     }
 
     return (
         <>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="w-52">
+                <div className="button">
                     <ButtonForm dataButton={{
                         'title': 'Ingresar',
                         'color': 'green',
@@ -83,3 +84,4 @@ export const TablasCompras: React.FC = () => {
         </>
     )
 }
+

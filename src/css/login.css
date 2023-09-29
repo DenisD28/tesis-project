@@ -8,9 +8,9 @@
     align-items: center;
 }
 
-img {
+.img_login {
     justify-self: start;
-    width: 40%;
+    height: 100vh;
 }
 
 .Form {
@@ -61,11 +61,11 @@ img {
 }
 
 
-@media and (min-width: 768px) {
+@media (max-width: 768px) {
 
-    img {
+    .img_login {
         justify-self: start;
-        width: 50%;
+        height: 100vh;
     }
 
     .Form {
@@ -99,8 +99,8 @@ img {
     }
 }
 
-@media only screen and (max-width: 425px) {
-    img {
+@media (max-width: 426px) {
+    .img_login {
         display: none;
     }
 

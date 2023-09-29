@@ -1,4 +1,3 @@
-import Table from "../../Components/Table/Table"
 import GananciasMensuales from "../../Components/Chartjs/GananciasMensuales"
 import Ganancias from "../../Components/Earnings/Ganancias"
 import { TablaProductoFaltante } from "../../Components/TablasDatos/TablaProductoFaltante"

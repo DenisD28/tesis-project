@@ -2,9 +2,11 @@ import "../../css/login.css"
 import { useState } from "react"
 import { Post, User } from "../../Components/types.d"
 import { useNavigate } from "react-router-dom"
-import { login } from "../../services/Services";
+import { login } from "../../services/Services"
+import Cookies from 'js-cookie'
 
 export default function LoginPage() {
+
     const navigate = useNavigate()
     const [formtext, setFormText] = useState<Post>({ usuario: "", password: "" })
 
@@ -21,8 +23,7 @@ export default function LoginPage() {
         let userToken: User
         try {
             userToken = await login(formtext)
-            console.log(userToken)
-            localStorage.setItem("token", userToken.token)
+            Cookies.set('authToken', userToken.token, { expires: 1 })
 
             if (userToken.token != "") {
                 navigate("/dashboard")
@@ -34,7 +35,8 @@ export default function LoginPage() {
 
     return (
         <div className="container">
-            <img src="src\img\pexels-ivan-j.jpg" alt="" />
+
+            <img className="img_login" src="src\img\pexels-ivan-j.jpg" alt="" />
             <div>
                 <div className="Form">
                     <div className="title">
@@ -42,8 +44,9 @@ export default function LoginPage() {
                         <h2 className="subtituloInicio">Inicia Sesión</h2>
                     </div>
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <div className="mb-6 ">
+                        <div className="mb-6">
                             <label htmlFor="username" className="labels">Usuario</label>
+                            <br />
                             <input name="usuario" value={formtext.usuario} onChange={handleInputChange} type="text" id="username" className="input" placeholder="Usuario" required />
                         </div>
                         <div className="mb-6">
