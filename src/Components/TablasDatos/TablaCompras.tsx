@@ -42,7 +42,7 @@ export const TablasCompras: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        navigation("#")
+        navigation("/addcompras")
     }
 
     return (

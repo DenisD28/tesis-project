@@ -5,4 +5,5 @@ export default interface InputsFormProps {
     'type': string,
     'name': string,
     'placeholder': string,
+    'fnChange': React.Dispatch<React.SetStateAction<string>>,
 }
