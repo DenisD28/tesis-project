@@ -6,6 +6,7 @@
 .container {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .img_login {
@@ -16,27 +17,28 @@
 .Form {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    padding: 20px;
-    justify-content: space-around;
-    padding-left: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
 
 .Form .title .tituloInicio {
     color: var(--first-color);
     font-weight: bold;
     font-size: 26px;
+    margin: 0px 0px 0.25rem 0px;
 }
 
 .Form .title .subtituloInicio {
     font-weight: bold;
-    font-size: 26px;
+    font-size: 1.25rem;
 }
 
 .input {
     border: #bdc3c7 1px solid;
     border-radius: 12px;
-    width: 300px;
+    width: 100%;
 }
 
 .formClass {
@@ -47,7 +49,6 @@
     color: #7f8c8d;
     font-size: 16px;
     font-weight: bolder;
-    margin-bottom: 10px;
 }
 
 .btnLogin {
@@ -55,51 +56,11 @@
     padding: 10px;
     color: #FFFFFF;
     border-radius: 12px;
-    height: 35px;
-    font-size: 14px;
-    width: 200px;
+    font-size: 16px;
+    width: 100%;
 }
 
-
-@media (max-width: 768px) {
-
-    .img_login {
-        justify-self: start;
-        height: 100vh;
-    }
-
-    .Form {
-        display: flex;
-        flex-direction: column;
-        width: 200px;
-        padding: 20px;
-        justify-content: space-around;
-        padding-left: 10px;
-    }
-
-
-    .input {
-        border: #bdc3c7 1px solid;
-        border-radius: 12px;
-        width: 300px;
-    }
-
-    .formClass {
-        padding-bottom: 10px;
-    }
-
-    .btnLogin {
-        background-color: var(--first-color);
-        padding: 10px;
-        color: #FFFFFF;
-        border-radius: 12px;
-        height: 35px;
-        font-size: 14px;
-        width: 200px;
-    }
-}
-
-@media (max-width: 426px) {
+@media (max-width: 570px) {
     .img_login {
         display: none;
     }
