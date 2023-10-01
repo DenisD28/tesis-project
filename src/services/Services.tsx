@@ -13,6 +13,7 @@ function getDecryptedToken() {
     return null;
 }
 
+//Autenticacion
 export const login = async (newPost: Post): Promise<User> => {
     const url = `${import.meta.env.VITE_API_URL}auth/login?username=${newPost.usuario}&password=${newPost.password}`
     const response = await axios.post(url)
@@ -20,6 +21,25 @@ export const login = async (newPost: Post): Promise<User> => {
     return response.data
 }
 
+export const logout = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}auth/logout`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const body = ""
+
+    const response = await axios.post(url, body, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+//Listas
 export const listaInventario = async () => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`
@@ -67,6 +87,120 @@ export const listaProductoFaltante = async () => {
     return response.data
 }
 
+export const listaCompras = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}purchases`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const listaProductos = async (tipo: tipo) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}products/${tipo.type}/search`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    console.log(response.data)
+
+    return response.data
+}
+
+export const listaOrganizaciones = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organizations?`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const departamentos = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}cities`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const municipio = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}city/${id}/municipalities`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.post(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const listaCliente = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}clients`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const listaProveedores = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}providers`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    console.log(response.data)
+
+    return response.data
+}
+
 export const agregarInventario = async (formProduct: inven) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}inventory?product_id=${formProduct.id}&type=MP&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&location&lot_number=&note&code=${formProduct.code}&description=${formProduct.description}`
@@ -107,55 +241,6 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
     }
 }
 
-export const listaOrganizaciones = async () => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}organizations?`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.get(url, {
-        headers: headers
-    })
-
-    return response.data
-}
-
-export const listaCompras = async () => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}purchases`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.get(url, {
-        headers: headers
-    })
-
-    return response.data
-}
-
-export const listaProductos = async (tipo: tipo) => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}products/${tipo.type}/search`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.get(url, {
-        headers: headers
-    })
-    console.log(response.data)
-
-    return response.data
-}
-
 export const newAddProduct = async (newProducto: newProduct) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}product?name=${newProducto.name}&measurement_type=${newProducto.measurement_type}`
@@ -165,39 +250,9 @@ export const newAddProduct = async (newProducto: newProduct) => {
         'Accept': 'application/json'
     }
 
-    const response = await axios.post(url, {
-        headers: headers
-    })
+    const body = ""
 
-    return response.data
-}
-
-export const departamentos = async () => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}cities`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.get(url, {
-        headers: headers
-    })
-
-    return response.data
-}
-
-export const municipio = async (id: number) => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}city/${id}/municipalities`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.post(url, {
+    const response = await axios.post(url, body, {
         headers: headers
     })
 
@@ -207,38 +262,6 @@ export const municipio = async (id: number) => {
 export const infoGeneral = async () => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}user/info`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.get(url, {
-        headers: headers
-    })
-
-    return response.data
-}
-
-export const listaCliente = async () => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}clients`
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    const response = await axios.get(url, {
-        headers: headers
-    })
-
-    return response.data
-}
-
-export const listaProveedores = async () => {
-    const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}providers`
 
     const headers = {
         'Authorization': `Bearer ${token}`,

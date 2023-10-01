@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Inventarios } from './pages/Inventarios/Inventarios';
 import { IngresoInventarioMP } from './pages/Inventarios/IngresoInventarioMP';
-import { Salir } from './Components/IniciarSesion/Salir';
 import { Organizaciones } from './pages/Organizaciones/Organizaciones';
 import { IngresoProductoTerminado } from './pages/Inventarios/IngresoProductoTerminado';
 import { SalidaDeMateriaPrima } from './pages/Inventarios/SalidaDeMateriaPrima';
@@ -17,9 +16,8 @@ import AddProveedores from './pages/Proveedores/AddProveedores';
 import { Usuarios } from './pages/Usuarios/Usuarios';
 import Purchases from './pages/Purchases/Purchases';
 import AddPurchases from './pages/Purchases/AddPurchases';
-import { TablasCliente } from './Components/TablasDatos/TablaCliente';
-import { TablasProveedores } from './Components/TablasDatos/TablaProveedores';
-import { Prueba } from './pages/PruebaModal/prueba';
+import { Clientes } from './pages/Clients/Clientes';
+import { Proveedores } from './pages/Proveedores/Proveedores';
 
 const router = createBrowserRouter([
   {
@@ -47,10 +45,6 @@ const router = createBrowserRouter([
     element: <SalidaDeMateriaPrima />
   },
   {
-    path: "/logout",
-    element: <Salir />
-  },
-  {
     path: "/AddNewProduct",
     element: <AddNewProduct />
   },
@@ -68,7 +62,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/clientes",
-    element: <TablasCliente />
+    element: <Clientes />
   },
   {
     path: "/addcliente",
@@ -80,7 +74,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/proveedores",
-    element: <TablasProveedores />
+    element: <Proveedores />
   },
   {
     path: "/addproveedores",

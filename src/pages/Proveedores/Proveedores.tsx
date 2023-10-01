@@ -1,9 +1,9 @@
 import Footer from "../../Components/Footer/Footer"
 import { Nav } from "../../Components/Navegador/Nav"
-import { TablasCliente } from "../../Components/TablasDatos/TablaCliente"
+import { TablasProveedores } from "../../Components/TablasDatos/TablaProveedores"
 import { Menu } from "../../routes/Menu"
 
-export const Clientes = () => {
+export const Proveedores = () => {
     return (
         <>
             <main className="w-full h-screen flex justify-between items-start flex-col">
@@ -17,7 +17,7 @@ export const Clientes = () => {
                                 <Nav />
                             </div>
                             <div className="contenido">
-                                <TablasCliente />
+                                <TablasProveedores />
                             </div>
                         </div>
                     </div>

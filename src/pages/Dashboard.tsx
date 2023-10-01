@@ -5,22 +5,6 @@ import Home from "./Home/Home"
 
 export const Dashboard = () => {
     return (<>
-        {/* <div className="contenedor flex-col justify-between h-screen">
-            <div className="flex justify-stretch h-[90vh]">
-                <div className="div-menu">
-                    <Menu />
-                </div>
-                <div className="div-dashboard">
-                    <div>
-                        <Nav />
-                    </div>
-                    <div className="contenido">
-                        <Home />
-                    </div>
-                </div>
-            </div>
-            <Footer />
-        </div> */}
         <main className="w-full h-screen flex justify-between items-start flex-col">
             <div className="w-full h-full flex justify-start items-start overflow-y-auto gap-1">
                 <div className="w-[25rem] h-full bg-white overflow-y-scroll scroll-hidden border-r-2">

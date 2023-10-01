@@ -1,7 +1,7 @@
 import "../../css/App.css"
 import { listOrg } from "../types.d"
 import { useEffect, useState } from "react"
-import { listaCliente, listaOrganizaciones } from "../../services/Services"
+import { listaProveedores } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import Head from "../Table/Head/Head"
 import { useNavigate } from "react-router-dom"
@@ -10,8 +10,7 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
     { name: "Telefono", prop: "phone_main" },
-    { name: "Direccion", prop: "address" },
-    { name: "Acciones", prop: "acciones" }
+    { name: "Ruc", prop: "ruc" },
 ]
 
 const titleTable = 'Proveedores'
@@ -29,7 +28,7 @@ export const TablasProveedores: React.FC = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, proveedores } = await listaCliente()
+            const { links, meta, proveedores } = await listaProveedores()
             state = ({
                 links,
                 meta,
@@ -43,7 +42,7 @@ export const TablasProveedores: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        navigation("/addcliente")
+        navigation("/addproveedores")
     }
 
     return (

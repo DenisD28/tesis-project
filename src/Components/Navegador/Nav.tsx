@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
 import "../../css/nav.css"
 import { User } from "../types.d"
-import { infoGeneral } from "../../services/Services"
+import { infoGeneral, logout } from "../../services/Services"
+import { useNavigate } from "react-router-dom"
 
 
 
 export const Nav = () => {
 
     const [userInfo, setInfo] = useState<User>()
+    const navigation = useNavigate()
     let state = { usuario: [] }
+
 
     useEffect(() => {
         const getInfo = async () => {
@@ -24,6 +27,15 @@ export const Nav = () => {
         }
         getInfo()
     }, [])
+
+    const salir = () => {
+        try {
+            const response = logout()
+            navigation("/")
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <>
@@ -45,7 +57,7 @@ export const Nav = () => {
                             <div className="Rol">{userInfo?.role.name}</div>
                         </div>
                         <div className="logout">
-                            <button><svg fill="#e74c3c" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" /></svg></button>
+                            <button onClick={() => salir()}><svg fill="#e74c3c" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" /></svg></button>
                         </div>
                     </div>
                 </div>
