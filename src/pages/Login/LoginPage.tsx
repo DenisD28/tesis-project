@@ -4,6 +4,7 @@ import { Post, User } from "../../Components/types.d"
 import { useNavigate } from "react-router-dom"
 import { login } from "../../services/Services"
 import Cookies from 'js-cookie'
+import CryptoJS from 'crypto-js'
 
 export default function LoginPage() {
 
@@ -23,7 +24,7 @@ export default function LoginPage() {
         let userToken: User
         try {
             userToken = await login(formtext)
-            Cookies.set('authToken', userToken.token, { expires: 1 })
+            setEncryptedToken(userToken.token)
 
             if (userToken.token != "") {
                 navigate("/dashboard")
@@ -31,6 +32,11 @@ export default function LoginPage() {
         } catch (error) {
             alert("Credenciales incorrectas")
         }
+    }
+
+    function setEncryptedToken(token: string) {
+        const encryptedToken = CryptoJS.AES.encrypt(token, import.meta.env.VITE_KEY).toString();
+        Cookies.set('authToken', encryptedToken, { expires: 1 }); // Puedes ajustar la expiración como desees
     }
 
     return (

@@ -1,32 +1,33 @@
 import "../css/menu.css"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { User } from "../Components/types.d"
+import { infoGeneral } from "../services/Services"
 
 export const Menu = () => {
 
-    // const [userInfo, setInfo] = useState<ListOfUser>()
-    // let state = { usuario: [] }
+    const [userInfo, setInfo] = useState<User>()
+    let state = { usuario: [] }
 
-    // useEffect(() => {
-    //     const getInfo = async () => {
-    //         try {
-    //             const { usuario } = await infoGeneral()
-    //             state = ({
-    //                 usuario
-    //             })
-    //             setInfo(usuario)
-    //         } catch (e) {
-    //             console.log(e)
-    //         }
-    //     }
-    //     getInfo()
-    // }, [])
-
-
+    useEffect(() => {
+        const getInfo = async () => {
+            try {
+                const { usuario } = await infoGeneral()
+                state = ({
+                    usuario
+                })
+                setInfo(usuario)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getInfo()
+    }, [])
 
     return (<>
         <div className="Menu">
             <div className="organizacion">
-                <h2>hola</h2>
+                <h2>{userInfo?.organization.name}</h2>
             </div>
             <div className="items">
                 <div className="title">
