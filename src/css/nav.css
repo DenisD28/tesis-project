@@ -3,11 +3,13 @@
 }
 
 .nav {
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     border-bottom: #c0c0c0 1px solid;
     padding-right: 20px;
+    z-index: 1000;
 }
 
 .div-left,
@@ -56,8 +58,8 @@
 .div-user {
     height: 40px;
     background-color: var(--second-color);
-    padding: 10px;
-    border-radius: 15px;
+    padding: 5px;
+    border-radius: 9999px;
     justify-content: space-around;
 }
 
@@ -65,7 +67,9 @@
     background-color: #fbc531;
     color: #ffffff;
     padding: 5px;
-    border-radius: 50%;
+    border-radius: 9999px;
+    width: 30px;
+    height: 30px;
     font-size: 12px;
     margin-right: 10px;
 }

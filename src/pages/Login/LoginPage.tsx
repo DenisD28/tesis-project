@@ -4,6 +4,7 @@ import { Post, User } from "../../Components/types.d"
 import { useNavigate } from "react-router-dom"
 import { login } from "../../services/Services"
 import Cookies from 'js-cookie'
+import Footer from "../../Components/Footer/Footer"
 import CryptoJS from 'crypto-js'
 
 export default function LoginPage() {
@@ -42,7 +43,7 @@ export default function LoginPage() {
     return (
         <div className="flex justify-start items-stretch">
             <img className="img_login w-6/12 object-cover" src="src\img\pexels-ivan-j.jpg" alt="" />
-            <div className="w-full h-screen overflow-y-scroll py-10 md:pt-32">
+            <div className="w-full h-screen overflow-y-auto pt-10 md:pt-32 flex flex-col justify-between">
                 <div className="Form">
                     <div className="title text-center">
                         <h2 className="tituloInicio">Bienvenido</h2>
@@ -66,8 +67,8 @@ export default function LoginPage() {
                         <button type="submit" className="btnLogin flex justify-center items-center font-medium hover:bg-indigo-700 transition-colors">Iniciar Sesi&oacute;n</button>
                     </form>
                 </div>
+                <Footer />
             </div>
         </div>
-
     )
 }

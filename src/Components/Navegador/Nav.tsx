@@ -38,8 +38,8 @@ export const Nav = () => {
                     <div className="separate"></div>
                 </div>
                 <div className="div-rigth">
-                    <div className="div-user">
-                        <div className="userSiglas"><p>AC</p></div>
+                    <div className="div-user gap-4">
+                        <div className="userSiglas flex justify-center items-center font-medium"><p>AC</p></div>
                         <div>
                             <div className="nombre">{userInfo?.name}</div>
                             <div className="Rol">{userInfo?.role.name}</div>
