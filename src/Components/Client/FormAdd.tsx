@@ -11,25 +11,35 @@ export default function FormAdd() {
         'type': 'text',
         'name': 'nombre',
         'placeholder': 'Escribe el nombre del cliente',
+        'value': '',
+        'fnChange': () => { },
       }} />
       <InputsForm DataInputs={{
         'title': 'Telefono principal',
         'type': 'text',
         'name': 'telefono',
         'placeholder': 'Escribe el telefono principal del cliente',
+        'value': '',
+        'fnChange': () => { },
       }} />
       <InputsForm DataInputs={{
         'title': 'Telefono secundario',
         'type': 'text',
         'name': 'telefonoSecundario',
         'placeholder': 'Escribe el telefono secundario del cliente',
+        'value': '',
+        'fnChange': () => { },
       }} />
       <SelectForm
         dataSelect={{
           'title': 'Tipo de cliente',
           'name': 'tipoCliente',
           'placeholder': 'Selecciona el tipo de cliente',
-          'options': ['Por mayor', 'Al detalle'],
+          'options': [
+            { 'valor': 1, 'texto': 'Cliente' },
+            { 'valor': 2, 'texto': 'Mayorista' },
+          ],
+          'fnChange': () => { },
         }}
       />
       <SelectForm
@@ -37,7 +47,14 @@ export default function FormAdd() {
           'title': 'Departamento',
           'name': 'departamento',
           'placeholder': 'Selecciona el el departamento del cliente',
-          'options': ['Chinandega', 'Leon', 'Managua', 'Masaya', 'Matagalpa'],
+          'options': [
+            { 'valor': 1, 'texto': 'Chinandega' },
+            { 'valor': 2, 'texto': 'Leon' },
+            { 'valor': 3, 'texto': 'Managua' },
+            { 'valor': 4, 'texto': 'Masaya' },
+            { 'valor': 5, 'texto': 'Matagalpa' },
+          ],
+          'fnChange': () => { },
         }}
       />
       <span className='row-span-2'>
@@ -45,23 +62,34 @@ export default function FormAdd() {
           'title': 'Direccion',
           'name': 'direccion',
           'placeholder': 'Escribe la direccion del cliente',
+          'value': '',
+          'fnChange': () => { },
         }} />
       </span>
       <SelectForm dataSelect={{
         'title': 'Municipio',
         'name': 'municipio',
         'placeholder': 'Selecciona el municipio del cliente',
-        'options': ['Chinandega', 'Leon', 'Managua', 'Masaya', 'Matagalpa'],
+        'options': [
+          { 'valor': 1, 'texto': 'Chinandega' },
+          { 'valor': 2, 'texto': 'Leon' },
+          { 'valor': 3, 'texto': 'Managua' },
+          { 'valor': 4, 'texto': 'Masaya' },
+          { 'valor': 5, 'texto': 'Matagalpa' },
+        ],
+        'fnChange': () => { },
       }} />
       <ButtonForm dataButton={{
         'title': 'Cancelar',
         'color': 'red',
         'type': 'reset',
+        'fnClick': () => { },
       }} />
       <ButtonForm dataButton={{
         'title': 'Guardar',
         'color': 'green',
         'type': 'submit',
+        'fnClick': () => { },
       }} />
     </form>
   )
