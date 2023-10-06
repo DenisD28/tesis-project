@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Post, User, inven, newProduct, tipo } from "../Components/types.d";
+import { Post, Proveedores, User, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 
@@ -152,7 +152,7 @@ export const departamentos = async () => {
     return response.data
 }
 
-export const municipio = async (id: number) => {
+export const municipio = async (id: string) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}city/${id}/municipalities`
 
@@ -161,11 +161,11 @@ export const municipio = async (id: number) => {
         'Accept': 'application/json'
     }
 
-    const response = await axios.post(url, {
+    const response = await axios.get(url, {
         headers: headers
     })
-
-    return response.data
+    console.log(response.data.info)
+    return response.data.info
 }
 
 export const listaCliente = async () => {
@@ -201,6 +201,53 @@ export const listaProveedores = async () => {
     return response.data
 }
 
+export const infoGeneral = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}user/info`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const getGanaciasMensuales = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}earnings_total`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
+export const getGanaciasAnuales = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}earnings_last_year`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
+//Registros
 export const agregarInventario = async (formProduct: inven) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}inventory?product_id=${formProduct.id}&type=MP&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&location&lot_number=&note&code=${formProduct.code}&description=${formProduct.description}`
@@ -216,7 +263,26 @@ export const agregarInventario = async (formProduct: inven) => {
         headers: headers
     })
 
-    return response.data
+    return response
+}
+
+//Registros
+export const agregarInventarioPT = async (formProduct: inven) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}inventory?product_id=${formProduct.id}&type=PT&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&location&lot_number=&note&code=${formProduct.code}&description=${formProduct.description}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const body = ""
+
+    const response = await axios.post(url, body, {
+        headers: headers
+    })
+
+    return response
 }
 
 export const agregarProductoTerminado = async (data: string, cantidad: string) => {
@@ -255,54 +321,59 @@ export const newAddProduct = async (newProducto: newProduct) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
-
     return response.data
 }
 
-export const infoGeneral = async () => {
+export const agregarCliente = async (cliente: cliente) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}user/info`
+    const url = `${import.meta.env.VITE_API_URL}client?name=${cliente.name}&address=${cliente.address}&municipality_id=${cliente.municipality_id}&city_id=${cliente.city_id}&type=${cliente.type}&phone_main=${cliente.phone_main}&details=test de detalle&phone_secondary=${cliente.phone_secondary}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
 
-    const response = await axios.get(url, {
+    const body = ""
+
+    const response = await axios.post(url, body, {
         headers: headers
     })
 
-    return response.data
+    return response
 }
 
-export const getGanaciasMensuales = async () => {
+export const agregarOrganizacion = async (org: organizacion) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}earnings_total`
+    const url = `${import.meta.env.VITE_API_URL}organization?name=${org.name}&ruc=${org.ruc}&address=${org.address}&sector_id=2&municipality_id=${org.municipality_id}&city_id=${org.city_id}&phone_main=${org.phone_main}&phone_secondary=${org.second_phone}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
 
-    const response = await axios.get(url, {
+    const body = ""
+
+    const response = await axios.post(url, body, {
         headers: headers
     })
-    console.log(response.data)
-    return response.data
+
+    return response
 }
 
-export const getGanaciasAnuales = async () => {
+export const agregarProveedor = async (prov: proveedor) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}earnings_last_year`
+    const url = `${import.meta.env.VITE_API_URL}organization?name=${prov.name}&ruc=${prov.ruc}&address=${prov.address}&sector_id=2&municipality_id=${prov.municipality_id}&city_id=${prov.city_id}&phone_main=${prov.phone_main}&phone_secondary=${prov.second_phone}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
 
-    const response = await axios.get(url, {
+    const body = ""
+
+    const response = await axios.post(url, body, {
         headers: headers
     })
-    console.log(response.data)
-    return response.data
+
+    return response
 }

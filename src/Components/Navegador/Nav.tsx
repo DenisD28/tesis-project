@@ -21,6 +21,7 @@ export const Nav = () => {
                     usuario
                 })
                 setInfo(usuario)
+                console.log(usuario)
             } catch (e) {
                 console.log(e)
             }

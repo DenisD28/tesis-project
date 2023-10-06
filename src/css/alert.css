@@ -1,0 +1,24 @@
+.alert {
+    position: fixed;
+    top: 50%;
+    right: -100%;
+    /* Inicialmente fuera de la pantalla hacia la derecha */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    animation: slideIn 0.5s forwards;
+    /* Aplicar animación cuando aparece */
+}
+
+/* Definición de la animación */
+@keyframes slideIn {
+    0% {
+        right: -100%;
+        /* Comienza fuera de la pantalla hacia la derecha */
+    }
+
+    100% {
+        right: 0;
+        /* Termina en la posición inicial */
+    }
+}

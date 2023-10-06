@@ -27,7 +27,7 @@ export const Menu = () => {
     return (<>
         <div className="Menu">
             <div className="organizacion">
-                <h2>{userInfo?.organization.name}</h2>
+                <h2>{userInfo?.organization?.name}</h2>
             </div>
             <div className="items">
                 <div className="title">

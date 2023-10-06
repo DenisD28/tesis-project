@@ -18,6 +18,7 @@ import Purchases from './pages/Purchases/Purchases';
 import AddPurchases from './pages/Purchases/AddPurchases';
 import { Clientes } from './pages/Clients/Clientes';
 import { Proveedores } from './pages/Proveedores/Proveedores';
+import { IngresoInventarioPT } from './pages/Inventarios/IngresoInventarioPT';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/IngresoInventarioMP",
     element: <IngresoInventarioMP />
+  },
+  {
+    path: "/IngresoInventarioPT",
+    element: <IngresoInventarioPT />
   },
   {
     path: "/Organizaciones",

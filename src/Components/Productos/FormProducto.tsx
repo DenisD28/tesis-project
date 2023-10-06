@@ -2,10 +2,13 @@ import { useState } from "react";
 import { newProduct } from "../../Components/types.d";
 import { newAddProduct } from "../../services/Services";
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
+import { ErrorAlert } from "../Alerts/ErrorAlert";
 
 export const FormProducto = () => {
 
     const [formProducto, setFormProduct] = useState<newProduct>({ name: "", measurement_type: "" })
+    const [mensaje, setMensaje] = useState("")
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -19,9 +22,10 @@ export const FormProducto = () => {
         e.preventDefault()
         try {
             const response = await newAddProduct(formProducto)
-            console.log(response)
+
         } catch (e) {
-            console.log(e)
+            setMensaje("hola")
+            setIsOpen(true)
         }
     }
 
@@ -57,7 +61,12 @@ export const FormProducto = () => {
                             'type': 'submit',
                         }} />
                     </form>
-
+                    {
+                        isOpen && (
+                            <ErrorAlert
+                                mensaje={mensaje} />
+                        )
+                    }
                 </div>
             </div >
         </div >

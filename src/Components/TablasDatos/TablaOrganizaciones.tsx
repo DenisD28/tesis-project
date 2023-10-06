@@ -9,8 +9,8 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
     { name: "Ruc", prop: "ruc" },
-    { name: "Nombre", prop: "nombre" },
-    { name: "Telefono", prop: "Telefono" },
+    { name: "Nombre", prop: "name" },
+    { name: "Telefono", prop: "phone_main" },
     { name: "Acciones", prop: "acciones" }
 ]
 

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Inventary, inven } from "../../Components/types.d"
-import { agregarInventario } from "../../services/Services"
+import { agregarInventarioPT } from "../../services/Services"
 import { Menu } from "../../routes/Menu"
 import { Nav } from "../../Components/Navegador/Nav"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
@@ -9,7 +9,7 @@ import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"
 import { ErrorAlert } from "../../Components/Alerts/ErrorAlert"
 
-export const IngresoInventarioMP = () => {
+export const IngresoInventarioPT = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
@@ -28,11 +28,11 @@ export const IngresoInventarioMP = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await agregarInventario(formProducto)
+            const response = await agregarInventarioPT(formProducto)
 
             if (response.status === 201) {
                 setMensaje("Producto registrado correctamente.")
-                navigation("/inventario")
+                navigation("/pTerminado")
             }
 
         } catch (e: any) {
@@ -70,7 +70,7 @@ export const IngresoInventarioMP = () => {
                             )
                         }
                         <div className='py-4 pb-28 px-8 h-screen overflow-y-auto'>
-                            <h1 className='text-[#4F46E5] text-2xl font-bold my-4'>Registro de Productos</h1>
+                            <h1 className='text-[#4F46E5] text-2xl font-bold my-4'>Registro de Productos Terminados</h1>
                             <div>
                                 <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                                     <div className="flex justify-center items-center flex-col p-2 mt-4">

@@ -1,11 +1,11 @@
 import "../../css/App.css"
-import { listOrg } from "../types.d"
 import { useEffect, useState } from "react"
 import { listaProveedores } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import Head from "../Table/Head/Head"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
+import { provider } from "../types.d"
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
@@ -17,7 +17,7 @@ const titleTable = 'Proveedores'
 
 export const TablasProveedores: React.FC = () => {
 
-    const [data, setOrg] = useState<listOrg>([])
+    const [data, setOrg] = useState<provider>([])
     const [next, setNext] = useState("")
     let state = { links: [], meta: [], proveedores: [] }
     const navigation = useNavigate()

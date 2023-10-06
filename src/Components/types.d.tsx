@@ -43,8 +43,8 @@ export interface Organizacion {
     address: string
     phone_main: string
     second_phone: string
-    cite: number
-    municipalities: number
+    city_id: number
+    municipality_id: number
 }
 
 export interface Producto {
@@ -70,7 +70,57 @@ export interface departamento {
     name: string
 }
 
+export interface municipio {
+    id: number
+    name: string
+}
+
+
+
+export interface gananciasMensuales {
+    date: string
+    earnings_total: number
+    sales_total: number
+}
+
+export interface ganaciasAnuales {
+    mes: string
+    year: number
+    total: number
+}
+
+export interface clientes {
+    name: string
+    address: string
+    municipality_id: number
+    city_id: number
+    type: string
+    phone_main: string
+    phone_secondary: string
+    details: string
+}
+
+export interface Proveedores {
+    id: number
+    name: string
+    ruc: string
+    address: string
+    phone_main: string
+    second_phone: string
+    city_id: number
+    municipality_id: number
+    contact_name: string
+}
+
+export type provider = Proveedores[]
+export type proveedor = Pick<Proveedores, 'name' | 'ruc' | 'address' | 'phone_main' | 'second_phone' | 'city_id' | 'municipality_id' | 'contact_name'>
+export type cliente = clientes
+
+export type ganMensuales = gananciasMensuales[]
+export type ganAnuales = ganaciasAnuales[]
+
 export type ciudad = departamento[]
+export type municipioCiudad = municipio[]
 
 //Usuarios
 export type UserType = User
