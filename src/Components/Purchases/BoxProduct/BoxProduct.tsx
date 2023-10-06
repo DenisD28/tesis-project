@@ -3,7 +3,7 @@ import { BoxProductProps } from './BoxProductProps';
 
 export default function BoxProduct({data, fnDelete}: BoxProductProps) {
     const fnDeleteProduct = () => {
-        fnDelete(data.id)
+        fnDelete(data)
     }
     return (
     <div className='bg-[#f1f5f9] w-full h-auto p-4'>

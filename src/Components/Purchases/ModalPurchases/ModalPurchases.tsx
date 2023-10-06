@@ -1,28 +1,17 @@
-import {useState} from 'react'
 import ModalComponent from '../../Modal/ModalComponent/ModalComponent'
 import InputsForm from '../../Forms/InputsComponents/InputsForm'
 import TextareaForm from '../../Forms/TextareaComponents/TextareaForm'
 import SelectForm from '../../Forms/SelectComponents/SelectForm'
 import ButtonForm from '../../Forms/ButtonComponents/ButtonForm'
 import { ModalPurchasesProps } from './ModalPurchaseProps'
+import { ProductsForInventory } from '../../../types/InventoryTypes/ProductsTypes'
+import useListProductsInventory from '../../../hooks/PurchaseHooks/useListProductsInventory'
+import useAddProductsPurchase from '../../../hooks/PurchaseHooks/useAddProductsPurchase'
 
 export default function ModalPurchases({isModalOpen, toggleModal, handleSubmition}: ModalPurchasesProps) {
-    const [IdProduct, setIdProduct] = useState("")
-    const [quantity, setQuantity] = useState("")
-    const [unitPrice, setUnitPrice] = useState("")
-    const [observation, setObservation] = useState("")
-
-    let createProduct = () => {
-        handleSubmition({
-            'id': parseInt(IdProduct!),
-            'name': 'Producto 1',
-            'quantity': parseFloat(quantity!),
-            'unit_price': parseFloat(unitPrice!),
-            'observation': observation!,
-            'total': parseFloat(quantity!) * parseFloat(unitPrice!),
-        })
-        toggleModal()
-    }
+    const { ListProduct } = useListProductsInventory()
+    const { setIdProduct, quantity, setQuantity, unitPrice, setUnitPrice, observation, setObservation, createProduct } = useAddProductsPurchase({handleSubmition, ListProduct, toggleModal})
+    
     return (
         <ModalComponent isOpen={isModalOpen} onClose={toggleModal}>
             <main className='grid grid-cols-12 mx-4'>
@@ -35,16 +24,12 @@ export default function ModalPurchases({isModalOpen, toggleModal, handleSubmitio
                             'title': 'Producto',
                             'name': 'producto',
                             'placeholder': 'Seleccione el producto',
-                            'options': [
-                                {'valor': '1', 'texto': 'Producto 1'},
-                                {'valor': '2', 'texto': 'Producto 2'},
-                                {'valor': '3', 'texto': 'Producto 3'},
-                                {'valor': '4', 'texto': 'Producto 4'},
-                                {'valor': '5', 'texto': 'Producto 5'},
-                                {'valor': '6', 'texto': 'Producto 6'},
-                                {'valor': '7', 'texto': 'Producto 7'},
-                                {'valor': '8', 'texto': 'Producto 8'},
-                            ],
+                            'options': ListProduct.map((item: ProductsForInventory) => {
+                                return {
+                                    'valor': item.id_product,
+                                    'texto': item.name_product
+                                }
+                            }),
                             'fnChange': setIdProduct,
                         }} />
                     </div>

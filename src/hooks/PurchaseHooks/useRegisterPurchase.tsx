@@ -27,8 +27,13 @@ export function useRegisterPurchase() {
         setIsModalOpen(!isModalOpen);
     };
 
-    const deleteProduct = (id: number) => {
-        let newProducts = products.filter((item: dataProduct) => item.id !== id)
+    const deleteProduct = (data: dataProduct) => {
+        let newProducts = products.filter((item: dataProduct) => {
+            if(item === data){
+                setTotal(total - item.total)
+            }
+            return item !== data
+        })
         setProducts(newProducts)
     }
     return {
