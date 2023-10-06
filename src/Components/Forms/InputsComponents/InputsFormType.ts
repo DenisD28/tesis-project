@@ -1,8 +1,8 @@
-import { ChangeEventHandler } from "react";
-
 export default interface InputsFormProps {
     'title': string,
     'type': string,
     'name': string,
     'placeholder': string,
+    'value': string | number,
+    'fnChange': React.Dispatch<React.SetStateAction<string>>,
 }

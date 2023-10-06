@@ -131,11 +131,13 @@ export const FormAddProveedores = () => {
                     'title': 'Cancelar',
                     'color': 'red',
                     'type': 'reset',
+                    'fnClick': () => { },
                 }} />
                 <ButtonForm dataButton={{
                     'title': 'Guardar',
                     'color': 'green',
                     'type': 'submit',
+                    'fnClick': () => { },
                 }} />
             </form >
         </>

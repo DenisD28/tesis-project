@@ -20,7 +20,6 @@
     flex-direction: column;
     padding: 20px;
     background-color: #fcfcfc;
-    border: #bdc3c7 1px solid;
     width: 100%;
 }
 
@@ -40,7 +39,6 @@
 
 .link-item {
     display: flex;
-    justify-content: start;
     align-items: center;
     grid-gap: 10px;
     width: 100%;
@@ -60,6 +58,10 @@
 
 .scroll-hidden::-webkit-scrollbar{
     display: none;
+}
+
+.scroll-hidden{
+    scroll-behavior: smooth;
 }
 
 @media (max-width: 1024px) {

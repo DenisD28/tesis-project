@@ -196,7 +196,6 @@ export const listaProveedores = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
-    console.log(response.data)
 
     return response.data
 }
