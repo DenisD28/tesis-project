@@ -3,6 +3,7 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { agregarOrganizacion, agregarProveedor, departamentos, municipio } from "../../services/Services"
 import { ciudad, municipioCiudad, organizacion, proveedor } from "../types.d"
 import { useNavigate } from "react-router-dom"
+import toast, { Toaster } from "react-hot-toast"
 
 export const FormAddProveedores = () => {
 
@@ -73,13 +74,14 @@ export const FormAddProveedores = () => {
         try {
             const response = await agregarProveedor(formProducto)
             navigation("/")
-        } catch (e) {
-            console.log(e)
+        } catch (e: any) {
+            toast.error(e.message)
         }
     }
 
     return (
         <>
+            <div> <Toaster /></div >
             <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre del proveedor</label>

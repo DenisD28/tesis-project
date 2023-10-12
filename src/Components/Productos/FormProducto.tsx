@@ -2,13 +2,11 @@ import { useState } from "react";
 import { newProduct } from "../../Components/types.d";
 import { newAddProduct } from "../../services/Services";
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
-import { ErrorAlert } from "../Alerts/ErrorAlert";
+import toast, { Toaster } from "react-hot-toast";
 
 export const FormProducto = () => {
 
     const [formProducto, setFormProduct] = useState<newProduct>({ name: "", measurement_type: "" })
-    const [mensaje, setMensaje] = useState("")
-    const [isOpen, setIsOpen] = useState(false);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -23,9 +21,8 @@ export const FormProducto = () => {
         try {
             const response = await newAddProduct(formProducto)
 
-        } catch (e) {
-            setMensaje("hola")
-            setIsOpen(true)
+        } catch (e: any) {
+            toast.error(e.message)
         }
     }
 
@@ -34,6 +31,7 @@ export const FormProducto = () => {
     }
 
     return (<>
+        <div><Toaster /></div>
         <div className="container">
             <div className="formulario-registro">
                 <div>
@@ -61,12 +59,6 @@ export const FormProducto = () => {
                             'type': 'submit',
                         }} />
                     </form>
-                    {
-                        isOpen && (
-                            <ErrorAlert
-                                mensaje={mensaje} />
-                        )
-                    }
                 </div>
             </div >
         </div >

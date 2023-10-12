@@ -7,17 +7,23 @@ import { Nav } from "../../Components/Navegador/Nav"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"
-import { ErrorAlert } from "../../Components/Alerts/ErrorAlert"
+import toast, { Toaster } from "react-hot-toast"
 
 export const IngresoInventarioMP = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenAlert, setIsOpenAlert] = useState(false)
-    const [mensaje, setMensaje] = useState("")
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setFormProduct((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
         setFormProduct((prevData) => ({
             ...prevData,
@@ -31,13 +37,12 @@ export const IngresoInventarioMP = () => {
             const response = await agregarInventario(formProducto)
 
             if (response.status === 201) {
-                setMensaje("Producto registrado correctamente.")
+                toast.success("Producto Agregado")
                 navigation("/inventario")
             }
 
         } catch (e: any) {
-            setMensaje(e.response.data.message)
-            setIsOpenAlert(true)
+            toast.error(e.message)
         }
     }
 
@@ -53,6 +58,7 @@ export const IngresoInventarioMP = () => {
     }
 
     return (<>
+        <div> <Toaster /></div >
         <main className="w-full h-screen flex justify-between items-start flex-col">
             <div className="w-full h-full flex justify-start items-start overflow-y-auto gap-1">
                 <div className="w-[25rem] h-full bg-white overflow-y-scroll scroll-hidden border-r-2">
@@ -87,9 +93,13 @@ export const IngresoInventarioMP = () => {
                                     </div>
                                     <div className="flex justify-center items-center flex-col p-2">
                                         <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Unidad de Medida</label>
-                                        <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="unit_of_measurement" value={formProducto.unit_of_measurement} onChange={handleInputChange} placeholder="Escribe la unidad de medida" required />
+                                        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement}>
+                                            <option value="">Selecciona la unidad de medida</option>
+                                            <option value="uni">Unidad</option>
+                                            <option value="kg">Kilogramo</option>
+                                            <option value="lb">Libra</option>
+                                        </select>
                                     </div>
-
                                     <div className="flex justify-center items-center flex-col p-2">
                                         <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Minimo Permitido</label>
                                         <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" name="stock_min" value={formProducto.stock_min} onChange={handleInputChange} placeholder="Escribe el minimo permitido" required />
@@ -114,12 +124,6 @@ export const IngresoInventarioMP = () => {
                     </div>
                 </div>
             </div>
-            {
-                isOpenAlert && (
-                    <ErrorAlert
-                        mensaje={mensaje} />
-                )
-            }
             <Footer />
         </main>
     </>)

@@ -18,7 +18,6 @@ export const Menu = () => {
                 })
                 setInfo(usuario)
             } catch (e) {
-                console.log(e)
             }
         }
         getInfo()

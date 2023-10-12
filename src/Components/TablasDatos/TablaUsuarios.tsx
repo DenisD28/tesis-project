@@ -45,7 +45,7 @@ export const TablasUsuarios: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        navigation("#")
+        navigation("/addusuarios")
     }
 
     return (
@@ -82,7 +82,9 @@ export const TablasUsuarios: React.FC = () => {
                         ))}
                     </tbody>
                 </table>
+
             </div>
+
         </>
     )
 }

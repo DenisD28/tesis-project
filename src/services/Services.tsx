@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Post, Proveedores, User, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
+import { Post, Proveedores, User, User2, UserType, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 
@@ -214,6 +214,7 @@ export const infoGeneral = async () => {
     })
 
     return response.data
+
 }
 
 export const getGanaciasMensuales = async () => {
@@ -228,6 +229,7 @@ export const getGanaciasMensuales = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
+
     return response.data
 }
 
@@ -362,6 +364,25 @@ export const agregarOrganizacion = async (org: organizacion) => {
 export const agregarProveedor = async (prov: proveedor) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}organization?name=${prov.name}&ruc=${prov.ruc}&address=${prov.address}&sector_id=2&municipality_id=${prov.municipality_id}&city_id=${prov.city_id}&phone_main=${prov.phone_main}&phone_secondary=${prov.second_phone}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const body = ""
+
+    const response = await axios.post(url, body, {
+        headers: headers
+    })
+
+    return response
+}
+
+export const agregarUsuario = async (user: User2) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.name}&email=${user.email}&username=${user.name}&role_id=${user.role}&organization_id=${user.organization}`
+
 
     const headers = {
         'Authorization': `Bearer ${token}`,

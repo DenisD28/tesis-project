@@ -7,7 +7,7 @@ import { Nav } from "../../Components/Navegador/Nav"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"
-import { ErrorAlert } from "../../Components/Alerts/ErrorAlert"
+import toast, { Toaster } from "react-hot-toast"
 
 export const IngresoInventarioPT = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
@@ -36,8 +36,7 @@ export const IngresoInventarioPT = () => {
             }
 
         } catch (e: any) {
-            setMensaje(e.response.data.message)
-            setIsOpenAlert(true)
+            toast.error(e.message)
         }
     }
 
@@ -53,6 +52,7 @@ export const IngresoInventarioPT = () => {
     }
 
     return (<>
+        <div> <Toaster /></div >
         <main className="w-full h-screen flex justify-between items-start flex-col">
             <div className="w-full h-full flex justify-start items-start overflow-y-auto gap-1">
                 <div className="w-[25rem] h-full bg-white overflow-y-scroll scroll-hidden border-r-2">
@@ -114,12 +114,6 @@ export const IngresoInventarioPT = () => {
                     </div>
                 </div>
             </div>
-            {
-                isOpenAlert && (
-                    <ErrorAlert
-                        mensaje={mensaje} />
-                )
-            }
             <Footer />
         </main>
     </>)
