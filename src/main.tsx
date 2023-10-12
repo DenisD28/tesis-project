@@ -19,6 +19,8 @@ import AddPurchases from './pages/Purchases/AddPurchases';
 import { Clientes } from './pages/Clients/Clientes';
 import { Proveedores } from './pages/Proveedores/Proveedores';
 import { IngresoInventarioPT } from './pages/Inventarios/IngresoInventarioPT';
+import { FormUsuarios } from './Components/Usuarios/FormUsuarios';
+import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
 
 const router = createBrowserRouter([
   {
@@ -88,6 +90,10 @@ const router = createBrowserRouter([
   {
     path: "/usuarios",
     element: <Usuarios />
+  },
+  {
+    path: "/addusuarios",
+    element: <AddUsuarios />
   },
   {
     path: "/compras",

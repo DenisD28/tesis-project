@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { agregarOrganizacion, departamentos, municipio } from "../../services/Services"
 import { ciudad, municipioCiudad, organizacion } from "../types.d"
+import toast, { Toaster } from "react-hot-toast"
 
 export const FormAddOrganizacion = () => {
 
@@ -47,8 +48,8 @@ export const FormAddOrganizacion = () => {
                     ciudades
                 })
                 setDepartamento(ciudades)
-            } catch (e) {
-                console.log(e)
+            } catch (e: any) {
+                toast.error(e.message)
             }
         }
         lista()
@@ -71,13 +72,14 @@ export const FormAddOrganizacion = () => {
         try {
             const response = await agregarOrganizacion(formProducto)
 
-        } catch (e) {
-            console.log(e)
+        } catch (e: any) {
+            toast.error(e.message)
         }
     }
 
     return (
         <>
+            <div> <Toaster /></div >
             <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre</label>

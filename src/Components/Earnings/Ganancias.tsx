@@ -9,32 +9,33 @@ export default function Ganancias() {
     let state = { last_month: [], last_week: [], today: [] }
 
     useEffect(() => {
-        // getGanaciasMensual()
-        // getGananciasAnual()
+        getGanaciasMensual()
+        getGananciasAnual()
     })
 
-    // const getGanaciasMensual = async () => {
-    //     try {
-    //         const { last_month, last_week, today } = await getGanaciasMensuales()
-    //         state = ({
-    //             last_month,
-    //             last_week,
-    //             today
-    //         })
-    //         setGananciasMensuales(last_month)
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
+    const getGanaciasMensual = async () => {
+        try {
+            const { last_month, last_week, today } = await getGanaciasMensuales()
+            state = ({
+                last_month,
+                last_week,
+                today
+            })
 
-    // const getGananciasAnual = async () => {
-    //     try {
-    //         const response = await getGanaciasAnuales()
-    //         setGananciasTotalesAnuales(response)
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
+            setGananciasMensuales(last_month)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const getGananciasAnual = async () => {
+        try {
+            const response = await getGanaciasAnuales()
+            setGananciasTotalesAnuales(response)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <section className="md:col-span-6 col-span-12 flex justify-center items-center flex-col md:gap-4 gap-6 border-2 rounded-lg p-8">

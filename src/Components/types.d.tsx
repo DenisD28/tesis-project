@@ -8,6 +8,18 @@ export interface User {
     organization: Organizacion
     role: role
 }
+
+export interface User2 {
+    id: string
+    name: string
+    email: string
+    username: string
+    password: string
+    token: string
+    organization: string
+    role: string
+}
+
 export interface role {
     id: number
     name: string
@@ -75,8 +87,6 @@ export interface municipio {
     name: string
 }
 
-
-
 export interface gananciasMensuales {
     date: string
     earnings_total: number
@@ -112,6 +122,8 @@ export interface Proveedores {
     contact_name: string
 }
 
+
+export type Usuario = User2;
 export type provider = Proveedores[]
 export type proveedor = Pick<Proveedores, 'name' | 'ruc' | 'address' | 'phone_main' | 'second_phone' | 'city_id' | 'municipality_id' | 'contact_name'>
 export type cliente = clientes
