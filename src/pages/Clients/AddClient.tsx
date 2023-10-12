@@ -1,6 +1,6 @@
 import FormAdd from '../../Components/Client/FormAdd'
 import { Nav } from '../../Components/Navegador/Nav'
-import { Menu } from '../../routes/Menu'
+import { Menu } from '../../Components/Menu/Menu'
 
 export default function AddClient() {
   return (

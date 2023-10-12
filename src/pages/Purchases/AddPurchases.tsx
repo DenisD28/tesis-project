@@ -1,4 +1,4 @@
-import { Menu } from "../../routes/Menu"
+import { Menu } from "../../Components/Menu/Menu"
 import { Nav } from "../../Components/Navegador/Nav"
 import RegisterPurchases from "../../Components/Purchases/RegisterPurchases"
 import Footer from "../../Components/Footer/Footer"

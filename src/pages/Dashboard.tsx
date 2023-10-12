@@ -1,6 +1,6 @@
 import Footer from "../Components/Footer/Footer"
 import { Nav } from "../Components/Navegador/Nav"
-import { Menu } from "../routes/Menu"
+import { Menu } from "../Components/Menu/Menu"
 import Home from "./Home/Home"
 
 export const Dashboard = () => {

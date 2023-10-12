@@ -1,6 +1,6 @@
 import { Nav } from "../../Components/Navegador/Nav"
 import { TablasUsuarios } from "../../Components/TablasDatos/TablaUsuarios"
-import { Menu } from "../../routes/Menu"
+import { Menu } from "../../Components/Menu/Menu"
 
 export const Usuarios = () => {
     return (

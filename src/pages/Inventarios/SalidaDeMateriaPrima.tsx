@@ -4,7 +4,7 @@ import { agregarProductoTerminado, listaInventario } from "../../services/Servic
 import { useNavigate } from "react-router-dom"
 import { HeadType } from "../../Components/Table/types/HeadType"
 import Head from "../../Components/Table/Head/Head"
-import { Menu } from "../../routes/Menu"
+import { Menu } from "../../Components/Menu/Menu"
 import { Nav } from "../../Components/Navegador/Nav"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 

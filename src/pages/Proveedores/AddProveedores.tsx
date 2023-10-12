@@ -1,7 +1,7 @@
 import Footer from '../../Components/Footer/Footer'
 import { Nav } from '../../Components/Navegador/Nav'
 import { FormAddProveedores } from '../../Components/Proveedores/FormAddProveedores'
-import { Menu } from '../../routes/Menu'
+import { Menu } from '../../Components/Menu/Menu'
 
 export default function AddOrganizacion() {
     return (

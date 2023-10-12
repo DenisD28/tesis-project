@@ -1,7 +1,7 @@
 import Footer from "../../Components/Footer/Footer"
 import { Nav } from "../../Components/Navegador/Nav"
 import { TablasOrganizaciones } from "../../Components/TablasDatos/TablaOrganizaciones"
-import { Menu } from "../../routes/Menu"
+import { Menu } from "../../Components/Menu/Menu"
 
 export const Organizaciones = () => {
     return (

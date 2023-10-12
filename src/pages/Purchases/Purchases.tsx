@@ -1,5 +1,5 @@
 // import React from 'react'
-import { Menu } from "../../routes/Menu"
+import { Menu } from "../../Components/Menu/Menu"
 import { Nav } from "../../Components/Navegador/Nav"
 import { TablasCompras } from "../../Components/TablasDatos/TablaCompras"
 import Footer from "../../Components/Footer/Footer"
