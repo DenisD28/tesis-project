@@ -17,7 +17,7 @@ interface Route {
 }
 
 //Tipos
-//tipo4 = vario
+//tipo4 = varios
 //tipo1 = administrador general
 //tipo2 = administrador
 //tipo3 = colaborador

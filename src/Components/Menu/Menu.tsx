@@ -59,7 +59,7 @@ export const Menu = () => {
                                 )
                             })
                         ) : (
-                            userInfo?.role.name === "super_admin" && (
+                            userInfo?.role.name === "super_admin" ? (
                                 routesMain.map((item, index) => {
                                     return (
 
@@ -72,20 +72,68 @@ export const Menu = () => {
                                             </li>
                                         ) : (
                                             item.type === "tipo4" && (
+                                                item.path === "/more_options" ? (
+                                                    <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                        <Link to={item.path} className="link-item text-purple-icons">
+                                                            {item.icon}
+                                                            <span>{item.title}</span>
+                                                        </Link>
+                                                    </li>
+
+                                                ) : (
+                                                    <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                        <Link to={item.path} className="link-item text-purple-icons">
+                                                            {item.icon}
+                                                            <span>{item.title}</span>
+                                                        </Link>
+                                                    </li>
+                                                )
+                                            )
+                                        )
+                                    )
+                                })
+                            ) : (
+                                userInfo?.role.name === "guest" && (
+                                    routesMain.map((item, index) => {
+                                        return (
+
+                                            item.type === "tipo2" ? (
                                                 <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
                                                     <Link to={item.path} className="link-item text-purple-icons">
                                                         {item.icon}
                                                         <span>{item.title}</span>
                                                     </Link>
                                                 </li>
+                                            ) : (
+                                                item.type === "tipo4" && (
+                                                    item.path === "/more_options" ? (
+                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                                {item.icon}
+                                                                <span>{item.title}</span>
+                                                            </Link>
+                                                        </li>
+                                                    ) : (
+                                                        item.path != "/usuarios" && (
+                                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                                <Link to={item.path} className="link-item text-purple-icons">
+                                                                    {item.icon}
+                                                                    <span>{item.title}</span>
+                                                                </Link>
+                                                            </li>
+                                                        )
+                                                    )
+                                                )
                                             )
                                         )
-                                    )
-                                })
+                                    })
+                                )
                             )
                         )}
                 </ul>
             </div>
+
+            {/* Parte de inventario */}
             <div className="items">
                 <div className="title">
                     <h3>Inventario</h3>
@@ -95,7 +143,7 @@ export const Menu = () => {
                         userInfo?.role.name === "admin" ? (
                             routesInventory.map((item, index) => {
                                 return (
-                                    item.type === "tipo1" ? (
+                                    item.type === "tipo2" ? (
                                         <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
                                             <Link to={item.path} className="link-item text-purple-icons">
                                                 {item.icon}
@@ -115,7 +163,7 @@ export const Menu = () => {
                                 )
                             })
                         ) : (
-                            userInfo?.role.name === "super_admin" && (
+                            userInfo?.role.name === "super_admin" ? (
                                 routesInventory.map((item, index) => {
                                     return (
 
@@ -138,8 +186,44 @@ export const Menu = () => {
                                         )
                                     )
                                 })
+                            ) : (
+                                userInfo?.role.name === "guest" && (
+                                    routesInventory.map((item, index) => {
+                                        return (
+
+                                            item.type === "tipo2" ? (
+
+                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                    <Link to={item.path} className="link-item text-purple-icons">
+                                                        {item.icon}
+                                                        <span>{item.title}</span>
+                                                    </Link>
+                                                </li>
+                                            ) : (
+                                                item.type === "tipo4" && (
+                                                    item.path === "/more_options" ? (
+                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                                {item.icon}
+                                                                <span>{item.title}</span>
+                                                            </Link>
+                                                        </li>
+                                                    ) : (
+                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                                {item.icon}
+                                                                <span>{item.title}</span>
+                                                            </Link>
+                                                        </li>
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    })
+                                )
                             )
-                        )}
+                        )
+                    }
                 </ul>
             </div>
         </div>
