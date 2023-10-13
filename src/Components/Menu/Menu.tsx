@@ -12,6 +12,7 @@ export const Menu = () => {
 
     useEffect(() => {
         const getInfo = async () => {
+
             try {
                 const { usuario } = await infoGeneral()
                 state = ({
@@ -19,7 +20,6 @@ export const Menu = () => {
                 })
                 setInfo(usuario)
             } catch (e) {
-                console.log(e)
             }
         }
         getInfo()
@@ -38,6 +38,7 @@ export const Menu = () => {
                     {
                         routesMain.map((item, index) => {
                             return (
+
                                 <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
                                     <Link to={item.path} className="link-item text-purple-icons">
                                         {item.icon}

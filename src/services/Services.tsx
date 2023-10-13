@@ -202,7 +202,6 @@ export const listaProveedores = async () => {
 }
 
 export const infoGeneral = async () => {
-    const [data, setData] = useState()
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}user/info`
 

@@ -1,6 +1,5 @@
 import { Nav } from "./Components/Navegador/Nav"
 import Footer from "./Components/Footer/Footer"
-
 import { Outlet } from "react-router-dom"
 import { Menu } from "./Components/Menu/Menu"
 
