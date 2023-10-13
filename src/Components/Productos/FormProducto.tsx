@@ -26,6 +26,14 @@ export const FormProducto = () => {
         }
     }
 
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = event.target;
+        setFormProduct((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
     const cancelar = () => {
         setFormProduct({ name: "", measurement_type: "" })
     }
@@ -44,10 +52,13 @@ export const FormProducto = () => {
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre</label>
                             <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" value={formProducto.name} onChange={handleInputChange} placeholder="Escribe el nombre del producto" required />
                         </div>
-                        <div className="flex justify-center items-center flex-col p-2">
-                            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="medicion">Tipo de Medicion</label>
-                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="measurement_type" value={formProducto.measurement_type} onChange={handleInputChange} placeholder="Escribe su forma de medicion" required />
-                        </div>
+
+                        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement}>
+                            <option value="">Selecciona la unidad de medida</option>
+                            <option value="uni">Unidad</option>
+                            <option value="kg">Kilogramo</option>
+                            <option value="lb">Libra</option>
+                        </select>
                         <ButtonForm dataButton={{
                             'title': 'Cancelar',
                             'color': 'red',
