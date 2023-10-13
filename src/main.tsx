@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import "../src/css/index.css"
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -19,8 +19,8 @@ import AddPurchases from './pages/Purchases/AddPurchases';
 import { Clientes } from './pages/Clients/Clientes';
 import { Proveedores } from './pages/Proveedores/Proveedores';
 import { IngresoInventarioPT } from './pages/Inventarios/IngresoInventarioPT';
-import { FormUsuarios } from './Components/Usuarios/FormUsuarios';
 import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
+import App from './App';
 
 const router = createBrowserRouter([
   {
@@ -28,81 +28,88 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/inventario",
-    element: <Inventarios />
+    path: "/",
+    element: <App />,
+    children: [
+
+      {
+        path: "/inventario",
+        element: <Inventarios />
+      },
+      {
+        path: "/IngresoInventarioMP",
+        element: <IngresoInventarioMP />
+      },
+      {
+        path: "/IngresoInventarioPT",
+        element: <IngresoInventarioPT />
+      },
+      {
+        path: "/Organizaciones",
+        element: <Organizaciones />
+      },
+      {
+        path: "/pTerminado",
+        element: <IngresoProductoTerminado />
+      },
+      {
+        path: "/ingresoProducto",
+        element: <SalidaDeMateriaPrima />
+      },
+      {
+        path: "/AddNewProduct",
+        element: <AddNewProduct />
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />
+      },
+      {
+        path: "/AddNewClient",
+        element: <AddClient />
+      },
+      {
+        path: "/inventarioTP",
+        element: <IngresoProductoTerminado />
+      },
+      {
+        path: "/clientes",
+        element: <Clientes />
+      },
+      {
+        path: "/addcliente",
+        element: <AddClient />
+      },
+      {
+        path: "/addorganizacion",
+        element: <AddOrganizacion />
+      },
+      {
+        path: "/proveedores",
+        element: <Proveedores />
+      },
+      {
+        path: "/addproveedores",
+        element: <AddProveedores />
+      },
+      {
+        path: "/usuarios",
+        element: <Usuarios />
+      },
+      {
+        path: "/addusuarios",
+        element: <AddUsuarios />
+      },
+      {
+        path: "/compras",
+        element: <Purchases />
+      },
+      {
+        path: "/addcompras",
+        element: <AddPurchases />
+      }
+    ]
   },
-  {
-    path: "/IngresoInventarioMP",
-    element: <IngresoInventarioMP />
-  },
-  {
-    path: "/IngresoInventarioPT",
-    element: <IngresoInventarioPT />
-  },
-  {
-    path: "/Organizaciones",
-    element: <Organizaciones />
-  },
-  {
-    path: "/pTerminado",
-    element: <IngresoProductoTerminado />
-  },
-  {
-    path: "/ingresoProducto",
-    element: <SalidaDeMateriaPrima />
-  },
-  {
-    path: "/AddNewProduct",
-    element: <AddNewProduct />
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />
-  },
-  {
-    path: "/AddNewClient",
-    element: <AddClient />
-  },
-  {
-    path: "/inventarioTP",
-    element: <IngresoProductoTerminado />
-  },
-  {
-    path: "/clientes",
-    element: <Clientes />
-  },
-  {
-    path: "/addcliente",
-    element: <AddClient />
-  },
-  {
-    path: "/addorganizacion",
-    element: <AddOrganizacion />
-  },
-  {
-    path: "/proveedores",
-    element: <Proveedores />
-  },
-  {
-    path: "/addproveedores",
-    element: <AddProveedores />
-  },
-  {
-    path: "/usuarios",
-    element: <Usuarios />
-  },
-  {
-    path: "/addusuarios",
-    element: <AddUsuarios />
-  },
-  {
-    path: "/compras",
-    element: <Purchases />
-  },
-  {
-    path: "/addcompras",
-    element: <AddPurchases />
-  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,7 +1,8 @@
 import axios from "axios";
-import { Post, Proveedores, User, User2, UserType, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
+import { Post, User, User2, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
+import { useState } from "react";
 
 function getDecryptedToken() {
     const encryptedToken = Cookies.get('authToken');
@@ -201,6 +202,7 @@ export const listaProveedores = async () => {
 }
 
 export const infoGeneral = async () => {
+    const [data, setData] = useState()
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}user/info`
 
@@ -214,7 +216,6 @@ export const infoGeneral = async () => {
     })
 
     return response.data
-
 }
 
 export const getGanaciasMensuales = async () => {

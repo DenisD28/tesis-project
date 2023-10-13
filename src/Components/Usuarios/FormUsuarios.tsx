@@ -80,7 +80,6 @@ export const FormUsuarios = () => {
                 <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="email" placeholder="Escribe su email" onChange={handleInputChange} value={formProducto.email} />
             </div>
 
-
             <div className="flex justify-center items-center flex-col p-2">
                 <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Rol del Usuario</label>
                 <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="role" id="type" value={formProducto.role}>
