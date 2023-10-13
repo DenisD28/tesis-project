@@ -36,18 +36,54 @@ export const Menu = () => {
                 </div>
                 <ul className="flex justify-start gap-1 flex-col">
                     {
-                        routesMain.map((item, index) => {
-                            return (
+                        userInfo?.role.name === "admin" ? (
+                            routesMain.map((item, index) => {
+                                return (
+                                    item.type === "tipo2" ? (
+                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    ) : (
+                                        item.type === "tipo4" && (
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                <Link to={item.path} className="link-item text-purple-icons">
+                                                    {item.icon}
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    )
+                                )
+                            })
+                        ) : (
+                            userInfo?.role.name === "super_admin" && (
+                                routesMain.map((item, index) => {
+                                    return (
 
-                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                    <Link to={item.path} className="link-item text-purple-icons">
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
+                                        item.type === "tipo1" ? (
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                <Link to={item.path} className="link-item text-purple-icons">
+                                                    {item.icon}
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            </li>
+                                        ) : (
+                                            item.type === "tipo4" && (
+                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                    <Link to={item.path} className="link-item text-purple-icons">
+                                                        {item.icon}
+                                                        <span>{item.title}</span>
+                                                    </Link>
+                                                </li>
+                                            )
+                                        )
+                                    )
+                                })
                             )
-                        })
-                    }
+                        )}
                 </ul>
             </div>
             <div className="items">
@@ -56,17 +92,54 @@ export const Menu = () => {
                 </div>
                 <ul className="flex justify-start gap-1 flex-col">
                     {
-                        routesInventory.map((item, index) => {
-                            return (
-                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                    <Link to={item.path} className="link-item text-purple-icons">
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
+                        userInfo?.role.name === "admin" ? (
+                            routesInventory.map((item, index) => {
+                                return (
+                                    item.type === "tipo1" ? (
+                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    ) : (
+                                        item.type === "tipo4" && (
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                <Link to={item.path} className="link-item text-purple-icons">
+                                                    {item.icon}
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    )
+                                )
+                            })
+                        ) : (
+                            userInfo?.role.name === "super_admin" && (
+                                routesInventory.map((item, index) => {
+                                    return (
+
+                                        item.type === "tipo1" ? (
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                <Link to={item.path} className="link-item text-purple-icons">
+                                                    {item.icon}
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            </li>
+                                        ) : (
+                                            item.type === "tipo4" && (
+                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
+                                                    <Link to={item.path} className="link-item text-purple-icons">
+                                                        {item.icon}
+                                                        <span>{item.title}</span>
+                                                    </Link>
+                                                </li>
+                                            )
+                                        )
+                                    )
+                                })
                             )
-                        })
-                    }
+                        )}
                 </ul>
             </div>
         </div>

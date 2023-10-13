@@ -27,7 +27,7 @@ const routesMain: Route[] = [
         "path": "/dashboard",
         "title": "Panel principal",
         "icon": <LayoutDashboard />,
-        "type": "tipo4"
+        "type": "tipo2"
     },
     {
         "path": "/organizaciones",
@@ -39,7 +39,7 @@ const routesMain: Route[] = [
         "path": "/usuarios",
         "title": "Usuarios",
         "icon": <User2 />,
-        "type": "tipo2"
+        "type": "tipo4"
     },
     {
         "path": "/proveedores",
@@ -69,7 +69,7 @@ const routesMain: Route[] = [
         "path": "/more_options",
         "title": "Otras opciones",
         "icon": <MoreHorizontal />,
-        "type": "tipo1"
+        "type": "tipo4"
     },
 ]
 
@@ -90,7 +90,7 @@ const routesInventory: Route[] = [
         "path": "/AddNewProduct",
         "title": "Nuevos productos",
         "icon": <LiaMoneyBillSolid className="w-6 h-auto" />,
-        "type": "tipo1"
+        "type": "tipo4"
     },
 ]
 
