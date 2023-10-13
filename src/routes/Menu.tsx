@@ -6,27 +6,27 @@ import { infoGeneral } from "../services/Services"
 
 export const Menu = () => {
 
-    const [userInfo, setInfo] = useState<User>()
-    let state = { usuario: [] }
+    // const [userInfo, setInfo] = useState<User>()
+    // let state = { usuario: [] }
 
-    useEffect(() => {
-        const getInfo = async () => {
-            try {
-                const { usuario } = await infoGeneral()
-                state = ({
-                    usuario
-                })
-                setInfo(usuario)
-            } catch (e) {
-            }
-        }
-        getInfo()
-    }, [])
+    // useEffect(() => {
+    //     const getInfo = async () => {
+    //         try {
+    //             const { usuario } = await infoGeneral()
+    //             state = ({
+    //                 usuario
+    //             })
+    //             setInfo(usuario)
+    //         } catch (e) {
+    //         }
+    //     }
+    //     getInfo()
+    // }, [])
 
     return (<>
         <div className="Menu">
             <div className="organizacion">
-                <h2>{userInfo?.organization?.name}</h2>
+                {/* <h2>{userInfo?.organization?.name}</h2> */}
             </div>
             <div className="items">
                 <div className="title">

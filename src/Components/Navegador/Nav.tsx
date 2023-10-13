@@ -14,19 +14,19 @@ export const Nav = () => {
 
 
     useEffect(() => {
-        const getInfo = async () => {
-            try {
-                const { usuario } = await infoGeneral()
-                state = ({
-                    usuario
-                })
-                setInfo(usuario)
-                console.log(usuario)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        getInfo()
+        // const getInfo = async () => {
+        //     try {
+        //         const { usuario } = await infoGeneral()
+        //         state = ({
+        //             usuario
+        //         })
+        //         setInfo(usuario)
+        //         console.log(usuario)
+        //     } catch (e) {
+        //         console.log(e)
+        //     }
+        // }
+        // getInfo()
     }, [])
 
     const salir = () => {

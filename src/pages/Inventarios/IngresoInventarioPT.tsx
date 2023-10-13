@@ -2,8 +2,6 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Inventary, inven } from "../../Components/types.d"
 import { agregarInventarioPT } from "../../services/Services"
-import { Menu } from "../../Components/Menu/Menu"
-import { Nav } from "../../Components/Navegador/Nav"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"
@@ -13,8 +11,6 @@ export const IngresoInventarioPT = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenAlert, setIsOpenAlert] = useState(false)
-    const [mensaje, setMensaje] = useState("")
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +27,6 @@ export const IngresoInventarioPT = () => {
             const response = await agregarInventarioPT(formProducto)
 
             if (response.status === 201) {
-                setMensaje("Producto registrado correctamente.")
                 navigation("/pTerminado")
             }
 
