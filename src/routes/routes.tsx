@@ -4,7 +4,8 @@ import {
     User2,
     Users2,
     Truck,
-    MoreHorizontal
+    MoreHorizontal,
+    AreaChart
 } from 'lucide-react';
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { LiaMoneyBillSolid } from 'react-icons/lia'
@@ -67,8 +68,8 @@ const routesMain: Route[] = [
     },
     {
         "path": "/more_options",
-        "title": "Otras opciones",
-        "icon": <MoreHorizontal />,
+        "title": "Reportes",
+        "icon": <AreaChart />,
         "type": "tipo4"
     },
 ]
