@@ -2,7 +2,6 @@ import axios from "axios";
 import { Post, User, User2, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
-import { useState } from "react";
 
 function getDecryptedToken() {
     const encryptedToken = Cookies.get('authToken');

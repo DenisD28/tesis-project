@@ -11,7 +11,6 @@ export const IngresoInventarioMP = () => {
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
 
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormProduct((prevData) => ({
@@ -57,8 +56,6 @@ export const IngresoInventarioMP = () => {
     return (<>
         <div> <Toaster /></div >
         <main className="w-full h-screen flex justify-between items-start flex-col">
-
-
             {
                 isOpen && (
                     <ModalProducto fnAgregar={agregar}
@@ -102,11 +99,13 @@ export const IngresoInventarioMP = () => {
                             'title': 'Cancelar',
                             'color': 'red',
                             'type': 'reset',
+                            'fnClick': () => { }
                         }} />
                         <ButtonForm dataButton={{
                             'title': 'Guardar',
                             'color': 'green',
                             'type': 'submit',
+                            'fnClick': () => { }
                         }} />
                     </form >
                 </div>
