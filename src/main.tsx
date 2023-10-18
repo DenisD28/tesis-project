@@ -21,6 +21,7 @@ import { Proveedores } from './pages/Proveedores/Proveedores';
 import { IngresoInventarioPT } from './pages/Inventarios/IngresoInventarioPT';
 import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
 import App from './App';
+import AddSale from './pages/Sale/AddSale';
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "/addcompras",
         element: <AddPurchases />
+      },
+      {
+        path: "/ventas",
+        element: <AddSale />
       }
     ]
   },

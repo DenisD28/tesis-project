@@ -4,7 +4,6 @@ import {
     User2,
     Users2,
     Truck,
-    MoreHorizontal,
     AreaChart
 } from 'lucide-react';
 import { MdOutlineShoppingBag } from 'react-icons/md'
