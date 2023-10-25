@@ -68,7 +68,6 @@ export const listaInventario = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
-    console.log(response.data)
     return response.data
 }
 
@@ -131,7 +130,6 @@ export const listaProductos = async (tipo: tipo) => {
     const response = await axios.get(url, {
         headers: headers
     })
-    console.log(response.data)
 
     return response.data
 }
@@ -149,7 +147,6 @@ export const listaUsuarios = async () => {
         headers: headers
     })
 
-    console.log(response.data)
     return response.data
 }
 
@@ -197,7 +194,6 @@ export const municipio = async (id: string) => {
     const response = await axios.get(url, {
         headers: headers
     })
-    console.log(response.data.info)
     return response.data.info
 }
 
@@ -334,7 +330,6 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
         const response = await axios.post(url, body, {
             headers
         })
-        console.log(response)
     } catch (error) {
         console.error(error)
     }
@@ -510,7 +505,7 @@ export const descargarReporteInventario = async () => {
 
     const headers = {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
     }
 
     fetch(apiUrl, { headers })
