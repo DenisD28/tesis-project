@@ -1,17 +1,17 @@
 import "../../css/App.css"
 import { listOrg } from "../types.d"
 import { useEffect, useState } from "react"
-import { listaOrganizaciones } from "../../services/Services"
+import { listaUsuarios } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import Head from "../Table/Head/Head"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
-    { name: "Nombre", prop: "nombre" },
-    { name: "Estado", prop: "estado" },
-    { name: "Rol", prop: "Rol" },
-    { name: "Ultima Conexion", prop: "ultimaConexion" },
+    { name: "Nombre", prop: "name" },
+    { name: "Estado", prop: "status" },
+    { name: "Rol", prop: "role" },
+    { name: "Ultima Conexion", prop: "last_login_at" },
     { name: "Accion", prop: "accion" },
 
 ]
@@ -22,7 +22,7 @@ export const TablasUsuarios: React.FC = () => {
 
     const [data, setOrg] = useState<listOrg>([])
     const [next, setNext] = useState("")
-    let state = { links: [], meta: [], organizaciones: [] }
+    let state = { links: [], meta: [], usuarios: [] }
     const navigation = useNavigate()
 
     useEffect(() => {
@@ -31,13 +31,14 @@ export const TablasUsuarios: React.FC = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, organizaciones } = await listaOrganizaciones()
+            const { links, meta, usuarios } = await listaUsuarios()
             state = ({
                 links,
                 meta,
-                organizaciones
+                usuarios
             })
-            setOrg(organizaciones)
+
+            setOrg(usuarios)
         } catch (e) {
             console.log(e)
         }

@@ -136,6 +136,23 @@ export const listaProductos = async (tipo: tipo) => {
     return response.data
 }
 
+export const listaUsuarios = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}users?`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    console.log(response.data)
+    return response.data
+}
+
 export const listaOrganizaciones = async () => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}organizations?`
@@ -489,7 +506,7 @@ export const descargarReporte = async () => {
 
 export const descargarReporteInventario = async () => {
     const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}inventory/export/10/2023/PT`;
+    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/MP`;
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -521,9 +538,43 @@ export const descargarReporteInventario = async () => {
         });
 }
 
+export const descargarReporteInventarioMenosVendido = async () => {
+    const token = getDecryptedToken();
+    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/Low`;
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    fetch(apiUrl, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+        })
+        .then(blobData => {
+            const url = window.URL.createObjectURL(blobData);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'InventarioMenosVendido.xlsx'; // Nombre del archivo
+            a.style.display = 'none';
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
 export const descargarReporteCompras = async () => {
     const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}purchase/export/2/2020`;
+    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/Purcharse`;
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -557,7 +608,7 @@ export const descargarReporteCompras = async () => {
 
 export const descargarReporteVentas = async () => {
     const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}sales/export/2/2023`;
+    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/Sales`;
 
     const headers = {
         'Authorization': `Bearer ${token}`,
