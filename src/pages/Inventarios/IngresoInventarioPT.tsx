@@ -79,12 +79,17 @@ export const IngresoInventarioPT = () => {
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Codigo Producto</label>
                             <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="code" value={formProducto.code} onChange={handleInputChange} placeholder="Escribe el codigo del producto" required />
                         </div>
-                        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement}>
-                            <option value="">Selecciona la unidad de medida</option>
-                            <option value="uni">Unidad</option>
-                            <option value="kg">Kilogramo</option>
-                            <option value="lb">Libra</option>
-                        </select>
+
+                        <div className="flex justify-center items-center flex-col p-2">
+                            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Unidad de medida</label>
+                            <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement}>
+                                <option value="">Selecciona la unidad de medida</option>
+                                <option value="uni">Unidad</option>
+                                <option value="kg">Kilogramo</option>
+                                <option value="lb">Libra</option>
+                            </select>
+                        </div>
+
 
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Minimo Permitido</label>

@@ -22,6 +22,7 @@ import { IngresoInventarioPT } from './pages/Inventarios/IngresoInventarioPT';
 import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
 import App from './App';
 import AddSale from './pages/Sale/AddSale';
+import { Reports } from './pages/Reports/Reports';
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: "/ventas",
         element: <AddSale />
+      },
+      {
+        path: "/reportes",
+        element: <Reports />
       }
     ]
   },

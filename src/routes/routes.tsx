@@ -66,7 +66,7 @@ const routesMain: Route[] = [
         "type": "tipo2"
     },
     {
-        "path": "/more_options",
+        "path": "/reportes",
         "title": "Reportes",
         "icon": <AreaChart />,
         "type": "tipo4"

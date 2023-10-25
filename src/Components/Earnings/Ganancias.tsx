@@ -4,9 +4,9 @@ import { ganAnuales, ganMensuales } from "../types.d"
 
 export default function Ganancias() {
 
-    const [gananciasMensuales, setGananciasMensuales] = useState<ganMensuales>([])
-    const [ganaciasAnuales, setGananciasTotalesAnuales] = useState<ganAnuales>([])
-    let state = { last_month: [], last_week: [], today: [] }
+    // const [gananciasMensuales, setGananciasMensuales] = useState<ganMensuales>([])
+    // const [ganaciasAnuales, setGananciasTotalesAnuales] = useState<ganAnuales>([])
+    // let state = { last_month: [], last_week: [], today: [] }
 
     // useEffect(() => {
     //     getGanaciasMensual()

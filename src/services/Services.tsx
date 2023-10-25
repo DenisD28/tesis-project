@@ -2,6 +2,7 @@ import axios from "axios";
 import { Post, User, User2, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
+import { DetailsSale } from "../types/SaleTypes/DetailsSale";
 
 function getDecryptedToken() {
     const encryptedToken = Cookies.get('authToken');
@@ -40,6 +41,21 @@ export const logout = async () => {
 }
 
 //Listas
+export const listaEntradas = async (id: string) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}product_input?inventory_id=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
 export const listaInventario = async () => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`
@@ -395,4 +411,180 @@ export const agregarUsuario = async (user: User2) => {
     })
 
     return response
+}
+
+export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: string, Cliente: string) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note`
+
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const body = {
+        "product_input_id": DetailsSale[0].product_input,
+        "quantity": DetailsSale[0].quantity,
+        "price": DetailsSale[0].price
+    }
+
+    const response = await axios.post(url, body, {
+        headers: headers
+    })
+
+    return response
+}
+
+export const listaDetalleCompra = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+
+    return response.data
+}
+
+export const descargarReporte = async () => {
+    const token = getDecryptedToken();
+    const apiUrl = `${import.meta.env.VITE_API_URL}export_sql/3`;
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    fetch(apiUrl, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error('Error en la solicitud: ${ response.status }');
+            }
+        })
+        .then(blobData => {
+            const url = window.URL.createObjectURL(blobData);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Base.sql'; // Nombre del archivo
+            a.style.display = 'none';
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+export const descargarReporteInventario = async () => {
+    const token = getDecryptedToken();
+    const apiUrl = `${import.meta.env.VITE_API_URL}inventory/export/10/2023/PT`;
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    fetch(apiUrl, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+        })
+        .then(blobData => {
+            const url = window.URL.createObjectURL(blobData);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Inventario.xlsx'; // Nombre del archivo
+            a.style.display = 'none';
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+export const descargarReporteCompras = async () => {
+    const token = getDecryptedToken();
+    const apiUrl = `${import.meta.env.VITE_API_URL}purchase/export/2/2020`;
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    fetch(apiUrl, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+        })
+        .then(blobData => {
+            const url = window.URL.createObjectURL(blobData);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Compras.xlsx'; // Nombre del archivo
+            a.style.display = 'none';
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+export const descargarReporteVentas = async () => {
+    const token = getDecryptedToken();
+    const apiUrl = `${import.meta.env.VITE_API_URL}sales/export/2/2023`;
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    fetch(apiUrl, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+        })
+        .then(blobData => {
+            const url = window.URL.createObjectURL(blobData);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Inventario.xlsx'; // Nombre del archivo
+            a.style.display = 'none';
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }

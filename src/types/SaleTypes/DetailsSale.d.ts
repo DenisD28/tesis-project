@@ -1,7 +1,7 @@
 import { InputSale } from './InputSale';
 
 export interface DetailsSale {
-    'cantidad': number,
-    'precio': number,
+    'quantity': number,
+    'price': number,
     'product_input': InputSale,
 }

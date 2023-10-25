@@ -9,7 +9,6 @@ export default function LoginPage() {
     return (
         <><div> <Toaster /></div >
             <FormLogin />
-
         </>
 
     )

@@ -1,7 +1,7 @@
 export interface InputSale {
     'id': number,
-    'produccion': number,
-    'disponibilidad': number,
-    'costo': number,
-    'fecha': string,
+    'quantity': number,
+    'disponibility': number,
+    'price': number,
+    'date': string,
 }

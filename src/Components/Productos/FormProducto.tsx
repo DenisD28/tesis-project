@@ -53,12 +53,16 @@ export const FormProducto = () => {
                             <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" value={formProducto.name} onChange={handleInputChange} placeholder="Escribe el nombre del producto" required />
                         </div>
 
-                        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement}>
-                            <option value="">Selecciona la unidad de medida</option>
-                            <option value="uni">Unidad</option>
-                            <option value="kg">Kilogramo</option>
-                            <option value="lb">Libra</option>
-                        </select>
+                        <div className="flex justify-center items-center flex-col p-2">
+                            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Unidad de Medida</label>
+                            <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement}>
+                                <option value="">Selecciona la unidad de medida</option>
+                                <option value="uni">Unidad</option>
+                                <option value="kg">Kilogramo</option>
+                                <option value="lb">Libra</option>
+                            </select>
+                        </div>
+
                         <ButtonForm dataButton={{
                             'title': 'Cancelar',
                             'color': 'red',

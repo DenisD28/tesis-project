@@ -100,6 +100,7 @@ export interface ganaciasAnuales {
 }
 
 export interface clientes {
+    id: number
     name: string
     address: string
     municipality_id: number
@@ -122,11 +123,14 @@ export interface Proveedores {
     contact_name: string
 }
 
+export type compra = Pick<purchase, 'detail_purchase_id' | 'quantity'>
+
 
 export type Usuario = User2;
 export type provider = Proveedores[]
 export type proveedor = Pick<Proveedores, 'name' | 'ruc' | 'address' | 'phone_main' | 'second_phone' | 'city_id' | 'municipality_id' | 'contact_name'>
 export type cliente = clientes
+export type lstCliente = cliente[]
 
 export type ganMensuales = gananciasMensuales[]
 export type ganAnuales = ganaciasAnuales[]

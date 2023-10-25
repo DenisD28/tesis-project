@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { DetailsSale } from '../../types/SaleTypes/DetailsSale';
+import { purchase } from '../../../Components/types.d';
 
-function useAddSale() {
+function useAddProduct() {
     const [Cliente, setCliente] = useState('')
     const [NumeroFactura, setNumeroFactura] = useState('')
     const [TipoPago, setTipoPago] = useState('')
@@ -9,7 +9,7 @@ function useAddSale() {
     const [PaymentStatus, setPaymentStatus] = useState('')
     const [StatusFormPT, setStatusFormPT] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [DetailsSale, setDetailsSale] = useState<DetailsSale[]>([])
+    const [DetailsPurchase, setDetailsPurchase] = useState<purchase[]>([])
     const [Total, setTotal] = useState(0)
 
     const HandleNextOperation = () => {
@@ -20,15 +20,15 @@ function useAddSale() {
         }
     }
 
-    const AddDetailsSale = (data: DetailsSale) => {
-        setDetailsSale([...DetailsSale, data])
-        setTotal(Total + (data.quantity * data.price))
-    }
+    // const AddDetailsSale = (data: purchase) => {
+    //     setDetailsSale([...DetailsSale, data])
+    //     setTotal(Total + (data.cantidad * data.precio))
+    // }
 
-    const DeleteDetailsSale = (data: DetailsSale) => {
-        setDetailsSale(DetailsSale.filter((item) => item !== data))
-        setTotal(Total - (data.quantity * data.price))
-    }
+    // const DeleteDetailsSale = (data: purchase) => {
+    //     setDetailsSale(DetailsSale.filter((item) => item !== data))
+    //     setTotal(Total - (data.cantidad * data.precio))
+    // }
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen)
@@ -42,7 +42,7 @@ function useAddSale() {
         PaymentStatus,
         StatusFormPT,
         isModalOpen,
-        DetailsSale,
+        DetailsPurchase,
         Total,
         setCliente,
         setNumeroFactura,
@@ -55,4 +55,4 @@ function useAddSale() {
     };
 }
 
-export default useAddSale;
+export default useAddProduct;
