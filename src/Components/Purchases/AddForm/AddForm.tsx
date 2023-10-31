@@ -39,6 +39,7 @@ export default function AddForm({props}: {props: AddFormType}) {
                 'name': 'n_factura',
                 'value': numberBill,
                 'fnChange': setNumberBill,
+                'isRequire': true
             }} />
         </div>
         <div className='col-span-4'>
@@ -48,6 +49,7 @@ export default function AddForm({props}: {props: AddFormType}) {
                 'placeholder': 'Seleccione el proveedor',
                 'options': listProviders.map((item: provider) => ({'valor': item.id, 'texto': item.name})),
                 'fnChange': setProvider,
+                'isRequerid': true
             }} />
         </div>
         <div className='col-span-4 flex justify-end items-end p-2'>

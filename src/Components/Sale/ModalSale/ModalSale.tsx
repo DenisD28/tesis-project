@@ -97,7 +97,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
             <article className='grid grid-cols-12'>
                 <section className='md:col-span-8 col-span-12'>
                     <div className="flex justify-center items-center flex-col p-2">
-                        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Productos</label>
+                        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Productos *</label>
                         <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="product" id="product" value={formProducto.product}>
                             <option value="">Selecciona el producto</option>
                             {
@@ -124,6 +124,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                         'name': 'cantidad',
                         'value': '',
                         'fnChange': setQuantity,
+                        isRequire: true
                     }} />
                 </section>
                 <section className='md:col-span-6 col-span-12'>
@@ -134,6 +135,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                         'name': 'precio_unitario',
                         'value': '',
                         'fnChange': setUnitPrice,
+                        isRequire: true
                     }} />
                 </section>
                 <section className='col-span-12'>

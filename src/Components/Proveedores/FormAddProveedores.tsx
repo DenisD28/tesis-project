@@ -84,8 +84,8 @@ export const FormAddProveedores = () => {
             <div> <Toaster /></div >
             <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                 <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre del proveedor</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="name" placeholder="Escribe el nombre del proveedor" />
+                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre del proveedor *</label>
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="name" placeholder="Escribe el nombre del proveedor" required />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="Telefono Principal">Nombre del contacto</label>
@@ -100,8 +100,8 @@ export const FormAddProveedores = () => {
                     <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="second_phone" placeholder="Escribe el telefono secundario" />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento</label>
-                    <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="city_id" id="city_id" value={formProducto.city_id}>
+                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento *</label>
+                    <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="city_id" id="city_id" value={formProducto.city_id} required>
                         <option value="">Selecciona el departamento del cliente</option>
                         {
                             lista.map(pro => (
@@ -119,8 +119,8 @@ export const FormAddProveedores = () => {
                     <textarea className="w-full h-36 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="direccion" onChange={handleTextAreaChange} id="direccion" placeholder="Ingrese la direccion"></textarea>
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio</label>
-                    <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="municipality_id" id="municipality_id" value={formProducto.municipality_id}>
+                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio *</label>
+                    <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="municipality_id" id="municipality_id" value={formProducto.municipality_id} required>
                         <option value="">Selecciona el municipio del cliente</option>
                         {
                             listaMunicipios.map(pro => (

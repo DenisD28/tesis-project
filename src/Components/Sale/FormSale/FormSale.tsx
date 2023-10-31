@@ -42,7 +42,8 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
           name: 'cliente',
           placeholder: 'Seleccione un cliente',
           options: clientes.map((item: cliente) => ({ 'valor': item.id, 'texto': item.name })),
-          fnChange: setCliente
+          fnChange: setCliente,
+          isRequerid: true
         }} />
       </section>
       <section>
@@ -52,7 +53,8 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
           placeholder: 'Ingrese el numero de la factura',
           name: 'numero_factura',
           value: '',
-          fnChange: setNumeroFactura
+          fnChange: setNumeroFactura,
+          isRequire: true
         }} />
       </section>
       <section>
@@ -64,7 +66,8 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
             { "valor": "Contado", "texto": "Contado" },
             { "valor": "Credito", "texto": "Credito" },
           ],
-          fnChange: setTipoPago
+          fnChange: setTipoPago,
+          isRequerid: true
         }} />
       </section>
       <section>
@@ -74,7 +77,8 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
           placeholder: 'Ingrese una nota',
           name: 'nota',
           value: '',
-          fnChange: setNota
+          fnChange: setNota,
+          isRequire: false
         }} />
       </section>
       <div className="col-span-12 grid items-center">

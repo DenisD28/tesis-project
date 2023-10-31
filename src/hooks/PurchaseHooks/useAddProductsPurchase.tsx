@@ -9,6 +9,7 @@ const useAddProductsPurchase = ({handleSubmition, ListProduct, toggleModal}: use
     const [observation, setObservation] = useState("")
 
     let createProduct = () => {
+        if(IdProduct === "" || quantity === "" || unitPrice === "") return
         handleSubmition({
             'id': parseInt(IdProduct!),
             'name': ListProduct.find((item: ProductsForInventory) => item.id_product === parseInt(IdProduct!))?.name_product!,

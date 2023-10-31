@@ -81,8 +81,8 @@ export default function FormAdd() {
     <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
 
       <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre</label>
-        <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre del cliente" onChange={handleInputChange} value={formProducto.name} />
+        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre *</label>
+        <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre del cliente" onChange={handleInputChange} value={formProducto.name} required />
       </div>
       <div className="flex justify-center items-center flex-col p-2">
         <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Telefono principal</label>
@@ -94,15 +94,15 @@ export default function FormAdd() {
       </div>
 
       <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Tipo de cliente</label>
-        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="type" id="type" value={formProducto.type}>
+        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Tipo de cliente *</label>
+        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="type" id="type" value={formProducto.type} required>
           <option value="Por Mayor">Por mayor</option>
           <option value="Al detalle">Al detalle</option>
         </select>
       </div>
       <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento</label>
-        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="city_id" id="city_id" value={formProducto.city_id}>
+        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento *</label>
+        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="city_id" id="city_id" value={formProducto.city_id} required>
           <option value="">Selecciona el departamento del cliente</option>
           {
             lista.map(pro => (
@@ -118,8 +118,8 @@ export default function FormAdd() {
         </div>
       </span>
       <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio</label>
-        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="municipality_id" id="municipality_id" value={formProducto.municipality_id}>
+        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio *</label>
+        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="municipality_id" id="municipality_id" value={formProducto.municipality_id} required>
           <option value="">Selecciona el municipio del cliente</option>
           {
             listaMunicipios.map(pro => (

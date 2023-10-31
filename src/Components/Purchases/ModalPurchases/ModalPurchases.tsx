@@ -31,6 +31,7 @@ export default function ModalPurchases({isModalOpen, toggleModal, handleSubmitio
                                 }
                             }),
                             'fnChange': setIdProduct,
+                            'isRequerid': true
                         }} />
                     </div>
                     <div className='col-span-6'>
@@ -41,6 +42,7 @@ export default function ModalPurchases({isModalOpen, toggleModal, handleSubmitio
                             'name': 'cantidad',
                             'value': quantity!,
                             'fnChange': setQuantity,
+                            isRequire: true
                         }} />
                     </div>
                     <div className='col-span-6'>
@@ -51,6 +53,7 @@ export default function ModalPurchases({isModalOpen, toggleModal, handleSubmitio
                             'name': 'precio_unitario',
                             'value': unitPrice!,
                             'fnChange': setUnitPrice,
+                            isRequire: true
                         }} />
                     </div>
                     <div className='col-span-12'>
