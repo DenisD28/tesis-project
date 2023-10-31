@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
-    { name: "N° Factura", prop: "id" },
+    { name: "N° Factura", prop: "number_bill" },
     { name: "Proveedor", prop: "provider" },
     { name: "Fecha", prop: "date" },
     { name: "Total", prop: "total" },
@@ -53,6 +53,7 @@ export const TablasCompras: React.FC = () => {
                         'title': 'Ingresar',
                         'color': 'green',
                         'type': 'submit',
+                        'fnClick': () => { }
                     }} />
                 </div>
             </form>
