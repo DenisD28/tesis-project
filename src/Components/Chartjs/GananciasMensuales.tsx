@@ -10,6 +10,7 @@ import {
     Legend,
     Filler,
 } from "chart.js"
+import useEarningsForMonth from "./useEarningsForMonth"
 
 ChartJS.register(
     CategoryScale,
@@ -22,45 +23,40 @@ ChartJS.register(
     Filler,
 )
 
-const midata = {
-    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Nov", "Dic"],
-    datasets: [{
-        label: 'Ganancias',
-        data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56],
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-        ],
-        borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-        ],
-        borderWidth: 1
-    }]
-}
-
 export default function GananciasMensuales() {
+    const { EarningsForMonth } = useEarningsForMonth()
+    const last30Days = [];
+    for(let i = 0; i < 30; i++){
+        let date = new Date();
+        date.setDate(date.getDate() - i);
+        last30Days.push(date.toISOString().split('T')[0]);
+    }
+    const label = last30Days.reverse();
+    const data = [];
+    const ganancias = EarningsForMonth?.data || [];
+    for(let i = 0; i < 30; i++){
+        let total = 0;
+        for(let j = 0; j < ganancias.length; j++){
+            if(ganancias[j].date == label[i]){
+                total = parseFloat(ganancias[j].total.replace(/,/g, ''));
+            }
+        }
+        data.push({
+            label: label[i],
+            total: total
+        });
+    }
+    const midata = {
+        labels: data.map((item) => item.label),
+        datasets: [{
+            label: 'Ganancias ultimos 30 días',
+            data: data.map((item) => item.total),
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(79, 70, 229)',
+            borderWidth: 1,
+            fill: true,
+            tension: 0.4
+        }]
+    }
     return <Line data={midata} />
 }

@@ -87,18 +87,6 @@ export interface municipio {
     name: string
 }
 
-export interface gananciasMensuales {
-    date: string
-    earnings_total: number
-    sales_total: number
-}
-
-export interface ganaciasAnuales {
-    mes: string
-    year: number
-    total: number
-}
-
 export interface clientes {
     id: number
     name: string
@@ -131,9 +119,6 @@ export type provider = Proveedores[]
 export type proveedor = Pick<Proveedores, 'name' | 'ruc' | 'address' | 'phone_main' | 'second_phone' | 'city_id' | 'municipality_id' | 'contact_name'>
 export type cliente = clientes
 export type lstCliente = cliente[]
-
-export type ganMensuales = gananciasMensuales[]
-export type ganAnuales = ganaciasAnuales[]
 
 export type ciudad = departamento[]
 export type municipioCiudad = municipio[]
