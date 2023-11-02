@@ -47,7 +47,7 @@ export const FormLogin = () => {
         <div className="flex justify-start items-stretch">
             <img className="img_login w-6/12 object-cover" src="src\img\pexels-ivan-j.jpg" alt="" />
             <div className="w-full h-screen overflow-y-auto pt-10 md:pt-32 flex flex-col justify-between">
-                <div className="Form">
+                <div className="Form pb-8">
                     <div className="title text-center">
                         <h2 className="tituloInicio">Bienvenidos</h2>
                     </div>

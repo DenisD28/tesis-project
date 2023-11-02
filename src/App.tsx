@@ -6,26 +6,22 @@ import { Menu } from "./Components/Menu/Menu"
 const App = (): JSX.Element => {
 
   return (<>
-    <main className="w-full h-screen flex justify-between items-start flex-col">
-      <div className="w-full h-full flex justify-start items-start overflow-y-auto gap-1">
-        <div className="w-[25rem] h-full bg-white overflow-y-scroll scroll-hidden border-r-2">
-          <Menu />
-        </div>
-        <div className="w-full h-full bg-white overflow-y-scroll scroll-hidden">
-          <div className="div-dashboard">
-            <div className=" sticky top-0 right-0">
-              <Nav />
-            </div>
-            <div className="contenido">
-              <div className='py-4 pb-28 px-8 h-screen overflow-y-auto'>
-                <Outlet />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div >
+    <main className="w-full h-screen flex justify-between flex-col">
+      <div className="w-full h-full flex overflow-y-auto">
+        <section className="w-[25rem] h-full overflow-y-auto scroll-hidden border-r-2 xl:block hidden">
+            <Menu />
+        </section>
+        <section className="w-full h-full overflow-y-auto scroll-hidden">
+          <article className="w-full sticky top-0 z-50">
+            <Nav />
+          </article>
+          <article className="w-full p-8">
+            <Outlet />
+          </article>
+        </section>
+      </div>
       <Footer />
-    </main >
+    </main>
   </>)
 }
 
