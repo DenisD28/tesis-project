@@ -351,6 +351,26 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
     }
 }
 
+export const updateDataUser = async (name: string, email: string) => {
+    const token = getDecryptedToken();
+    const dataName = name != "" ? "name=" + name : ""
+    const dataEmail = email != "" ? "&email=" + email : ""
+    const url = `${import.meta.env.VITE_API_URL}user?${dataName}${dataEmail}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const body = ""
+
+    const response = await axios.patch(url, body, {
+        headers: headers
+    })
+
+    return response.data
+}
+
 export const newAddProduct = async (newProducto: newProduct) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}product?name=${newProducto.name}&measurement_type=${newProducto.measurement_type}`

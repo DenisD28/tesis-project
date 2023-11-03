@@ -23,6 +23,7 @@ import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
 import App from './App';
 import AddSale from './pages/Sale/AddSale';
 import { Reports } from './pages/Reports/Reports';
+import ViewInfoUser from './pages/User/ViewInfoUser';
 
 const router = createBrowserRouter([
   {
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
       {
         path: "/reportes",
         element: <Reports />
+      },
+      {
+        path: "/account/edit",
+        element: <ViewInfoUser />
       }
     ]
   },

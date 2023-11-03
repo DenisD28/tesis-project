@@ -3,7 +3,8 @@ export default interface InputsFormProps {
     'type': string,
     'name': string,
     'placeholder': string,
-    'value': string | number,
+    'value'?: string | number,
     'fnChange': React.Dispatch<React.SetStateAction<string>>,
     'isRequire': boolean | undefined,
+    'isDisabled'?: boolean,
 }

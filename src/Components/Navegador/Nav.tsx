@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import "../../css/nav.css"
 import { User } from "../types.d"
 import { infoGeneral, logout } from "../../services/Services"
-import { useNavigate } from "react-router-dom"
-
-
+import { Link, useNavigate } from "react-router-dom"
+import { MdAccountCircle } from "react-icons/md";
+import BoxOptions from "./BoxOptions/BoxOptions"
 
 export const Nav = () => {
 
@@ -36,7 +36,8 @@ export const Nav = () => {
             console.log(e)
         }
     }
-
+    let InitialsName = userInfo?.name[0]
+    const [test, setTest] = useState(false)
     return (
         <>
             <div className="nav">
@@ -50,12 +51,17 @@ export const Nav = () => {
                     <div className="separate"></div>
                 </div>
                 <div className="div-rigth">
-                    <div className="div-user gap-4">
-                        <div className="userSiglas flex justify-center items-center font-medium"><p>AC</p></div>
+                    <div className="div-user gap-4" onMouseEnter={() => {setTest(true)}} onMouseLeave={() => {setTest(false)}}>
+                        <div className="userSiglas flex justify-center items-center font-medium uppercase"><p>{ InitialsName}</p></div>
                         <div>
                             <div className="nombre">{userInfo?.name}</div>
                             <div className="Rol">{userInfo?.role.name}</div>
                         </div>
+                        {
+                            test
+                            ? <BoxOptions name={userInfo?.name} role={userInfo?.role.name} InitialsName={InitialsName} fnLogout={salir}  />
+                            : null
+                        }
                         <div className="logout">
                             <button onClick={() => salir()}><svg fill="#e74c3c" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" /></svg></button>
                         </div>

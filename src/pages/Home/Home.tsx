@@ -5,7 +5,7 @@ import { TablaProductoFaltante } from "../../Components/TablasDatos/TablaProduct
 
 export default function Home() {
   return (
-    <div className="px-8 pb-8 w-full h-full overflow-y-auto scroll-hidden">
+    <div className="px-0 md:px-4 pb-8 w-full h-full overflow-y-auto scroll-hidden">
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-full">
           <ModalSecondary />
