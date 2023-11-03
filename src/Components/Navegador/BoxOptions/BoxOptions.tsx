@@ -2,6 +2,7 @@ import React from 'react'
 import { MdAccountCircle } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { CgOrganisation } from "react-icons/cg";
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -29,6 +30,14 @@ export default function BoxOptions({name, role, InitialsName, fnLogout}: BoxOpti
               <MdAccountCircle size={22} />
               Editar perfil
           </Link>
+          {
+            role === 'admin' ?
+            <Link to={'/account/edit'} className="w-full h-10 flex justify-start hover:text-purple-icons pl-2 items-center gap-2 rounded text-zinc-700 text-base font-medium transition-all">
+                <CgOrganisation size={22} />
+                Editar organizaci&oacute;n
+            </Link>
+            : null
+          }
           <Link to={'/account/change-password'} className="w-full h-10 flex justify-start hover:text-purple-icons pl-2 items-center gap-2 rounded text-zinc-700 text-base font-medium transition-all">
               <RiLockPasswordFill size={22} />
               Cambiar contrase&ntilde;a
