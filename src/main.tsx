@@ -24,6 +24,7 @@ import App from './App';
 import AddSale from './pages/Sale/AddSale';
 import { Reports } from './pages/Reports/Reports';
 import ViewInfoUser from './pages/User/ViewInfoUser';
+import ChangePassword from './pages/User/ChangePassword/ChangePassword';
 
 const router = createBrowserRouter([
   {
@@ -121,7 +122,11 @@ const router = createBrowserRouter([
       {
         path: "/account/edit",
         element: <ViewInfoUser />
-      }
+      },
+      {
+        path: "/account/change-password",
+        element: <ChangePassword />
+      },
     ]
   },
 ]);

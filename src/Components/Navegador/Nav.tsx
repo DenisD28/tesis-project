@@ -1,30 +1,15 @@
 import { useEffect, useState } from "react"
 import "../../css/nav.css"
-import { User } from "../types.d"
-import { infoGeneral, logout } from "../../services/Services"
-import { Link, useNavigate } from "react-router-dom"
-import { MdAccountCircle } from "react-icons/md";
+import { logout } from "../../services/Services"
+import { useNavigate } from "react-router-dom"
 import BoxOptions from "./BoxOptions/BoxOptions"
+import useDataUser from "./useDataUser"
 
 export const Nav = () => {
-
-    const [userInfo, setInfo] = useState<User>()
+    const { userInfo, getInfo } = useDataUser()
     const navigation = useNavigate()
-    let state = { usuario: [] }
-
 
     useEffect(() => {
-        const getInfo = async () => {
-            try {
-                const { usuario } = await infoGeneral()
-                state = ({
-                    usuario
-                })
-                setInfo(usuario)
-            } catch (e) {
-                console.log(e)
-            }
-        }
         getInfo()
     }, [])
 

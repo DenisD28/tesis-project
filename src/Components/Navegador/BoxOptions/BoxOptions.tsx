@@ -29,7 +29,7 @@ export default function BoxOptions({name, role, InitialsName, fnLogout}: BoxOpti
               <MdAccountCircle size={22} />
               Editar perfil
           </Link>
-          <Link to={'/account/edit'} className="w-full h-10 flex justify-start hover:text-purple-icons pl-2 items-center gap-2 rounded text-zinc-700 text-base font-medium transition-all">
+          <Link to={'/account/change-password'} className="w-full h-10 flex justify-start hover:text-purple-icons pl-2 items-center gap-2 rounded text-zinc-700 text-base font-medium transition-all">
               <RiLockPasswordFill size={22} />
               Cambiar contrase&ntilde;a
           </Link>

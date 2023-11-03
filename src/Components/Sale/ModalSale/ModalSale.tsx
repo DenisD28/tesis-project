@@ -122,7 +122,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                         'type': 'number',
                         'placeholder': 'Ingrese la cantidad',
                         'name': 'cantidad',
-                        'value': '',
+                        'value': Quantity,
                         'fnChange': setQuantity,
                         isRequire: true
                     }} />
@@ -133,7 +133,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                         'type': 'number',
                         'placeholder': 'Ingrese el precio unitario',
                         'name': 'precio_unitario',
-                        'value': '',
+                        'value': UnitPrice,
                         'fnChange': setUnitPrice,
                         isRequire: true
                     }} />

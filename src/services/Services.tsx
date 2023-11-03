@@ -371,6 +371,24 @@ export const updateDataUser = async (name: string, email: string) => {
     return response.data
 }
 
+export const changePassword = async (old_password: string, password: string) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}user/change_password?old_password=${old_password}&password=${password}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const body = ""
+
+    let response = await axios.post(url, body, {
+        headers: headers
+    })
+
+    return response.data
+}
+
 export const newAddProduct = async (newProducto: newProduct) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}product?name=${newProducto.name}&measurement_type=${newProducto.measurement_type}`

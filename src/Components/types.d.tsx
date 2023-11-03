@@ -3,7 +3,8 @@ export interface User {
     name: string
     email: string
     username: string
-    password: string
+    password: string,
+    verification_password: boolean
     token: string
     organization: Organizacion
     role: role

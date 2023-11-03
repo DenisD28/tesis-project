@@ -12,7 +12,7 @@ const App = (): JSX.Element => {
             <Menu />
         </section>
         <section className="w-full h-full overflow-y-auto scroll-hidden">
-          <article className="w-full sticky top-0 z-50">
+          <article className="w-full sticky top-0 z-10">
             <Nav />
           </article>
           <article className="w-full p-8">

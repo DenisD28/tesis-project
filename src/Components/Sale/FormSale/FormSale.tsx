@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { listaCliente } from '../../../services/Services'
 import { cliente, lstCliente } from '../../types.d'
 
-export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation }: FormSaleProps) {
+export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation, NumeroFactura, Cliente, TipoPago, Nota }: FormSaleProps) {
   const [clientes, setClientes] = useState<lstCliente>([])
   let state = { links: [], meta: [], clients: [] }
 
@@ -52,7 +52,7 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
           type: 'number',
           placeholder: 'Ingrese el numero de la factura',
           name: 'numero_factura',
-          value: '',
+          value: NumeroFactura,
           fnChange: setNumeroFactura,
           isRequire: true
         }} />
@@ -76,7 +76,7 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
           type: 'text',
           placeholder: 'Ingrese una nota',
           name: 'nota',
-          value: '',
+          value: Nota,
           fnChange: setNota,
           isRequire: false
         }} />

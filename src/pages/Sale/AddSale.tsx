@@ -51,7 +51,7 @@ export default function AddSale() {
             <h1 className=' text-purple-icons font-bold text-2xl mb-8'>Registro de venta</h1>
             {
                 !StatusFormPT
-                    ? <FormSale setCliente={setCliente} setNumeroFactura={setNumeroFactura} setTipoPago={setTipoPago} setNota={setNota} HandleNextOperation={HandleNextOperation} />
+                    ? <FormSale setCliente={setCliente} setNumeroFactura={setNumeroFactura} setTipoPago={setTipoPago} setNota={setNota} HandleNextOperation={HandleNextOperation} NumeroFactura={NumeroFactura} Nota={Nota} TipoPago={TipoPago} Cliente={Cliente} />
                     : <GeneralInfoSale Cliente={Cliente} NumeroFactura={NumeroFactura} TipoPago={TipoPago} Nota={Nota} PaymentStatus={PaymentStatus} />
             }
             {
@@ -65,7 +65,7 @@ export default function AddSale() {
                     'title': 'Registrar venta - C$' + Total.toFixed(2),
                     'type': 'button',
                     'color': 'green',
-                    fnClick: registrar,
+                    fnClick: () => {registrar()},
                 }} />
 
             }

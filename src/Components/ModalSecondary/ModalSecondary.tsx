@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import React from 'react'
 import {PiWarningOctagonBold} from 'react-icons/pi'
 
 export default function ModalSecondary() {
@@ -13,7 +12,7 @@ export default function ModalSecondary() {
                 <p>
                     Para garantizar la seguridad de su cuenta, le recomendamos encarecidamente cambiar su contraseña actual por una nueva. Este paso es esencial para proteger sus datos y mantener su cuenta segura. Puede realizar el cambio de contraseña en el boton de la seccion de abajo. Le agradecemos por su cooperación en la mejora de la seguridad de su cuenta.
                 </p>
-                <Link to={"/"} className='bg-purple-icons text-white py-2 rounded-md text-center hover:bg-indigo-700 transition-all'>
+                <Link to={"/account/change-password"} className='bg-purple-icons text-white py-2 rounded-md text-center hover:bg-indigo-700 transition-all'>
                     Cambiar Contraseña
                 </Link>
             </section>
