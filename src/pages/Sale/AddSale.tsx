@@ -51,7 +51,7 @@ export default function AddSale() {
             <h1 className=' text-purple-icons font-bold text-2xl mb-8'>Registro de venta</h1>
             {
                 !StatusFormPT
-                    ? <FormSale setCliente={setCliente} setNumeroFactura={setNumeroFactura} setTipoPago={setTipoPago} setNota={setNota} HandleNextOperation={HandleNextOperation} NumeroFactura={NumeroFactura} Nota={Nota} TipoPago={TipoPago} Cliente={Cliente} />
+                    ? <FormSale setCliente={setCliente} setNumeroFactura={setNumeroFactura} setTipoPago={setTipoPago} setNota={setNota} HandleNextOperation={HandleNextOperation} NumeroFactura={NumeroFactura} Nota={Nota}/>
                     : <GeneralInfoSale Cliente={Cliente} NumeroFactura={NumeroFactura} TipoPago={TipoPago} Nota={Nota} PaymentStatus={PaymentStatus} />
             }
             {

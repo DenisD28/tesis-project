@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { listaCliente } from '../../../services/Services'
 import { cliente, lstCliente } from '../../types.d'
 
-export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation, NumeroFactura, Cliente, TipoPago, Nota }: FormSaleProps) {
+export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation, NumeroFactura, Nota }: FormSaleProps) {
   const [clientes, setClientes] = useState<lstCliente>([])
   let state = { links: [], meta: [], clients: [] }
 

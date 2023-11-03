@@ -2,8 +2,6 @@ import React from 'react'
 
 export interface FormSaleProps {
     NumeroFactura: string
-    Cliente: string
-    TipoPago: string
     Nota: string
     setCliente: React.Dispatch<React.SetStateAction<string>>
     setNumeroFactura: React.Dispatch<React.SetStateAction<string>>
