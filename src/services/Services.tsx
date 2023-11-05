@@ -14,6 +14,10 @@ function getDecryptedToken() {
     return null;
 }
 
+function EliminarToken() {
+    Cookies.remove('authToken')
+}
+
 //Autenticacion
 export const login = async (newPost: Post): Promise<User> => {
     const url = `${import.meta.env.VITE_API_URL}auth/login?username=${newPost.usuario}&password=${newPost.password}`
@@ -36,6 +40,8 @@ export const logout = async () => {
     const response = await axios.post(url, body, {
         headers: headers
     })
+
+    EliminarToken()
 
     return response.data
 }
@@ -150,9 +156,9 @@ export const listaUsuarios = async () => {
     return response.data
 }
 
-export const listaOrganizaciones = async () => {
+export const listaOrganizaciones = async (currentPage: number) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}organizations?`
+    const url = `${import.meta.env.VITE_API_URL}organizations?page=${currentPage}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -481,7 +487,7 @@ export const agregarUsuario = async (user: User2) => {
 
 export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: string, Cliente: string) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note`
+    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note=prueba`
 
 
     const headers = {
@@ -489,17 +495,24 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
         'Accept': 'application/json'
     }
 
-    const body = {
-        "product_input_id": DetailsSale[0].product_input,
-        "quantity": DetailsSale[0].quantity,
-        "price": DetailsSale[0].price
-    }
+    const body = [{
+        'product_input_id': DetailsSale[0].product_input.id,
+        'quantity': DetailsSale[0].quantity,
+        'price': DetailsSale[0].price
+    }]
 
-    const response = await axios.post(url, body, {
+    const data = JSON.stringify(body)
+    console.log(data)
+
+    const response = await axios.post(url, data, {
         headers: headers
+    }).catch((error) => {
+        console.error('Error', error)
     })
 
+    console.log(response)
     return response
+
 }
 
 export const listaDetalleCompra = async (id: number) => {
@@ -514,7 +527,6 @@ export const listaDetalleCompra = async (id: number) => {
     const response = await axios.get(url, {
         headers: headers
     })
-
 
     return response.data
 }

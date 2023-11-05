@@ -7,7 +7,8 @@ import { login } from "../../services/Services"
 import Cookies from 'js-cookie'
 import Footer from "../../Components/Footer/Footer"
 import CryptoJS from 'crypto-js'
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
+import { Imagenes } from "../Carousel/Imagenes"
 
 export const FormLogin = () => {
 
@@ -39,13 +40,20 @@ export const FormLogin = () => {
     }
 
     function setEncryptedToken(token: string) {
+        var expiracion = new Date()
+        expiracion.setTime(expiracion.getTime() + (50 * 60 * 1000))
+
         const encryptedToken = CryptoJS.AES.encrypt(token, import.meta.env.VITE_KEY).toString();
-        Cookies.set('authToken', encryptedToken, { expires: 1 }); // Puedes ajustar la expiración como desees
+        Cookies.set('authToken', encryptedToken, { expires: expiracion }); // Puedes ajustar la expiración como desees
     }
 
     return (
         <div className="flex justify-start items-stretch">
-            <img className="img_login w-6/12 object-cover" src="src\img\pexels-ivan-j.jpg" alt="" />
+            {/* <img className="img_login w-6/12 object-cover" src="src\img\pexels-ivan-j.jpg" alt="" /> */}
+            <div className="img_login w-6/12 object-cover">
+                <Imagenes />
+            </div>
+
             <div className="w-full h-screen overflow-y-auto pt-10 md:pt-32 flex flex-col justify-between">
                 <div className="Form pb-8">
                     <div className="title text-center">

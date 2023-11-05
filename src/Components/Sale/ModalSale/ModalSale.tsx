@@ -16,22 +16,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
     let state = { links: [], meta: [], inventario: [] }
     const [productos, setProduct] = useState<inventario[]>([])
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
-    const [DataInput, setDataInput] = useState<InputSale[]>([
-        // {
-        //     'id': 1,
-        //     'produccion': 50,
-        //     'disponibilidad': 20,
-        //     'costo': 100,
-        //     'fecha': '15-09-2023',
-        // },
-        // {
-        //     'id': 2,
-        //     'produccion': 100,
-        //     'disponibilidad': 20,
-        //     'costo': 1000,
-        //     'fecha': '21-09-2023',
-        // },
-    ])
+    const [DataInput, setDataInput] = useState<InputSale[]>([])
 
     useEffect(() => {
         const lista = async () => {
@@ -55,7 +40,6 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
         console.log(formProducto)
         try {
             const response = await listaEntradas(formProducto.product)
-            console.log(response.entradas)
             setDataInput(response.entradas)
         } catch (e) {
 
@@ -81,10 +65,11 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
     const handleSubmition = () => {
         if (Quantity != '' && UnitPrice != '' && ItemsSelected.length != 0) {
             const data = {
-                'cantidad': parseInt(Quantity),
-                'precio': parseInt(UnitPrice),
+                'quantity': parseInt(Quantity),
+                'price': parseInt(UnitPrice),
                 'product_input': ItemsSelected[0],
             }
+            console.log(data)
             fnAddDetailsSale(data)
             toggleModal()
             console.log(data)

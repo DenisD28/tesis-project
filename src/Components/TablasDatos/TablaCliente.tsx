@@ -9,8 +9,7 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
-    { name: "Telefono", prop: "phone_main" },
-    { name: "Direccion", prop: "address" },
+    { name: "Municipio", prop: "municipality_id" },
     { name: "Acciones", prop: "acciones" }
 ]
 
@@ -54,6 +53,7 @@ export const TablasCliente: React.FC = () => {
                         'title': 'Ingresar',
                         'color': 'green',
                         'type': 'submit',
+                        'fnClick': () => { }
                     }} />
                 </div>
             </form>

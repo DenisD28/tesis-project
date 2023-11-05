@@ -6,6 +6,7 @@ import { HeadType } from "../Table/types/HeadType"
 import Head from "../Table/Head/Head"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
+import { Pagination } from 'flowbite-react'
 
 const headers: HeadType[] = [
     { name: "Ruc", prop: "ruc" },
@@ -16,12 +17,32 @@ const headers: HeadType[] = [
 
 const titleTable = 'Organizaciones'
 
+function pages(url: string) {
+    let lastDigit = ""
+    // Utiliza una expresión regular para encontrar el último dígito en la URL
+    const matches = url.match(/\d+$/);
+
+    if (matches && matches.length > 0) {
+        // El último dígito se encuentra en matches[0]
+        lastDigit = matches[0];
+        console.log("Último dígito:", lastDigit);
+    } else {
+        console.log("No se encontraron dígitos en la URL.");
+    }
+
+    return lastDigit
+}
+
 export const TablasOrganizaciones: React.FC = () => {
 
     const [data, setOrg] = useState<listOrg>([])
-    const [next, setNext] = useState("")
     let state = { links: [], meta: [], organizaciones: [] }
     const navigation = useNavigate()
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const onPageChange = (page: number) => setCurrentPage(page);
+
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
         lista()
@@ -29,13 +50,16 @@ export const TablasOrganizaciones: React.FC = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, organizaciones } = await listaOrganizaciones()
+            console.log(currentPage)
+            const { links, meta, organizaciones } = await listaOrganizaciones(currentPage)
             state = ({
                 links,
                 meta,
                 organizaciones
             })
+            console.log(links)
             setOrg(organizaciones)
+            setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
             console.log(e)
         }
@@ -54,6 +78,7 @@ export const TablasOrganizaciones: React.FC = () => {
                         'title': 'Ingresar',
                         'color': 'green',
                         'type': 'submit',
+                        'fnClick': () => { }
                     }} />
                 </div>
             </form>
@@ -81,6 +106,13 @@ export const TablasOrganizaciones: React.FC = () => {
                     </tbody>
                 </table>
             </div>
+            <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={onPageChange}
+                showIcons
+            />
         </>
     )
 }

@@ -31,27 +31,19 @@ export default function AddSale() {
 
         console.log(DetailsSale)
         try {
-            try {
-                const response = await agregarVenta(DetailsSale, NumeroFactura, Cliente)
+            const response = await agregarVenta(DetailsSale, NumeroFactura, Cliente)
 
-                if (response.status === 201) {
-                    toast.success("Venta Agregada")
-
-                }
-
-            } catch (e: any) {
-                toast.error(e.message)
-            }
-        } catch (e) {
-
+        } catch (e: any) {
+            toast.error(e)
         }
+
     }
     return (
         <main>
             <h1 className=' text-purple-icons font-bold text-2xl mb-8'>Registro de venta</h1>
             {
                 !StatusFormPT
-                    ? <FormSale setCliente={setCliente} setNumeroFactura={setNumeroFactura} setTipoPago={setTipoPago} setNota={setNota} HandleNextOperation={HandleNextOperation} NumeroFactura={NumeroFactura} Nota={Nota}/>
+                    ? <FormSale setCliente={setCliente} setNumeroFactura={setNumeroFactura} setTipoPago={setTipoPago} setNota={setNota} HandleNextOperation={HandleNextOperation} NumeroFactura={NumeroFactura} Nota={Nota} />
                     : <GeneralInfoSale Cliente={Cliente} NumeroFactura={NumeroFactura} TipoPago={TipoPago} Nota={Nota} PaymentStatus={PaymentStatus} />
             }
             {
@@ -65,7 +57,7 @@ export default function AddSale() {
                     'title': 'Registrar venta - C$' + Total.toFixed(2),
                     'type': 'button',
                     'color': 'green',
-                    fnClick: () => {registrar()},
+                    fnClick: () => { registrar() },
                 }} />
 
             }

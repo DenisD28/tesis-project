@@ -27,7 +27,6 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
     } catch (e) {
       console.log(e)
     }
-    console.log(clientes)
   }
 
   return (

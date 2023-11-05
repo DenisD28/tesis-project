@@ -5,8 +5,8 @@ export default function ShowInfoSale({ Data, fnDeleteDetailsSale }: ShowInfoSale
   return (
     <article className='bg-slate-100 w-full rounded-md p-4 flex justify-between items-center border-2'>
       <section>
-        <p><b>Cantidad:</b> {Data.quantity}</p>
-        <p><b>Precio:</b> C${Data.price}</p>
+        <p><b>Cantidad:</b> {Data.product_input.quantity}</p>
+        <p><b>Precio:</b> C${Data.product_input.price}</p>
         <p><b>ID de entrada:</b> {Data.product_input.id}</p>
         <p><b>Fecha de produccion:</b> {Data.product_input.date}</p>
         <p><b>Costo de produccion:</b> C${Data.product_input.price}</p>
