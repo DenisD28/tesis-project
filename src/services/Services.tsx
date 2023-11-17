@@ -166,9 +166,41 @@ export const listaOrganizaciones = async () => {
     return response.data
 }
 
+export const getDataMyOrganization = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organization_info`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
 export const departamentos = async () => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}cities`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+
+    return response.data
+}
+
+export const sectores = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}sectors`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -346,6 +378,28 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
         const response = await axios.post(url, body, {
             headers
         })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const ActualizarOrganizacion = async (data: FormData) => {
+    const token = getDecryptedToken();
+
+    try {
+        const url = `${import.meta.env.VITE_API_URL}organization_update`
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+            'Accept': 'application/json'
+        }
+        const body = data
+
+        const response = await axios.post(url, body, {
+            headers
+        })
+        return response.data
     } catch (error) {
         console.error(error)
     }

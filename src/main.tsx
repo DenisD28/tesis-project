@@ -25,6 +25,7 @@ import AddSale from './pages/Sale/AddSale';
 import { Reports } from './pages/Reports/Reports';
 import ViewInfoUser from './pages/User/ViewInfoUser';
 import ChangePassword from './pages/User/ChangePassword/ChangePassword';
+import EditOrganization from './pages/Organizaciones/EditOrganization/EditOrganization';
 
 const router = createBrowserRouter([
   {
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
       {
         path: "/account/change-password",
         element: <ChangePassword />
+      },
+      {
+        path: "/organization/edit",
+        element: <EditOrganization />
       },
     ]
   },

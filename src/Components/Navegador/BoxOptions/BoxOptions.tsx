@@ -32,7 +32,7 @@ export default function BoxOptions({name, role, InitialsName, fnLogout}: BoxOpti
           </Link>
           {
             role === 'admin' ?
-            <Link to={'/account/edit'} className="w-full h-10 flex justify-start hover:text-purple-icons pl-2 items-center gap-2 rounded text-zinc-700 text-base font-medium transition-all">
+            <Link to={'/organization/edit'} className="w-full h-10 flex justify-start hover:text-purple-icons pl-2 items-center gap-2 rounded text-zinc-700 text-base font-medium transition-all">
                 <CgOrganisation size={22} />
                 Editar organizaci&oacute;n
             </Link>

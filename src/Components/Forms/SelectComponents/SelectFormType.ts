@@ -5,6 +5,7 @@ export default interface SelectFormProps {
     'options': Array<options>,
     'fnChange': React.Dispatch<React.SetStateAction<string>>,
     'isRequerid': boolean | undefined,
+    'value'?: string | number | undefined,
 }
 
 interface options {
