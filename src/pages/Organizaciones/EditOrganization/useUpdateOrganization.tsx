@@ -39,12 +39,6 @@ export default function useUpdateOrganization({name, ruc, address, sector, munic
         formData.append("city_id", city);
         if(phone_main != "null") {formData.append("phone_main", phone_main??"");}
         if(phone_secondary != "null"){formData.append("phone_secondary", phone_secondary??"");}
-        console.log({
-            form: formData.get("phone_secondary"),
-            direccion: formData.get("address"),
-            address,
-            phone_secondary
-        })
         try{
             await ActualizarOrganizacion(formData)
             navigate("/dashboard")
