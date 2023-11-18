@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import ButtonForm from '../Forms/ButtonComponents/ButtonForm'
-import { ciudad, cliente, municipioCiudad } from '../types.d';
+import { ciudad, clients, municipioCiudad } from '../types.d';
 import { agregarCliente, departamentos, municipio } from '../../services/Services';
 import { useNavigate } from 'react-router-dom';
 
 export default function FormAdd() {
 
-  const [formProducto, setFormProduct] = useState<cliente>({ name: "", address: "", city_id: 0, municipality_id: 0, phone_main: "", phone_secondary: "", type: "", details: "" })
-  let state = { ciudades: [] }
-  let stateM = { municipios: [] }
+  const [formProducto, setFormProduct] = useState<clients>({ name: "", address: "", city_id: 0, municipality_id: 0, phone_main: "", phone_secondary: "", type: "", details: "" })
+
   const [lista, setDepartamento] = useState<ciudad>([]);
   const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
   const navigation = useNavigate()
@@ -44,9 +43,7 @@ export default function FormAdd() {
     const lista = async () => {
       try {
         const { ciudades } = await departamentos()
-        state = ({
-          ciudades
-        })
+
         setDepartamento(ciudades)
       } catch (e) {
         console.log(e)
@@ -58,9 +55,7 @@ export default function FormAdd() {
   const listaMunicipio = async (id: string) => {
     try {
       const { municipios } = await municipio(id)
-      stateM = ({
-        municipios
-      })
+
       setMunicipio(municipios)
     } catch (e) {
       console.log(e)
@@ -70,7 +65,7 @@ export default function FormAdd() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      const response = await agregarCliente(formProducto)
+      await agregarCliente(formProducto)
       navigation("/clientes")
     } catch (e) {
       console.log(e)

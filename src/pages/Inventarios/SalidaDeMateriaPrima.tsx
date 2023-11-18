@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Inventary, compra, invent, listProduct, purchase } from "../../Components/types.d"
+import { Inventary, compra, invent, purchase } from "../../Components/types.d"
 import { agregarProductoTerminado, listaDetalleCompra, listaInventario } from "../../services/Services"
 import { useNavigate } from "react-router-dom"
 import { HeadType } from "../../Components/Table/types/HeadType"
@@ -18,24 +18,20 @@ const titleTable = 'Materia Prima'
 export const SalidaDeMateriaPrima: React.FC = () => {
     const [formProducto, setFormProduct] = useState<compra>({ detail_purchase_id: 0, quantity: 0 })
     const [listaCompra, setListaCompra] = useState<purchase[]>([])
-    const [product, setProduct] = useState<listProduct>([])
-    const [list, setList] = useState<invent[]>([])
+    const [product, setProduct] = useState([])
+    const [list] = useState<invent[]>([])
     const [cantidad, setCantidad] = useState("")
-    let state = { links: [], meta: [], inventario: [] }
-    let id = localStorage.getItem('idProducto')
-    let nombre = localStorage.getItem('nombre')
+    // let id = localStorage.getItem('idProducto')
+    // let nombre = localStorage.getItem('nombre')
 
     const navigate = useNavigate()
 
     useEffect(() => {
         const lista = async () => {
             try {
-                const { links, meta, inventario } = await listaInventario()
-                state = ({
-                    links,
-                    meta,
-                    inventario
-                })
+                // const { links, meta, inventario } = await listaInventario()
+                const { inventario } = await listaInventario()
+
                 setProduct(inventario)
             } catch (e) {
                 console.log(e)
@@ -45,7 +41,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
     }, [])
 
     const handleInputChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { value } = e.target;
         setCantidad(value);
     }
 
@@ -60,7 +56,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await agregarProductoTerminado(JSON.stringify(list), cantidad)
+            await agregarProductoTerminado(JSON.stringify(list), cantidad)
             navigate("/pTerminado")
         } catch (e) {
             console.log(e)

@@ -19,7 +19,7 @@ export const FormProducto = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await newAddProduct(formProducto)
+            await newAddProduct(formProducto)
 
         } catch (e: any) {
             toast.error(e.message)
@@ -51,7 +51,7 @@ export const FormProducto = () => {
 
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Tipo unidad de medida *</label>
-                            <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement} required>
+                            <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.measurement_type} required>
                                 <option value="">Selecciona la unidad de medida</option>
                                 <option value="uni">Unidad</option>
                                 <option value="kg">Kilogramo</option>
@@ -63,11 +63,13 @@ export const FormProducto = () => {
                             'title': 'Cancelar',
                             'color': 'red',
                             'type': 'reset',
+                            'fnClick': () => { cancelar }
                         }} />
                         <ButtonForm dataButton={{
                             'title': 'Guardar',
                             'color': 'green',
                             'type': 'submit',
+                            'fnClick': () => { }
                         }} />
                     </form>
                 </div>

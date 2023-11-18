@@ -1,11 +1,10 @@
 import "../../css/App.css"
 import { useEffect, useState } from "react"
-import { listProduct } from "../types.d"
 import { listaInventario } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { Table } from "../Table/Table"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { useNavigate } from "react-router-dom"
+import { Pagination } from "flowbite-react"
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -15,29 +14,52 @@ const headers: HeadType[] = [
 
 const titleTable = 'Productos'
 
+function pages(url: string) {
+    let lastDigit = ""
+    // Utiliza una expresión regular para encontrar el último dígito en la URL
+    const matches = url.match(/\d+$/);
+
+    if (matches && matches.length > 0) {
+        // El último dígito se encuentra en matches[0]
+        lastDigit = matches[0];
+        console.log("Último dígito:", lastDigit);
+    } else {
+        console.log("No se encontraron dígitos en la URL.");
+    }
+
+    return lastDigit
+}
+
 export const TablasProductos: React.FC = () => {
 
     //**********************************Consulta a base de datos******************************************
-    const [data, setProduct] = useState<listProduct>([])
-    let state = { links: [], meta: [], inventario: [] }
-    const navigation = useNavigate()
+    const [data, setProduct] = useState()
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const onPageChange = (page: number) => {
+        setCurrentPage(page)
+        console.log(page)
+        lista()
+    };
+
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
-        const lista = async () => {
-            try {
-                const { links, meta, inventario } = await listaInventario()
-                state = ({
-                    links,
-                    meta,
-                    inventario
-                })
-                setProduct(inventario)
-            } catch (e) {
-                console.log(e)
-            }
-        }
         lista()
     }, [])
+
+    const lista = async () => {
+        try {
+            // const { links, meta, inventario } = await listaInventario()
+            const { links, inventario } = await listaInventario()
+
+            console.log(links)
+            setProduct(inventario)
+            setTotalPages(parseInt(pages(links.last), 10))
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -54,6 +76,7 @@ export const TablasProductos: React.FC = () => {
                         'title': 'Ingresar',
                         'color': 'green',
                         'type': 'submit',
+                        'fnClick': () => { }
                     }} />
                 </div>
             </form>
@@ -61,6 +84,13 @@ export const TablasProductos: React.FC = () => {
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
+            />
+            <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={onPageChange}
+                showIcons
             />
         </>
     )

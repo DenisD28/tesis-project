@@ -13,7 +13,6 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
     const [Quantity, setQuantity] = useState<string>('')
     const [UnitPrice, setUnitPrice] = useState<string>('')
     const [ItemsSelected, setItemsSelected] = useState<InputSale[]>([])
-    let state = { links: [], meta: [], inventario: [] }
     const [productos, setProduct] = useState<inventario[]>([])
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     const [DataInput, setDataInput] = useState<InputSale[]>([])
@@ -21,12 +20,9 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
     useEffect(() => {
         const lista = async () => {
             try {
-                const { links, meta, inventario } = await listaProductoTerminado()
-                state = ({
-                    links,
-                    meta,
-                    inventario
-                })
+                // const { links, meta, inventario } = await listaProductoTerminado()
+                const { inventario } = await listaProductoTerminado()
+
                 setProduct(inventario)
             } catch (e) {
                 console.log(e)

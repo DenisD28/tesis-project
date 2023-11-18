@@ -8,18 +8,17 @@ export const FormAddOrganizacion = () => {
 
     const [formProducto, setFormProduct] = useState<organizacion>({ id: 0, name: "", ruc: "", address: "", phone_main: "", second_phone: "", city_id: 0, municipality_id: 0 })
 
-    let state = { ciudades: [] }
-    let stateM = { municipios: [] }
+
     const [lista, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = event.target;
+    //     setFormProduct((prevData) => ({
+    //         ...prevData,
+    //         [name]: value,
+    //     }));
+    // };
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
@@ -32,21 +31,19 @@ export const FormAddOrganizacion = () => {
         }));
     };
 
-    const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    // const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    //     const { name, value } = event.target;
+    //     setFormProduct((prevData) => ({
+    //         ...prevData,
+    //         [name]: value,
+    //     }));
+    // };
 
     useEffect(() => {
         const lista = async () => {
             try {
                 const { ciudades } = await departamentos()
-                state = ({
-                    ciudades
-                })
+
                 setDepartamento(ciudades)
             } catch (e: any) {
                 toast.error(e.message)
@@ -58,9 +55,7 @@ export const FormAddOrganizacion = () => {
     const listaMunicipio = async (id: string) => {
         try {
             const { municipios } = await municipio(id)
-            stateM = ({
-                municipios
-            })
+
             setMunicipio(municipios)
         } catch (e) {
             console.log(e)
@@ -70,7 +65,7 @@ export const FormAddOrganizacion = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await agregarOrganizacion(formProducto)
+            await agregarOrganizacion(formProducto)
 
         } catch (e: any) {
             toast.error(e.message)
@@ -127,11 +122,13 @@ export const FormAddOrganizacion = () => {
                     'title': 'Cancelar',
                     'color': 'red',
                     'type': 'reset',
+                    'fnClick': () => { }
                 }} />
                 <ButtonForm dataButton={{
                     'title': 'Guardar',
                     'color': 'green',
                     'type': 'submit',
+                    'fnClick': () => { }
                 }} />
             </form >
         </>

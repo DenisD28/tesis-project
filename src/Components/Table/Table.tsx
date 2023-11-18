@@ -1,12 +1,11 @@
 import './Table.css'
 import Head from './Head/Head'
 import { HeadType } from './types/HeadType'
-import { listProduct } from '../types.d'
 
 
 interface Props {
     headers: HeadType[]
-    data: listProduct
+    data: [] | undefined
     titleTable: string
 }
 
@@ -17,7 +16,7 @@ export const Table: React.FC<Props> = ({ headers, data, titleTable }) => {
             <table className='w-full h-full'>
                 <Head headers={headers} />
                 <tbody>
-                    {data.map((dat, index) => (
+                    {data?.map((dat, index) => (
                         <tr
                             key={index}
                             className='border-b-[1px] border-[#eee] h-14 sm:h-12'

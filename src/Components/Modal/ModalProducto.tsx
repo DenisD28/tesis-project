@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import React, { useState } from "react"
-import { Inventary, listProduct, tipo } from "../types.d";
+import { Inventary, tipo } from "../types.d";
 import { listaProductos } from "../../services/Services";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
@@ -20,7 +20,7 @@ const titleTable = 'Materia Prima'
 export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     const [formProducto, setFormProduct] = useState<tipo>({ type: "" })
-    const [data, setProduct] = useState<listProduct>([])
+    const [data, setProduct] = useState([])
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -46,8 +46,7 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     return (<>
         <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-        >
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
                 {/*content*/}
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -82,7 +81,7 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                             <table className='w-full h-full'>
                                 <Head headers={headers} />
                                 <tbody>
-                                    {data.map((dat, index) => (
+                                    {data?.map((dat, index) => (
                                         <tr
                                             key={index}
                                             className='border-b-[1px] border-[#eee] h-14 sm:h-12'

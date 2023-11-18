@@ -4,7 +4,6 @@ import { SearchProductInTheInventory } from '../../services/Purchase/AddPurchase
 
 const useListProductsInventory = () => {
     const [ListProduct, setListProduct] = useState<ProductsForInventory[]>([])
-    let state = { inventario: [], mensaje: [], estado: [] }
 
     useEffect(() => {
         lista()
@@ -12,19 +11,16 @@ const useListProductsInventory = () => {
 
     const lista = async () => {
         try {
-            const { inventario, mensaje, estado } = await SearchProductInTheInventory("MP")
-            state = ({
-                inventario,
-                mensaje,
-                estado
-            })
+            // const { inventario, mensaje, estado } = await SearchProductInTheInventory("MP")
+            const { inventario } = await SearchProductInTheInventory("MP")
+
             setListProduct(inventario)
         } catch (e) {
             console.log(e)
         }
     }
 
-    return { 
+    return {
         ListProduct,
     };
 };

@@ -1,29 +1,51 @@
 import "../../css/App.css"
-import { listOrg } from "../types.d"
 import { useEffect, useState } from "react"
 import { listaUsuarios } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
-import Head from "../Table/Head/Head"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
+import { Table } from "../Table/Table"
+import { Pagination } from "flowbite-react"
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
     { name: "Estado", prop: "status" },
     { name: "Rol", prop: "role" },
     { name: "Ultima Conexion", prop: "last_login_at" },
-    { name: "Accion", prop: "accion" },
-
 ]
+
+function pages(url: string) {
+    let lastDigit = ""
+    // Utiliza una expresión regular para encontrar el último dígito en la URL
+    const matches = url.match(/\d+$/);
+
+    if (matches && matches.length > 0) {
+        // El último dígito se encuentra en matches[0]
+        lastDigit = matches[0];
+        console.log("Último dígito:", lastDigit);
+    } else {
+        console.log("No se encontraron dígitos en la URL.");
+    }
+
+    return lastDigit
+}
 
 const titleTable = 'Usuarios del Sistema'
 
 export const TablasUsuarios: React.FC = () => {
 
-    const [data, setOrg] = useState<listOrg>([])
-    const [next, setNext] = useState("")
-    let state = { links: [], meta: [], usuarios: [] }
+    const [data, setOrg] = useState()
+    // const [next, setNext] = useState("")
     const navigation = useNavigate()
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const onPageChange = (page: number) => {
+        setCurrentPage(page)
+        console.log(page)
+        lista()
+    };
+
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
         lista()
@@ -31,14 +53,12 @@ export const TablasUsuarios: React.FC = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, usuarios } = await listaUsuarios()
-            state = ({
-                links,
-                meta,
-                usuarios
-            })
+            // const { links, meta, usuarios } = await listaUsuarios()
+            const { links, usuarios } = await listaUsuarios()
+
 
             setOrg(usuarios)
+            setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
             console.log(e)
         }
@@ -57,35 +77,22 @@ export const TablasUsuarios: React.FC = () => {
                         'title': 'Ingresar',
                         'color': 'green',
                         'type': 'submit',
+                        'fnClick': () => { }
                     }} />
                 </div>
             </form>
-            <div className='px-8 rounded-xl bg-white md:h-96 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
-                <h1 className='sm:text-2xl text-lg font-bold my-4 h-16 w-full sticky top-0 left-0 bg-white pt-4 text-[#4F46E5]'>{titleTable}</h1>
-                <table className='w-full h-full'>
-                    <Head headers={headers} />
-                    <tbody>
-                        {data.map((dat, index) => (
-                            <tr
-                                key={index}
-                                className='border-b-[1px] border-[#eee] h-14 sm:h-12'
-                            >
-                                {headers.map((h, i) => (
-                                    <td
-                                        key={i}
-                                        className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                        {
-                                            dat[h.prop]
-                                        }
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-            </div>
-
+            <Table
+                headers={headers}
+                data={data}
+                titleTable={titleTable}
+            />
+            <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={onPageChange}
+                showIcons
+            />
         </>
     )
 }

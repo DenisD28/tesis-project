@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Post, User, User2, cliente, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
+import { Post, User, User2, clients, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 import { DetailsSale } from "../types/SaleTypes/DetailsSale";
@@ -47,6 +47,82 @@ export const logout = async () => {
 }
 
 //Listas
+
+export const TablaOrganizacion = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organizations?page=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
+export const TablaProveedores = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}providers?page=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
+export const TablaProductos = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organizations?page=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
+export const TablaCompras = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organizations?page=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
+export const TablaProductoTerminados = async (id: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organizations?page=${id}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
 export const listaEntradas = async (id: string) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}product_input?inventory_id=${id}`
@@ -74,6 +150,7 @@ export const listaInventario = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
+    console.log(response.data)
     return response.data
 }
 
@@ -156,9 +233,9 @@ export const listaUsuarios = async () => {
     return response.data
 }
 
-export const listaOrganizaciones = async (currentPage: number) => {
+export const listaOrganizaciones = async () => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}organizations?page=${currentPage}`
+    const url = `${import.meta.env.VITE_API_URL}organizations?`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -301,18 +378,20 @@ export const getGanaciasAnuales = async () => {
 //Registros
 export const agregarInventario = async (formProduct: inven) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}inventory?product_id=${formProduct.id}&type=MP&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&location&lot_number=&note&code=${formProduct.code}&description=${formProduct.description}`
+    const url = `${import.meta.env.VITE_API_URL}inventory?product_id=${formProduct.id}&type=MP&stock_min=${formProduct.stock_min}&unit_of_measurement=${formProduct.unit_of_measurement}&code=${formProduct.code}&description=${formProduct.description}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
 
+
     const body = ""
 
     const response = await axios.post(url, body, {
         headers: headers
     })
+
 
     return response
 }
@@ -352,9 +431,11 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
         const response = await axios.post(url, body, {
             headers
         })
+        return response
     } catch (error) {
         console.error(error)
     }
+
 }
 
 export const updateDataUser = async (name: string, email: string) => {
@@ -412,7 +493,7 @@ export const newAddProduct = async (newProducto: newProduct) => {
     return response.data
 }
 
-export const agregarCliente = async (cliente: cliente) => {
+export const agregarCliente = async (cliente: clients) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}client?name=${cliente.name}&address=${cliente.address}&municipality_id=${cliente.municipality_id}&city_id=${cliente.city_id}&type=${cliente.type}&phone_main=${cliente.phone_main}&details=test de detalle&phone_secondary=${cliente.phone_secondary}`
 
@@ -502,7 +583,6 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
     }]
 
     const data = JSON.stringify(body)
-    console.log(data)
 
     const response = await axios.post(url, data, {
         headers: headers

@@ -31,7 +31,7 @@ export default function AddSale() {
 
         console.log(DetailsSale)
         try {
-            const response = await agregarVenta(DetailsSale, NumeroFactura, Cliente)
+            await agregarVenta(DetailsSale, NumeroFactura, Cliente)
 
         } catch (e: any) {
             toast.error(e)

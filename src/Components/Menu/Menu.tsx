@@ -8,16 +8,13 @@ import { routesMain, routesInventory } from "../../routes/routes"
 export const Menu = () => {
 
     const [userInfo, setInfo] = useState<User>()
-    let state = { usuario: [] }
 
     useEffect(() => {
         const getInfo = async () => {
 
             try {
                 const { usuario } = await infoGeneral()
-                state = ({
-                    usuario
-                })
+
                 setInfo(usuario)
             } catch (e) {
             }

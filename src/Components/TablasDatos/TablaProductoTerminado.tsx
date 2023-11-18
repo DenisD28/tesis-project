@@ -11,7 +11,6 @@ const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
     { name: "Nombre", prop: "product" },
     { name: "Stock", prop: "stock" },
-    { name: "Acciones", prop: "acciones" }
 ]
 
 const titleTable = 'Productos Terminados'
@@ -20,18 +19,14 @@ export const TablaProductoTerminado: React.FC = () => {
 
     const navigate = useNavigate()
     const [data, setProduct] = useState<listProduct>([])
-    let state = { links: [], meta: [], inventario: [] }
     const navigation = useNavigate()
 
     useEffect(() => {
         const lista = async () => {
             try {
-                const { links, meta, inventario } = await listaProductoTerminado()
-                state = ({
-                    links,
-                    meta,
-                    inventario
-                })
+                // const { links, meta, inventario } = await listaProductoTerminado()
+                const { inventario } = await listaProductoTerminado()
+
                 setProduct(inventario)
             } catch (e) {
                 console.log(e)
@@ -61,6 +56,7 @@ export const TablaProductoTerminado: React.FC = () => {
                         'title': 'Ingresar',
                         'color': 'green',
                         'type': 'submit',
+                        'fnClick': () => { }
                     }} />
                 </div>
             </form>

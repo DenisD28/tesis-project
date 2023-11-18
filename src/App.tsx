@@ -2,12 +2,11 @@ import { Nav } from "./Components/Navegador/Nav"
 import Footer from "./Components/Footer/Footer"
 import { Outlet, useNavigate } from "react-router-dom"
 import { Menu } from "./Components/Menu/Menu"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Cookies from 'js-cookie'
 
 const App = (): JSX.Element => {
 
-  const [login, setLogin] = useState(false)
   const navigate = useNavigate()
 
 

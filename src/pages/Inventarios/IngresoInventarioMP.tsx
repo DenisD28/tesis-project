@@ -99,7 +99,7 @@ export const IngresoInventarioMP = () => {
                             'title': 'Cancelar',
                             'color': 'red',
                             'type': 'reset',
-                            'fnClick': () => { }
+                            'fnClick': () => { cancelar }
                         }} />
                         <ButtonForm dataButton={{
                             'title': 'Guardar',
@@ -110,7 +110,6 @@ export const IngresoInventarioMP = () => {
                     </form >
                 </div>
             </div>
-
         </main>
     </>)
 }

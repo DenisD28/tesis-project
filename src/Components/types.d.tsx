@@ -100,6 +100,8 @@ export interface clientes {
     details: string
 }
 
+
+
 export interface Proveedores {
     id: number
     name: string
@@ -119,6 +121,7 @@ export type Usuario = User2;
 export type provider = Proveedores[]
 export type proveedor = Pick<Proveedores, 'name' | 'ruc' | 'address' | 'phone_main' | 'second_phone' | 'city_id' | 'municipality_id' | 'contact_name'>
 export type cliente = clientes
+export type clients = Pick<clientes, 'name' | 'address' | 'municipality_id' | 'city_id' | 'type' | 'phone_main' | 'phone_secondary' | 'details'>
 export type lstCliente = cliente[]
 
 export type ciudad = departamento[]

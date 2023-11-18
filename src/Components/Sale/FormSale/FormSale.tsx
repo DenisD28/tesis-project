@@ -9,7 +9,6 @@ import { cliente, lstCliente } from '../../types.d'
 
 export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation, NumeroFactura, Nota }: FormSaleProps) {
   const [clientes, setClientes] = useState<lstCliente>([])
-  let state = { links: [], meta: [], clients: [] }
 
   useEffect(() => {
     lista()
@@ -17,12 +16,9 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
 
   const lista = async () => {
     try {
-      const { links, meta, clients } = await listaCliente()
-      state = ({
-        links,
-        meta,
-        clients
-      })
+      // const { links, meta, clients } = await listaCliente()
+      const { clients } = await listaCliente()
+
       setClientes(clients)
     } catch (e) {
       console.log(e)

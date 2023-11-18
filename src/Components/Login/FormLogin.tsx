@@ -41,7 +41,7 @@ export const FormLogin = () => {
 
     function setEncryptedToken(token: string) {
         var expiracion = new Date()
-        expiracion.setTime(expiracion.getTime() + (50 * 60 * 1000))
+        expiracion.setTime(expiracion.getTime() + (60 * 60 * 1000))
 
         const encryptedToken = CryptoJS.AES.encrypt(token, import.meta.env.VITE_KEY).toString();
         Cookies.set('authToken', encryptedToken, { expires: expiracion }); // Puedes ajustar la expiración como desees

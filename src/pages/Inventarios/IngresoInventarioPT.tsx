@@ -103,11 +103,13 @@ export const IngresoInventarioPT = () => {
                             'title': 'Cancelar',
                             'color': 'red',
                             'type': 'reset',
+                            'fnClick': () => { cancelar }
                         }} />
                         <ButtonForm dataButton={{
                             'title': 'Guardar',
                             'color': 'green',
                             'type': 'submit',
+                            'fnClick': () => { }
                         }} />
                     </form >
                 </div>

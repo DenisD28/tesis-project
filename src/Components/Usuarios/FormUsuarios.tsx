@@ -8,7 +8,6 @@ export const FormUsuarios = () => {
 
 
     const [formProducto, setFormProduct] = useState<Usuario>({ id: "", name: "", email: "", username: "", password: "", token: "", organization: "", role: "" })
-    let state = { links: [], meta: [], organizaciones: [] }
     const navigation = useNavigate()
     const [data, setOrg] = useState<listOrg>([])
 
@@ -28,13 +27,13 @@ export const FormUsuarios = () => {
         }));
     };
 
-    const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    // const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    //     const { name, value } = event.target;
+    //     setFormProduct((prevData) => ({
+    //         ...prevData,
+    //         [name]: value,
+    //     }));
+    // };
 
     useEffect(() => {
         lista()
@@ -42,12 +41,10 @@ export const FormUsuarios = () => {
 
     const lista = async () => {
         try {
-            const { links, meta, organizaciones } = await listaOrganizaciones()
-            state = ({
-                links,
-                meta,
-                organizaciones
-            })
+            // const { links, meta, organizaciones } = await listaOrganizaciones()
+            const { organizaciones } = await listaOrganizaciones()
+
+
             setOrg(organizaciones)
         } catch (e) {
             console.log(e)
@@ -57,7 +54,7 @@ export const FormUsuarios = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await agregarUsuario(formProducto)
+            await agregarUsuario(formProducto)
             navigation("/usuarios")
         } catch (e) {
             console.log(e)
@@ -73,7 +70,7 @@ export const FormUsuarios = () => {
             </div>
             <div className="flex justify-center items-center flex-col p-2">
                 <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre del usuario *</label>
-                <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="username" placeholder="Escribe su nombre de usuario" onChange={handleInputChange} value={formProducto.username} required/>
+                <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="username" placeholder="Escribe su nombre de usuario" onChange={handleInputChange} value={formProducto.username} required />
             </div>
             <div className="flex justify-center items-center flex-col p-2">
                 <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Email</label>

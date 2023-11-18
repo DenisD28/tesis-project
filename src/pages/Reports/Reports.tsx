@@ -4,7 +4,7 @@ export const Reports = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await descargarReporte()
+            await descargarReporte()
 
         } catch (error: any) {
         }
@@ -12,7 +12,7 @@ export const Reports = () => {
 
     const ReporteInventario = async () => {
         try {
-            const response = await descargarReporteInventario()
+            await descargarReporteInventario()
 
         } catch (error: any) {
         }
@@ -20,7 +20,7 @@ export const Reports = () => {
 
     const ReporteCompras = async () => {
         try {
-            const response = await descargarReporteCompras()
+            await descargarReporteCompras()
 
         } catch (error: any) {
         }
@@ -28,7 +28,7 @@ export const Reports = () => {
 
     const ReporteVentas = async () => {
         try {
-            const response = await descargarReporteVentas()
+            await descargarReporteVentas()
 
         } catch (error: any) {
         }
@@ -36,7 +36,7 @@ export const Reports = () => {
 
     const ReporteProductoMenosVendido = async () => {
         try {
-            const response = await descargarReporteInventarioMenosVendido()
+            await descargarReporteInventarioMenosVendido()
 
         } catch (error: any) {
         }

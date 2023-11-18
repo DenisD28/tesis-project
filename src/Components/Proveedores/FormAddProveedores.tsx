@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { agregarOrganizacion, agregarProveedor, departamentos, municipio } from "../../services/Services"
-import { ciudad, municipioCiudad, organizacion, proveedor } from "../types.d"
+import { agregarProveedor, departamentos, municipio } from "../../services/Services"
+import { ciudad, municipioCiudad, proveedor } from "../types.d"
 import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 
@@ -9,8 +9,6 @@ export const FormAddProveedores = () => {
 
     const [formProducto, setFormProduct] = useState<proveedor>({ name: "", ruc: "", address: "", phone_main: "", contact_name: "", second_phone: "", city_id: 0, municipality_id: 0 })
 
-    let state = { ciudades: [] }
-    let stateM = { municipios: [] }
     const [lista, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
     const navigation = useNavigate()
@@ -46,9 +44,7 @@ export const FormAddProveedores = () => {
         const lista = async () => {
             try {
                 const { ciudades } = await departamentos()
-                state = ({
-                    ciudades
-                })
+
                 setDepartamento(ciudades)
             } catch (e) {
                 console.log(e)
@@ -60,9 +56,7 @@ export const FormAddProveedores = () => {
     const listaMunicipio = async (id: string) => {
         try {
             const { municipios } = await municipio(id)
-            stateM = ({
-                municipios
-            })
+
             setMunicipio(municipios)
         } catch (e) {
             console.log(e)
@@ -72,7 +66,7 @@ export const FormAddProveedores = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await agregarProveedor(formProducto)
+            await agregarProveedor(formProducto)
             navigation("/")
         } catch (e: any) {
             toast.error(e.message)
