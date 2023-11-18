@@ -385,7 +385,6 @@ export const agregarInventario = async (formProduct: inven) => {
         'Accept': 'application/json'
     }
 
-
     const body = ""
 
     const response = await axios.post(url, body, {
