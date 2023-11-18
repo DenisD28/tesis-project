@@ -18,10 +18,16 @@ export default function Home() {
             !userInfo?.verification_password && userInfo?.verification_password != undefined ? <ModalSecondary /> : null
           }
         </div>
-        <Ganancias />
-        <section className="md:col-span-6 col-span-12 md:h-72 h-60 rounded-md border-2 flex justify-center items-center p-4">
-          <GananciasMensuales />
-        </section>
+        {
+          userInfo?.role.name === "admin" ? 
+          <>
+            <Ganancias />
+            <section className="md:col-span-6 col-span-12 md:h-72 h-60 rounded-md border-2 flex justify-center items-center p-4">
+            <GananciasMensuales />
+            </section>
+          </>
+          : null
+        }
         <section className="col-span-12">
           <TablaProductoFaltante />
         </section>
