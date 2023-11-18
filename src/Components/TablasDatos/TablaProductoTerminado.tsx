@@ -1,5 +1,5 @@
 import "../../css/App.css"
-import { listProduct } from "../types.d"
+import { Inventary } from "../types.d"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { listaProductoTerminado } from "../../services/Services"
@@ -18,7 +18,7 @@ const titleTable = 'Productos Terminados'
 export const TablaProductoTerminado: React.FC = () => {
 
     const navigate = useNavigate()
-    const [data, setProduct] = useState<listProduct>([])
+    const [data, setProduct] = useState([])
     const navigation = useNavigate()
 
     useEffect(() => {
@@ -36,10 +36,10 @@ export const TablaProductoTerminado: React.FC = () => {
         lista()
     }, [])
 
-    const agregar = (id: number, nombre: string, codigo: string) => {
-        localStorage.setItem("idProducto", JSON.stringify(id))
-        localStorage.setItem("nombre", JSON.stringify(nombre))
-        localStorage.setItem("codigo", JSON.stringify(codigo))
+    const agregar = (data?: Inventary) => {
+        localStorage.setItem("idProducto", JSON.stringify(data?.id))
+        localStorage.setItem("nombre", JSON.stringify(data?.name))
+        localStorage.setItem("codigo", JSON.stringify(data?.code))
         navigate("/ingresoProducto")
     }
 
@@ -65,7 +65,7 @@ export const TablaProductoTerminado: React.FC = () => {
                 <table className='w-full h-full'>
                     <Head headers={headers} />
                     <tbody>
-                        {data.map((dat, index) => (
+                        {data?.map((dat, index) => (
                             <tr
                                 key={index}
                                 className='border-b-[1px] border-[#eee] h-14 sm:h-12'
@@ -80,7 +80,7 @@ export const TablaProductoTerminado: React.FC = () => {
                                     </td>
                                 ))}
                                 <td>
-                                    <button onClick={() => agregar(dat.id, dat.product, dat.code)}>Agregar</button>
+                                    <button onClick={() => agregar(dat)}>Agregar</button>
                                 </td>
                             </tr>
                         ))}
