@@ -18,7 +18,7 @@ export default function useGetEarnings() {
                 today
             })
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
     return {

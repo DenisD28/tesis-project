@@ -29,7 +29,7 @@ export const TablaProductoTerminado: React.FC = () => {
 
                 setProduct(inventario)
             } catch (e) {
-                console.log(e)
+                // console.log(e)
             }
         }
 

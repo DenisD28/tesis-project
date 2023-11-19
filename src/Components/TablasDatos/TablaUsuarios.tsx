@@ -22,9 +22,8 @@ function pages(url: string) {
     if (matches && matches.length > 0) {
         // El último dígito se encuentra en matches[0]
         lastDigit = matches[0];
-        console.log("Último dígito:", lastDigit);
     } else {
-        console.log("No se encontraron dígitos en la URL.");
+        // console.log("No se encontraron dígitos en la URL.");
     }
 
     return lastDigit
@@ -41,7 +40,6 @@ export const TablasUsuarios: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const onPageChange = (page: number) => {
         setCurrentPage(page)
-        console.log(page)
         lista()
     };
 
@@ -60,7 +58,7 @@ export const TablasUsuarios: React.FC = () => {
             setOrg(usuarios)
             setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
 

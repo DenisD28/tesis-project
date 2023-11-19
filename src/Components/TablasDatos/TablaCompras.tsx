@@ -31,7 +31,7 @@ export const TablasCompras: React.FC = () => {
 
             setOrg(purchases)
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
 

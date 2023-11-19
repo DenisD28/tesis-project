@@ -150,7 +150,7 @@ export const listaInventario = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
-    console.log(response.data)
+
     return response.data
 }
 
@@ -464,7 +464,7 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
         })
         return response
     } catch (error) {
-        console.error(error)
+        // console.error(error)
     }
 
 }
@@ -487,7 +487,7 @@ export const ActualizarOrganizacion = async (data: FormData) => {
         })
         return response.data
     } catch (error) {
-        console.error(error)
+        // console.error(error)
     }
 }
 
@@ -643,7 +643,6 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
         console.error('Error', error)
     })
 
-    console.log(response)
     return response
 
 }

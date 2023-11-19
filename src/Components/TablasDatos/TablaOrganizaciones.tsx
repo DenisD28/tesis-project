@@ -23,9 +23,9 @@ function pages(url: string) {
     if (matches && matches.length > 0) {
         // El último dígito se encuentra en matches[0]
         lastDigit = matches[0];
-        console.log("Último dígito:", lastDigit);
+        //console.log("Último dígito:", lastDigit);
     } else {
-        console.log("No se encontraron dígitos en la URL.");
+        // console.log("No se encontraron dígitos en la URL.");
     }
 
     return lastDigit
@@ -57,7 +57,7 @@ export const TablasOrganizaciones: React.FC = () => {
             setOrg(organizaciones)
             setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
 

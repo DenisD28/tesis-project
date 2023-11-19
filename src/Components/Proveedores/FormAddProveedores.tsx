@@ -47,7 +47,7 @@ export const FormAddProveedores = () => {
 
                 setDepartamento(ciudades)
             } catch (e) {
-                console.log(e)
+                // console.log(e)
             }
         }
         lista()
@@ -59,7 +59,7 @@ export const FormAddProveedores = () => {
 
             setMunicipio(municipios)
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
 

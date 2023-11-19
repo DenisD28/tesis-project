@@ -18,7 +18,7 @@ export const Nav = () => {
             logout()
             navigation("/")
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
     let InitialsName = userInfo?.name[0]

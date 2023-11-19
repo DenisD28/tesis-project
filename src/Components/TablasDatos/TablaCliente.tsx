@@ -31,7 +31,7 @@ export const TablasCliente: React.FC = () => {
 
             setOrg(clients)
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
 

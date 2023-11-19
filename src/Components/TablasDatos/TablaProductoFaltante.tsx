@@ -16,7 +16,6 @@ export const TablaProductoFaltante: React.FC = () => {
 
     const [data, setProduct] = useState()
 
-
     useEffect(() => {
         const lista = async () => {
             try {
@@ -25,7 +24,7 @@ export const TablaProductoFaltante: React.FC = () => {
 
                 setProduct(inventario_stock_min)
             } catch (e) {
-                console.log(e)
+                // console.log(e)
             }
         }
 

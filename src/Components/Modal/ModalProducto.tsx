@@ -36,9 +36,9 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
             try {
                 const response = await listaProductos(formProducto)
                 setProduct(response)
-                console.log(response)
+                //console.log(response)
             } catch (e) {
-                console.log(e)
+                // console.log(e)
             }
         }
         lista();

@@ -46,7 +46,7 @@ export default function FormAdd() {
 
         setDepartamento(ciudades)
       } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
     }
     lista()
@@ -58,7 +58,7 @@ export default function FormAdd() {
 
       setMunicipio(municipios)
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   }
 
@@ -68,7 +68,7 @@ export default function FormAdd() {
       await agregarCliente(formProducto)
       navigation("/clientes")
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   }
 

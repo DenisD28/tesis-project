@@ -58,7 +58,7 @@ export const FormAddOrganizacion = () => {
 
             setMunicipio(municipios)
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
 
