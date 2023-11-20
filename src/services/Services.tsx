@@ -3,7 +3,6 @@ import { Post, User, User2, clients, inven, newProduct, organizacion, proveedor,
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 import { DetailsSale } from "../types/SaleTypes/DetailsSale";
-import { user } from "@nextui-org/react";
 
 function getDecryptedToken() {
     const encryptedToken = Cookies.get('authToken');

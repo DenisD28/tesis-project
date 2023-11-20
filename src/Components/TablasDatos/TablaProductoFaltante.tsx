@@ -36,6 +36,7 @@ export const TablaProductoFaltante: React.FC = () => {
             headers={headers}
             data={data}
             titleTable={titleTable}
+            fnClick={() => { }}
         />
     )
 }

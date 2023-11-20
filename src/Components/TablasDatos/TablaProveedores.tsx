@@ -80,6 +80,7 @@ export const TablasProveedores: React.FC = () => {
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
+                fnClick={() => { }}
             />
             <Pagination
                 layout="navigation"

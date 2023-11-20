@@ -18,6 +18,7 @@ export const FormUsuarios = () => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+
         setFormProduct((prevData) => ({
             ...prevData,
             [name]: value,
@@ -36,6 +37,7 @@ export const FormUsuarios = () => {
         if (usuario?.role.id === 1) {
             setIsShow(true)
         }
+        console.log(data)
         lista()
     }, [])
 

@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function UserTotal({ countUser }: { countUser: number }) {
   return (

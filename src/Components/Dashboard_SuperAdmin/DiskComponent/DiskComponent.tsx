@@ -1,13 +1,12 @@
-import React from "react";
 import DiskChart from "../../Chartjs/Disk/DiskChar";
 
 interface DiskComponentProps {
-    disk: {
-        unit: string;
-        totalSpace: number;
-        freeSpace: number;
-        usedSpace: number;
-    };
+  disk: {
+    unit: string;
+    totalSpace: number;
+    freeSpace: number;
+    usedSpace: number;
+  };
 }
 
 export default function DiskComponent({ disk }: DiskComponentProps) {
@@ -26,11 +25,11 @@ export default function DiskComponent({ disk }: DiskComponentProps) {
           </section>
           {
             [disk.totalSpace, disk.freeSpace, disk.usedSpace].map((item, index) => (
-                <section key={index} className="w-full flex justify-between items-center font-medium">
-                    <p>{index === 0 ? "Espacio total" : index === 1 ? "Espacio libre" : "Espacio usado"}</p>
-                    <p>{item} GB</p>
-                </section>
-                ))
+              <section key={index} className="w-full flex justify-between items-center font-medium">
+                <p>{index === 0 ? "Espacio total" : index === 1 ? "Espacio libre" : "Espacio usado"}</p>
+                <p>{item} GB</p>
+              </section>
+            ))
           }
         </section>
       </span>

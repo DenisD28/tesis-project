@@ -56,6 +56,7 @@ export const TablasCliente: React.FC = () => {
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
+                fnClick={() => { }}
             />
         </>
     )

@@ -1,4 +1,3 @@
-import React from "react";
 import ListLastLogin from "../../Components/Dashboard_SuperAdmin/LastLogin/ListLastLogin";
 import UserTotal from "../../Components/Dashboard_SuperAdmin/UserTotal/UserTotal";
 import DiskComponent from "../../Components/Dashboard_SuperAdmin/DiskComponent/DiskComponent";
@@ -9,7 +8,7 @@ export default function DashboardSuperAdmin() {
   return (
     <main className="w-full grid grid-cols-12 gap-8">
       <section className="col-span-full grid grid-cols-12 gap-4">
-        <UserTotal countUser={countUsers}/>
+        <UserTotal countUser={countUsers} />
         <article className="md:col-span-8 col-span-full h-full rounded-md border-2 gap-2 flex justify-center items-center flex-col p-4">
           <h1 className="text-xl font-semibold text-zinc-900 text-center flex justify-between items-center gap-4">
             Ultimos usuarios conectados
