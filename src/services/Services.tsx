@@ -575,7 +575,7 @@ export const newAddProduct = async (newProducto: newProduct) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
-    return response.data
+    return response
 }
 
 export const agregarCliente = async (cliente: clients) => {
