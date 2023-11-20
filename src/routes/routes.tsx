@@ -27,7 +27,7 @@ const routesMain: Route[] = [
         "path": "/dashboard",
         "title": "Panel principal",
         "icon": <LayoutDashboard />,
-        "type": "tipo2"
+        "type": "tipo4"
     },
     {
         "path": "/organizaciones",

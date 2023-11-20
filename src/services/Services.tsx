@@ -151,7 +151,7 @@ export const listaInventario = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
-
+    console.log(response.data)
     return response.data
 }
 
@@ -425,6 +425,21 @@ export const getGanaciasAnuales = async () => {
     return response.data
 }
 
+export const getInfoDashboard = async () => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}information`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    return response.data
+}
+
 //Registros
 export const agregarInventario = async (formProduct: inven) => {
     const token = getDecryptedToken();
@@ -482,7 +497,7 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
         })
         return response
     } catch (error) {
-        // console.error(error)
+        console.error(error)
     }
 
 }
@@ -505,7 +520,7 @@ export const ActualizarOrganizacion = async (data: FormData) => {
         })
         return response.data
     } catch (error) {
-        // console.error(error)
+        console.error(error)
     }
 }
 
@@ -663,6 +678,7 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
         console.error('Error', error)
     })
 
+    console.log(response)
     return response
 
 }
