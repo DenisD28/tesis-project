@@ -3,6 +3,7 @@ import ButtonForm from '../Forms/ButtonComponents/ButtonForm'
 import { ciudad, clients, municipioCiudad } from '../types.d';
 import { agregarCliente, departamentos, municipio } from '../../services/Services';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function FormAdd() {
 
@@ -67,14 +68,15 @@ export default function FormAdd() {
     try {
       await agregarCliente(formProducto)
       navigation("/clientes")
-    } catch (e) {
-      // console.log(e)
+    } catch (e: any) {
+      toast.error(e.response.data.message)
     }
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
 
+    <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
+      <div> <Toaster /></div >
       <div className="flex justify-center items-center flex-col p-2">
         <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre *</label>
         <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre del cliente" onChange={handleInputChange} value={formProducto.name} required />

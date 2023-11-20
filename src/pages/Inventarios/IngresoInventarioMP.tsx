@@ -38,7 +38,7 @@ export const IngresoInventarioMP = () => {
             }
 
         } catch (e: any) {
-            toast.error(e.message)
+            toast.error(e.response.data.message)
         }
     }
 

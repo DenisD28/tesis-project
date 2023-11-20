@@ -1,14 +1,12 @@
 import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
-import { infoGeneral, listaUsuarios, listaUsuariosOrganizacion } from "../../services/Services"
+import { listaUsuarios, listaUsuariosOrganizacion } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Table } from "../Table/Table"
 import { Pagination } from "flowbite-react"
 import { VerMasUsuarios } from "../VerMas/VerMasUsuarios"
-import { User } from "../types.d"
-import { Usuarios } from "../../pages/Usuarios/Usuarios"
 import { useGlobalContext } from "../../hooks/useUserContext"
 
 
@@ -37,8 +35,6 @@ function pages(url: string) {
 const titleTable = 'Usuarios del Sistema'
 
 export const TablasUsuarios: React.FC = () => {
-
-
 
     const [data, setOrg] = useState()
     const navigation = useNavigate()

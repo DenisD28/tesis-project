@@ -22,7 +22,7 @@ export const FormProducto = () => {
             await newAddProduct(formProducto)
 
         } catch (e: any) {
-            toast.error(e.message)
+            toast.error(e.response.data.mensaje)
         }
     }
 
