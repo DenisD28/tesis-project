@@ -27,8 +27,7 @@ export const FormProducto = () => {
             }
 
         } catch (e: any) {
-            console.log(e)
-            toast.error(e.response.data.mensaje)
+            toast.error(e.response.data.message)
         }
     }
 
