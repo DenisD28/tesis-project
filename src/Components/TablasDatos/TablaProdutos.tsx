@@ -66,7 +66,6 @@ export const TablasProductos: React.FC = () => {
 
     //**********************************Consulta a base de datos******************************************
 
-
     return (
         <>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -83,6 +82,7 @@ export const TablasProductos: React.FC = () => {
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
+                fnClick={() => { }}
             />
             <Pagination
                 layout="navigation"

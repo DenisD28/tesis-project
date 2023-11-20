@@ -1,11 +1,16 @@
 import "../../css/App.css"
-import { useEffect, useState } from "react"
-import { listaUsuarios } from "../../services/Services"
+import { SetStateAction, useEffect, useState } from "react"
+import { infoGeneral, listaUsuarios, listaUsuariosOrganizacion } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Table } from "../Table/Table"
 import { Pagination } from "flowbite-react"
+import { VerMasUsuarios } from "../VerMas/VerMasUsuarios"
+import { User } from "../types.d"
+import { Usuarios } from "../../pages/Usuarios/Usuarios"
+import { useGlobalContext } from "../../hooks/useUserContext"
+
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
@@ -33,11 +38,20 @@ const titleTable = 'Usuarios del Sistema'
 
 export const TablasUsuarios: React.FC = () => {
 
+
+
     const [data, setOrg] = useState()
-    // const [next, setNext] = useState("")
     const navigation = useNavigate()
+    const [datos, setDatos] = useState()
+    const [isOpen, setIsOpen] = useState(false);
+    const { usuario } = useGlobalContext()
 
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        lista()
+    }, [])
+
     const onPageChange = (page: number) => {
         setCurrentPage(page)
         lista()
@@ -45,18 +59,20 @@ export const TablasUsuarios: React.FC = () => {
 
     const [totalPages, setTotalPages] = useState(1)
 
-    useEffect(() => {
-        lista()
-    }, [])
-
     const lista = async () => {
         try {
+
             // const { links, meta, usuarios } = await listaUsuarios()
-            const { links, usuarios } = await listaUsuarios()
+            if (usuario?.role.id === 1) {
+                const { links, usuarios } = await listaUsuarios(currentPage)
+                setOrg(usuarios)
+                setTotalPages(parseInt(pages(links.last), 10))
+            } else if (usuario?.role.id === 2) {
+                const { links, usuarios } = await listaUsuariosOrganizacion(usuario?.organization.id, currentPage)
+                setOrg(usuarios)
+                setTotalPages(parseInt(pages(links.last), 10))
+            }
 
-
-            setOrg(usuarios)
-            setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
             // console.log(e)
         }
@@ -65,6 +81,11 @@ export const TablasUsuarios: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         navigation("/addusuarios")
+    }
+
+    const vermas = (dat: SetStateAction<undefined>) => {
+        setDatos(dat)
+        setIsOpen(true)
     }
 
     return (
@@ -79,10 +100,16 @@ export const TablasUsuarios: React.FC = () => {
                     }} />
                 </div>
             </form>
+            {
+                isOpen && (
+                    <VerMasUsuarios data={datos} setIsOpen={setIsOpen} />
+                )
+            }
             <Table
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
+                fnClick={vermas}
             />
             <Pagination
                 layout="navigation"

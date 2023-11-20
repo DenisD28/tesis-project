@@ -8,10 +8,10 @@ import { ProductsForInventory } from '../../../types/InventoryTypes/ProductsType
 import useListProductsInventory from '../../../hooks/PurchaseHooks/useListProductsInventory'
 import useAddProductsPurchase from '../../../hooks/PurchaseHooks/useAddProductsPurchase'
 
-export default function ModalPurchases({isModalOpen, toggleModal, handleSubmition}: ModalPurchasesProps) {
+export default function ModalPurchases({ isModalOpen, toggleModal, handleSubmition }: ModalPurchasesProps) {
     const { ListProduct } = useListProductsInventory()
-    const { setIdProduct, quantity, setQuantity, unitPrice, setUnitPrice, observation, setObservation, createProduct } = useAddProductsPurchase({handleSubmition, ListProduct, toggleModal})
-    
+    const { setIdProduct, quantity, setQuantity, unitPrice, setUnitPrice, observation, setObservation, createProduct } = useAddProductsPurchase({ handleSubmition, ListProduct, toggleModal })
+
     return (
         <ModalComponent isOpen={isModalOpen} onClose={toggleModal}>
             <main className='grid grid-cols-12 mx-4'>
@@ -58,11 +58,11 @@ export default function ModalPurchases({isModalOpen, toggleModal, handleSubmitio
                     </div>
                     <div className='col-span-12'>
                         <TextareaForm dataTextarea={{
-                                'title': 'Observacion',
-                                'name': 'observacion',
-                                'placeholder': 'Ingrese la observacion',
-                                'value': observation!,
-                                'fnChange': setObservation,
+                            'title': 'Observacion',
+                            'name': 'observacion',
+                            'placeholder': 'Ingrese la observacion',
+                            'value': observation!,
+                            'fnChange': setObservation,
                         }} />
                     </div>
                     <div className='col-span-12'>

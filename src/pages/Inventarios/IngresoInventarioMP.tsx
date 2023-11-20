@@ -49,7 +49,6 @@ export const IngresoInventarioMP = () => {
     const agregar = (id: Inventary) => {
         formProducto.id = id.id
         formProducto.product = id.name
-        console.log(id.product)
         setIsOpen(false)
     }
 

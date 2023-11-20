@@ -3,6 +3,7 @@ import { Post, User, User2, clients, inven, newProduct, organizacion, proveedor,
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 import { DetailsSale } from "../types/SaleTypes/DetailsSale";
+import { user } from "@nextui-org/react";
 
 function getDecryptedToken() {
     const encryptedToken = Cookies.get('authToken');
@@ -217,9 +218,9 @@ export const listaProductos = async (tipo: tipo) => {
     return response.data
 }
 
-export const listaUsuarios = async () => {
+export const listaUsuarios = async (id: number) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}users?`
+    const url = `${import.meta.env.VITE_API_URL}users?page=${id}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -229,6 +230,23 @@ export const listaUsuarios = async () => {
     const response = await axios.get(url, {
         headers: headers
     })
+
+    return response.data
+}
+
+export const listaUsuariosOrganizacion = async (id?: number, page?: number) => {
+    const token = getDecryptedToken();
+    const url = `${import.meta.env.VITE_API_URL}organization/${id}/users?page=${page}`
+
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    }
+
+    const response = await axios.get(url, {
+        headers: headers
+    })
+    console.log(response.data)
 
     return response.data
 }
@@ -602,7 +620,8 @@ export const agregarProveedor = async (prov: proveedor) => {
 
 export const agregarUsuario = async (user: User2) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.name}&email=${user.email}&username=${user.name}&role_id=${user.role}&organization_id=${user.organization}`
+    console.log("rol " + user.id)
+    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.name}&email=${user.email}&username=${user.name}&role_id=${user.role}&organization_id=${user.id}`
 
 
     const headers = {
@@ -615,6 +634,7 @@ export const agregarUsuario = async (user: User2) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
+    console.log(response.data)
 
     return response
 }

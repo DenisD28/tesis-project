@@ -4,10 +4,10 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const images = [
-    'public/pexels-ivan-j.jpg',
-    'public/heather-ford-f1Z9w1efx3w-unsplash.jpg',
-    'public/pexels-photo-4110101.jpeg',
-    'public/pexels-photo-8765706.jpeg',
+    '/pexels-ivan-j.jpg',
+    '/heather-ford-f1Z9w1efx3w-unsplash.jpg',
+    '/pexels-photo-4110101.jpeg',
+    '/pexels-photo-8765706.jpeg',
 ];
 
 export const Imagenes: React.FC = () => {

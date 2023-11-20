@@ -1,7 +1,7 @@
 import React from 'react';
 import "../src/css/index.css"
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Inventarios } from './pages/Inventarios/Inventarios';
 import { IngresoInventarioMP } from './pages/Inventarios/IngresoInventarioMP';
 import { Organizaciones } from './pages/Organizaciones/Organizaciones';
@@ -27,7 +27,7 @@ import ViewInfoUser from './pages/User/ViewInfoUser';
 import ChangePassword from './pages/User/ChangePassword/ChangePassword';
 import EditOrganization from './pages/Organizaciones/EditOrganization/EditOrganization';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <LoginPage />,

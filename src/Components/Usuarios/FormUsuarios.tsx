@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Usuario, listOrg } from "../types.d";
+import { User, Usuario, listOrg } from "../types.d";
 import { agregarUsuario, listaOrganizaciones } from "../../services/Services";
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
+import { ModalOrganizacion } from "../Modal/ModalOrganizacion";
 
 export const FormUsuarios = () => {
-
 
     const [formProducto, setFormProduct] = useState<Usuario>({ id: "", name: "", email: "", username: "", password: "", token: "", organization: "", role: "" })
     const navigation = useNavigate()
     const [data, setOrg] = useState<listOrg>([])
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -61,9 +62,20 @@ export const FormUsuarios = () => {
         }
     }
 
+    const agregar = (id: User) => {
+        formProducto.id = id.id
+        formProducto.organization = id.name
+        setIsOpen(false)
+    }
+
     return (
         <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
-
+            {
+                isOpen && (
+                    <ModalOrganizacion fnAgregar={agregar}
+                        setIsOpen={setIsOpen} />
+                )
+            }
             <div className="flex justify-center items-center flex-col p-2">
                 <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre de la persona *</label>
                 <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre de la persona" onChange={handleInputChange} value={formProducto.name} required />
@@ -84,19 +96,15 @@ export const FormUsuarios = () => {
                     <option value="3">Colaborador</option>
                 </select>
             </div>
-
             <div className="flex justify-center items-center flex-col p-2">
-                <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Organización *</label>
-                <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="organization" id="municipality_id" value={formProducto.organization} required>
-                    <option value="">Selecciona la organizacion</option>
-                    {
-                        data.map(pro => (
-                            <option value={pro.id}>{pro.name}</option>
-                        ))
-                    }
-                </select>
+                <div className="flex justify-center items-center flex-col p-2 mt-4">
+                    <br />
+                    <button className="w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white" type="button" onClick={() => setIsOpen(true)}>Buscar Organizacion</button>
+                </div>
             </div>
             <div className="flex justify-center items-center flex-col p-2">
+                <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Organizacion</label>
+                <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="organization" placeholder="Nombre de la organizacion" onChange={handleInputChange} value={formProducto.organization} readOnly />
             </div>
             <ButtonForm dataButton={{
                 'title': 'Cancelar',

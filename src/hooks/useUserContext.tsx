@@ -1,15 +1,52 @@
-// import { useContext } from "react";
-// import { UserContext } from "../data/UserContext"
+import React, {
+    ReactNode,
+    createContext, useContext, useEffect, useState
+} from 'react';
+import { User } from '../Components/types.d';
+import { infoGeneral } from '../services/Services';
 
-// const useUserContext = () => {
-//     const userContext = useContext(UserContext)
+// Definir el tipo para el contexto
+interface GlobalContextType {
+    // Agrega las propiedades que quieras compartir globalmente
+    usuario: User | undefined
+}
 
-//     if (userContext === undefined) {
-//         throw new Error("Contexto No Creado")
-//     }
+// Crear el contexto
+const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
-//     return useUserContext
-// }
+// Crear un proveedor para el contexto
+export const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
-// export default useUserContext
+    const [usuario, setUser] = useState<User>()
 
+    useEffect(() => {
+        getInfo()
+    }, [])
+
+    const getInfo = async () => {
+
+        try {
+            const { usuario } = await infoGeneral()
+            setUser(usuario)
+        } catch (e) {
+        }
+    }
+
+    // Proporcionar el contexto y los valores
+    return (
+        <GlobalContext.Provider value={{ usuario }}>
+            {children}
+        </GlobalContext.Provider>
+    );
+};
+
+// Crear un hook personalizado para usar el contexto
+export const useGlobalContext = () => {
+    const context = useContext(GlobalContext);
+
+    if (!context) {
+        throw new Error('useGlobalContext debe ser utilizado dentro de un GlobalProvider');
+    }
+
+    return context;
+};
