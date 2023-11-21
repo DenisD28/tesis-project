@@ -58,7 +58,7 @@ export const FormProducto = () => {
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Tipo unidad de medida *</label>
                             <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="measurement_type" id="measurement_type" value={formProducto.measurement_type} required>
                                 <option value="">Selecciona el tipo de unidad de medida</option>
-                                <option value="Unidad">Unidad</option>
+                                <option value="Volumen">Volumen</option>
                                 <option value="Longitud">Longitud</option>
                                 <option value="Masa/Peso">Masa/Peso</option>
                                 <option value="Unidad">Unidad</option>

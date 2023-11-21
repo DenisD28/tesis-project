@@ -43,6 +43,7 @@ export const TablasUsuarios: React.FC = () => {
     const { usuario } = useGlobalContext()
 
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
         lista()
@@ -53,18 +54,15 @@ export const TablasUsuarios: React.FC = () => {
         lista()
     };
 
-    const [totalPages, setTotalPages] = useState(1)
 
     const lista = async () => {
         try {
-
-            // const { links, meta, usuarios } = await listaUsuarios()
             if (usuario?.role.id === 1) {
                 const { links, usuarios } = await listaUsuarios(currentPage)
                 setOrg(usuarios)
                 setTotalPages(parseInt(pages(links.last), 10))
             } else if (usuario?.role.id === 2) {
-                const { links, usuarios } = await listaUsuariosOrganizacion(usuario?.organization.id, currentPage)
+                const { links, usuarios } = await listaUsuariosOrganizacion(currentPage)
                 setOrg(usuarios)
                 setTotalPages(parseInt(pages(links.last), 10))
             }

@@ -57,6 +57,7 @@ export const TablasOrganizaciones: React.FC = () => {
             const { links, organizaciones } = await TablaOrganizacion(currentPage)
 
             setOrg(organizaciones)
+            console.log(links)
             setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
             // console.log(e)
