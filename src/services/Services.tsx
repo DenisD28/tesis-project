@@ -246,7 +246,6 @@ export const listaUsuariosOrganizacion = async (id?: number, page?: number) => {
     const response = await axios.get(url, {
         headers: headers
     })
-    console.log(response.data)
 
     return response.data
 }
@@ -576,7 +575,7 @@ export const newAddProduct = async (newProducto: newProduct) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
-    return response.data
+    return response
 }
 
 export const agregarCliente = async (cliente: clients) => {
@@ -635,9 +634,7 @@ export const agregarProveedor = async (prov: proveedor) => {
 
 export const agregarUsuario = async (user: User2) => {
     const token = getDecryptedToken();
-    console.log("rol " + user.id)
-    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.name}&email=${user.email}&username=${user.name}&role_id=${user.role}&organization_id=${user.id}`
-
+    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.name}&email=${user.email}&username=${user.username}&role_id=${user.role}&organization_id=${user.id}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -649,7 +646,6 @@ export const agregarUsuario = async (user: User2) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
-    console.log(response.data)
 
     return response
 }
@@ -678,7 +674,6 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
         console.error('Error', error)
     })
 
-    console.log(response)
     return response
 
 }

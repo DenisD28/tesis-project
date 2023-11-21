@@ -69,7 +69,7 @@ export const FormAddProveedores = () => {
             await agregarProveedor(formProducto)
             navigation("/")
         } catch (e: any) {
-            toast.error(e.message)
+            toast.error(e.response.data.mensaje)
         }
     }
 
@@ -87,11 +87,11 @@ export const FormAddProveedores = () => {
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="Telefono Principal">Telefono Principal</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="phone_main" placeholder="Escribe el nombre de la organizacion" />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" onChange={handleInputChange} name="phone_main" placeholder="Escribe el nombre de la organizacion" />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="Telefono Secundario">Telefono Secundario</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="second_phone" placeholder="Escribe el telefono secundario" />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" onChange={handleInputChange} name="second_phone" placeholder="Escribe el telefono secundario" />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento *</label>

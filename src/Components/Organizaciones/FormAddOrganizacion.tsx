@@ -12,14 +12,6 @@ export const FormAddOrganizacion = () => {
     const [lista, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
 
-    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const { name, value } = event.target;
-    //     setFormProduct((prevData) => ({
-    //         ...prevData,
-    //         [name]: value,
-    //     }));
-    // };
-
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
         if (name === "city_id") {
@@ -30,14 +22,6 @@ export const FormAddOrganizacion = () => {
             [name]: value,
         }));
     };
-
-    // const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     const { name, value } = event.target;
-    //     setFormProduct((prevData) => ({
-    //         ...prevData,
-    //         [name]: value,
-    //     }));
-    // };
 
     useEffect(() => {
         const lista = async () => {
@@ -68,7 +52,7 @@ export const FormAddOrganizacion = () => {
             await agregarOrganizacion(formProducto)
 
         } catch (e: any) {
-            toast.error(e.message)
+            toast.error(e.response.data.message)
         }
     }
 
