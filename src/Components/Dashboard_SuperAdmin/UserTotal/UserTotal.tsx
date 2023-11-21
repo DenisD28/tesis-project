@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function UserTotal({ countUser }: { countUser: number }) {
   return (
     <article className="md:col-span-4 col-span-full h-full rounded-md border-2 gap-4 flex justify-center items-center flex-col p-8">

@@ -1,6 +1,5 @@
 import InputsForm from "../../../Components/Forms/InputsComponents/InputsForm";
 import SelectForm from "../../../Components/Forms/SelectComponents/SelectForm";
-import FileInputComponent from "../../../Components/Forms/FileInputComponent/FileInputComponent";
 import ButtonForm from "../../../Components/Forms/ButtonComponents/ButtonForm";
 import useGetInfoOrganization from "./useGetInfoOrganization";
 import useUpdateOrganization from "./useUpdateOrganization";
@@ -24,8 +23,6 @@ export default function EditOrganization() {
     setPhone_main,
     phone_secondary,
     setPhone_secondary,
-    imageOld,
-    setImage,
     listMunicipality,
     listSectors,
     image,

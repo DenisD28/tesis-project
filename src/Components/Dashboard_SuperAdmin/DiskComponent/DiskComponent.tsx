@@ -1,4 +1,3 @@
-import React from "react";
 import DiskChart from "../../Chartjs/Disk/DiskChar";
 
 interface DiskComponentProps {

@@ -1,4 +1,3 @@
-import React from "react";
 import BoxLastLogin from "./BoxLastLogin";
 
 interface ListLastLoginProps {
