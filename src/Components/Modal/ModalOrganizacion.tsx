@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import React, { useEffect, useState } from "react"
-import { User, tipo } from "../types.d";
+import { User } from "../types.d";
 import { TablaOrganizacion } from "../../services/Services";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
@@ -37,7 +37,6 @@ function pages(url: string) {
 export const ModalOrganizacion: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     const [data, setOrg] = useState([])
-    const [formProducto, setFormProduct] = useState<tipo>({ type: "" })
     const [totalPages, setTotalPages] = useState(1)
 
     const [currentPage, setCurrentPage] = useState(1);

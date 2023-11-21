@@ -233,9 +233,9 @@ export const listaUsuarios = async (id: number) => {
     return response.data
 }
 
-export const listaUsuariosOrganizacion = async (id?: number, page?: number) => {
+export const listaUsuariosOrganizacion = async (page: number) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}organization/${id}/users?page=${page}`
+    const url = `${import.meta.env.VITE_API_URL}organization_users?page=${page}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -609,6 +609,7 @@ export const agregarOrganizacion = async (org: organizacion) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
+    console.log(response.data)
 
     return response
 }
@@ -649,9 +650,10 @@ export const agregarUsuario = async (user: User2) => {
     return response
 }
 
-export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: string, Cliente: string) => {
+export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: string, Cliente: string, TipoPago: string) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note=prueba`
+    console.log(TipoPago)
+    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note=prueba&payment_method=contado&payment_status=cancelado`
 
 
     const headers = {

@@ -1,11 +1,11 @@
 import BoxLastLogin from "./BoxLastLogin";
 
 interface ListLastLoginProps {
-    lastLogin: {
-        name: string;
-        last_login_at: string;
-        tiempo_pasado: string;
-      }[];
+  lastLogin: {
+    name: string;
+    last_login_at: string;
+    tiempo_pasado: string;
+  }[];
 }
 
 export default function ListLastLogin({ lastLogin }: ListLastLoginProps) {

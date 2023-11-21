@@ -6,18 +6,21 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
 import { ModalOrganizacion } from "../Modal/ModalOrganizacion";
 import { useGlobalContext } from "../../hooks/useUserContext";
 import toast, { Toaster } from "react-hot-toast";
+import { ModalUsaurio } from "../Modal/ModalUsuario";
 
 export const FormUsuarios = () => {
 
     const [formProducto, setFormProduct] = useState<Usuario>({ id: "", name: "", email: "", username: "", password: "", token: "", organization: "", role: "" })
     const navigation = useNavigate()
     const [data, setOrg] = useState<listOrg>([])
-    const [isOpen, setIsOpen] = useState(false);
-    const [isShow, setIsShow] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
     const { usuario } = useGlobalContext()
+    const [userData, setUserData] = useState();
+    const [isShow, setIsShow] = useState(false)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+
         setFormProduct((prevData) => ({
             ...prevData,
             [name]: value,
@@ -33,15 +36,11 @@ export const FormUsuarios = () => {
     };
 
     useEffect(() => {
-        if (usuario?.role.id === 1) {
-            setIsShow(true)
-        }
         lista()
     }, [])
 
     const lista = async () => {
         try {
-            // const { links, meta, organizaciones } = await listaOrganizaciones()
             const { organizaciones } = await listaOrganizaciones()
             setOrg(organizaciones)
         } catch (e) {
@@ -53,15 +52,22 @@ export const FormUsuarios = () => {
         if (usuario?.role.id == 2) {
             formProducto.id = usuario.organization.id.toString()
             try {
-                await agregarUsuario(formProducto)
-                navigation("/usuarios")
+                const response = await agregarUsuario(formProducto)
+                console.log(response.data)
+                setUserData(response.data)
+                setIsShow(true)
+                limpiar()
             } catch (e: any) {
                 toast.error(e.response.data.message)
             }
         } else {
             try {
-                await agregarUsuario(formProducto)
-                navigation("/usuarios")
+
+                const response = await agregarUsuario(formProducto)
+                console.log(response.data)
+                setUserData(response.data)
+                setIsShow(true)
+                limpiar()
             } catch (e: any) {
                 toast.error(e.response.data.message)
             }
@@ -74,6 +80,13 @@ export const FormUsuarios = () => {
         setIsOpen(false)
     }
 
+    const limpiar = () => {
+        formProducto.id = ""
+        formProducto.email = ""
+        formProducto.name = ""
+        formProducto.username = ""
+    }
+
     return (
         <>
             <div> <Toaster /></div >
@@ -82,6 +95,12 @@ export const FormUsuarios = () => {
                     isOpen && (
                         <ModalOrganizacion fnAgregar={agregar}
                             setIsOpen={setIsOpen} />
+                    )
+                }
+                {
+                    isShow && (
+                        <ModalUsaurio data={userData}
+                            setIsOpen={setIsShow} />
                     )
                 }
                 <div className="flex justify-center items-center flex-col p-2">
@@ -105,7 +124,7 @@ export const FormUsuarios = () => {
                     </select>
                 </div>
                 {
-                    isShow ? (<>
+                    usuario?.role.id === 1 ? (<>
                         <div className="flex justify-center items-center flex-col p-2">
                             <div className="flex justify-center items-center flex-col p-2 mt-4">
                                 <br />

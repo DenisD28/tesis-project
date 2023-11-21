@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -26,7 +25,7 @@ export const Imagenes: React.FC = () => {
     }, []);
 
     return (
-        <div className="w-full bg-gray-200 ">
+        <div className="w-full h-full bg-gray-200 ">
             <div className="max-w-screen-xl mx-auto">
                 <Carousel
                     showThumbs={false}

@@ -1,7 +1,7 @@
 
 interface BoxLastLoginProps {
-    name: string;
-    tiempo_pasado: string;
+  name: string;
+  tiempo_pasado: string;
 }
 
 export default function BoxLastLogin({ name, tiempo_pasado }: BoxLastLoginProps) {

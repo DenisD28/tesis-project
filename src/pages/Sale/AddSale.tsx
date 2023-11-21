@@ -31,8 +31,7 @@ export default function AddSale() {
 
         console.log(DetailsSale)
         try {
-            await agregarVenta(DetailsSale, NumeroFactura, Cliente)
-
+            await agregarVenta(DetailsSale, NumeroFactura, Cliente, TipoPago)
         } catch (e: any) {
             toast.error(e)
         }
