@@ -53,14 +53,14 @@ export default function EditOrganization() {
         Informaci&oacute;n de la organizaci&oacute;n
       </h3>
       <section className="grid lg:grid-cols-2">
-        <FileInputComponent
+        {/* <FileInputComponent
           label="Logo"
           name="file"
           isRequired={true}
           isDisabled={false}
           fnChange={setImage}
           url_image={imageOld}
-        />
+        /> */}
         <InputsForm
           DataInputs={{
             name: "name",
