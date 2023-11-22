@@ -44,7 +44,6 @@ export const FormAddProveedores = () => {
         const lista = async () => {
             try {
                 const { ciudades } = await departamentos()
-
                 setDepartamento(ciudades)
             } catch (e) {
                 // console.log(e)

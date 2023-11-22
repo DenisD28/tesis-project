@@ -13,6 +13,22 @@ const headers: HeadType[] = [
     { name: "Stock", prop: "stock" },
 ]
 
+// function pages(url: string) {
+//     let lastDigit = ""
+//     // Utiliza una expresión regular para encontrar el último dígito en la URL
+//     const matches = url.match(/\d+$/);
+
+//     if (matches && matches.length > 0) {
+//         // El último dígito se encuentra en matches[0]
+//         lastDigit = matches[0];
+//     } else {
+//         // console.log("No se encontraron dígitos en la URL.");
+//     }
+
+//     return lastDigit
+// }
+
+
 const titleTable = 'Productos Terminados'
 
 export const TablaProductoTerminado: React.FC = () => {
@@ -20,25 +36,32 @@ export const TablaProductoTerminado: React.FC = () => {
     const navigate = useNavigate()
     const [data, setProduct] = useState([])
     const navigation = useNavigate()
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const onPageChange = (page: number) => {
+    //     setCurrentPage(page)
+    //     lista()
+    // };
+
+    // const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
-        const lista = async () => {
-            try {
-                // const { links, meta, inventario } = await listaProductoTerminado()
-                const { inventario } = await listaProductoTerminado()
-
-                setProduct(inventario)
-            } catch (e) {
-                // console.log(e)
-            }
-        }
-
         lista()
     }, [])
 
+    const lista = async () => {
+        try {
+            // const { links, meta, inventario } = await listaProductoTerminado()
+            const { inventario } = await listaProductoTerminado()
+            setProduct(inventario)
+            // setTotalPages(parseInt(pages(links.last), 10))
+        } catch (e) {
+            // console.log(e)
+        }
+    }
+
     const agregar = (data?: Inventary) => {
         localStorage.setItem("idProducto", JSON.stringify(data?.id))
-        localStorage.setItem("nombre", JSON.stringify(data?.name))
+        localStorage.setItem("nombre", JSON.stringify(data?.product))
         localStorage.setItem("codigo", JSON.stringify(data?.code))
         navigate("/ingresoProducto")
     }

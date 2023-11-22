@@ -1,70 +1,58 @@
-import { useEffect, useState } from "react"
-import { Inventary, compra, invent, purchase } from "../../Components/types.d"
-import { agregarProductoTerminado, listaDetalleCompra, listaInventario } from "../../services/Services"
+import { useState } from "react"
+import { Inventary, invent, purchase } from "../../Components/types.d"
+import { agregarProductoTerminado, listaDetalleCompra } from "../../services/Services"
 import { useNavigate } from "react-router-dom"
 import { HeadType } from "../../Components/Table/types/HeadType"
 import Head from "../../Components/Table/Head/Head"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
+import { ModalInventario } from "../../Components/Modal/ModalInventario"
+import toast, { Toaster } from "react-hot-toast"
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
     { name: "Nombre", prop: "product" },
     { name: "Stock", prop: "stock" },
-    { name: "Accion", prop: "accion" }
 ]
 
-const titleTable = 'Materia Prima'
+const titleTable = 'Materia Prima Utilizada'
 
 export const SalidaDeMateriaPrima: React.FC = () => {
-    const [formProducto, setFormProduct] = useState<compra>({ detail_purchase_id: 0, quantity: 0 })
     const [listaCompra, setListaCompra] = useState<purchase[]>([])
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState<Inventary[]>([])
     const [list] = useState<invent[]>([])
     const [cantidad, setCantidad] = useState("")
-    // let id = localStorage.getItem('idProducto')
-    // let nombre = localStorage.getItem('nombre')
+    const [isOpen, setIsOpen] = useState(false);
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const lista = async () => {
-            try {
-                // const { links, meta, inventario } = await listaInventario()
-                const { inventario } = await listaInventario()
-
-                setProduct(inventario)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        lista()
-    }, [])
 
     const handleInputChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setCantidad(value);
     }
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            await agregarProductoTerminado(JSON.stringify(list), cantidad)
-            navigate("/pTerminado")
+            if (cantidad != "") {
+                if (product.length != 0) {
+                    await agregarProductoTerminado(JSON.stringify(list), cantidad)
+                    navigate("/pTerminado")
+                } else {
+                    toast.error("Debe agregar la materia prima utilizada")
+                }
+            } else {
+                toast.error("Ingrese la cantidad de producto terminado")
+            }
         } catch (e) {
             console.log(e)
         }
     }
 
     const agregar = (dato: Inventary) => {
+        console.log(dato)
+        setProduct([...product, dato])
         detalleCompra(dato.id)
+        setIsOpen(false)
     }
 
     const detalleCompra = async (id: number) => {
@@ -76,8 +64,13 @@ export const SalidaDeMateriaPrima: React.FC = () => {
         }
     }
 
+    const Eliminar = (dato: Inventary) => {
+        setProduct(product.filter(item => item !== dato));
+    }
+
     return (
         <>
+            <div> <Toaster /></div >
             <div className="card">
                 <p><span>{localStorage.getItem('codigo')}</span></p>
                 <div className="producto">
@@ -89,10 +82,19 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                     <input onChange={handleInputChange2} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" name="cantidad" placeholder="Ingrese la cantidad" min={0} value={cantidad} />
                 </div>
             </div>
-
+            {
+                isOpen && (
+                    <ModalInventario fnAgregar={agregar}
+                        setIsOpen={setIsOpen} />
+                )
+            }
             {/* primeratabla */}
             <div className='px-8 rounded-xl bg-white md:h-96 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
                 <h1 className='sm:text-2xl text-lg font-bold my-4 h-16 w-full sticky top-0 left-0 bg-white pt-4 text-[#4F46E5]'>{titleTable}</h1>
+                <div className="flex justify-center items-center flex-col p-2 mt-4">
+                    <br />
+                    <button className="w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white" type="button" onClick={() => setIsOpen(true)}>Buscar Producto</button>
+                </div>
                 <table className='w-full h-full'>
                     <Head headers={headers} />
                     <tbody>
@@ -110,13 +112,9 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                                         }
                                     </td>
                                 ))}
-                                <td>
-                                    <div className="flex justify-center items-center flex-col p-2">
-                                        <input onChange={handleInputChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" name="quantity" placeholder="Ingrese la cantidad" min={0} value={formProducto.quantity} />
-                                    </div>
-                                </td>
                                 <td className="px-6 py-4">
-                                    <button onClick={() => agregar(dat)}>Agregar</button>
+                                    {/* <button onClick={() => agregar(dat)}>Agregar</button> */}
+                                    <button onClick={() => Eliminar(dat)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))}

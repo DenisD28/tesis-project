@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
-import { listaInventario } from "../../services/Services"
+import { ListaUnidades, listaInventario } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { Table } from "../Table/Table"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
@@ -55,7 +55,6 @@ export const Tablas: React.FC = () => {
         try {
             // const { links, meta, inventario } = await listaInventario()
             const { links, inventario } = await listaInventario()
-
             setProduct(inventario)
             setTotalPages(parseInt(pages(links.last), 10))
         } catch (e) {
@@ -73,7 +72,6 @@ export const Tablas: React.FC = () => {
         setIsOpen(true)
     }
     //**********************************Consulta a base de datos******************************************
-
 
     return (
         <>

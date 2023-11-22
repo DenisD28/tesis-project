@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Inventary, inven } from "../../Components/types.d"
-import { agregarInventarioPT } from "../../services/Services"
+import { Inventary, Product, inven } from "../../Components/types.d"
+import { ListaUnidades, agregarInventarioPT } from "../../services/Services"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"
@@ -11,6 +11,7 @@ export const IngresoInventarioPT = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
+    const [lista, setUnidades] = useState([]);
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +29,16 @@ export const IngresoInventarioPT = () => {
             [name]: value,
         }));
     };
+
+    const listarUnidades = async (unidad: string) => {
+        try {
+            const { conversiones } = await ListaUnidades(unidad)
+            console.log(conversiones)
+            setUnidades(conversiones)
+        } catch (e) {
+            // console.log(e)
+        }
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -47,10 +58,10 @@ export const IngresoInventarioPT = () => {
         setFormProduct({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     }
 
-    const agregar = (id: Inventary) => {
+    const agregar = (id: Product) => {
         formProducto.id = id.id
         formProducto.product = id.name
-        console.log(id.product)
+        listarUnidades(id.measurement_type)
         setIsOpen(false)
     }
 
@@ -84,9 +95,11 @@ export const IngresoInventarioPT = () => {
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Unidad de medida *</label>
                             <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement} required>
                                 <option value="">Selecciona la unidad de medida</option>
-                                <option value="uni">Unidad</option>
-                                <option value="kg">Kilogramo</option>
-                                <option value="lb">Libra</option>
+                                {
+                                    lista.map(pro => (
+                                        <option key={pro} value={pro}>{pro}</option>
+                                    ))
+                                }
                             </select>
                         </div>
 

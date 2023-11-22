@@ -100,8 +100,6 @@ export interface clientes {
     details: string
 }
 
-
-
 export interface Proveedores {
     id: number
     name: string
@@ -113,6 +111,13 @@ export interface Proveedores {
     municipality_id: number
     contact_name: string
 }
+
+export interface Unidades {
+    id: number
+    nombre: string
+}
+
+export type listUnidades = Unidades[]
 
 export type compra = Pick<purchase, 'detail_purchase_id' | 'quantity'>
 
@@ -153,3 +158,4 @@ export type listInven = Pick<Producto, 'id' | 'quantity'>[]
 export type invent = Pick<purchase, 'detail_purchase_id' | 'quantity' | 'observation'>
 export type purchases = Pick<purchase, 'id' | 'provider' | 'date' | 'total'>[]
 export type newProduct = Pick<Producto, 'name' | 'measurement_type'>
+export type Product = Pick<Producto, 'id' | 'name' | 'measurement_type'>

@@ -1,47 +1,42 @@
 import "../../css/App.css"
-import React, { useState } from "react"
-import { Product, tipo } from "../types.d";
-import { listaProductos } from "../../services/Services";
+import React, { useEffect, useState } from "react"
+import { Inventary } from "../types.d";
+import { listaInventario } from "../../services/Services";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 
 interface Props {
-    fnAgregar(dat: Product): void
+    fnAgregar(dat: Inventary): void
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
-    { name: "Nombre", prop: "name" },
+    { name: "Nombre", prop: "product" },
+    { name: "Stock", prop: "stock" },
 ]
 
 const titleTable = 'Materia Prima'
 
-export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
+export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
-    const [formProducto, setFormProduct] = useState<tipo>({ type: "" })
     const [data, setProduct] = useState([])
+    const [cantidad, setCantidad] = useState("")
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    useEffect(() => {
         const lista = async () => {
             try {
-                const response = await listaProductos(formProducto)
-                setProduct(response)
-                //console.log(response)
+                const { inventario } = await listaInventario()
+                setProduct(inventario)
             } catch (e) {
-                // console.log(e)
             }
         }
         lista();
+    })
+
+    const handleInputChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setCantidad(value);
     }
 
     return (<>
@@ -53,7 +48,7 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                     {/*header*/}
                     <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                         <h3 className="text-3xl font-semibold">
-                            Lista de productos
+                            Lista de inventario
                         </h3>
                         <button
                             className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -66,16 +61,6 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                     </div>
                     {/*body*/}
                     <div className="relative p-6 flex-auto">
-                        <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-1'>
-                            <div className="flex justify-center items-center flex-col p-2">
-                                <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Categoria</label>
-                                <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="type" value={formProducto.type} onChange={handleInputChange} placeholder="Escribe la categoria del producto" required />
-                            </div>
-                            <div className="flex justify-center items-center flex-col p-2 mt-4">
-                                <br />
-                                <button className={`w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-green-600 text-white`} type="submit">Buscar</button>
-                            </div>
-                        </form>
                         <div className='px-8 rounded-xl bg-white md:h-50 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
                             <h1 className='sm:text-2xl text-lg font-bold my-4 h-16 w-full sticky top-0 left-0 bg-white pt-4 text-[#4F46E5]'>{titleTable}</h1>
                             <table className='w-full h-full'>
@@ -95,6 +80,11 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                                                     }
                                                 </td>
                                             ))}
+                                            <td>
+                                                <div className="flex justify-center items-center flex-col p-2">
+                                                    <input onChange={handleInputChange2} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" name="cantidad" placeholder="Ingrese la cantidad" min={0} value={cantidad} />
+                                                </div>
+                                            </td>
                                             <td>
                                                 <button onClick={() => fnAgregar(dat)}>Agregar</button>
                                             </td>
