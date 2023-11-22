@@ -650,11 +650,9 @@ export const agregarUsuario = async (user: User2) => {
     return response
 }
 
-export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: string, Cliente: string, TipoPago: string) => {
+export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: string, Nota: String, Cliente: string, TipoPago: string, PaymentStatus: string) => {
     const token = getDecryptedToken();
-    console.log(TipoPago)
-    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note=prueba&payment_method=contado&payment_status=cancelado`
-
+    const url = `${import.meta.env.VITE_API_URL}sale?client_id=${Cliente}&number_bill=${NumeroFactura}&note=${Nota}&payment_method=${TipoPago}&payment_status=${PaymentStatus}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
