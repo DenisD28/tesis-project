@@ -33,7 +33,7 @@ export default function GananciasMensuales() {
     }
     const label = last30Days.reverse();
     const data = [];
-    const ganancias = EarningsForMonth?.data || [];
+    const ganancias = EarningsForMonth!==undefined ? EarningsForMonth : [];
     for(let i = 0; i < 30; i++){
         let total = 0;
         for(let j = 0; j < ganancias.length; j++){
