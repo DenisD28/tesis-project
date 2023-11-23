@@ -57,6 +57,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
     const detalleCompra = async (id: number) => {
         try {
             const response = await listaDetalleCompra(id)
+            console.log(response)
             setListaCompra([...listaCompra, response.detalle_de_compra])
         } catch (e) {
             console.log(e)
@@ -140,7 +141,6 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                     }} />
                 </div>
             </form>
-
         </>
     )
 }

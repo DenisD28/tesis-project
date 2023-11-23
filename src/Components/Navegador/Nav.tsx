@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import "../../css/nav.css"
 import { logout } from "../../services/Services"
 import { useNavigate } from "react-router-dom"
 import BoxOptions from "./BoxOptions/BoxOptions"
-import useDataUser from "./useDataUser"
+import { useGlobalContext } from "../../hooks/useUserContext"
 
 export const Nav = () => {
-    const { userInfo, getInfo } = useDataUser()
     const navigation = useNavigate()
 
-    useEffect(() => {
-        getInfo()
-    }, [])
+    const { usuario } = useGlobalContext()
 
     const salir = () => {
         try {
@@ -21,7 +18,7 @@ export const Nav = () => {
             // console.log(e)
         }
     }
-    let InitialsName = userInfo?.name[0]
+    let InitialsName = usuario?.name[0]
     const [test, setTest] = useState(false)
     return (
         <>
@@ -39,12 +36,12 @@ export const Nav = () => {
                     <div className="div-user gap-4" onMouseEnter={() => { setTest(true) }} onMouseLeave={() => { setTest(false) }}>
                         <div className="userSiglas flex justify-center items-center font-medium uppercase"><p>{InitialsName}</p></div>
                         <div>
-                            <div className="nombre">{userInfo?.name}</div>
-                            <div className="Rol">{userInfo?.role.name}</div>
+                            <div className="nombre">{usuario?.name}</div>
+                            <div className="Rol">{usuario?.role.name}</div>
                         </div>
                         {
                             test
-                                ? <BoxOptions name={userInfo?.name} role={userInfo?.role.name} InitialsName={InitialsName} fnLogout={salir} />
+                                ? <BoxOptions name={usuario?.name} role={usuario?.role.name} InitialsName={InitialsName} fnLogout={salir} />
                                 : null
                         }
                         <div className="logout">

@@ -1,31 +1,16 @@
 import "../../css/menu.css"
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { User } from "../types.d"
-import { infoGeneral } from "../../services/Services"
 import { routesMain, routesInventory } from "../../routes/routes"
+import { useGlobalContext } from "../../hooks/useUserContext"
 
 export const Menu = () => {
 
-    const [userInfo, setInfo] = useState<User>()
-
-    useEffect(() => {
-        const getInfo = async () => {
-
-            try {
-                const { usuario } = await infoGeneral()
-
-                setInfo(usuario)
-            } catch (e) {
-            }
-        }
-        getInfo()
-    }, [])
+    const { usuario } = useGlobalContext()
 
     return (<>
         <div className="Menu">
             <div className="organizacion">
-                <h2>{userInfo?.organization?.name}</h2>
+                <h2>{usuario?.organization?.name}</h2>
             </div>
             <div className="items">
                 <div className="title">
@@ -33,7 +18,7 @@ export const Menu = () => {
                 </div>
                 <ul className="flex justify-start gap-1 flex-col">
                     {
-                        userInfo?.role.name === "admin" ? (
+                        usuario?.role.name === "admin" ? (
                             routesMain.map((item, index) => {
                                 return (
                                     item.type === "tipo2" ? (
@@ -56,7 +41,7 @@ export const Menu = () => {
                                 )
                             })
                         ) : (
-                            userInfo?.role.name === "super_admin" ? (
+                            usuario?.role.name === "super_admin" ? (
                                 routesMain.map((item, index) => {
                                     return (
 
@@ -90,7 +75,7 @@ export const Menu = () => {
                                     )
                                 })
                             ) : (
-                                userInfo?.role.name === "colaborador" && (
+                                usuario?.role.name === "colaborador" && (
                                     routesMain.map((item, index) => {
                                         return (
 
@@ -137,7 +122,7 @@ export const Menu = () => {
                 </div>
                 <ul className="flex justify-start gap-1 flex-col">
                     {
-                        userInfo?.role.name === "admin" ? (
+                        usuario?.role.name === "admin" ? (
                             routesInventory.map((item, index) => {
                                 return (
                                     item.type === "tipo2" ? (
@@ -160,7 +145,7 @@ export const Menu = () => {
                                 )
                             })
                         ) : (
-                            userInfo?.role.name === "super_admin" ? (
+                            usuario?.role.name === "super_admin" ? (
                                 routesInventory.map((item, index) => {
                                     return (
 
@@ -184,7 +169,7 @@ export const Menu = () => {
                                     )
                                 })
                             ) : (
-                                userInfo?.role.name === "colaborador" && (
+                                usuario?.role.name === "colaborador" && (
                                     routesInventory.map((item, index) => {
                                         return (
 
