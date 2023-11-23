@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { User, Usuario, listOrg } from "../types.d";
-import { agregarUsuario, listaOrganizaciones } from "../../services/Services";
+import { useState } from "react";
+import { User, Usuario } from "../types.d";
+import { agregarUsuario } from "../../services/Services";
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
 import { ModalOrganizacion } from "../Modal/ModalOrganizacion";
 import { useGlobalContext } from "../../hooks/useUserContext";
@@ -11,8 +10,6 @@ import { ModalUsaurio } from "../Modal/ModalUsuario";
 export const FormUsuarios = () => {
 
     const [formProducto, setFormProduct] = useState<Usuario>({ id: "", name: "", email: "", username: "", password: "", token: "", organization: "", role: "" })
-    const navigation = useNavigate()
-    const [data, setOrg] = useState<listOrg>([])
     const [isOpen, setIsOpen] = useState(false)
     const { usuario } = useGlobalContext()
     const [userData, setUserData] = useState();
@@ -35,17 +32,7 @@ export const FormUsuarios = () => {
         }));
     };
 
-    useEffect(() => {
-        lista()
-    }, [])
 
-    const lista = async () => {
-        try {
-            const { organizaciones } = await listaOrganizaciones()
-            setOrg(organizaciones)
-        } catch (e) {
-        }
-    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()

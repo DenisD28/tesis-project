@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Inventary, Product, inven } from "../../Components/types.d"
+import { Product, inven } from "../../Components/types.d"
 import { ListaUnidades, agregarInventarioPT } from "../../services/Services"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"

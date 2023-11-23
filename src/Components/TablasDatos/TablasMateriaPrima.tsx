@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
-import { ListaUnidades, listaInventario } from "../../services/Services"
+import { listaInventario } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { Table } from "../Table/Table"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
