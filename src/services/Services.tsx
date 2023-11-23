@@ -708,172 +708,89 @@ export const listaDetalleCompra = async (id: number) => {
     return response.data
 }
 
-export const descargarReporte = async () => {
+export const getProducts = async (type: string) => {
     const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}export_sql/3`;
+    const url = `${import.meta.env.VITE_API_URL}inventory/${type}/list`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
 
-    fetch(apiUrl, { headers })
-        .then(response => {
-            if (response.ok) {
-                return response.blob();
-            } else {
-                throw new Error('Error en la solicitud: ${ response.status }');
-            }
-        })
-        .then(blobData => {
-            const url = window.URL.createObjectURL(blobData);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Base.sql'; // Nombre del archivo
-            a.style.display = 'none';
+    const response = await axios.get(url, {
+        headers: headers
+    })
 
-            document.body.appendChild(a);
-            a.click();
-
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    return response.data
 }
 
-export const descargarReporteInventario = async () => {
+export const DownloadSQL = async () => {
     const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/MP`;
+    const url = `${import.meta.env.VITE_API_URL}export/sql`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json',
     }
 
-    fetch(apiUrl, { headers })
-        .then(response => {
-            if (response.ok) {
-                return response.blob();
-            } else {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-        })
-        .then(blobData => {
-            const url = window.URL.createObjectURL(blobData);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Inventario.xlsx'; // Nombre del archivo
-            a.style.display = 'none';
+    fetch(url, {headers})
+    .then(response => {
+      if (response.ok) {
+        return response.blob();
+      } else {
+        throw new Error(`Error en la solicitud: ${response.status}`);
+      }
+    })
+    .then(blobData => {
+      const url = window.URL.createObjectURL(blobData);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'BaseDatos.sql'; 
+      a.style.display = 'none';
 
-            document.body.appendChild(a);
-            a.click();
+      document.body.appendChild(a);
+      a.click();
 
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+      window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
-export const descargarReporteInventarioMenosVendido = async () => {
+export const DownloadReport = async (endpoint: string, nameFile: string, fromDate: string, toDate: string, product: string) => {
     const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/Low`;
-
+    const url = import.meta.env.VITE_API_URL+'complete/export/'+endpoint+'?fromDate="'+fromDate+'"&toDate="'+toDate+'"&product='+product+'';
     const headers = {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     }
 
-    fetch(apiUrl, { headers })
-        .then(response => {
-            if (response.ok) {
-                return response.blob();
-            } else {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-        })
-        .then(blobData => {
+    fetch(url, {headers})
+    .then(response => {
+        if (response.ok) {
+            return response.blob();
+        } else {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+    })
+    .then(blobData => {
+        if (blobData.size > 0) {  // Verifica que el Blob contenga datos
             const url = window.URL.createObjectURL(blobData);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'InventarioMenosVendido.xlsx'; // Nombre del archivo
+            a.download = `${nameFile}.xlsx`;
             a.style.display = 'none';
 
             document.body.appendChild(a);
             a.click();
 
             window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
+        } else {
+            throw new Error('El Blob no contiene datos válidos.');
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
-export const descargarReporteCompras = async () => {
-    const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/Purcharse`;
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    fetch(apiUrl, { headers })
-        .then(response => {
-            if (response.ok) {
-                return response.blob();
-            } else {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-        })
-        .then(blobData => {
-            const url = window.URL.createObjectURL(blobData);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Compras.xlsx'; // Nombre del archivo
-            a.style.display = 'none';
-
-            document.body.appendChild(a);
-            a.click();
-
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
-
-export const descargarReporteVentas = async () => {
-    const token = getDecryptedToken();
-    const apiUrl = `${import.meta.env.VITE_API_URL}complete/export/Sales`;
-
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
-    }
-
-    fetch(apiUrl, { headers })
-        .then(response => {
-            if (response.ok) {
-                return response.blob();
-            } else {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-        })
-        .then(blobData => {
-            const url = window.URL.createObjectURL(blobData);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Inventario.xlsx'; // Nombre del archivo
-            a.style.display = 'none';
-
-            document.body.appendChild(a);
-            a.click();
-
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error(error);
-        });
 }
