@@ -1,6 +1,7 @@
 import ReportsModal from "../../Components/Modal/Reports/ReportsModal"
 import { useState } from "react"
 import { DownloadSQL } from "../../services/Services"
+import { Toaster } from "react-hot-toast";
 
 export const Reports = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,7 @@ export const Reports = () => {
             {
                 isOpen && <ReportsModal isOpen={isOpen} onClose={() => setIsOpen(false)} typeProduct={typeProduct} selelectProduct={selectProduct} typeReport={typeReport} />
             }
+            <Toaster/>
         </main>
     )
 }
