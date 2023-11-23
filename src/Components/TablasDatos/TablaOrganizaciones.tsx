@@ -16,21 +16,7 @@ const headers: HeadType[] = [
 
 const titleTable = 'Organizaciones'
 
-function pages(url: string) {
-    let lastDigit = ""
-    // Utiliza una expresión regular para encontrar el último dígito en la URL
-    const matches = url.match(/\d+$/);
 
-    if (matches && matches.length > 0) {
-        // El último dígito se encuentra en matches[0]
-        lastDigit = matches[0];
-        //console.log("Último dígito:", lastDigit);
-    } else {
-        // console.log("No se encontraron dígitos en la URL.");
-    }
-
-    return lastDigit
-}
 
 export const TablasOrganizaciones: React.FC = () => {
 
@@ -54,11 +40,10 @@ export const TablasOrganizaciones: React.FC = () => {
     const lista = async () => {
         try {
             // const { links, meta, organizaciones } = await listaOrganizaciones()
-            const { links, organizaciones } = await TablaOrganizacion(currentPage)
+            const { meta, organizaciones } = await TablaOrganizacion(currentPage)
 
             setOrg(organizaciones)
-            console.log(links)
-            setTotalPages(parseInt(pages(links.last), 10))
+            setTotalPages(meta.last_page)
         } catch (e) {
             // console.log(e)
         }

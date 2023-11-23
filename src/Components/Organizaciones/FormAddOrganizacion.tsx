@@ -38,7 +38,7 @@ export const FormAddOrganizacion = () => {
 
                 setDepartamento(ciudades)
             } catch (e: any) {
-                toast.error(e.message)
+                toast.error(e.response.data.message)
             }
         }
         lista()
