@@ -1,128 +1,67 @@
-import { descargarReporte, descargarReporteCompras, descargarReporteInventario, descargarReporteInventarioMenosVendido, descargarReporteVentas } from "../../services/Services"
+import ReportsModal from "../../Components/Modal/Reports/ReportsModal"
+import { useState } from "react"
+import { DownloadSQL } from "../../services/Services"
 
 export const Reports = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [typeProduct, setTypeProduct] = useState<string>("");
+    const [selectProduct, setSelectProduct] = useState<boolean>(true);
+    const [typeReport, setTypeReport] = useState<string>("");
 
-    const handleSubmit = async () => {
-        try {
-            await descargarReporte()
-
-        } catch (error: any) {
+    const listReport = [
+        {
+            name: 'Inventario de materia prima - Excel',
+            onclick: () => { setTypeProduct('MP'); setTypeReport("InventarioMP"); setSelectProduct(true); setIsOpen(true);}
+        },
+        {
+            name: 'Inventario de producto terminado - Excel',
+            onclick: () => { setTypeProduct('PT'); setTypeReport("InventarioPT"); setSelectProduct(true); setIsOpen(true);}
+        },
+        {
+            name: 'Compras - Excel',
+            onclick: () => { setIsOpen(true); setTypeProduct('MP'); setTypeReport("Compras"); setSelectProduct(true)}
+        },
+        {
+            name: 'Ventas - Excel',
+            onclick: () => { setIsOpen(true); setTypeProduct('PT'); setTypeReport("Ventas"); setSelectProduct(true)}
+        },
+        {
+            name: 'Producto menos vendido - Excel',
+            onclick: () => { setIsOpen(true); setTypeProduct(""); setTypeReport("MenosVendido"); setSelectProduct(false)}
+        },
+        {
+            name: 'Producto mas vendido - Excel',
+            onclick: () => { setIsOpen(true); setTypeProduct(""); setTypeReport("MasVendido"); setSelectProduct(false)},
+            type: 'none'
+        },
+        {
+            name: 'exportar base de datos - SQL',
+            onclick: async () => { await DownloadSQL() }
         }
-    }
+    ]
 
-    const ReporteInventario = async () => {
-        try {
-            await descargarReporteInventario()
-
-        } catch (error: any) {
-        }
-    }
-
-    const ReporteCompras = async () => {
-        try {
-            await descargarReporteCompras()
-
-        } catch (error: any) {
-        }
-    }
-
-    const ReporteVentas = async () => {
-        try {
-            await descargarReporteVentas()
-
-        } catch (error: any) {
-        }
-    }
-
-    const ReporteProductoMenosVendido = async () => {
-        try {
-            await descargarReporteInventarioMenosVendido()
-
-        } catch (error: any) {
-        }
-    }
-
-
-    return (<>
-        <div className="grid mb-8 border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:mb-12 md:grid-cols-2">
-            <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r dark:bg-gray-800 dark:border-gray-700">
-                <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Reporte Inventario</h3>
-                    <p className="my-4"></p>
-                </blockquote>
-                <figcaption className="flex items-center justify-center space-x-3">
-                    <div className="space-y-0.5 font-medium dark:text-white text-left">
-                        <div className="flex justify-center items-center flex-col p-2 mt-4">
-                            <button onClick={ReporteInventario} className={`w-full h-14 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="button">Descargar</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-            <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-tr-lg dark:bg-gray-800 dark:border-gray-700">
-                <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Reporte de Compras</h3>
-                    <p className="my-4"></p>
-                </blockquote>
-                <figcaption className="flex items-center justify-center space-x-3">
-                    <div className="space-y-0.5 font-medium dark:text-white text-left">
-                        <div className="flex justify-center items-center flex-col p-2 mt-4">
-                            <button onClick={ReporteCompras} className={`w-full h-14 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="button">Descargar</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-            <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-bl-lg md:border-b-0 md:border-r dark:bg-gray-800 dark:border-gray-700">
-                <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Reporte de Ventas</h3>
-                    <p className="my-4"></p>
-                </blockquote>
-                <figcaption className="flex items-center justify-center space-x-3">
-                    <div className="space-y-0.5 font-medium dark:text-white text-left">
-                        <div className="flex justify-center items-center flex-col p-2 mt-4">
-                            <button onClick={ReporteVentas} className={`w-full h-14 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="button">Descargar</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-            <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-gray-200 rounded-b-lg md:rounded-br-lg dark:bg-gray-800 dark:border-gray-700">
-                <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Productos Mas Vendidos</h3>
-                    <p className="my-4"></p>
-                </blockquote>
-                <figcaption className="flex items-center justify-center space-x-3">
-                    <div className="space-y-0.5 font-medium dark:text-white text-left">
-                        <div className="flex justify-center items-center flex-col p-2 mt-4">
-                            <button onClick={handleSubmit} className={`w-full h-14 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="button">Descargar</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-            <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-bl-lg md:border-b-0 md:border-r dark:bg-gray-800 dark:border-gray-700">
-                <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Productos Menos Vendido</h3>
-                    <p className="my-4"></p>
-                </blockquote>
-                <figcaption className="flex items-center justify-center space-x-3">
-                    <div className="space-y-0.5 font-medium dark:text-white text-left">
-                        <div className="flex justify-center items-center flex-col p-2 mt-4">
-                            <button onClick={ReporteProductoMenosVendido} className={`w-full h-14 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="button">Descargar</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-            <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-gray-200 rounded-b-lg md:rounded-br-lg dark:bg-gray-800 dark:border-gray-700">
-                <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Exportar Base de Datos</h3>
-                    <p className="my-4"></p>
-                </blockquote>
-                <figcaption className="flex items-center justify-center space-x-3">
-                    <div className="space-y-0.5 font-medium dark:text-white text-left">
-                        <div className="flex justify-center items-center flex-col p-2 mt-4">
-                            <button onClick={handleSubmit} className={`w-full h-14 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="button">Descargar</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-        </div>
-    </>)
+    return (
+        <main>
+            <h1 className=' text-purple-icons font-bold text-2xl mb-8'>Reportes</h1>
+            <div className="w-full max-w-[80rem] flex flex-col justify-center items-start">
+                <section className="w-full h-14 bg-purple-icons rounded-t-md text-white flex justify-between pl-4 pr-8 items-center font-bold">
+                    <h1>Tipos de reporte</h1>
+                    <h1>Acciones</h1>
+                </section>
+                {
+                    listReport.map((report, index) => (
+                        <section key={index} className="w-full flex justify-between items-center pl-4 pr-2 h-14 border-2 font-medium">
+                            <h2>{report.name}</h2>
+                            <button onClick={report.onclick} className="w-auto h-10 bg-purple-icons rounded-md text-white flex justify-between px-4 items-center font-semibold">
+                                <h1>Descargar</h1>
+                            </button>
+                        </section>
+                    ))
+                }
+            </div>
+            {
+                isOpen && <ReportsModal isOpen={isOpen} onClose={() => setIsOpen(false)} typeProduct={typeProduct} selelectProduct={selectProduct} typeReport={typeReport} />
+            }
+        </main>
+    )
 }
