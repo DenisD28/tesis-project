@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Inventary, invent, purchase } from "../../Components/types.d"
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
+import { invent, purchase } from "../../Components/types.d"
 import { agregarProductoTerminado, listaDetalleCompra } from "../../services/Services"
 import { useNavigate } from "react-router-dom"
 import { HeadType } from "../../Components/Table/types/HeadType"
@@ -18,7 +18,7 @@ const titleTable = 'Materia Prima Utilizada'
 
 export const SalidaDeMateriaPrima: React.FC = () => {
     const [listaCompra, setListaCompra] = useState<purchase[]>([])
-    const [product, setProduct] = useState<Inventary[]>([])
+    const [product, setProduct] = useState<any>([])
     const [list] = useState<invent[]>([])
     const [cantidad, setCantidad] = useState("")
     const [isOpen, setIsOpen] = useState(false);
@@ -43,13 +43,12 @@ export const SalidaDeMateriaPrima: React.FC = () => {
             } else {
                 toast.error("Ingrese la cantidad de producto terminado")
             }
-        } catch (e) {
-            console.log(e)
+        } catch (e: any) {
+            toast.error(e.response.data.message)
         }
     }
 
-    const agregar = (dato: Inventary) => {
-        console.log(dato)
+    const agregar = (dato: any) => {
         setProduct([...product, dato])
         detalleCompra(dato.id)
         setIsOpen(false)
@@ -64,8 +63,12 @@ export const SalidaDeMateriaPrima: React.FC = () => {
         }
     }
 
-    const Eliminar = (dato: Inventary) => {
-        setProduct(product.filter(item => item !== dato));
+    const Eliminar = (dato: any) => {
+        setProduct(product.filter((item: any) => item !== dato));
+    }
+
+    const cancelar = () => {
+        navigate("/pTerminado")
     }
 
     return (
@@ -98,7 +101,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                 <table className='w-full h-full'>
                     <Head headers={headers} />
                     <tbody>
-                        {product.map((dat, index) => (
+                        {product.map((dat: { [x: string]: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: Key | null | undefined) => (
                             <tr
                                 key={index}
                                 className='border-b-[1px] border-[#eee] h-14 sm:h-12'
@@ -114,7 +117,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                                 ))}
                                 <td className="px-6 py-4">
                                     {/* <button onClick={() => agregar(dat)}>Agregar</button> */}
-                                    <button onClick={() => Eliminar(dat)}>Eliminar</button>
+                                    <button className="w-50 h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-red-600 text-white" onClick={() => Eliminar(dat)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))}
@@ -127,7 +130,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                         'title': 'Cancelar',
                         'color': 'red',
                         'type': 'reset',
-                        'fnClick': () => { }
+                        'fnClick': cancelar
                     }} />
                     <ButtonForm dataButton={{
                         'title': 'Guardar',

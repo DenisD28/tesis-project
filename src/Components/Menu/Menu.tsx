@@ -90,7 +90,7 @@ export const Menu = () => {
                                     )
                                 })
                             ) : (
-                                userInfo?.role.name === "guest" && (
+                                userInfo?.role.name === "colaborador" && (
                                     routesMain.map((item, index) => {
                                         return (
 
@@ -184,7 +184,7 @@ export const Menu = () => {
                                     )
                                 })
                             ) : (
-                                userInfo?.role.name === "guest" && (
+                                userInfo?.role.name === "colaborador" && (
                                     routesInventory.map((item, index) => {
                                         return (
 

@@ -66,9 +66,10 @@ export const FormAddProveedores = () => {
         e.preventDefault()
         try {
             await agregarProveedor(formProducto)
-            navigation("/")
+            navigation("/proveedores")
         } catch (e: any) {
-            toast.error(e.response.data.mensaje)
+            console.log(e)
+            toast.error(e.response.data.message)
         }
     }
 
@@ -78,19 +79,19 @@ export const FormAddProveedores = () => {
             <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre del proveedor *</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="name" placeholder="Escribe el nombre del proveedor" required />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="name" placeholder="Escribe el nombre del proveedor" value={formProducto.name} required />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="Telefono Principal">Nombre del contacto</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="contact_name" placeholder="Escribe el nombre del contacto" />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="contact_name" placeholder="Escribe el nombre del contacto" value={formProducto.contact_name} />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="Telefono Principal">Telefono Principal</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" onChange={handleInputChange} name="phone_main" placeholder="Escribe el nombre de la organizacion" />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" onChange={handleInputChange} name="phone_main" placeholder="Escribe el telefono principal" value={formProducto.phone_main} />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="Telefono Secundario">Telefono Secundario</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" onChange={handleInputChange} name="second_phone" placeholder="Escribe el telefono secundario" />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="number" onChange={handleInputChange} name="second_phone" placeholder="Escribe el telefono secundario" value={formProducto.second_phone} />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento *</label>
@@ -105,11 +106,11 @@ export const FormAddProveedores = () => {
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="RUC">RUC</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="ruc" placeholder="Ingrese le numero ruc" />
+                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" onChange={handleInputChange} name="ruc" placeholder="Ingrese le numero ruc" value={formProducto.ruc} />
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="direccion">Direccion</label>
-                    <textarea className="w-full h-36 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="direccion" onChange={handleTextAreaChange} id="direccion" placeholder="Ingrese la direccion"></textarea>
+                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="address">Direccion</label>
+                    <textarea className="w-full h-36 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="address" onChange={handleTextAreaChange} id="address" placeholder="Ingrese la direccion" value={formProducto.address} required></textarea>
                 </div>
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio *</label>
