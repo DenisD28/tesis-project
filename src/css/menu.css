@@ -56,11 +56,11 @@
     margin: 0px 0px 0.5rem 0px;
 }
 
-.scroll-hidden::-webkit-scrollbar{
+.scroll-hidden::-webkit-scrollbar {
     display: none;
 }
 
-.scroll-hidden{
+.scroll-hidden {
     scroll-behavior: smooth;
 }
 
@@ -72,7 +72,7 @@
     }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .Menu {
         display: none;
     }
@@ -86,9 +86,9 @@
         border: #bdc3c7 1px solid;
         width: 8vw;
     }
-}
+} */
 
-@media (max-width: 425px) {
+/* @media (max-width: 425px) {
 
     .Menu,
     .Menu2 {
@@ -97,4 +97,4 @@
 
 
 
-}
+} */

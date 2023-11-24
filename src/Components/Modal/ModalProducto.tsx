@@ -90,9 +90,7 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                                                 <td
                                                     key={i}
                                                     className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                                    {
-                                                        dat[h.prop]
-                                                    }
+                                                    {h.prop === 'product' ? (dat[h.prop] as { name: string }).name : dat[h.prop]}
                                                 </td>
                                             ))}
                                             <td>

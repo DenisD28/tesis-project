@@ -7,7 +7,7 @@ import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import toast, { Toaster } from "react-hot-toast"
 
 export const IngresoInventarioMP = () => {
-    const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
+    const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [lista, setUnidades] = useState([]);
@@ -54,12 +54,12 @@ export const IngresoInventarioMP = () => {
     }
 
     const cancelar = () => {
-        setFormProduct({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
+        setFormProduct({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
     }
 
     const agregar = (id: Product) => {
         formProducto.id = id.id
-        formProducto.product = id.name
+        formProducto.name = id.name
         listarUnidades(id.measurement_type)
         setIsOpen(false)
     }
@@ -82,8 +82,8 @@ export const IngresoInventarioMP = () => {
                             <button className="w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white" type="button" onClick={() => setIsOpen(true)}>Buscar Producto</button>
                         </div>
                         <div className="flex justify-center items-center flex-col p-2">
-                            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Nombre del Producto *</label>
-                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="product" value={formProducto.product} onChange={handleInputChange} placeholder="Producto a agregar" required readOnly />
+                            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="name">Nombre del Producto *</label>
+                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" value={formProducto.name} onChange={handleInputChange} placeholder="Producto a agregar" required readOnly />
                         </div>
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Codigo Producto</label>

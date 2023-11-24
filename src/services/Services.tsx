@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Post, User, User2, clients, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
+import { Post, User, User2, clients, inven, invent, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 import { DetailsSale } from "../types/SaleTypes/DetailsSale";
@@ -154,6 +154,7 @@ export const listaEntradas = async (id: string) => {
 }
 
 export const listaInventario = async () => {
+    let maxRetries: number = 3
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`
 
@@ -162,10 +163,18 @@ export const listaInventario = async () => {
         'Accept': 'application/json'
     }
 
-    const response = await axios.get(url, {
-        headers: headers
-    })
-    return response.data
+    let retries = 0;
+
+    while (retries < maxRetries) {
+        try {
+            const response = await axios.get(url, { headers });
+            return response.data;
+        } catch (error: any) {
+            retries++;
+            // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+    }
 }
 
 export const listaProductoTerminado = async () => {
@@ -495,22 +504,18 @@ export const agregarProductoTerminado = async (data: string, cantidad: string) =
     const token = getDecryptedToken();
     const id = localStorage.getItem('idProducto')
 
-    try {
-        const url = `${import.meta.env.VITE_API_URL}register/finished_product?inventory_id=${id}&quantity=${cantidad}`
+    const url = `${import.meta.env.VITE_API_URL}register/finished_product?inventory_id=${id}&quantity=${cantidad}`
 
-        const headers = {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json'
-        }
-        const body = data
-
-        const response = await axios.post(url, body, {
-            headers
-        })
-        return response
-    } catch (error) {
-        console.error(error)
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
     }
+    const body = data
+    const response = await axios.post(url, body, {
+        headers
+    })
+    return response
+
 
 }
 
@@ -623,14 +628,12 @@ export const agregarOrganizacion = async (org: organizacion) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
-    console.log(response.data)
 
     return response
 }
 
 export const agregarProveedor = async (prov: proveedor) => {
     const token = getDecryptedToken();
-    console.log(prov.address)
     const url = `${import.meta.env.VITE_API_URL}provider?name=${prov.name}&ruc=${prov.ruc}&address=${prov.address}&sector_id=2&municipality_id=${prov.municipality_id}&city_id=${prov.city_id}&phone_main=${prov.phone_main}&phone_secondary=${prov.second_phone}`
 
     const headers = {
@@ -643,7 +646,6 @@ export const agregarProveedor = async (prov: proveedor) => {
     const response = await axios.post(url, body, {
         headers: headers
     })
-    console.log(response.data)
     return response
 }
 
@@ -684,8 +686,6 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
 
     const response = await axios.post(url, data, {
         headers: headers
-    }).catch((error) => {
-        console.error('Error', error)
     })
 
     return response
@@ -693,6 +693,7 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
 }
 
 export const listaDetalleCompra = async (id: number) => {
+    let maxRetries: number = 3
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`
 
@@ -701,11 +702,18 @@ export const listaDetalleCompra = async (id: number) => {
         'Accept': 'application/json'
     }
 
-    const response = await axios.get(url, {
-        headers: headers
-    })
+    let retries = 0;
 
-    return response.data
+    while (retries < maxRetries) {
+        try {
+            const response = await axios.get(url, { headers });
+            return response.data;
+        } catch (error: any) {
+            retries++;
+            // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+    }
 }
 
 export const getProducts = async (type: string) => {
@@ -732,65 +740,65 @@ export const DownloadSQL = async () => {
         'Authorization': `Bearer ${token}`,
     }
 
-    fetch(url, {headers})
-    .then(response => {
-      if (response.ok) {
-        return response.blob();
-      } else {
-        throw new Error(`Error en la solicitud: ${response.status}`);
-      }
-    })
-    .then(blobData => {
-      const url = window.URL.createObjectURL(blobData);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'BaseDatos.sql'; 
-      a.style.display = 'none';
-
-      document.body.appendChild(a);
-      a.click();
-
-      window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-export const DownloadReport = async (endpoint: string, nameFile: string, fromDate: string, toDate: string, product: string) => {
-    const token = getDecryptedToken();
-    const url = import.meta.env.VITE_API_URL+'complete/export/'+endpoint+'?fromDate="'+fromDate+'"&toDate="'+toDate+'"&product='+product+'';
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    }
-
-    fetch(url, {headers})
-    .then(response => {
-        if (response.ok) {
-            return response.blob();
-        } else {
-            throw new Error(`Error en la solicitud: ${response.status}`);
-        }
-    })
-    .then(blobData => {
-        if (blobData.size > 0) {  // Verifica que el Blob contenga datos
+    fetch(url, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+        })
+        .then(blobData => {
             const url = window.URL.createObjectURL(blobData);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${nameFile}.xlsx`;
+            a.download = 'BaseDatos.sql';
             a.style.display = 'none';
 
             document.body.appendChild(a);
             a.click();
 
             window.URL.revokeObjectURL(url);
-        } else {
-            throw new Error('El Blob no contiene datos válidos.');
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+export const DownloadReport = async (endpoint: string, nameFile: string, fromDate: string, toDate: string, product: string) => {
+    const token = getDecryptedToken();
+    const url = import.meta.env.VITE_API_URL + 'complete/export/' + endpoint + '?fromDate="' + fromDate + '"&toDate="' + toDate + '"&product=' + product + '';
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    }
+
+    fetch(url, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+        })
+        .then(blobData => {
+            if (blobData.size > 0) {  // Verifica que el Blob contenga datos
+                const url = window.URL.createObjectURL(blobData);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${nameFile}.xlsx`;
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+            } else {
+                throw new Error('El Blob no contiene datos válidos.');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
 }

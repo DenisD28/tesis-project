@@ -4,8 +4,9 @@ import ModalSale from '../../Components/Sale/ModalSale/ModalSale'
 import GeneralInfoSale from '../../Components/Sale/GeneralInfoSale/GeneralInfoSale'
 import ButtonForm from '../../Components/Forms/ButtonComponents/ButtonForm'
 import useAddSale from '../../hooks/SaleHooks/useAddSale'
-import toast from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast'
 import { agregarVenta } from '../../services/Services'
+import { useNavigate } from 'react-router-dom'
 
 export default function AddSale() {
     const { Cliente,
@@ -27,18 +28,24 @@ export default function AddSale() {
         toggleModal,
     } = useAddSale()
 
+
     const registrar = async () => {
 
         console.log(DetailsSale)
         try {
-            await agregarVenta(DetailsSale, NumeroFactura, Nota, Cliente, TipoPago, PaymentStatus)
+            const response = await agregarVenta(DetailsSale, NumeroFactura, Nota, Cliente, TipoPago, PaymentStatus)
+            if (response.status === 200) {
+                toast.success("Venta Registrada")
+            }
         } catch (e: any) {
-            toast.error(e)
+            console.log(e)
+            toast.error(e.response.data.error)
         }
 
     }
     return (
         <main>
+            <div> <Toaster /></div >
             <h1 className=' text-purple-icons font-bold text-2xl mb-8'>Registro de venta</h1>
             {
                 !StatusFormPT

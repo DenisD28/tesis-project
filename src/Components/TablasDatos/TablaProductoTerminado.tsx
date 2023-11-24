@@ -46,6 +46,7 @@ export const TablaProductoTerminado: React.FC = () => {
 
     useEffect(() => {
         lista()
+
     }, [])
 
     const lista = async () => {
@@ -61,7 +62,7 @@ export const TablaProductoTerminado: React.FC = () => {
 
     const agregar = (data?: Inventary) => {
         localStorage.setItem("idProducto", JSON.stringify(data?.id))
-        localStorage.setItem("nombre", JSON.stringify(data?.product))
+        localStorage.setItem("nombre", JSON.stringify(data?.product.name))
         localStorage.setItem("codigo", JSON.stringify(data?.code))
         navigate("/ingresoProducto")
     }
@@ -97,9 +98,7 @@ export const TablaProductoTerminado: React.FC = () => {
                                     <td
                                         key={i}
                                         className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                        {
-                                            dat[h.prop]
-                                        }
+                                        {h.prop === 'product' ? (dat[h.prop] as { name: string }).name : dat[h.prop]}
                                     </td>
                                 ))}
                                 <td>

@@ -1,12 +1,18 @@
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
-import { invent, purchase } from "../../Components/types.d"
-import { agregarProductoTerminado, listaDetalleCompra } from "../../services/Services"
+import { agregarProductoTerminado } from "../../services/Services"
 import { useNavigate } from "react-router-dom"
 import { HeadType } from "../../Components/Table/types/HeadType"
 import Head from "../../Components/Table/Head/Head"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalInventario } from "../../Components/Modal/ModalInventario"
 import toast, { Toaster } from "react-hot-toast"
+import { ModalDetalleCompra } from "../../Components/Modal/ModalDetalleCompra"
+
+interface DetalleRegistro {
+    detail_purchase_id: number
+    quantity: string
+    observation: string
+}
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -17,11 +23,13 @@ const headers: HeadType[] = [
 const titleTable = 'Materia Prima Utilizada'
 
 export const SalidaDeMateriaPrima: React.FC = () => {
-    const [listaCompra, setListaCompra] = useState<purchase[]>([])
     const [product, setProduct] = useState<any>([])
-    const [list] = useState<invent[]>([])
+    const [list, setLista] = useState<DetalleRegistro[]>([])
     const [cantidad, setCantidad] = useState("")
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenDetalle, setIsOpenDetalle] = useState(false);
+    const [cantidadesUsadas, setCantidades] = useState("")
+    const [id, setId] = useState(0)
 
     const navigate = useNavigate()
 
@@ -35,6 +43,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
         try {
             if (cantidad != "") {
                 if (product.length != 0) {
+
                     await agregarProductoTerminado(JSON.stringify(list), cantidad)
                     navigate("/pTerminado")
                 } else {
@@ -44,24 +53,28 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                 toast.error("Ingrese la cantidad de producto terminado")
             }
         } catch (e: any) {
-            toast.error(e.response.data.message)
+            toast.error(e.response.data.error)
         }
     }
 
-    const agregar = (dato: any) => {
+    const agregar = (idDetalle: any) => {
+        setIsOpenDetalle(false)
+
+        const datos: DetalleRegistro = {
+            detail_purchase_id: idDetalle.id,
+            quantity: cantidadesUsadas,
+            observation: "test"
+        }
+
+        setLista([...list, datos])
+    }
+
+    const SeleccionarDetalle = (dato: any, cantidades: string[]) => {
+        setCantidades(cantidades.toString())
         setProduct([...product, dato])
-        detalleCompra(dato.id)
+        setId(dato.product.id)
         setIsOpen(false)
-    }
-
-    const detalleCompra = async (id: number) => {
-        try {
-            const response = await listaDetalleCompra(id)
-            console.log(response)
-            setListaCompra([...listaCompra, response.detalle_de_compra])
-        } catch (e) {
-            console.log(e)
-        }
+        setIsOpenDetalle(true)
     }
 
     const Eliminar = (dato: any) => {
@@ -88,8 +101,14 @@ export const SalidaDeMateriaPrima: React.FC = () => {
             </div>
             {
                 isOpen && (
-                    <ModalInventario fnAgregar={agregar}
+                    <ModalInventario fnAgregar={SeleccionarDetalle}
                         setIsOpen={setIsOpen} />
+                )
+            }
+            {
+                isOpenDetalle && (
+                    <ModalDetalleCompra fnAgregar={agregar}
+                        setIsOpenDetalle={setIsOpenDetalle} id={id} />
                 )
             }
             {/* primeratabla */}
@@ -111,14 +130,12 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                                     <td
                                         key={i}
                                         className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                        {
-                                            dat[h.prop]
-                                        }
+                                        {h.prop === 'product' ? (dat[h.prop] as unknown as { name: string }).name : dat[h.prop]}
                                     </td>
                                 ))}
                                 <td className="px-6 py-4">
                                     {/* <button onClick={() => agregar(dat)}>Agregar</button> */}
-                                    <button className="w-50 h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-red-600 text-white" onClick={() => Eliminar(dat)}>Eliminar</button>
+                                    <button className="w-30 h-10 rounded-md border-2 border-[#ddd] px-2 font-medium bg-red-600 text-white" onClick={() => Eliminar(dat)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))}

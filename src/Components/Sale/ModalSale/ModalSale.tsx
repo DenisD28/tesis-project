@@ -7,14 +7,14 @@ import InfoSaleSelected from './InfoSaleSelected/InfoSaleSelected'
 import { ModalSaleProps } from './ModalSalePropsType'
 import { InputSale } from '../../../types/SaleTypes/InputSale'
 import { listaEntradas, listaProductoTerminado } from '../../../services/Services'
-import { inven, inventario } from '../../types.d'
+import { inven2, inventario } from '../../types.d'
 
 export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {
     const [Quantity, setQuantity] = useState<string>('')
     const [UnitPrice, setUnitPrice] = useState<string>('')
     const [ItemsSelected, setItemsSelected] = useState<InputSale[]>([])
     const [productos, setProduct] = useState<inventario[]>([])
-    const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
+    const [formProducto, setFormProduct] = useState<inven2>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, product: "" })
     const [DataInput, setDataInput] = useState<InputSale[]>([])
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
     const listaEntrada = async () => {
         console.log(formProducto)
         try {
-            const response = await listaEntradas(formProducto.product)
+            const response = await listaEntradas(formProducto.product.toString())
             setDataInput(response.entradas)
         } catch (e) {
 
@@ -79,11 +79,11 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                 <section className='md:col-span-8 col-span-12'>
                     <div className="flex justify-center items-center flex-col p-2">
                         <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Productos *</label>
-                        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="product" id="product" value={formProducto.product}>
+                        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="product" id="product" value={formProducto.product.name}>
                             <option value="">Selecciona el producto</option>
                             {
                                 productos.map(pro => (
-                                    <option value={pro.id}>{pro.product}</option>
+                                    <option value={pro.id}>{pro.product.name}</option>
                                 ))
                             }
                         </select>

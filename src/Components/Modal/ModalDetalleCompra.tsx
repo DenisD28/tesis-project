@@ -1,43 +1,39 @@
 import "../../css/App.css"
 import React, { useEffect, useState } from "react"
-import { Inventary } from "../types.d";
-import { listaInventario } from "../../services/Services";
+import { listaDetalleCompra } from "../../services/Services";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 
 interface Props {
-    fnAgregar(dat: Inventary, cantidades: string[]): void
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+    fnAgregar(id: number): void
+    setIsOpenDetalle: React.Dispatch<React.SetStateAction<boolean>>
+    id: number
 }
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
-    { name: "Nombre", prop: "product" },
-    { name: "Stock", prop: "stock" },
+    { name: "Precio", prop: "price" },
+    { name: "Cantidad", prop: "quantity" },
+    { name: "Total", prop: "total" },
 ]
 
-const titleTable = 'Materia Prima'
+const titleTable = 'Lista de Compras'
 
-export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
+export const ModalDetalleCompra: React.FC<Props> = ({ fnAgregar, setIsOpenDetalle, id }) => {
 
-    const [data, setProduct] = useState([])
-    const [cantidades, setCantidades] = useState<string[]>([]);
+    const [data, setDetalle] = useState([])
+
     useEffect(() => {
-        const lista = async () => {
+        const detalleCompra = async () => {
             try {
-                const { inventario } = await listaInventario()
-                setProduct(inventario)
+                const { detalles_de_compra } = await listaDetalleCompra(id)
+                setDetalle(detalles_de_compra)
             } catch (e) {
+                // console.log(e)
             }
         }
-        lista();
+        detalleCompra()
     })
-
-    const handleInputChange = (index: number, value: string) => {
-        const newCantidades = [...cantidades];
-        newCantidades[index] = value;
-        setCantidades(newCantidades);
-    };
 
     return (<>
         <div
@@ -48,11 +44,11 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                     {/*header*/}
                     <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                         <h3 className="text-3xl font-semibold">
-                            Lista de inventario
+                            Lista de compras
                         </h3>
                         <button
                             className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => setIsOpenDetalle(false)}
                         >
                             <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                                 ×
@@ -79,18 +75,7 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                                                 </td>
                                             ))}
                                             <td>
-                                                <input
-                                                    onChange={(e) => handleInputChange(index, e.target.value)}
-                                                    className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]"
-                                                    type="number"
-                                                    name={`cantidad-${index}`}
-                                                    placeholder="Ingrese la cantidad"
-                                                    min={0}
-                                                    value={cantidades[index] || ""}
-                                                />
-                                            </td>
-                                            <td>
-                                                <button onClick={() => fnAgregar(dat, cantidades)}>Agregar</button>
+                                                <button onClick={() => fnAgregar(dat)}>Seleccionar</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -103,7 +88,7 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                         <button
                             className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                             type="button"
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => setIsOpenDetalle(false)}
                         >
                             Cerrar
                         </button>

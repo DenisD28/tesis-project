@@ -58,8 +58,8 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
           name: 'type_payment',
           placeholder: 'Seleccione el tipo de pago',
           options: [
-            { "valor": "Contado", "texto": "Contado" },
-            { "valor": "Credito", "texto": "Credito" },
+            { "valor": "contado", "texto": "Contado" },
+            { "valor": "credito", "texto": "Credito" },
           ],
           fnChange: setTipoPago,
           isRequerid: true

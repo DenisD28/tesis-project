@@ -36,7 +36,7 @@ export interface Inventary {
     note: string
     code: string
     description: string
-    product: string
+    product: Product
     status: string
     stock: number
     quantity: string
@@ -142,7 +142,8 @@ export type formData = Post
 
 //Inventario
 export type inventario = Inventary
-export type inven = Pick<Inventary, 'stock_min' | 'unit_of_measurement' | 'code' | 'description' | 'id' | "product">
+export type inven = Pick<Inventary, 'stock_min' | 'unit_of_measurement' | 'code' | 'description' | 'id' | "name">
+export type inven2 = Pick<Inventary, 'stock_min' | 'unit_of_measurement' | 'code' | 'description' | 'id' | "product">
 export type listProduct = Inventary[]
 export type tipo = Pick<Inventary, 'type'>
 
