@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Post, User, User2, clients, inven, invent, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
+import { Post, User, User2, clients, inven, newProduct, organizacion, proveedor, tipo } from "../Components/types.d";
 import Cookies from 'js-cookie'
 import CryptoJS from 'crypto-js'
 import { DetailsSale } from "../types/SaleTypes/DetailsSale";

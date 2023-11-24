@@ -6,7 +6,6 @@ import ButtonForm from '../../Components/Forms/ButtonComponents/ButtonForm'
 import useAddSale from '../../hooks/SaleHooks/useAddSale'
 import toast, { Toaster } from 'react-hot-toast'
 import { agregarVenta } from '../../services/Services'
-import { useNavigate } from 'react-router-dom'
 
 export default function AddSale() {
     const { Cliente,
