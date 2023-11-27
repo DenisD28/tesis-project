@@ -4,7 +4,7 @@ import ButtonForm from '../../Forms/ButtonComponents/ButtonForm'
 import { Receipt } from 'lucide-react'
 import { FormSaleProps } from './FormSalePropsTypes'
 import { useEffect, useState } from 'react'
-import { listaCliente } from '../../../services/Services'
+import { listaCliente1 } from '../../../services/Services'
 import { cliente, lstCliente } from '../../types.d'
 
 export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation, NumeroFactura, Nota }: FormSaleProps) {
@@ -17,7 +17,7 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
   const lista = async () => {
     try {
       // const { links, meta, clients } = await listaCliente()
-      const { clients } = await listaCliente()
+      const { clients } = await listaCliente1()
 
       setClientes(clients)
     } catch (e) {
