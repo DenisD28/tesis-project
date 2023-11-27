@@ -17,21 +17,6 @@ const headers: HeadType[] = [
     { name: "Ultima Conexion", prop: "last_login_at" },
 ]
 
-function pages(url: string) {
-    let lastDigit = ""
-    // Utiliza una expresión regular para encontrar el último dígito en la URL
-    const matches = url.match(/\d+$/);
-
-    if (matches && matches.length > 0) {
-        // El último dígito se encuentra en matches[0]
-        lastDigit = matches[0];
-    } else {
-        // console.log("No se encontraron dígitos en la URL.");
-    }
-
-    return lastDigit
-}
-
 const titleTable = 'Usuarios del Sistema'
 
 export const TablasUsuarios: React.FC = () => {
@@ -45,26 +30,25 @@ export const TablasUsuarios: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1)
 
-    useEffect(() => {
-        lista()
-    }, [])
-
-    const onPageChange = (page: number) => {
-        setCurrentPage(page)
-        lista()
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
     };
+
+    useEffect(() => {
+        lista();
+    }, [currentPage])
 
 
     const lista = async () => {
         try {
             if (usuario?.role.id === 1) {
-                const { links, usuarios } = await listaUsuarios(currentPage)
+                const { meta, usuarios } = await listaUsuarios(currentPage)
                 setOrg(usuarios)
-                setTotalPages(parseInt(pages(links.last), 10))
+                setTotalPages(meta.last_page)
             } else if (usuario?.role.id === 2) {
-                const { links, usuarios } = await listaUsuariosOrganizacion(currentPage)
+                const { meta, usuarios } = await listaUsuariosOrganizacion(currentPage)
                 setOrg(usuarios)
-                setTotalPages(parseInt(pages(links.last), 10))
+                setTotalPages(meta.last_page)
             }
 
         } catch (e) {
@@ -109,7 +93,7 @@ export const TablasUsuarios: React.FC = () => {
                 layout="navigation"
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={onPageChange}
+                onPageChange={handlePageChange}
                 showIcons
             />
         </>

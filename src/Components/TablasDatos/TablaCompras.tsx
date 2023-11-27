@@ -4,6 +4,7 @@ import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Table } from "../Table/Table"
+import { Pagination } from "flowbite-react"
 
 const headers: HeadType[] = [
     { name: "N° Factura", prop: "number_bill" },
@@ -17,19 +18,27 @@ const titleTable = 'Registro de compras'
 export const TablasCompras: React.FC = () => {
 
     const [data, setOrg] = useState()
-    // const [next, setNext] = useState("")
     const navigation = useNavigate()
+
+    const [currentPage, setCurrentPage] = useState(0)
+    const [totalPages, setTotalPages] = useState(1)
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
 
     useEffect(() => {
         lista()
-    }, [])
+    }, [currentPage])
 
     const lista = async () => {
         try {
             // const { links, meta, purchases } = await listaCompras()
-            const { purchases } = await listaCompras()
+            const { meta, purchases } = await listaCompras(currentPage)
 
             setOrg(purchases)
+            setTotalPages(meta.last_page)
         } catch (e) {
             // console.log(e)
         }
@@ -57,6 +66,13 @@ export const TablasCompras: React.FC = () => {
                 data={data}
                 titleTable={titleTable}
                 fnClick={() => { }}
+            />
+            <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                showIcons
             />
         </>
     )

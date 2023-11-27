@@ -53,6 +53,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                 toast.error("Ingrese la cantidad de producto terminado")
             }
         } catch (e: any) {
+            console.log(e)
             toast.error(e.response.data.error)
         }
     }
@@ -69,8 +70,14 @@ export const SalidaDeMateriaPrima: React.FC = () => {
         setLista([...list, datos])
     }
 
+    const limpiarValor = (dato: string) => {
+        const quantityArray = dato.split(',').filter(value => value !== '');
+        const quantity = quantityArray.length > 0 ? parseFloat(quantityArray[0]) : 0;
+        return quantity
+    }
+
     const SeleccionarDetalle = (dato: any, cantidades: string[]) => {
-        setCantidades(cantidades.toString())
+        setCantidades(limpiarValor(cantidades.toString()).toString())
         setProduct([...product, dato])
         setId(dato.product.id)
         setIsOpen(false)

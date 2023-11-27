@@ -18,17 +18,21 @@ const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
     const [usuario, setUser] = useState<User>()
+    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
 
     useEffect(() => {
-        getInfo()
-    }, [])
+        if (!haObtenidoDatos) {
+            getInfo();
+            setHaObtenidoDatos(true);
+        }
+    }, [haObtenidoDatos]);
 
     const getInfo = async () => {
-
         try {
-            const { usuario } = await infoGeneral()
-            setUser(usuario)
+            const { usuario } = await infoGeneral();
+            setUser(usuario);
         } catch (e) {
+            // Manejar errores
         }
     }
 

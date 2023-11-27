@@ -8,7 +8,7 @@ interface Props {
     headers: HeadType[]
     data: [] | undefined
     titleTable: string
-    fnClick: (dat: any) => any
+    fnClick: ((dat: any) => void) | null
 }
 
 export const Table: React.FC<Props> = ({ headers, data, titleTable, fnClick }) => {
@@ -41,7 +41,7 @@ export const Table: React.FC<Props> = ({ headers, data, titleTable, fnClick }) =
                             ))}
                             {isOpen && (
                                 <td>
-                                    <button onClick={() => fnClick(dat)}>Ver Mas</button>
+                                    <button onClick={() => fnClick?.(dat)}>Ver Mas</button>
                                 </td>
                             )
                             }

@@ -1,11 +1,12 @@
 import "../../css/App.css"
-import { useEffect, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 import { TablaProveedores } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Table } from "../Table/Table"
 import { Pagination } from 'flowbite-react'
+import { VerMasProveedores } from "../VerMas/VerMasProveedores"
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
@@ -34,18 +35,19 @@ export const TablasProveedores: React.FC = () => {
 
     const [data, setOrg] = useState()
     const navigation = useNavigate()
+    const [isOpen, setIsOpen] = useState(false);
+    const [datos, setDatos] = useState()
 
     const [currentPage, setCurrentPage] = useState(1);
-    const onPageChange = (page: number) => {
-        setCurrentPage(page)
-        lista()
-    };
-
     const [totalPages, setTotalPages] = useState(1)
 
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
     useEffect(() => {
-        lista()
-    }, [])
+        lista();
+    }, [currentPage])
 
     const lista = async () => {
         try {
@@ -64,6 +66,11 @@ export const TablasProveedores: React.FC = () => {
         navigation("/addproveedores")
     }
 
+    const vermas = (dat: SetStateAction<undefined>) => {
+        setDatos(dat)
+        setIsOpen(true)
+    }
+
     return (
         <>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -76,17 +83,22 @@ export const TablasProveedores: React.FC = () => {
                     }} />
                 </div>
             </form>
+            {
+                isOpen && (
+                    <VerMasProveedores data={datos} setIsOpen={setIsOpen} />
+                )
+            }
             <Table
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
-                fnClick={() => { }}
+                fnClick={vermas}
             />
             <Pagination
                 layout="navigation"
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={onPageChange}
+                onPageChange={handlePageChange}
                 showIcons
             />
         </>

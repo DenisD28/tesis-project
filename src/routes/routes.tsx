@@ -69,7 +69,7 @@ const routesMain: Route[] = [
         "path": "/reportes",
         "title": "Reportes",
         "icon": <AreaChart />,
-        "type": "tipo4"
+        "type": "tipo2"
     },
 ]
 

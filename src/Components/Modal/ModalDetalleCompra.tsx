@@ -22,18 +22,23 @@ const titleTable = 'Lista de Compras'
 export const ModalDetalleCompra: React.FC<Props> = ({ fnAgregar, setIsOpenDetalle, id }) => {
 
     const [data, setDetalle] = useState([])
+    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
 
     useEffect(() => {
-        const detalleCompra = async () => {
-            try {
-                const { detalles_de_compra } = await listaDetalleCompra(id)
-                setDetalle(detalles_de_compra)
-            } catch (e) {
-                // console.log(e)
-            }
+        if (!haObtenidoDatos) {
+            detalleCompra();
+            setHaObtenidoDatos(true);
         }
-        detalleCompra()
-    })
+    }, [haObtenidoDatos])
+
+    const detalleCompra = async () => {
+        try {
+            const { detalles_de_compra } = await listaDetalleCompra(id)
+            setDetalle(detalles_de_compra)
+        } catch (e) {
+            // console.log(e)
+        }
+    }
 
     return (<>
         <div

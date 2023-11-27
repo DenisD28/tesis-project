@@ -38,24 +38,28 @@ export const ModalOrganizacion: React.FC<Props> = ({ fnAgregar, setIsOpen }) => 
 
     const [data, setOrg] = useState([])
     const [totalPages, setTotalPages] = useState(1)
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const onPageChange = (page: number) => {
-        setCurrentPage(page)
-        lista()
+    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
     };
 
     useEffect(() => {
-        lista()
-    })
+        if (!haObtenidoDatos) {
+            lista();
+            setHaObtenidoDatos(true);
+        }
+    }, [currentPage, haObtenidoDatos])
 
     const lista = async () => {
         try {
             // const { links, meta, organizaciones } = await listaOrganizaciones()
-            const { links, organizaciones } = await TablaOrganizacion(currentPage)
+            const { meta, organizaciones } = await TablaOrganizacion(currentPage)
 
             setOrg(organizaciones)
-            setTotalPages(parseInt(pages(links.last), 10))
+            setTotalPages(meta.last_page)
         } catch (e) {
             // console.log(e)
         }
@@ -117,7 +121,7 @@ export const ModalOrganizacion: React.FC<Props> = ({ fnAgregar, setIsOpen }) => 
                             layout="navigation"
                             currentPage={currentPage}
                             totalPages={totalPages}
-                            onPageChange={onPageChange}
+                            onPageChange={handlePageChange}
                             showIcons
                         />
                         <button

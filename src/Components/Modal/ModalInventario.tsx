@@ -22,16 +22,22 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     const [data, setProduct] = useState([])
     const [cantidades, setCantidades] = useState<string[]>([]);
+    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
+
     useEffect(() => {
-        const lista = async () => {
-            try {
-                const { inventario } = await listaInventario()
-                setProduct(inventario)
-            } catch (e) {
-            }
+        if (!haObtenidoDatos) {
+            lista();
+            setHaObtenidoDatos(true);
         }
-        lista();
-    })
+    }, [haObtenidoDatos])
+
+    const lista = async () => {
+        try {
+            const { inventario } = await listaInventario()
+            setProduct(inventario)
+        } catch (e) {
+        }
+    }
 
     const handleInputChange = (index: number, value: string) => {
         const newCantidades = [...cantidades];

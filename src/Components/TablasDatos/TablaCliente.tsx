@@ -1,10 +1,12 @@
 import "../../css/App.css"
-import { useEffect, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 import { listaCliente } from "../../services/Services"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Table } from "../Table/Table"
+import { Pagination } from "flowbite-react"
+import { VerMasCliente } from "../VerMas/VerMasCliente"
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
@@ -17,19 +19,29 @@ const titleTable = 'Clientes'
 export const TablasCliente: React.FC = () => {
 
     const [data, setOrg] = useState()
-    // const [next, setNext] = useState("")
     const navigation = useNavigate()
+    const [isOpen, setIsOpen] = useState(false);
+    const [datos, setDatos] = useState()
+
+    const [currentPage, setCurrentPage] = useState(0)
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
         lista()
-    }, [])
+    }, [currentPage])
 
     const lista = async () => {
         try {
             // const { links, meta, clients } = await listaCliente()
-            const { clients } = await listaCliente()
+            const { meta, clients } = await listaCliente(currentPage)
 
             setOrg(clients)
+            setTotalPages(meta.last_page)
         } catch (e) {
             // console.log(e)
         }
@@ -38,6 +50,11 @@ export const TablasCliente: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         navigation("/addcliente")
+    }
+
+    const vermas = (dat: SetStateAction<undefined>) => {
+        setDatos(dat)
+        setIsOpen(true)
     }
 
     return (
@@ -52,11 +69,23 @@ export const TablasCliente: React.FC = () => {
                     }} />
                 </div>
             </form>
+            {
+                isOpen && (
+                    <VerMasCliente data={datos} setIsOpen={setIsOpen} />
+                )
+            }
             <Table
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
-                fnClick={() => { }}
+                fnClick={vermas}
+            />
+            <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                showIcons
             />
         </>
     )

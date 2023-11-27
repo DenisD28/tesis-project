@@ -16,26 +16,24 @@ const headers: HeadType[] = [
 
 const titleTable = 'Organizaciones'
 
-
-
 export const TablasOrganizaciones: React.FC = () => {
 
     const [data, setOrg] = useState()
-    const navigation = useNavigate()
     const [datos, setDatos] = useState()
+
+    const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const onPageChange = (page: number) => {
-        setCurrentPage(page)
-        lista()
-    };
-
+    const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(1)
 
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
     useEffect(() => {
-        lista()
-    }, [])
+        lista();
+    }, [currentPage])
 
     const lista = async () => {
         try {
@@ -86,7 +84,7 @@ export const TablasOrganizaciones: React.FC = () => {
                 layout="navigation"
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={onPageChange}
+                onPageChange={handlePageChange}
                 showIcons
             />
         </>

@@ -15,28 +15,31 @@ const titleTable = 'Productos con stock minimo'
 export const TablaProductoFaltante: React.FC = () => {
 
     const [data, setProduct] = useState()
+    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
 
     useEffect(() => {
-        const lista = async () => {
-            try {
-                // const { links, meta, inventario_stock_min } = await listaProductoFaltante()
-                const { inventario_stock_min } = await listaProductoFaltante()
-
-                setProduct(inventario_stock_min)
-            } catch (e) {
-                // console.log(e)
-            }
+        if (!haObtenidoDatos) {
+            lista();
+            setHaObtenidoDatos(true);
         }
+    }, [haObtenidoDatos])
 
-        lista()
-    }, [])
+    const lista = async () => {
+        try {
+            // const { links, meta, inventario_stock_min } = await listaProductoFaltante()
+            const { inventario_stock_min } = await listaProductoFaltante()
 
+            setProduct(inventario_stock_min)
+        } catch (e) {
+            // console.log(e)
+        }
+    }
     return (
         <Table
             headers={headers}
             data={data}
             titleTable={titleTable}
-            fnClick={() => { }}
+            fnClick={null}
         />
     )
 }

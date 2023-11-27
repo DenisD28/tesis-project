@@ -153,15 +153,40 @@ export const listaEntradas = async (id: string) => {
     return response.data
 }
 
+// export const listaInventario = async () => {
+//     let maxRetries: number = 3
+//     const token = getDecryptedToken();
+//     const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`
+
+//     const headers = {
+//         'Authorization': `Bearer ${token}`,
+//         'Accept': 'application/json'
+//     }
+
+//     let retries = 0;
+
+//     while (retries < maxRetries) {
+//         try {
+//             const response = await axios.get(url, { headers });
+//             return response.data;
+//         } catch (error: any) {
+//             retries++;
+//             // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
+//             await new Promise(resolve => setTimeout(resolve, 1000));
+//         }
+//     }
+// }
+
 export const listaInventario = async () => {
-    let maxRetries: number = 3
+    const maxRetries: number = 3;
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`
+    const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`;
+    const waitTime = 6000; // Tiempo de espera constante, puedes ajustarlo según tus necesidades.
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
-    }
+    };
 
     let retries = 0;
 
@@ -170,12 +195,22 @@ export const listaInventario = async () => {
             const response = await axios.get(url, { headers });
             return response.data;
         } catch (error: any) {
-            retries++;
-            // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            if (error.response && error.response.status === 429) {
+                const backoffTime = Math.pow(2, retries) * waitTime; // Backoff exponencial
+                console.log(`Rate limited. Retrying in ${backoffTime / 1000} seconds.`);
+                await new Promise(resolve => setTimeout(resolve, backoffTime));
+                retries++;
+            } else {
+                // Manejar otros errores de manera diferente o al menos registrarlos
+                console.error(`Error: ${error.message}`);
+                break;  // Romper el bucle para evitar reintentos infinitos en otros errores
+            }
         }
     }
-}
+
+    // Puedes devolver un valor predeterminado o lanzar una excepción según tus necesidades.
+    return null;
+};
 
 export const listaProductoTerminado = async () => {
     const token = getDecryptedToken();
@@ -208,9 +243,9 @@ export const listaProductoFaltante = async () => {
     return response.data
 }
 
-export const listaCompras = async () => {
+export const listaCompras = async (id: number) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}purchases`
+    const url = `${import.meta.env.VITE_API_URL}purchases?page=${id}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -351,9 +386,9 @@ export const municipio = async (id: string) => {
     return response.data.info
 }
 
-export const listaCliente = async () => {
+export const listaCliente = async (id: number) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}clients`
+    const url = `${import.meta.env.VITE_API_URL}clients?page=${id}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -503,7 +538,6 @@ export const agregarInventarioPT = async (formProduct: inven) => {
 export const agregarProductoTerminado = async (data: string, cantidad: string) => {
     const token = getDecryptedToken();
     const id = localStorage.getItem('idProducto')
-
     const url = `${import.meta.env.VITE_API_URL}register/finished_product?inventory_id=${id}&quantity=${cantidad}`
 
     const headers = {
@@ -692,15 +726,39 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
 
 }
 
+// export const listaDetalleCompra = async (id: number) => {
+//     let maxRetries: number = 3
+//     const token = getDecryptedToken();
+//     const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`
+
+//     const headers = {
+//         'Authorization': `Bearer ${token}`,
+//         'Accept': 'application/json'
+//     }
+
+//     let retries = 0;
+
+//     while (retries < maxRetries) {
+//         try {
+//             const response = await axios.get(url, { headers });
+//             return response.data;
+//         } catch (error: any) {
+//             retries++;
+//             // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
+//             await new Promise(resolve => setTimeout(resolve, 1000));
+//         }
+//     }
+// }
+
 export const listaDetalleCompra = async (id: number) => {
-    let maxRetries: number = 3
+    const maxRetries: number = 1;
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`
+    const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`;
 
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
-    }
+    };
 
     let retries = 0;
 
@@ -709,12 +767,22 @@ export const listaDetalleCompra = async (id: number) => {
             const response = await axios.get(url, { headers });
             return response.data;
         } catch (error: any) {
-            retries++;
-            // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            if (error.response && error.response.status === 429) {
+                const backoffTime = Math.pow(2, retries) * 1000; // Backoff exponencial
+                console.log(`Rate limited. Retrying in ${backoffTime / 6000} seconds.`);
+                await new Promise(resolve => setTimeout(resolve, backoffTime));
+                retries++;
+            } else {
+                // Manejar otros errores de manera diferente o al menos registrarlos
+                console.error(`Error: ${error.message}`);
+                break;  // Romper el bucle para evitar reintentos infinitos en otros errores
+            }
         }
     }
-}
+
+    // Puedes devolver un valor predeterminado o lanzar una excepción según tus necesidades.
+    return null;
+};
 
 export const getProducts = async (type: string) => {
     const token = getDecryptedToken();
