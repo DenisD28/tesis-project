@@ -16,7 +16,7 @@ const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
 ]
 
-const titleTable = 'Materia Prima'
+const titleTable = 'Lista Organizaciones'
 
 export const ModalOrganizacion: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
@@ -31,11 +31,9 @@ export const ModalOrganizacion: React.FC<Props> = ({ fnAgregar, setIsOpen }) => 
     };
 
     useEffect(() => {
-        if (!haObtenidoDatos) {
-            lista();
-            setHaObtenidoDatos(true);
-        }
-    }, [currentPage, haObtenidoDatos])
+        lista();
+
+    }, [currentPage])
 
     const lista = async () => {
         try {

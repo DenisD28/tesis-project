@@ -93,7 +93,7 @@ export default function FormAdd() {
       <div className="flex justify-center items-center flex-col p-2">
         <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Tipo de cliente *</label>
         <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="type" id="type" value={formProducto.type} required>
-          <option value="Por Mayor">Por mayor</option>
+          <option value="Por mayor">Por mayor</option>
           <option value="Al detalle">Al detalle</option>
         </select>
       </div>
