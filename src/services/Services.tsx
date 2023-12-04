@@ -53,6 +53,7 @@ export const ListaUnidades = async (tipo: string) => {
     const url = `${import.meta.env.VITE_API_URL}list_measurements/?type=${tipo}`
 
     const headers = {
+        'Access-Control-Allow-Origin': '*',
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
