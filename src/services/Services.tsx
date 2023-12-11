@@ -20,7 +20,10 @@ function EliminarToken() {
 
 //Autenticacion
 export const login = async (newPost: Post): Promise<User> => {
-    const url = `${import.meta.env.VITE_API_URL}auth/login?username=${newPost.usuario}&password=${newPost.password}`
+    const specialChars = newPost.password
+    const encodedChars = encodeURIComponent(specialChars)
+    const url = `${import.meta.env.VITE_API_URL}auth/login?username=${newPost.usuario}&password=${encodedChars}`
+
     const response = await axios.post(url)
 
     return response.data
@@ -32,7 +35,7 @@ export const logout = async () => {
 
     const headers = {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
     }
 
     const body = ""
@@ -53,7 +56,6 @@ export const ListaUnidades = async (tipo: string) => {
     const url = `${import.meta.env.VITE_API_URL}list_measurements/?type=${tipo}`
 
     const headers = {
-        'Access-Control-Allow-Origin': '*',
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
     }
@@ -64,6 +66,7 @@ export const ListaUnidades = async (tipo: string) => {
     return response.data
 
 }
+
 export const TablaOrganizacion = async (id: number) => {
     const token = getDecryptedToken();
     const url = `${import.meta.env.VITE_API_URL}organizations?page=${id}`
@@ -441,7 +444,8 @@ export const infoGeneral = async () => {
 
     const headers = {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
     }
 
     const response = await axios.get(url, {
@@ -614,7 +618,10 @@ export const updateDataUser = async (name: string, email: string) => {
 
 export const changePassword = async (old_password: string, password: string) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}user/change_password?old_password=${old_password}&password=${password}`
+    const specialChars = old_password
+    const encodedChars = encodeURIComponent(specialChars)
+
+    const url = `${import.meta.env.VITE_API_URL}user/change_password?old_password=${encodedChars}&password=${password}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -742,30 +749,6 @@ export const agregarVenta = async (DetailsSale: DetailsSale[], NumeroFactura: st
     return response
 
 }
-
-// export const listaDetalleCompra = async (id: number) => {
-//     let maxRetries: number = 3
-//     const token = getDecryptedToken();
-//     const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`
-
-//     const headers = {
-//         'Authorization': `Bearer ${token}`,
-//         'Accept': 'application/json'
-//     }
-
-//     let retries = 0;
-
-//     while (retries < maxRetries) {
-//         try {
-//             const response = await axios.get(url, { headers });
-//             return response.data;
-//         } catch (error: any) {
-//             retries++;
-//             // Esperar antes de intentar nuevamente (puedes ajustar el tiempo según tus necesidades)
-//             await new Promise(resolve => setTimeout(resolve, 1000));
-//         }
-//     }
-// }
 
 export const listaDetalleCompra = async (id: number) => {
     const maxRetries: number = 1;

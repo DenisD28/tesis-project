@@ -1,18 +1,24 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Product, inven } from "../../Components/types.d"
-import { ListaUnidades, agregarInventarioPT } from "../../services/Services"
+import { agregarInventarioPT } from "../../services/Services"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"
 import toast, { Toaster } from "react-hot-toast"
+import conversiones from '../../utils/Conversiones.json'
+
+type Conversiones = {
+    [key: string]: string[]
+}
 
 export const IngresoInventarioPT = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
-    const [lista, setUnidades] = useState([]);
+    const [unidadMedida, setUnidadMedida] = useState("")
 
+    const conversion: Conversiones = conversiones
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -22,6 +28,7 @@ export const IngresoInventarioPT = () => {
         }));
     };
 
+
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
         setFormProduct((prevData) => ({
@@ -30,15 +37,15 @@ export const IngresoInventarioPT = () => {
         }));
     };
 
-    const listarUnidades = async (unidad: string) => {
-        try {
-            const { conversiones } = await ListaUnidades(unidad)
-            console.log(conversiones)
-            setUnidades(conversiones)
-        } catch (e) {
-            // console.log(e)
-        }
-    }
+    // const listarUnidades = async (unidad: string) => {
+    //     try {
+    //         const { conversiones } = await ListaUnidades(unidad)
+    //         console.log(conversiones)
+    //         setUnidades(conversiones)
+    //     } catch (e) {
+    //         // console.log(e)
+    //     }
+    // }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -61,7 +68,7 @@ export const IngresoInventarioPT = () => {
     const agregar = (id: Product) => {
         formProducto.id = id.id
         formProducto.name = id.name
-        listarUnidades(id.measurement_type)
+        setUnidadMedida(id.measurement_type)
         setIsOpen(false)
     }
 
@@ -96,7 +103,7 @@ export const IngresoInventarioPT = () => {
                             <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement} required>
                                 <option value="">Selecciona la unidad de medida</option>
                                 {
-                                    lista.map(pro => (
+                                    conversion[unidadMedida]?.map((pro) => (
                                         <option key={pro} value={pro}>{pro}</option>
                                     ))
                                 }

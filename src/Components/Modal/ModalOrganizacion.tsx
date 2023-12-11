@@ -24,8 +24,6 @@ export const ModalOrganizacion: React.FC<Props> = ({ fnAgregar, setIsOpen }) => 
     const [totalPages, setTotalPages] = useState(1)
     const [currentPage, setCurrentPage] = useState(0);
 
-    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
-
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };

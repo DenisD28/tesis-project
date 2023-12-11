@@ -1,0 +1,43 @@
+{
+    "Masa/Peso": [
+        "kg",
+        "hg",
+        "dag",
+        "g",
+        "dg",
+        "cg",
+        "mg",
+        "lb",
+        "oz",
+        "ton",
+        "q"
+    ],
+    "Unidad": [
+        "uni",
+        "d",
+        "par",
+        "md"
+    ],
+    "Longitud": [
+        "mm",
+        "cm",
+        "dm",
+        "m",
+        "dam",
+        "hm",
+        "km",
+        "in",
+        "ft",
+        "yd"
+    ],
+    "Volumen": [
+        "l",
+        "ml",
+        "cl",
+        "dl",
+        "gl",
+        "dal",
+        "hl",
+        "kl"
+    ]
+}

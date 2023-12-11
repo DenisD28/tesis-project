@@ -35,7 +35,7 @@ export const FormLogin = () => {
             }
 
         } catch (error: any) {
-            toast.error("Credeciales Incorrecta")
+            toast.error(error.response.data.message)
         }
     }
 
