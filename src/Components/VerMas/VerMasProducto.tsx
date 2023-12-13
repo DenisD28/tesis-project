@@ -28,7 +28,7 @@ export const VerMasProducto: React.FC<Props> = ({ data, setIsOpen }) => {
                     <form className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Nombre del Producto</label>
-                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="product" value={data.product} readOnly />
+                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="product" value={data.product.name} readOnly />
                         </div>
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Codigo Producto</label>

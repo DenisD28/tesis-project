@@ -74,69 +74,71 @@ export default function FormAdd() {
   }
 
   return (
-
-    <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
+    <>
       <div> <Toaster /></div >
-      <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre *</label>
-        <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre del cliente" onChange={handleInputChange} value={formProducto.name} required />
-      </div>
-      <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Telefono principal</label>
-        <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="phone_main" placeholder="Escribe el telefono principal del cliente" onChange={handleInputChange} value={formProducto.phone_main} />
-      </div>
-      <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Telefono secundario</label>
-        <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="phone_secondary" placeholder="Escribe el telefono secundario del cliente" onChange={handleInputChange} value={formProducto.phone_secondary} />
-      </div>
+      <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
 
-      <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Tipo de cliente *</label>
-        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="type" id="type" value={formProducto.type} required>
-          <option value="Por mayor">Por mayor</option>
-          <option value="Al detalle">Al detalle</option>
-        </select>
-      </div>
-      <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento *</label>
-        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="city_id" id="city_id" value={formProducto.city_id} required>
-          <option value="">Selecciona el departamento del cliente</option>
-          {
-            lista.map(pro => (
-              <option value={pro.id}>{pro.name}</option>
-            ))
-          }
-        </select>
-      </div>
-      <span className='row-span-2'>
         <div className="flex justify-center items-center flex-col p-2">
-          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="address">Direccion</label>
-          <textarea className="w-full h-36 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="address" id="address" placeholder="Escribe la direccion del cliente" onChange={handleTextAreaChange} value={formProducto.address}></textarea>
+          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre *</label>
+          <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre del cliente" onChange={handleInputChange} value={formProducto.name} required />
         </div>
-      </span>
-      <div className="flex justify-center items-center flex-col p-2">
-        <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio *</label>
-        <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="municipality_id" id="municipality_id" value={formProducto.municipality_id} required>
-          <option value="">Selecciona el municipio del cliente</option>
-          {
-            listaMunicipios.map(pro => (
-              <option value={pro.id}>{pro.name}</option>
-            ))
-          }
-        </select>
-      </div>
-      <ButtonForm dataButton={{
-        'title': 'Cancelar',
-        'color': 'red',
-        'type': 'reset',
-        'fnClick': () => { },
-      }} />
-      <ButtonForm dataButton={{
-        'title': 'Guardar',
-        'color': 'green',
-        'type': 'submit',
-        'fnClick': () => { },
-      }} />
-    </form>
+        <div className="flex justify-center items-center flex-col p-2">
+          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Telefono principal</label>
+          <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="phone_main" placeholder="Escribe el telefono principal del cliente" onChange={handleInputChange} value={formProducto.phone_main} />
+        </div>
+        <div className="flex justify-center items-center flex-col p-2">
+          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Telefono secundario</label>
+          <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="phone_secondary" placeholder="Escribe el telefono secundario del cliente" onChange={handleInputChange} value={formProducto.phone_secondary} />
+        </div>
+
+        <div className="flex justify-center items-center flex-col p-2">
+          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Tipo de cliente *</label>
+          <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="type" id="type" value={formProducto.type} required>
+            <option value="Por mayor">Por mayor</option>
+            <option value="Al detalle">Al detalle</option>
+          </select>
+        </div>
+        <div className="flex justify-center items-center flex-col p-2">
+          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="city_id">Departamento *</label>
+          <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="city_id" id="city_id" value={formProducto.city_id} required>
+            <option value="">Selecciona el departamento del cliente</option>
+            {
+              lista.map(pro => (
+                <option value={pro.id}>{pro.name}</option>
+              ))
+            }
+          </select>
+        </div>
+        <span className='row-span-2'>
+          <div className="flex justify-center items-center flex-col p-2">
+            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="address">Direccion</label>
+            <textarea className="w-full h-36 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="address" id="address" placeholder="Escribe la direccion del cliente" onChange={handleTextAreaChange} value={formProducto.address}></textarea>
+          </div>
+        </span>
+        <div className="flex justify-center items-center flex-col p-2">
+          <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="municipality_id">Municipio *</label>
+          <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="municipality_id" id="municipality_id" value={formProducto.municipality_id} required>
+            <option value="">Selecciona el municipio del cliente</option>
+            {
+              listaMunicipios.map(pro => (
+                <option value={pro.id}>{pro.name}</option>
+              ))
+            }
+          </select>
+        </div>
+        <ButtonForm dataButton={{
+          'title': 'Cancelar',
+          'color': 'red',
+          'type': 'reset',
+          'fnClick': () => { },
+        }} />
+        <ButtonForm dataButton={{
+          'title': 'Guardar',
+          'color': 'green',
+          'type': 'submit',
+          'fnClick': () => { },
+        }} />
+      </form>
+    </>
   )
 }

@@ -67,6 +67,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
             observation: "test"
         }
 
+        console.log(list)
         setLista([...list, datos])
     }
 
