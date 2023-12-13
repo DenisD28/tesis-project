@@ -7,7 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function FormAdd() {
 
-  const [formProducto, setFormProduct] = useState<clients>({ name: "", address: "", city_id: 0, municipality_id: 0, phone_main: "", phone_secondary: "", type: "", details: "" })
+  const [formProducto, setFormProduct] = useState<clients>({ name: "", address: "", city_id: 0, municipality_id: 0, phone_main: "", phone_secondary: "", type: "Por mayor", details: "" })
 
   const [lista, setDepartamento] = useState<ciudad>([]);
   const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);

@@ -93,6 +93,7 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                                                     placeholder="Ingrese la cantidad"
                                                     min={0}
                                                     value={cantidades[index] || ""}
+                                                    required
                                                 />
                                             </td>
                                             <td>

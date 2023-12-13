@@ -142,7 +142,6 @@ export const SalidaDeMateriaPrima: React.FC = () => {
                                     </td>
                                 ))}
                                 <td className="px-6 py-4">
-                                    {/* <button onClick={() => agregar(dat)}>Agregar</button> */}
                                     <button className="w-30 h-10 rounded-md border-2 border-[#ddd] px-2 font-medium bg-red-600 text-white" onClick={() => Eliminar(dat)}>Eliminar</button>
                                 </td>
                             </tr>

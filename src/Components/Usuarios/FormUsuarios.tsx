@@ -9,7 +9,7 @@ import { ModalUsaurio } from "../Modal/ModalUsuario";
 
 export const FormUsuarios = () => {
 
-    const [formProducto, setFormProduct] = useState<Usuario>({ id: "", name: "", email: "", username: "", password: "", token: "", organization: "", role: "" })
+    const [formProducto, setFormProduct] = useState<Usuario>({ id: "", name: "", email: "", username: "", password: "", token: "", organization: "", role: "2" })
     const [isOpen, setIsOpen] = useState(false)
     const { usuario } = useGlobalContext()
     const [userData, setUserData] = useState();
