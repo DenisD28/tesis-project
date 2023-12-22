@@ -1,7 +1,7 @@
 import "../../css/App.css"
 import React, { useEffect, useState } from "react"
 import { User } from "../types.d";
-import { TablaOrganizacion } from "../../services/Services";
+import { TablaOrganizacion } from "../../services/Organization/ListaOrganizacionServices";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 import { Pagination } from "flowbite-react";

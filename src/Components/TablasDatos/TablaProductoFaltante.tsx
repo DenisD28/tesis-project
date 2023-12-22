@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "../../css/App.css"
-import { listaProductoFaltante } from "../../services/Services"
+import { listaProductoFaltante } from "../../services/Products/ListaInvetarioFaltanteServices"
 import { HeadType } from "../Table/types/HeadType"
 import { Table } from "../Table/Table"
 

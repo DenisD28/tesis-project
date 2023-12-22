@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getGanaciasMensuales } from '../../services/Services'
+import { getGanaciasMensuales } from '../../services/Earnings/GetGananciasMesServices'
 import { gananciasMensuales } from './GananciasType'
 
 export default function useGetEarnings() {

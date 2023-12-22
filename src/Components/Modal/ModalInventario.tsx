@@ -1,7 +1,7 @@
 import "../../css/App.css"
 import React, { useEffect, useState } from "react"
 import { Inventary } from "../types.d";
-import { listaInventario } from "../../services/Services";
+import { listaInventario } from "../../services/Products/ListaInventariosMPServices";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 

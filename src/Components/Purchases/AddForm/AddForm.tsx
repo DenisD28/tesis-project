@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import InputsForm from '../../Forms/InputsComponents/InputsForm'
 import SelectForm from '../../Forms/SelectComponents/SelectForm'
 import AddFormType from './AddFormType'
-import { listaProveedores } from '../../../services/Services'
+import { listaProveedores } from '../../../services/Provider/ListaProveedoresServices'
 import { provider } from '../../../types/ProviderTypes/dataProvider'
 
 export default function AddForm({ props }: { props: AddFormType }) {

@@ -1,5 +1,5 @@
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
-import { agregarProductoTerminado } from "../../services/Services"
+import { agregarProductoTerminado } from "../../services/Products/AddProductoTerminadoServices"
 import { useNavigate } from "react-router-dom"
 import { HeadType } from "../../Components/Table/types/HeadType"
 import Head from "../../Components/Table/Head/Head"

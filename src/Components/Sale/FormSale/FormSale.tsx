@@ -4,7 +4,7 @@ import ButtonForm from '../../Forms/ButtonComponents/ButtonForm'
 import { Receipt } from 'lucide-react'
 import { FormSaleProps } from './FormSalePropsTypes'
 import { useEffect, useState } from 'react'
-import { listaCliente1 } from '../../../services/Services'
+import { listaCliente1 } from '../../../services/Clients/ListaClientesServices'
 import { cliente, lstCliente } from '../../types.d'
 
 export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, setNota, HandleNextOperation, NumeroFactura, Nota }: FormSaleProps) {

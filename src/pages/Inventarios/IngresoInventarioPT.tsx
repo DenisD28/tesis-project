@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Product, inven } from "../../Components/types.d"
-import { agregarInventarioPT } from "../../services/Services"
+import { agregarInventarioPT } from "../../services/Products/AddInventarioPTServices"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import Footer from "../../Components/Footer/Footer"

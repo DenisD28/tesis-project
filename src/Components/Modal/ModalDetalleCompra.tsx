@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import React, { useEffect, useState } from "react"
-import { listaDetalleCompra } from "../../services/Services";
+import { listaDetalleCompra } from "../../services/Purchase/ListaDetalleCompraServices";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 

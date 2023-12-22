@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Product, inven } from "../../Components/types.d"
-import { agregarInventario } from "../../services/Services"
+import { agregarInventario } from "../../services/Products/AddInventarioMPServices"
 import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalProducto } from "../../Components/Modal/ModalProducto"
 import toast, { Toaster } from "react-hot-toast"

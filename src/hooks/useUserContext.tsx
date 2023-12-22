@@ -3,7 +3,7 @@ import {
     createContext, useContext, useEffect, useState
 } from 'react';
 import { User } from '../Components/types.d';
-import { infoGeneral } from '../services/Services';
+import { infoGeneral } from '../services/Users/InfoUserServices';
 
 // Definir el tipo para el contexto
 interface GlobalContextType {

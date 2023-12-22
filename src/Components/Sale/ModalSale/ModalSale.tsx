@@ -6,7 +6,8 @@ import SelectInputSale from './SelectInputSale/SelectInputSale'
 import InfoSaleSelected from './InfoSaleSelected/InfoSaleSelected'
 import { ModalSaleProps } from './ModalSalePropsType'
 import { InputSale } from '../../../types/SaleTypes/InputSale'
-import { listaEntradas, listaProductoTerminado } from '../../../services/Services'
+import { listaEntradas, } from '../../../services/Purchase/ListaEntradaCompra'
+import { listaProductoTerminado } from '../../../services/Products/ListaInventarioPTServices'
 import { inven, inventario } from '../../types.d'
 
 export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {

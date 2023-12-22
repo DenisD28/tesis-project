@@ -1,7 +1,7 @@
 import "../../css/App.css"
 import React, { useState } from "react"
 import { Product, tipo } from "../types.d";
-import { listaProductos } from "../../services/Services";
+import { listaProductos } from "../../services/Products/ListaProductoCategoriaServices";
 import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 

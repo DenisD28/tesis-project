@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import { changePassword } from '../../../services/Services'
+import { useState } from 'react'
+import { changePassword } from '../../../services/Users/UpdateUserServices'
 import { useNavigate } from 'react-router-dom'
 
 export default function useChangePassword() {
@@ -12,21 +12,21 @@ export default function useChangePassword() {
 
     let HandleOnClick = () => {
 
-        if(password!=='' && newPassword!=='' && confirmPassword!==''){
-            if(newPassword===confirmPassword){
+        if (password !== '' && newPassword !== '' && confirmPassword !== '') {
+            if (newPassword === confirmPassword) {
                 ChangePasswordQuery()
-            }else{
+            } else {
                 setError('Las contraseñas no coinciden')
             }
-        }else{
+        } else {
             setError('Los campos no pueden estar vacios')
         }
     }
 
     let ChangePasswordQuery = async () => {
         try {
-            const { estado} = await changePassword(password, newPassword)
-            if(estado === 200){
+            const { estado } = await changePassword(password, newPassword)
+            if (estado === 200) {
                 navigation('/')
             }
         } catch (e: any) {

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "../../css/nav.css"
-import { logout } from "../../services/Services"
+import { logout } from "../../services/Login/LogoutServices"
 import { useNavigate } from "react-router-dom"
 import BoxOptions from "./BoxOptions/BoxOptions"
 import { useGlobalContext } from "../../hooks/useUserContext"

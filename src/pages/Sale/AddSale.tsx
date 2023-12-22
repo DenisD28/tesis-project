@@ -5,7 +5,7 @@ import GeneralInfoSale from '../../Components/Sale/GeneralInfoSale/GeneralInfoSa
 import ButtonForm from '../../Components/Forms/ButtonComponents/ButtonForm'
 import useAddSale from '../../hooks/SaleHooks/useAddSale'
 import toast, { Toaster } from 'react-hot-toast'
-import { agregarVenta } from '../../services/Services'
+import { agregarVenta } from '../../services/Sales/AddVentaServices'
 
 export default function AddSale() {
     const { Cliente,

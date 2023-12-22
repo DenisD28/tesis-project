@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { User, Usuario } from "../types.d";
-import { agregarUsuario } from "../../services/Services";
+import { agregarUsuario } from "../../services/Users/AddUsariosServices";
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
 import { ModalOrganizacion } from "../Modal/ModalOrganizacion";
 import { useGlobalContext } from "../../hooks/useUserContext";

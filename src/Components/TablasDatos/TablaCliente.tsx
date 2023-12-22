@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
-import { listaCliente } from "../../services/Services"
+import { listaCliente } from "../../services/Clients/ListaClientesServices"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"

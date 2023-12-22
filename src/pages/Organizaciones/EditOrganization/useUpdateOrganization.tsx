@@ -1,4 +1,4 @@
-import { ActualizarOrganizacion } from "../../../services/Services";
+import { ActualizarOrganizacion } from "../../../services/Organization/UpdateOrganizacionServices";
 import { useNavigate } from "react-router-dom";
 
 interface UpdateOrganizationType {
@@ -24,22 +24,22 @@ interface UpdateOrganizationType {
 }
 
 
-export default function useUpdateOrganization({name, ruc, address, sector, municipality, city, phone_main, phone_secondary, image, DataOld}: UpdateOrganizationType) {
+export default function useUpdateOrganization({ name, ruc, address, sector, municipality, city, phone_main, phone_secondary, image, DataOld }: UpdateOrganizationType) {
     const navigate = useNavigate();
     let updateOrganization = async () => {
         const formData = new FormData();
-        if(image){
+        if (image) {
             formData.append("image", image);
         }
-        if(name != DataOld.name && name != ""){formData.append("name", name);}
-        if(ruc != "null"){formData.append("ruc", ruc??"");}
-        if(address != "null") {formData.append("address", address??"");}
+        if (name != DataOld.name && name != "") { formData.append("name", name); }
+        if (ruc != "null") { formData.append("ruc", ruc ?? ""); }
+        if (address != "null") { formData.append("address", address ?? ""); }
         formData.append("sector_id", sector);
         formData.append("municipality_id", municipality);
         formData.append("city_id", city);
-        if(phone_main != "null") {formData.append("phone_main", phone_main??"");}
-        if(phone_secondary != "null"){formData.append("phone_secondary", phone_secondary??"");}
-        try{
+        if (phone_main != "null") { formData.append("phone_main", phone_main ?? ""); }
+        if (phone_secondary != "null") { formData.append("phone_secondary", phone_secondary ?? ""); }
+        try {
             await ActualizarOrganizacion(formData)
             navigate("/dashboard")
         } catch (error) {

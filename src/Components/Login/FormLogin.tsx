@@ -3,7 +3,7 @@ import "../../css/alert.css"
 import { useState } from "react"
 import { Post, User } from "../../Components/types.d"
 import { useNavigate } from "react-router-dom"
-import { login } from "../../services/Services"
+import { login } from "../../services/Login/LoginServices"
 import Cookies from 'js-cookie'
 import Footer from "../../Components/Footer/Footer"
 import CryptoJS from 'crypto-js'

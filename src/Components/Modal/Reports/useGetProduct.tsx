@@ -1,5 +1,7 @@
-import {useEffect, useState} from 'react'
-import { getProducts, DownloadReport } from '../../../services/Services'
+import { useEffect, useState } from 'react'
+import { getProducts } from '../../../services/Reportes/GetProductServices'
+import { DownloadReport } from '../../../services/Reportes/ReportServices'
+
 
 interface ProductType {
     "id_inventory": number,
@@ -51,7 +53,7 @@ export default function useGetProduct(typeProduct: string) {
 
     let getProduct = async () => {
         try {
-            const {inventario} = await getProducts(typeProduct);
+            const { inventario } = await getProducts(typeProduct);
             setListProduct(inventario);
         } catch (error: any) {
             console.log(error);
@@ -59,7 +61,7 @@ export default function useGetProduct(typeProduct: string) {
     }
     useEffect(() => {
         if (!withProduct) {
-            if(typeProduct === "MP" || typeProduct === "PT"){
+            if (typeProduct === "MP" || typeProduct === "PT") {
                 getProduct();
             }
         }

@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import { infoGeneral } from '../../services/Services'
+import { useState, useEffect } from 'react'
+import { infoGeneral } from '../../services/Users/InfoUserServices'
 import { ViewInfoUserProps } from './ViewInfoUserPropsType'
 
 export default function useGetDataUser() {
@@ -28,5 +28,5 @@ export default function useGetDataUser() {
         setName,
         email,
         setEmail
-  }
+    }
 }

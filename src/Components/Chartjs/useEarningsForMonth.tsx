@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { getEarningsForDialy } from "../../services/Services"
+import { getEarningsForDialy } from "../../services/Earnings/GetFGananciasDiaServices"
 
-interface EarningsDialy{
+interface EarningsDialy {
     date: string,
     total: string
 }

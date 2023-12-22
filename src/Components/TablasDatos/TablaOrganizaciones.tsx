@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
-import { TablaOrganizacion } from "../../services/Services"
+import { TablaOrganizacion } from "../../services/Organization/ListaOrganizacionServices"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"

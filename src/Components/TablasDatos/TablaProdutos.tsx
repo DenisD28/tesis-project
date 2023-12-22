@@ -1,6 +1,6 @@
 import "../../css/App.css"
 import { useEffect, useState } from "react"
-import { listaInventario } from "../../services/Services"
+import { listaInventario } from "../../services/Products/ListaInventariosMPServices"
 import { HeadType } from "../Table/types/HeadType"
 import { Table } from "../Table/Table"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"

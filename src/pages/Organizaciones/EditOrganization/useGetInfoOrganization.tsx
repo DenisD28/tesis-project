@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { departamentos, municipio, sectores, getDataMyOrganization as serviceOrganization } from '../../../services/Services';
+import { departamentos } from '../../../services/Departament/ListaDepartamentosServices';
+import { municipio } from '../../../services/Departament/ListaMunicipalityServices';
+import { sectores } from '../../../services/Sectors/ListaSectoresServices';
+import { getDataMyOrganization as serviceOrganization } from '../../../services/Organization/InfoMyOrganizacionServices';
 
 interface CityType {
     id: number;
@@ -60,21 +63,21 @@ const useGetInfoOrganization = () => {
 
 
     useEffect(() => {
-    let getDepartamentos = async () => {
-        const { ciudades } = await departamentos()
-        await setListCity(ciudades)
-    }
-    let getSectores = async () => {
-        const info = await sectores()
-        await setListSectors(info.sectores)
-    }
-    let getDataMyOrganization = async () => {
-        const info = await serviceOrganization()
-        await setInfoOrganization(info.organizacion)
-    }
-    getDataMyOrganization()
-    getSectores()
-    getDepartamentos()
+        let getDepartamentos = async () => {
+            const { ciudades } = await departamentos()
+            await setListCity(ciudades)
+        }
+        let getSectores = async () => {
+            const info = await sectores()
+            await setListSectors(info.sectores)
+        }
+        let getDataMyOrganization = async () => {
+            const info = await serviceOrganization()
+            await setInfoOrganization(info.organizacion)
+        }
+        getDataMyOrganization()
+        getSectores()
+        getDepartamentos()
     }, []);
 
     useEffect(() => {

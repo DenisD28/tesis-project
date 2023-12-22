@@ -1,6 +1,6 @@
 import ReportsModal from "../../Components/Modal/Reports/ReportsModal"
 import { useState } from "react"
-import { DownloadSQL } from "../../services/Services"
+import { DownloadSQL } from "../../services/Reportes/BackupServices"
 import { Toaster } from "react-hot-toast";
 
 export const Reports = () => {
@@ -12,27 +12,27 @@ export const Reports = () => {
     const listReport = [
         {
             name: 'Inventario de materia prima - Excel',
-            onclick: () => { setTypeProduct('MP'); setTypeReport("InventarioMP"); setSelectProduct(true); setIsOpen(true);}
+            onclick: () => { setTypeProduct('MP'); setTypeReport("InventarioMP"); setSelectProduct(true); setIsOpen(true); }
         },
         {
             name: 'Inventario de producto terminado - Excel',
-            onclick: () => { setTypeProduct('PT'); setTypeReport("InventarioPT"); setSelectProduct(true); setIsOpen(true);}
+            onclick: () => { setTypeProduct('PT'); setTypeReport("InventarioPT"); setSelectProduct(true); setIsOpen(true); }
         },
         {
             name: 'Compras - Excel',
-            onclick: () => { setIsOpen(true); setTypeProduct('MP'); setTypeReport("Compras"); setSelectProduct(true)}
+            onclick: () => { setIsOpen(true); setTypeProduct('MP'); setTypeReport("Compras"); setSelectProduct(true) }
         },
         {
             name: 'Ventas - Excel',
-            onclick: () => { setIsOpen(true); setTypeProduct('PT'); setTypeReport("Ventas"); setSelectProduct(true)}
+            onclick: () => { setIsOpen(true); setTypeProduct('PT'); setTypeReport("Ventas"); setSelectProduct(true) }
         },
         {
             name: 'Producto menos vendido - Excel',
-            onclick: () => { setIsOpen(true); setTypeProduct(""); setTypeReport("MenosVendido"); setSelectProduct(false)}
+            onclick: () => { setIsOpen(true); setTypeProduct(""); setTypeReport("MenosVendido"); setSelectProduct(false) }
         },
         {
             name: 'Producto mas vendido - Excel',
-            onclick: () => { setIsOpen(true); setTypeProduct(""); setTypeReport("MasVendido"); setSelectProduct(false)},
+            onclick: () => { setIsOpen(true); setTypeProduct(""); setTypeReport("MasVendido"); setSelectProduct(false) },
             type: 'none'
         },
         {
@@ -63,7 +63,7 @@ export const Reports = () => {
             {
                 isOpen && <ReportsModal isOpen={isOpen} onClose={() => setIsOpen(false)} typeProduct={typeProduct} selelectProduct={selectProduct} typeReport={typeReport} />
             }
-            <Toaster/>
+            <Toaster />
         </main>
     )
 }

@@ -1,7 +1,7 @@
-import {useState} from 'react'
-import { updateDataUser } from '../../services/Services'
+import { useState } from 'react'
+import { updateDataUser } from '../../services/Users/UpdateUserServices'
 
-interface UpdateDataUserType{
+interface UpdateDataUserType {
     mensaje: string,
     estado: number
 }
@@ -16,13 +16,13 @@ export default function useUpdateDataUser() {
                 mensaje,
                 estado
             })
-            estado === 200 ? window.location.reload()  : console.log("Error")
+            estado === 200 ? window.location.reload() : console.log("Error")
         } catch (e) {
             console.log(e)
         }
     }
-  return {
-    ResponseQuery,
-    HandleUpdateUser
-  }
+    return {
+        ResponseQuery,
+        HandleUpdateUser
+    }
 }

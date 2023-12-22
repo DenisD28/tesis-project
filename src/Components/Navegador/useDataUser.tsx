@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { User } from "../types.d"
-import { infoGeneral } from "../../services/Services"
+import { infoGeneral } from "../../services/Users/InfoUserServices"
 
 export default function useDataUser() {
     const [userInfo, setInfo] = useState<User>()

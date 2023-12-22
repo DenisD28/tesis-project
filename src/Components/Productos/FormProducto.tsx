@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { newProduct } from "../../Components/types.d";
-import { newAddProduct } from "../../services/Services";
+import { newAddProduct } from "../../services/Products/AddProductoServices";
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm";
 import toast, { Toaster } from "react-hot-toast";
 

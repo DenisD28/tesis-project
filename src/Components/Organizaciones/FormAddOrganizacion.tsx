@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { agregarOrganizacion, departamentos, municipio } from "../../services/Services"
+import { agregarOrganizacion } from "../../services/Organization/AddOrganizacionServices"
+import { municipio } from "../../services/Departament/ListaMunicipalityServices"
+import { departamentos } from "../../services/Departament/ListaDepartamentosServices"
+
 import { ciudad, municipioCiudad, organizacion } from "../types.d"
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
