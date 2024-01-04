@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react"
-import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { agregarProveedor } from "../../services/Provider/AddProveedorServices"
-import { departamentos } from "../../services/Departament/ListaDepartamentosServices"
-import { municipio } from "../../services/Departament/ListaMunicipalityServices"
-import { ciudad, municipioCiudad, proveedor } from "../types.d"
-import { useNavigate } from "react-router-dom"
-import toast, { Toaster } from "react-hot-toast"
-import InputsForm from "../Forms/InputsComponents/InputsForm"
-import SelectForm from "../Forms/SelectComponents/SelectForm"
+import { useEffect, useState } from 'react';
+import ButtonForm from '../Forms/ButtonComponents/ButtonForm'
+import { ciudad, clients, municipioCiudad } from '../types.d';
+import { agregarCliente } from '../../services/Clients/AddClienteServices'
+import { departamentos } from '../../services/Departament/ListaDepartamentosServices'
+import { municipio } from '../../services/Departament/ListaMunicipalityServices'
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import InputsForm from '../Forms/InputsComponents/InputsForm';
+import SelectForm from '../Forms/SelectComponents/SelectForm';
 
-export const FormAddProveedores = () => {
+export default function FormAdd() {
 
-    const [formProducto, setFormProduct] = useState<proveedor>({ name: "", ruc: "", address: "", phone_main: "", contact_name: "", second_phone: "", city_id: 0, municipality_id: 0 })
+    const [formProducto, setFormProduct] = useState<clients>({ name: "", address: "", city_id: 0, municipality_id: 0, phone_main: "", phone_secondary: "", type: "Por mayor", details: "" })
 
     const [lista, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
@@ -36,18 +36,19 @@ export const FormAddProveedores = () => {
         }));
     };
 
-    // const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     const { name, value } = event.target;
-    //     setFormProduct((prevData) => ({
-    //         ...prevData,
-    //         [name]: value,
-    //     }));
-    // };
+    const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
+        setFormProduct((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
     useEffect(() => {
         const lista = async () => {
             try {
                 const { ciudades } = await departamentos()
+
                 setDepartamento(ciudades)
             } catch (e) {
                 // console.log(e)
@@ -69,10 +70,9 @@ export const FormAddProveedores = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            await agregarProveedor(formProducto)
-            navigation("/proveedores")
+            await agregarCliente(formProducto)
+            navigation("/clientes")
         } catch (e: any) {
-            console.log(e)
             toast.error(e.response.data.message)
         }
     }
@@ -84,22 +84,10 @@ export const FormAddProveedores = () => {
                 <InputsForm
                     DataInputs={{
                         name: "name",
-                        title: "Nombre del proveedor *",
-                        value: formProducto.address || "",
+                        title: "Nombre *",
+                        value: formProducto.name || "",
                         type: "text",
-                        placeholder: "Escribe el nombre del proveedor",
-                        isRequire: true,
-                        isDisabled: false,
-                        fnChange: () => { handleInputChange },
-                    }}
-                />
-                <InputsForm
-                    DataInputs={{
-                        name: "contact_name",
-                        title: "Nombre del contacto",
-                        value: formProducto.contact_name || "",
-                        type: "text",
-                        placeholder: "Escribe el nombre del proveedor",
+                        placeholder: "Escribe el nombre del cliente",
                         isRequire: true,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
@@ -108,10 +96,10 @@ export const FormAddProveedores = () => {
                 <InputsForm
                     DataInputs={{
                         name: "phone_main",
-                        title: "Telefono Principal",
+                        title: "Telefono principal",
                         value: formProducto.phone_main || "",
                         type: "text",
-                        placeholder: "Escribe el telefono principal",
+                        placeholder: "Escribe el telefono principal del cliente",
                         isRequire: true,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
@@ -119,16 +107,23 @@ export const FormAddProveedores = () => {
                 />
                 <InputsForm
                     DataInputs={{
-                        name: "second_phone",
-                        title: "Telefono Secundario",
-                        value: formProducto.phone_main || "",
+                        name: "phone_main",
+                        title: "Telefono secundario",
+                        value: formProducto.phone_secondary || "",
                         type: "text",
-                        placeholder: "Escribe el telefono secundario",
-                        isRequire: false,
+                        placeholder: "Escribe el telefono secundario del cliente",
+                        isRequire: true,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
                     }}
                 />
+                <div className="flex justify-center items-center flex-col p-2">
+                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Tipo de cliente *</label>
+                    <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="type" id="type" value={formProducto.type} required>
+                        <option value="Por mayor">Por mayor</option>
+                        <option value="Al detalle">Al detalle</option>
+                    </select>
+                </div>
                 <SelectForm
                     dataSelect={{
                         name: "city_id",
@@ -142,30 +137,20 @@ export const FormAddProveedores = () => {
                         value: formProducto.city_id,
                     }}
                 />
-                <InputsForm
-                    DataInputs={{
-                        name: "ruc",
-                        title: "RUC",
-                        value: formProducto.ruc || "",
-                        type: "text",
-                        placeholder: "Ingrese le numero ruc",
-                        isRequire: false,
-                        isDisabled: false,
-                        fnChange: () => { handleInputChange },
-                    }}
-                />
-                <InputsForm
-                    DataInputs={{
-                        name: "address",
-                        title: "Direccion",
-                        value: formProducto.address || "",
-                        type: "text",
-                        placeholder: "Ingrese la direccion",
-                        isRequire: true,
-                        isDisabled: false,
-                        fnChange: () => { handleInputChange },
-                    }}
-                />
+                <span className='row-span-2'>
+                    <InputsForm
+                        DataInputs={{
+                            name: "address",
+                            title: "Direccion",
+                            value: formProducto.address || "",
+                            type: "text",
+                            placeholder: "Escribe la direccion del cliente",
+                            isRequire: true,
+                            isDisabled: false,
+                            fnChange: () => { handleTextAreaChange },
+                        }}
+                    />
+                </span>
                 <SelectForm
                     dataSelect={{
                         name: "municipality_id",
@@ -191,7 +176,7 @@ export const FormAddProveedores = () => {
                     'type': 'submit',
                     'fnClick': () => { },
                 }} />
-            </form >
+            </form>
         </>
     )
 }

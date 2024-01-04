@@ -1,4 +1,4 @@
-import { Tablas } from "../../Components/TablasDatos/TablasMateriaPrima"
+import { Tablas } from "../../../../Components/TablasDatos/TablasMateriaPrima"
 
 
 export const Inventarios = () => {

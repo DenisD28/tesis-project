@@ -2,11 +2,11 @@ import React from 'react';
 import "../src/css/index.css"
 import ReactDOM from 'react-dom/client'
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import { Inventarios } from './pages/Inventarios/Inventarios';
-import { IngresoInventarioMP } from './pages/Inventarios/IngresoInventarioMP';
+import { Inventarios } from './pages/Inventarios/MateriaPrima/Lista/ListaMateriaPrima';
+import { IngresoInventarioMP } from './pages/Inventarios/MateriaPrima/Ingreso/IngresoInventarioMP';
 import { Organizaciones } from './pages/Organizaciones/Organizaciones';
-import { IngresoProductoTerminado } from './pages/Inventarios/IngresoProductoTerminado';
-import { SalidaDeMateriaPrima } from './pages/Inventarios/SalidaDeMateriaPrima';
+import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/Lista/ListaProductoTerminado';
+import { SalidaDeMateriaPrima } from './pages/Inventarios/MateriaPrima/Salida/SalidaDeMateriaPrima';
 import { AddNewProduct } from './pages/Productos/AddNewProduct';
 import LoginPage from './pages/Login/LoginPage';
 import { Dashboard } from './pages/Dashboard';
@@ -18,7 +18,7 @@ import Purchases from './pages/Purchases/Purchases';
 import AddPurchases from './pages/Purchases/AddPurchases';
 import { Clientes } from './pages/Clients/Clientes';
 import { Proveedores } from './pages/Proveedores/Proveedores';
-import { IngresoInventarioPT } from './pages/Inventarios/IngresoInventarioPT';
+import { IngresoInventarioPT } from './pages/Inventarios/ProductoTerminado/Ingreso/IngresoInventarioPT';
 import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
 import App from './App';
 import AddSale from './pages/Sale/AddSale';

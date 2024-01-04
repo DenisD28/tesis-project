@@ -1,29 +1,21 @@
 import { useEffect, useState } from "react"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { agregarProveedor } from "../../services/Provider/AddProveedorServices"
-import { departamentos } from "../../services/Departament/ListaDepartamentosServices"
+import { agregarOrganizacion } from "../../services/Organization/AddOrganizacionServices"
 import { municipio } from "../../services/Departament/ListaMunicipalityServices"
-import { ciudad, municipioCiudad, proveedor } from "../types.d"
-import { useNavigate } from "react-router-dom"
+import { departamentos } from "../../services/Departament/ListaDepartamentosServices"
+
+import { ciudad, municipioCiudad, organizacion } from "../types.d"
 import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 import InputsForm from "../Forms/InputsComponents/InputsForm"
 import SelectForm from "../Forms/SelectComponents/SelectForm"
 
-export const FormAddProveedores = () => {
+export const AddOrganizacion = () => {
 
-    const [formProducto, setFormProduct] = useState<proveedor>({ name: "", ruc: "", address: "", phone_main: "", contact_name: "", second_phone: "", city_id: 0, municipality_id: 0 })
-
+    const [formProducto, setFormProduct] = useState<organizacion>({ id: 0, name: "", ruc: "", address: "", phone_main: "", second_phone: "", city_id: 0, municipality_id: 0 })
     const [lista, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
     const navigation = useNavigate()
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
@@ -36,21 +28,22 @@ export const FormAddProveedores = () => {
         }));
     };
 
-    // const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     const { name, value } = event.target;
-    //     setFormProduct((prevData) => ({
-    //         ...prevData,
-    //         [name]: value,
-    //     }));
-    // };
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setFormProduct((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
     useEffect(() => {
         const lista = async () => {
             try {
                 const { ciudades } = await departamentos()
+
                 setDepartamento(ciudades)
-            } catch (e) {
-                // console.log(e)
+            } catch (e: any) {
+                toast.error(e.response.data.message)
             }
         }
         lista()
@@ -69,10 +62,10 @@ export const FormAddProveedores = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            await agregarProveedor(formProducto)
-            navigation("/proveedores")
+            await agregarOrganizacion(formProducto)
+            navigation("/Organizaciones")
+
         } catch (e: any) {
-            console.log(e)
             toast.error(e.response.data.message)
         }
     }
@@ -84,22 +77,10 @@ export const FormAddProveedores = () => {
                 <InputsForm
                     DataInputs={{
                         name: "name",
-                        title: "Nombre del proveedor *",
-                        value: formProducto.address || "",
+                        title: "Nombre",
+                        value: formProducto.name || "",
                         type: "text",
-                        placeholder: "Escribe el nombre del proveedor",
-                        isRequire: true,
-                        isDisabled: false,
-                        fnChange: () => { handleInputChange },
-                    }}
-                />
-                <InputsForm
-                    DataInputs={{
-                        name: "contact_name",
-                        title: "Nombre del contacto",
-                        value: formProducto.contact_name || "",
-                        type: "text",
-                        placeholder: "Escribe el nombre del proveedor",
+                        placeholder: "Nombre de la organizacion",
                         isRequire: true,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
@@ -111,7 +92,7 @@ export const FormAddProveedores = () => {
                         title: "Telefono Principal",
                         value: formProducto.phone_main || "",
                         type: "text",
-                        placeholder: "Escribe el telefono principal",
+                        placeholder: "Telefono Principal",
                         isRequire: true,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
@@ -121,10 +102,10 @@ export const FormAddProveedores = () => {
                     DataInputs={{
                         name: "second_phone",
                         title: "Telefono Secundario",
-                        value: formProducto.phone_main || "",
+                        value: formProducto.second_phone || "",
                         type: "text",
-                        placeholder: "Escribe el telefono secundario",
-                        isRequire: false,
+                        placeholder: "Telefono Secundario",
+                        isRequire: true,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
                     }}
@@ -145,10 +126,10 @@ export const FormAddProveedores = () => {
                 <InputsForm
                     DataInputs={{
                         name: "ruc",
-                        title: "RUC",
+                        title: "Numero RUC",
                         value: formProducto.ruc || "",
                         type: "text",
-                        placeholder: "Ingrese le numero ruc",
+                        placeholder: "Ingrese le numero RUC",
                         isRequire: false,
                         isDisabled: false,
                         fnChange: () => { handleInputChange },
@@ -183,13 +164,13 @@ export const FormAddProveedores = () => {
                     'title': 'Cancelar',
                     'color': 'red',
                     'type': 'reset',
-                    'fnClick': () => { },
+                    'fnClick': () => { }
                 }} />
                 <ButtonForm dataButton={{
                     'title': 'Guardar',
                     'color': 'green',
                     'type': 'submit',
-                    'fnClick': () => { },
+                    'fnClick': () => { }
                 }} />
             </form >
         </>

@@ -163,7 +163,7 @@ export default function EditOrganization() {
               title: "Actualizar organizacion",
               color: "blue",
               type: "submit",
-              fnClick: () => {updateOrganization()},
+              fnClick: () => { updateOrganization() },
             }}
           />
         </div>

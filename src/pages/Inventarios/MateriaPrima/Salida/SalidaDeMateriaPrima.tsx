@@ -1,12 +1,12 @@
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
-import { agregarProductoTerminado } from "../../services/Products/AddProductoTerminadoServices"
+import { agregarProductoTerminado } from "../../../../services/Products/AddProductoTerminadoServices"
 import { useNavigate } from "react-router-dom"
-import { HeadType } from "../../Components/Table/types/HeadType"
-import Head from "../../Components/Table/Head/Head"
-import ButtonForm from "../../Components/Forms/ButtonComponents/ButtonForm"
-import { ModalInventario } from "../../Components/Modal/ModalInventario"
+import { HeadType } from "../../../../Components/Table/types/HeadType"
+import Head from "../../../../Components/Table/Head/Head"
+import ButtonForm from "../../../../Components/Forms/ButtonComponents/ButtonForm"
+import { ModalInventario } from "../../../../Components/Modal/ModalInventario"
 import toast, { Toaster } from "react-hot-toast"
-import { ModalDetalleCompra } from "../../Components/Modal/ModalDetalleCompra"
+import { ModalDetalleCompra } from "../../../../Components/Modal/ModalDetalleCompra"
 
 interface DetalleRegistro {
     detail_purchase_id: number
