@@ -121,7 +121,6 @@ export type listUnidades = Unidades[]
 
 export type compra = Pick<purchase, 'detail_purchase_id' | 'quantity'>
 
-
 export type Usuario = User2;
 export type provider = Proveedores[]
 export type proveedor = Pick<Proveedores, 'name' | 'ruc' | 'address' | 'phone_main' | 'second_phone' | 'city_id' | 'municipality_id' | 'contact_name'>

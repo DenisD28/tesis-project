@@ -6,6 +6,7 @@ import { ModalOrganizacion } from "../Modal/ModalOrganizacion";
 import { useGlobalContext } from "../../hooks/useUserContext";
 import toast, { Toaster } from "react-hot-toast";
 import { ModalUsaurio } from "../Modal/ModalUsuario";
+import InputsForm from "../Forms/InputsComponents/InputsForm";
 
 export const FormUsuarios = () => {
 
@@ -90,19 +91,42 @@ export const FormUsuarios = () => {
                             setIsOpen={setIsShow} />
                     )
                 }
-                <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre de la persona *</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="name" placeholder="Escribe el nombre de la persona" onChange={handleInputChange} value={formProducto.name} required />
-                </div>
-                <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Nombre del usuario *</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="username" placeholder="Escribe su nombre de usuario" onChange={handleInputChange} value={formProducto.username} required />
-                </div>
-                <div className="flex justify-center items-center flex-col p-2">
-                    <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Email</label>
-                    <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="email" placeholder="Escribe su email" onChange={handleInputChange} value={formProducto.email} />
-                </div>
-
+                <InputsForm
+                    DataInputs={{
+                        name: "name",
+                        title: "Nombre de la persona *",
+                        value: formProducto.name || "",
+                        type: "text",
+                        placeholder: "Escribe el nombre de la persona",
+                        isRequire: true,
+                        isDisabled: false,
+                        fnChange: () => { handleInputChange },
+                    }}
+                />
+                <InputsForm
+                    DataInputs={{
+                        name: "username",
+                        title: "Nombre del usuario",
+                        value: formProducto.username || "",
+                        type: "text",
+                        placeholder: "Escribe el nombre de usuario",
+                        isRequire: true,
+                        isDisabled: false,
+                        fnChange: () => { handleInputChange },
+                    }}
+                />
+                <InputsForm
+                    DataInputs={{
+                        name: "email",
+                        title: "Email",
+                        value: formProducto.email || "",
+                        type: "text",
+                        placeholder: "Escribe su email",
+                        isRequire: true,
+                        isDisabled: false,
+                        fnChange: () => { handleInputChange },
+                    }}
+                />
                 <div className="flex justify-center items-center flex-col p-2">
                     <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="departamento">Rol del Usuario *</label>
                     <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="role" id="type" value={formProducto.role} required>

@@ -13,7 +13,7 @@ type Conversiones = {
     [key: string]: string[]
 }
 
-export const IngresoInventarioPT = () => {
+export const AddInventarioPT = () => {
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
@@ -86,7 +86,7 @@ export const IngresoInventarioPT = () => {
                         <InputsForm
                             DataInputs={{
                                 name: "name",
-                                title: "Nombre del Producto *",
+                                title: "Nombre del Producto",
                                 value: formProducto.name || "",
                                 type: "text",
                                 placeholder: "Producto a agregar",
@@ -121,7 +121,7 @@ export const IngresoInventarioPT = () => {
                         <InputsForm
                             DataInputs={{
                                 name: "stock_min",
-                                title: "Minimo Permitido *",
+                                title: "Minimo Permitido",
                                 value: formProducto.stock_min || "",
                                 type: "number",
                                 placeholder: "Escribe el minimo permitido",

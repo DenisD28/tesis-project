@@ -86,7 +86,7 @@ export const AddInventarioMP = () => {
                         <InputsForm
                             DataInputs={{
                                 name: "name",
-                                title: "Nombre del Producto *",
+                                title: "Nombre del Producto",
                                 value: formProducto.name || "",
                                 type: "text",
                                 placeholder: "Producto a agregar",
@@ -121,7 +121,7 @@ export const AddInventarioMP = () => {
                         <InputsForm
                             DataInputs={{
                                 name: "stock_min",
-                                title: "Minimo Permitido *",
+                                title: "Minimo Permitido",
                                 value: formProducto.stock_min || "",
                                 type: "number",
                                 placeholder: "Escribe el minimo permitido",

@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import InputsForm from '../Forms/InputsComponents/InputsForm';
 import SelectForm from '../Forms/SelectComponents/SelectForm';
 
-export default function FormAdd() {
+export default function AddClient() {
 
     const [formProducto, setFormProduct] = useState<clients>({ name: "", address: "", city_id: 0, municipality_id: 0, phone_main: "", phone_secondary: "", type: "Por mayor", details: "" })
 

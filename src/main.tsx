@@ -3,7 +3,6 @@ import "../src/css/index.css"
 import ReactDOM from 'react-dom/client'
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Inventarios } from './pages/Inventarios/MateriaPrima/Lista/ListaMateriaPrima';
-import { IngresoInventarioMP } from './pages/Inventarios/MateriaPrima/Ingreso/IngresoInventarioMP';
 import { Organizaciones } from './pages/Organizaciones/Organizaciones';
 import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/Lista/ListaProductoTerminado';
 import { SalidaDeMateriaPrima } from './pages/Inventarios/MateriaPrima/Salida/SalidaDeMateriaPrima';
@@ -18,7 +17,6 @@ import Purchases from './pages/Purchases/Purchases';
 import AddPurchases from './pages/Purchases/AddPurchases';
 import { Clientes } from './pages/Clients/Clientes';
 import { Proveedores } from './pages/Proveedores/Proveedores';
-import { IngresoInventarioPT } from './pages/Inventarios/ProductoTerminado/Ingreso/IngresoInventarioPT';
 import { AddUsuarios } from './pages/Usuarios/AddUsuarios';
 import App from './App';
 import AddSale from './pages/Sale/AddSale';
@@ -26,6 +24,8 @@ import { Reports } from './pages/Reports/Reports';
 import ViewInfoUser from './pages/User/ViewInfoUser';
 import ChangePassword from './pages/User/ChangePassword/ChangePassword';
 import EditOrganization from './pages/Organizaciones/EditOrganization/EditOrganization';
+import { AddInventarioMP } from './pages/Inventarios/MateriaPrima/Ingreso/AddInventarioMP';
+import { AddInventarioPT } from './pages/Inventarios/ProductoTerminado/Ingreso/AddInventarioPT';
 
 const router = createHashRouter([
   {
@@ -42,11 +42,11 @@ const router = createHashRouter([
       },
       {
         path: "/IngresoInventarioMP",
-        element: <IngresoInventarioMP />
+        element: <AddInventarioMP />
       },
       {
         path: "/IngresoInventarioPT",
-        element: <IngresoInventarioPT />
+        element: <AddInventarioPT />
       },
       {
         path: "/Organizaciones",
