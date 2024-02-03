@@ -14,36 +14,40 @@ type Conversiones = {
 }
 
 export const AddInventarioPT = () => {
-    const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
+    const [stock_min, setStock_min] = useState("0")
+    const [unit_of_measurement, setUnit_of_measurement] = useState("")
+    const [code, setCode] = useState("")
+    const [description, setDescriptcion] = useState("")
+    const [id, setId] = useState("0")
+    const [name, setName] = useState("")
+
     const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [unidadMedida, setUnidadMedida] = useState("")
 
     const conversion: Conversiones = conversiones
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+        setUnit_of_measurement(event.target.value)
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        const formData = new FormData()
+        formData.append("stock_min", stock_min)
+        formData.append("id", id)
+        formData.append("unit_of_measurement", unit_of_measurement)
+        formData.append("code", code)
+        formData.append("description", description)
+        formData.append("name", name)
+
         try {
-            const response = await agregarInventarioPT(formProducto)
+            const response = await agregarInventarioPT(formData)
 
             if (response.status === 201) {
-                navigation("/pTerminado")
+                toast.success("Producto Agregado")
+                navigation("/inventario")
             }
 
         } catch (e: any) {
@@ -52,12 +56,12 @@ export const AddInventarioPT = () => {
     }
 
     const cancelar = () => {
-        setFormProduct({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
     }
 
     const agregar = (id: Product) => {
-        formProducto.id = id.id
-        formProducto.name = id.name
+        setId(id.id.toString())
+        console.log(id.id.toString())
+        setName(id.name)
         setUnidadMedida(id.measurement_type)
         setIsOpen(false)
     }
@@ -87,29 +91,29 @@ export const AddInventarioPT = () => {
                             DataInputs={{
                                 name: "name",
                                 title: "Nombre del Producto",
-                                value: formProducto.name || "",
+                                value: name || "",
                                 type: "text",
                                 placeholder: "Producto a agregar",
                                 isRequire: true,
                                 isDisabled: false,
-                                fnChange: () => { handleInputChange },
+                                fnChange: setName,
                             }}
                         />
                         <InputsForm
                             DataInputs={{
                                 name: "code",
                                 title: "Codigo Producto",
-                                value: formProducto.code || "",
+                                value: code || "",
                                 type: "text",
                                 placeholder: "Escribe el codigo del producto",
                                 isRequire: true,
                                 isDisabled: false,
-                                fnChange: () => { handleInputChange },
+                                fnChange: setCode,
                             }}
                         />
                         <div className="flex justify-center items-center flex-col p-2">
                             <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="code">Unidad de Medida *</label>
-                            <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={formProducto.unit_of_measurement} required>
+                            <select onChange={handleSelectChange} className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" name="unit_of_measurement" id="unit_of_measurement" value={unit_of_measurement} required>
                                 <option value="">Selecciona la unidad de medida</option>
                                 {
                                     conversion[unidadMedida]?.map((pro) => (
@@ -122,24 +126,24 @@ export const AddInventarioPT = () => {
                             DataInputs={{
                                 name: "stock_min",
                                 title: "Minimo Permitido",
-                                value: formProducto.stock_min || "",
+                                value: stock_min || "",
                                 type: "number",
                                 placeholder: "Escribe el minimo permitido",
                                 isRequire: true,
                                 isDisabled: false,
-                                fnChange: () => { handleInputChange },
+                                fnChange: setStock_min,
                             }}
                         />
                         <InputsForm
                             DataInputs={{
                                 name: "description",
                                 title: "Descripcion",
-                                value: formProducto.description || "",
+                                value: description || "",
                                 type: "text",
                                 placeholder: "Escribe la descripcion del producto",
                                 isRequire: false,
                                 isDisabled: false,
-                                fnChange: () => { handleInputChange },
+                                fnChange: setDescriptcion,
                             }}
                         />
                         <ButtonForm dataButton={{

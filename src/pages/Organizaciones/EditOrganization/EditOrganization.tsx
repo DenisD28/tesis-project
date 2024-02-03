@@ -28,6 +28,7 @@ export default function EditOrganization() {
     image,
     DataOld
   } = useGetInfoOrganization();
+
   const { updateOrganization } = useUpdateOrganization({
     name,
     ruc,

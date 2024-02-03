@@ -11,7 +11,6 @@ import { VerMasCliente } from "../VerMas/VerMasCliente"
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
     { name: "Municipio", prop: "municipality_id" },
-    { name: "Acciones", prop: "acciones" }
 ]
 
 const titleTable = 'Clientes'

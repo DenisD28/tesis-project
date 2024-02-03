@@ -1,4 +1,4 @@
-import { FormAddOrganizacion } from "../../Components/Organizaciones/FormAddOrganizacion";
+import { FormAddOrganizacion } from "../../../Components/Organizaciones/FormAddOrganizacion";
 
 export default function AddOrganizacion() {
     return (

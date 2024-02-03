@@ -3,46 +3,34 @@ import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { agregarProveedor } from "../../services/Provider/AddProveedorServices"
 import { departamentos } from "../../services/Departament/ListaDepartamentosServices"
 import { municipio } from "../../services/Departament/ListaMunicipalityServices"
-import { ciudad, municipioCiudad, proveedor } from "../types.d"
+import { ciudad, municipioCiudad } from "../types.d"
 import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 import InputsForm from "../Forms/InputsComponents/InputsForm"
 import SelectForm from "../Forms/SelectComponents/SelectForm"
+import { sectores } from "../../services/Sectors/ListaSectoresServices"
+
+interface CityType {
+    id: number;
+    name: string;
+}
 
 export const FormAddProveedores = () => {
 
-    const [formProducto, setFormProduct] = useState<proveedor>({ name: "", ruc: "", address: "", phone_main: "", contact_name: "", second_phone: "", city_id: 0, municipality_id: 0 })
-
-    const [lista, setDepartamento] = useState<ciudad>([]);
+    const [name, setName] = useState("");
+    const [ruc, setRuc] = useState("");
+    const [address, setAddress] = useState("");
+    const [contact_name, setContact_name] = useState("")
+    const [sector_id, setSector_id] = useState("");
+    const [municipality_id, setMunicipality_id] = useState("");
+    const [city_id, setCity_id] = useState("");
+    const [phone_main, setPhone_main] = useState("");
+    const [phone_secondary, setPhone_secondary] = useState("");
+    const [listSectors, setListSectors] = useState<CityType[]>([]);;
+    const [listCity, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
     const navigation = useNavigate()
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const { name, value } = event.target;
-        if (name === "city_id") {
-            listaMunicipio(value)
-        }
-        setFormProduct((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    // const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     const { name, value } = event.target;
-    //     setFormProduct((prevData) => ({
-    //         ...prevData,
-    //         [name]: value,
-    //     }));
-    // };
 
     useEffect(() => {
         const lista = async () => {
@@ -53,23 +41,45 @@ export const FormAddProveedores = () => {
                 // console.log(e)
             }
         }
+
+        let getSectores = async () => {
+            const info = await sectores()
+            await setListSectors(info.sectores)
+        }
+
+        getSectores()
         lista()
     }, [])
 
-    const listaMunicipio = async (id: string) => {
-        try {
-            const { municipios } = await municipio(id)
+    useEffect(() => {
+        const listaMunicipio = async (id: string) => {
+            try {
+                const { municipios } = await municipio(id)
 
-            setMunicipio(municipios)
-        } catch (e) {
-            // console.log(e)
+                setMunicipio(municipios)
+            } catch (e) {
+                // console.log(e)
+            }
         }
-    }
+        listaMunicipio(city_id)
+    }, [city_id])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        const formData = new FormData()
+
+        formData.append("name", name)
+        formData.append("ruc", ruc)
+        formData.append("address", address)
+        formData.append("sector", sector_id)
+        formData.append("municipality", municipality_id)
+        formData.append("city", city_id)
+        formData.append("phone_main", phone_main)
+        formData.append("phone_secondary", phone_secondary)
+
         try {
-            await agregarProveedor(formProducto)
+            await agregarProveedor(formData)
             navigation("/proveedores")
         } catch (e: any) {
             console.log(e)
@@ -85,48 +95,61 @@ export const FormAddProveedores = () => {
                     DataInputs={{
                         name: "name",
                         title: "Nombre del proveedor *",
-                        value: formProducto.address || "",
+                        value: name || "",
                         type: "text",
                         placeholder: "Escribe el nombre del proveedor",
                         isRequire: true,
                         isDisabled: false,
-                        fnChange: () => { handleInputChange },
+                        fnChange: setName,
                     }}
                 />
                 <InputsForm
                     DataInputs={{
                         name: "contact_name",
                         title: "Nombre del contacto",
-                        value: formProducto.contact_name || "",
+                        value: contact_name || "",
                         type: "text",
-                        placeholder: "Escribe el nombre del proveedor",
+                        placeholder: "Escribe el nombre del contacto del proveedor",
                         isRequire: true,
                         isDisabled: false,
-                        fnChange: () => { handleInputChange },
+                        fnChange: setContact_name,
                     }}
                 />
                 <InputsForm
                     DataInputs={{
                         name: "phone_main",
                         title: "Telefono Principal",
-                        value: formProducto.phone_main || "",
+                        value: phone_main || "",
                         type: "text",
                         placeholder: "Escribe el telefono principal",
                         isRequire: true,
                         isDisabled: false,
-                        fnChange: () => { handleInputChange },
+                        fnChange: setPhone_main,
                     }}
                 />
                 <InputsForm
                     DataInputs={{
                         name: "second_phone",
                         title: "Telefono Secundario",
-                        value: formProducto.phone_main || "",
+                        value: phone_secondary || "",
                         type: "text",
                         placeholder: "Escribe el telefono secundario",
                         isRequire: false,
                         isDisabled: false,
-                        fnChange: () => { handleInputChange },
+                        fnChange: setPhone_secondary,
+                    }}
+                />
+                <SelectForm
+                    dataSelect={{
+                        name: "sector_id",
+                        title: "Sector",
+                        placeholder: "Seleccione un sector",
+                        fnChange: setSector_id,
+                        options: listSectors.map((sector) => {
+                            return { valor: sector.id, texto: sector.name };
+                        }, []),
+                        isRequerid: true,
+                        value: sector_id,
                     }}
                 />
                 <SelectForm
@@ -134,36 +157,36 @@ export const FormAddProveedores = () => {
                         name: "city_id",
                         title: "Departamento",
                         placeholder: "Selecciona el departamento del cliente",
-                        fnChange: () => { handleSelectChange },
-                        options: lista.map((city) => {
+                        fnChange: setCity_id,
+                        options: listCity.map((city) => {
                             return { valor: city.id, texto: city.name };
                         }, []),
                         isRequerid: true,
-                        value: formProducto.city_id,
+                        value: city_id,
                     }}
                 />
                 <InputsForm
                     DataInputs={{
                         name: "ruc",
                         title: "RUC",
-                        value: formProducto.ruc || "",
+                        value: ruc || "",
                         type: "text",
                         placeholder: "Ingrese le numero ruc",
                         isRequire: false,
                         isDisabled: false,
-                        fnChange: () => { handleInputChange },
+                        fnChange: setRuc,
                     }}
                 />
                 <InputsForm
                     DataInputs={{
                         name: "address",
                         title: "Direccion",
-                        value: formProducto.address || "",
+                        value: address || "",
                         type: "text",
                         placeholder: "Ingrese la direccion",
                         isRequire: true,
                         isDisabled: false,
-                        fnChange: () => { handleInputChange },
+                        fnChange: setAddress,
                     }}
                 />
                 <SelectForm
@@ -171,12 +194,12 @@ export const FormAddProveedores = () => {
                         name: "municipality_id",
                         title: "Municipio",
                         placeholder: "Selecciona el municipio del cliente",
-                        fnChange: () => { handleSelectChange },
+                        fnChange: setMunicipality_id,
                         options: listaMunicipios.map((municipio) => {
                             return { valor: municipio.id, texto: municipio.name };
                         }, []),
                         isRequerid: true,
-                        value: formProducto.municipality_id,
+                        value: municipality_id,
                     }}
                 />
                 <ButtonForm dataButton={{

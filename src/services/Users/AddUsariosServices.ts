@@ -1,10 +1,9 @@
 import axios from "axios";
-import { User2 } from "../../Components/types.d";
 import { getDecryptedToken } from "../Token/getDecryptedToken";
 
-export const agregarUsuario = async (user: User2) => {
+export const agregarUsuario = async (user: FormData) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.name}&email=${user.email}&username=${user.username}&role_id=${user.role}&organization_id=${user.id}`
+    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.get("name")}&email=${user.get("email")}&username=${user.get("username")}&role_id=${user.get("role")}&organization_id=${user.get("id")}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
