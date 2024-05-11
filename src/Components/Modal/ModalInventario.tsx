@@ -6,7 +6,7 @@ import { HeadType } from "../Table/types/HeadType";
 import Head from "../Table/Head/Head";
 
 interface Props {
-    fnAgregar(dat: Inventary, cantidades: string[]): void
+    fnAgregar(dat: Inventary): void
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -21,7 +21,7 @@ const titleTable = 'Materia Prima'
 export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     const [data, setProduct] = useState([])
-    const [cantidades, setCantidades] = useState<string[]>([]);
+    // const [cantidad, setCantidad] = useState("");
     const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
 
     useEffect(() => {
@@ -39,11 +39,10 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
         }
     }
 
-    const handleInputChange = (index: number, value: string) => {
-        const newCantidades = [...cantidades];
-        newCantidades[index] = value;
-        setCantidades(newCantidades);
-    };
+    // const handleInputChange = (value: string) => {
+    //     setCantidad(value)
+    // };
+
 
     return (<>
         <div
@@ -84,20 +83,20 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                                                     {h.prop === 'product' ? (dat[h.prop] as { name: string }).name : dat[h.prop]}
                                                 </td>
                                             ))}
-                                            <td>
+                                            {/* <td>
                                                 <input
-                                                    onChange={(e) => handleInputChange(index, e.target.value)}
+                                                    onChange={(e) => handleInputChange(e.target.value)}
                                                     className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]"
                                                     type="number"
                                                     name={`cantidad-${index}`}
                                                     placeholder="Ingrese la cantidad"
                                                     min={0}
-                                                    value={cantidades[index] || ""}
+                                                    value={cantidad}
                                                     required
                                                 />
-                                            </td>
+                                            </td> */}
                                             <td>
-                                                <button onClick={() => fnAgregar(dat, cantidades)}>Agregar</button>
+                                                <button onClick={() => fnAgregar(dat)}>Agregar</button>
                                             </td>
                                         </tr>
                                     ))}

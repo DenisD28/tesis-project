@@ -7,8 +7,8 @@ import { infoGeneral } from '../services/Users/InfoUserServices';
 
 // Definir el tipo para el contexto
 interface GlobalContextType {
-    // Agrega las propiedades que quieras compartir globalmente
-    usuario: User | undefined
+    usuario: User | undefined;
+
 }
 
 // Crear el contexto

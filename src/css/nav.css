@@ -12,6 +12,8 @@
     z-index: 1000;
 }
 
+
+
 .div-left,
 .div.rigth,
 .div-user {
@@ -53,6 +55,11 @@
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+}
+
+
+.btnMenu {
+    display: none;
 }
 
 .div-user {
@@ -101,12 +108,48 @@
     width: 20px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1024px) {
     .div-user .nombre {
         font-weight: bold;
         font-size: 12px;
         margin-right: 5px;
     }
+
+    .btnMenu {
+        background-color: var(--second-color);
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+
+
+}
+
+@media (max-width: 768px) {
+    .div-user .nombre {
+        font-weight: bold;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+
+    .btnMenu {
+        background-color: var(--second-color);
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    }
+
 }
 
 @media (max-width: 425px) {
@@ -117,6 +160,18 @@
     .div-user .nombre,
     .div-user .Rol {
         display: none;
+    }
+
+    .btnMenu {
+        background-color: var(--second-color);
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
     }
 
 }

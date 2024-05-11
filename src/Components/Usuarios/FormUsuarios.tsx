@@ -45,11 +45,8 @@ export const FormUsuarios = () => {
         formData.append("role", role)
 
         if (usuario?.role.id == 2) {
-            let ident = formData.get("id")
-            ident = usuario.organization.id.toString()
             try {
                 const response = await agregarUsuario(formData)
-                console.log(response.data)
                 setUserData(response.data)
                 setIsShow(true)
                 limpiar()
@@ -60,7 +57,6 @@ export const FormUsuarios = () => {
             try {
 
                 const response = await agregarUsuario(formData)
-                console.log(response.data)
                 setUserData(response.data)
                 setIsShow(true)
                 limpiar()

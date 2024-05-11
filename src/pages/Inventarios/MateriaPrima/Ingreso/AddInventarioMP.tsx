@@ -60,7 +60,6 @@ export const AddInventarioMP = () => {
 
     const agregar = (id: Product) => {
         setId(id.id.toString())
-        console.log(id.id.toString())
         setName(id.name)
         setUnidadMedida(id.measurement_type)
         setIsOpen(false)

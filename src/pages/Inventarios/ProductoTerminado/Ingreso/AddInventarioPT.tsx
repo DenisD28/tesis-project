@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 import Footer from "../../../../Components/Footer/Footer"
 import conversiones from '../../../../utils/Conversiones.json'
-import { Product, inven } from "../../../../Components/types.d"
+import { Product } from "../../../../Components/types.d"
 import { ModalProducto } from "../../../../Components/Modal/ModalProducto"
 import ButtonForm from "../../../../Components/Forms/ButtonComponents/ButtonForm"
 import { agregarInventarioPT } from "../../../../services/Products/AddInventarioPTServices"
