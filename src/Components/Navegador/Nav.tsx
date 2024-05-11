@@ -8,7 +8,7 @@ import { useGlobalContext } from "../../hooks/useUserContext"
 export const Nav: React.FC = () => {
     const navigation = useNavigate()
 
-    const { usuario, setClaseMenu } = useGlobalContext()
+    const { usuario } = useGlobalContext()
 
     const salir = () => {
         try {
@@ -23,7 +23,6 @@ export const Nav: React.FC = () => {
 
     const modificarClase = () => {
         console.log("hola")
-        setClaseMenu('prueba')
     }
 
     return (
