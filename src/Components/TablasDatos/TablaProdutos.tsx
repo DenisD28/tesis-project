@@ -2,9 +2,9 @@ import "../../css/App.css"
 import { useEffect, useState } from "react"
 import { listaInventario } from "../../services/Products/ListaInventariosMPServices"
 import { HeadType } from "../Table/types/HeadType"
-import { Table } from "../Table/Table"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Pagination } from "flowbite-react"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -78,7 +78,7 @@ export const TablasProductos: React.FC = () => {
                     }} />
                 </div>
             </form>
-            <Table
+            <Tablev2
                 headers={headers}
                 data={data}
                 titleTable={titleTable}

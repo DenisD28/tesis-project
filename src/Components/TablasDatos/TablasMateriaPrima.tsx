@@ -2,10 +2,10 @@ import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
 import { listaInventario } from "../../services/Products/ListaInventariosMPServices"
 import { HeadType } from "../Table/types/HeadType"
-import { Table } from "../Table/Table"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { useNavigate } from "react-router-dom"
 import { VerMasProducto } from "../VerMas/VerMasProducto"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -42,11 +42,6 @@ export const Tablas: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        navigation("/IngresoInventarioMP")
-    }
-
     const vermas = (dat: SetStateAction<undefined>) => {
         setDatos(dat)
         setIsOpen(true)
@@ -55,22 +50,12 @@ export const Tablas: React.FC = () => {
 
     return (
         <>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="button">
-                    <ButtonForm dataButton={{
-                        'title': 'Ingresar',
-                        'color': 'green',
-                        'type': 'submit',
-                        'fnClick': () => { }
-                    }} />
-                </div>
-            </form>
             {
                 isOpen && (
                     <VerMasProducto data={datos} setIsOpen={setIsOpen} />
                 )
             }
-            <Table
+            <Tablev2
                 headers={headers}
                 data={data}
                 titleTable={titleTable}

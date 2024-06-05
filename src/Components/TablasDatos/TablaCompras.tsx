@@ -3,8 +3,8 @@ import { listaCompras } from "../../services/Purchase/ListaPurchaseServices"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { Table } from "../Table/Table"
 import { Pagination } from "flowbite-react"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 const headers: HeadType[] = [
     { name: "N° Factura", prop: "number_bill" },
@@ -61,7 +61,7 @@ export const TablasCompras: React.FC = () => {
                     }} />
                 </div>
             </form>
-            <Table
+            <Tablev2
                 headers={headers}
                 data={data}
                 titleTable={titleTable}

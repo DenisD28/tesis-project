@@ -5,8 +5,8 @@ import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Pagination } from 'flowbite-react'
-import { Table } from "../Table/Table"
 import { VerMasOrganizaciones } from "../VerMas/VerMasOrganizaciones"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 const headers: HeadType[] = [
     { name: "Ruc", prop: "ruc" },
@@ -74,7 +74,7 @@ export const TablasOrganizaciones: React.FC = () => {
                     <VerMasOrganizaciones data={datos} setIsOpen={setIsOpen} />
                 )
             }
-            <Table
+            <Tablev2
                 headers={headers}
                 data={data}
                 titleTable={titleTable}

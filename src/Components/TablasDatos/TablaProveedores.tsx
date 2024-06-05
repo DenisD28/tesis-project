@@ -4,9 +4,9 @@ import { TablaProveedores } from "../../services/Provider/ListaProveedoresServic
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { Table } from "../Table/Table"
 import { Pagination } from 'flowbite-react'
 import { VerMasProveedores } from "../VerMas/VerMasProveedores"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 const headers: HeadType[] = [
     { name: "Nombre", prop: "name" },
@@ -88,7 +88,7 @@ export const TablasProveedores: React.FC = () => {
                     <VerMasProveedores data={datos} setIsOpen={setIsOpen} />
                 )
             }
-            <Table
+            <Tablev2
                 headers={headers}
                 data={data}
                 titleTable={titleTable}
