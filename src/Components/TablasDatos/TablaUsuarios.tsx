@@ -5,10 +5,10 @@ import { listaUsuariosOrganizacion } from "../../services/Users/ListaUsuariosXOr
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
-import { Table } from "../Table/Table"
 import { Pagination } from "flowbite-react"
 import { VerMasUsuarios } from "../VerMas/VerMasUsuarios"
 import { useGlobalContext } from "../../hooks/useUserContext"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 
 const headers: HeadType[] = [
@@ -84,7 +84,7 @@ export const TablasUsuarios: React.FC = () => {
                     <VerMasUsuarios data={datos} setIsOpen={setIsOpen} />
                 )
             }
-            <Table
+            <Tablev2
                 headers={headers}
                 data={data}
                 titleTable={titleTable}

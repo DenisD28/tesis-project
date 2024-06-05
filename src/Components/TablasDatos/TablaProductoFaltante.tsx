@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "../../css/App.css"
 import { listaProductoFaltante } from "../../services/Products/ListaInvetarioFaltanteServices"
 import { HeadType } from "../Table/types/HeadType"
-import { Table } from "../Table/Table"
+import { Tablev2 } from "../Tablev2/Tablev2"
 
 let headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -35,7 +35,7 @@ export const TablaProductoFaltante: React.FC = () => {
         }
     }
     return (
-        <Table
+        <Tablev2
             headers={headers}
             data={data}
             titleTable={titleTable}

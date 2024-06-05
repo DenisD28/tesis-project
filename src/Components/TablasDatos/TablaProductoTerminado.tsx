@@ -49,23 +49,8 @@ export const TablaProductoTerminado: React.FC = () => {
         navigate("/ingresoProducto")
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        navigation("/IngresoInventarioPT")
-    }
-
     return (
         <>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="button">
-                    <ButtonForm dataButton={{
-                        'title': 'Ingresar',
-                        'color': 'green',
-                        'type': 'submit',
-                        'fnClick': () => { }
-                    }} />
-                </div>
-            </form>
             <div className='px-8 rounded-xl bg-white md:h-96 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
                 <h1 className='sm:text-2xl text-lg font-bold my-4 h-16 w-full sticky top-0 left-0 bg-white pt-4 text-[#4F46E5]'>{titleTable}</h1>
                 <table className='w-full h-full'>
