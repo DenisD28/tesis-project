@@ -27,7 +27,7 @@ export default function AddForm({ props }: { props: AddFormType }) {
 
     return (
         <form onSubmit={(e) => props.handleSubmition(e, numberBill, provider)} className='col-span-12 grid grid-cols-12'>
-            <div className='col-span-4'>
+            <div className='col-span-full md:col-span-4'>
                 <InputsForm DataInputs={{
                     'title': 'N° Factura',
                     'type': 'text',
@@ -38,7 +38,7 @@ export default function AddForm({ props }: { props: AddFormType }) {
                     'isRequire': true
                 }} />
             </div>
-            <div className='col-span-4'>
+            <div className='col-span-full md:col-span-4'>
                 <SelectForm dataSelect={{
                     'title': 'Proveedor',
                     'name': 'proveedor',
@@ -48,7 +48,7 @@ export default function AddForm({ props }: { props: AddFormType }) {
                     'isRequerid': true
                 }} />
             </div>
-            <div className='col-span-4 flex justify-end items-end p-2'>
+            <div className='col-span-full md:col-span-4 flex justify-end items-end p-2'>
                 <button className='bg-purple-icons text-white font-medium w-full h-10 rounded-md'>Siguiente</button>
             </div>
         </form>
