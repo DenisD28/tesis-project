@@ -4,7 +4,7 @@ import { InfoSaleProps } from './InfoSalePropsTypes'
 export default function InfoSale({fnClick, Data, fnDeleteDetailsSale}: InfoSaleProps) {
   return (
     <article className='mt-8'>
-        <section className='flex justify-between items-center h-14 pr-2'>
+        <section className='flex justify-between md:flex-row flex-col md:items-center gap-4 md:gap-0 md:h-14 pr-2'>
           <h1 className='text-purple-icons font-bold text-2xl'>Productos vendidos</h1>
           <button className='bg-blue-600 h-10 px-8 text-white font-semibold rounded-md' onClick={fnClick}>Agregar producto</button>
         </section>

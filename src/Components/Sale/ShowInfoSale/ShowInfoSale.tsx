@@ -3,7 +3,7 @@ import { ShowInfoSaleProps } from './ShowInfoSalePropsTypes';
 
 export default function ShowInfoSale({ Data, fnDeleteDetailsSale }: ShowInfoSaleProps) {
   return (
-    <article className='bg-slate-100 w-full rounded-md p-4 flex justify-between items-center border-2'>
+    <article className='bg-slate-100 w-full rounded-md p-4 flex flex-col md:flex-row justify-between md:items-center gap-4 md:gap-0 border-2'>
       <section>
         <p><b>Cantidad:</b> {Data.product_input.quantity}</p>
         <p><b>Precio:</b> C${Data.product_input.price}</p>
