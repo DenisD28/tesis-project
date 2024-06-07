@@ -26,6 +26,8 @@ import { AddInventarioMP } from './pages/Inventarios/MateriaPrima/Ingreso/AddInv
 import { AddInventarioPT } from './pages/Inventarios/ProductoTerminado/Ingreso/AddInventarioPT';
 import { SalidaDeMateriaPrima } from './pages/Inventarios/MateriaPrima/Salida/SalidaDeMateriaPrima';
 import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/Lista/ListaProductoTerminado';
+import { TablasVentas } from './Components/TablasDatos/TablaVentas';
+import { AddInventario } from './pages/Inventarios/IngresoV2/AddInventario';
 
 const router = createHashRouter([
   {
@@ -113,8 +115,12 @@ const router = createHashRouter([
         element: <AddPurchases />
       },
       {
-        path: "/ventas",
+        path: "/addventas",
         element: <AddSale />
+      },
+      {
+        path: "/ventas",
+        element: <TablasVentas />
       },
       {
         path: "/reportes",
@@ -131,6 +137,10 @@ const router = createHashRouter([
       {
         path: "/organization/edit",
         element: <EditOrganization />
+      },
+      {
+        path: "/addinventary",
+        element: <AddInventario />
       },
     ]
   },
