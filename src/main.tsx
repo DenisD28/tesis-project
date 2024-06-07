@@ -28,6 +28,7 @@ import { SalidaDeMateriaPrima } from './pages/Inventarios/MateriaPrima/Salida/Sa
 import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/Lista/ListaProductoTerminado';
 import { TablasVentas } from './Components/TablasDatos/TablaVentas';
 import { AddInventario } from './pages/Inventarios/IngresoV2/AddInventario';
+import { TablasProductos } from './Components/TablasDatos/TablaProductos';
 
 const router = createHashRouter([
   {
@@ -141,6 +142,10 @@ const router = createHashRouter([
       {
         path: "/addinventary",
         element: <AddInventario />
+      },
+      {
+        path: "/listproduct",
+        element: <TablasProductos />
       },
     ]
   },

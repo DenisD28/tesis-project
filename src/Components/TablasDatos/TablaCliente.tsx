@@ -19,7 +19,7 @@ export const TablasCliente: React.FC = () => {
 
     const [data, setOrg] = useState()
     const navigation = useNavigate()
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
     const [datos, setDatos] = useState()
 
     const [currentPage, setCurrentPage] = useState(0)

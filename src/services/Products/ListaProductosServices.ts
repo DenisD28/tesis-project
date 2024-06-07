@@ -1,10 +1,10 @@
 import axios from "axios";
 import { getDecryptedToken } from "../Token/getDecryptedToken";
 
-export const TablaProductos = async (id: number) => {
+export const ListaProductos = async (id: number) => {
 
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}organizations?page=${id}`
+    const url = `${import.meta.env.VITE_API_URL}product?page=${id}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -14,5 +14,6 @@ export const TablaProductos = async (id: number) => {
     const response = await axios.get(url, {
         headers: headers
     })
+
     return response.data
 }
