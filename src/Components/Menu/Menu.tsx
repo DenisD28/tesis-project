@@ -3,13 +3,17 @@ import { Link } from "react-router-dom"
 import { routesMain, routesInventory } from "../../routes/routes"
 import { useGlobalContext } from "../../hooks/useUserContext"
 
-export const Menu = () => {
+interface MenuProps {
+    setShowMenu: (value: boolean) => void,
+}
+
+export const Menu = ({setShowMenu}: MenuProps) => {
 
     const { usuario } = useGlobalContext()
 
     return (<>
-        <div className="Menu">
-            <div className="organizacion">
+        <div className="Menu text-zinc-700 p-4">
+            <div className="organizacion h-8 flex justify-start items-center">
                 <h2>{usuario?.organization?.name}</h2>
             </div>
             <div className="items">
@@ -22,16 +26,16 @@ export const Menu = () => {
                             routesMain.map((item, index) => {
                                 return (
                                     item.type === "tipo2" ? (
-                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                            <Link to={item.path} className="link-item text-purple-icons">
+                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                            <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                 {item.icon}
                                                 <span>{item.title}</span>
                                             </Link>
                                         </li>
                                     ) : (
                                         item.type === "tipo4" && (
-                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                <Link to={item.path} className="link-item text-purple-icons">
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                     {item.icon}
                                                     <span>{item.title}</span>
                                                 </Link>
@@ -45,8 +49,8 @@ export const Menu = () => {
                                 routesMain.map((item, index) => {
                                     return (
                                         item.type === "tipo1" ? (
-                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                <Link to={item.path} className="link-item text-purple-icons">
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                     {item.icon}
                                                     <span>{item.title}</span>
                                                 </Link>
@@ -54,16 +58,16 @@ export const Menu = () => {
                                         ) : (
                                             item.type === "tipo4" && (
                                                 item.path === "/more_options" ? (
-                                                    <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                        <Link to={item.path} className="link-item text-purple-icons">
+                                                    <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                        <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                             {item.icon}
                                                             <span>{item.title}</span>
                                                         </Link>
                                                     </li>
 
                                                 ) : (
-                                                    <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                        <Link to={item.path} className="link-item text-purple-icons">
+                                                    <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                        <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                             {item.icon}
                                                             <span>{item.title}</span>
                                                         </Link>
@@ -79,8 +83,8 @@ export const Menu = () => {
                                         return (
 
                                             item.type === "tipo2" ? (
-                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                    <Link to={item.path} className="link-item text-purple-icons">
+                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                    <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                         {item.icon}
                                                         <span>{item.title}</span>
                                                     </Link>
@@ -88,16 +92,16 @@ export const Menu = () => {
                                             ) : (
                                                 item.type === "tipo4" && (
                                                     item.path === "/more_options" ? (
-                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                            <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                                 {item.icon}
                                                                 <span>{item.title}</span>
                                                             </Link>
                                                         </li>
                                                     ) : (
                                                         item.path != "/usuarios" && (
-                                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                                <Link to={item.path} className="link-item text-purple-icons">
+                                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                                <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                                     {item.icon}
                                                                     <span>{item.title}</span>
                                                                 </Link>
@@ -125,16 +129,16 @@ export const Menu = () => {
                             routesInventory.map((item, index) => {
                                 return (
                                     item.type === "tipo2" ? (
-                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                            <Link to={item.path} className="link-item text-purple-icons">
+                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                            <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                 {item.icon}
                                                 <span>{item.title}</span>
                                             </Link>
                                         </li>
                                     ) : (
                                         item.type === "tipo4" && (
-                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                <Link to={item.path} className="link-item text-purple-icons">
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                     {item.icon}
                                                     <span>{item.title}</span>
                                                 </Link>
@@ -149,16 +153,16 @@ export const Menu = () => {
                                     return (
 
                                         item.type === "tipo1" ? (
-                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                <Link to={item.path} className="link-item text-purple-icons">
+                                            <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                     {item.icon}
                                                     <span>{item.title}</span>
                                                 </Link>
                                             </li>
                                         ) : (
                                             item.type === "tipo4" && (
-                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                    <Link to={item.path} className="link-item text-purple-icons">
+                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                    <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                         {item.icon}
                                                         <span>{item.title}</span>
                                                     </Link>
@@ -174,8 +178,8 @@ export const Menu = () => {
 
                                             item.type === "tipo2" ? (
 
-                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                    <Link to={item.path} className="link-item text-purple-icons">
+                                                <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                    <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                         {item.icon}
                                                         <span>{item.title}</span>
                                                     </Link>
@@ -183,15 +187,15 @@ export const Menu = () => {
                                             ) : (
                                                 item.type === "tipo4" && (
                                                     item.path === "/more_options" ? (
-                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                            <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                                 {item.icon}
                                                                 <span>{item.title}</span>
                                                             </Link>
                                                         </li>
                                                     ) : (
-                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md px-2 hover:bg-[#eee] transition-all">
-                                                            <Link to={item.path} className="link-item text-purple-icons">
+                                                        <li key={index} className="bg-white flex justify-start items-center h-12 rounded-md hover:bg-[#eee] transition-all">
+                                                            <Link onClick={() => {setShowMenu(false)}} to={item.path} className="text-purple-icons px-2 rounded-md justify-start items-center [&>span]:font-[600] [&>span]:text-[#95a5a6] w-full flex gap-3 h-full">
                                                                 {item.icon}
                                                                 <span>{item.title}</span>
                                                             </Link>

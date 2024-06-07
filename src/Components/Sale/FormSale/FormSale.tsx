@@ -26,7 +26,7 @@ export default function FormSale({ setCliente, setNumeroFactura, setTipoPago, se
   }
 
   return (
-    <article className="grid grid-cols-12 [&>section]:col-span-6 border-2 p-4 rounded-md">
+    <article className="grid grid-cols-12 md:[&>section]:col-span-6 [&>section]:col-span-full border-2 p-4 rounded-md">
       <h2 className='col-span-12 p-2 text-lg font-medium text-[#000] flex gap-2'>
         <Receipt />
         Informaci&oacute;n de la venta
