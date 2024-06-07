@@ -21,8 +21,8 @@ export const TablasProductos: React.FC = () => {
     const [datos, setDatos] = useState()
     const [isOpen, setIsOpen] = useState(false);
 
-    const [currentPage, setCurrentPage] = useState(0)
-    const [totalPages, setTotalPages] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);

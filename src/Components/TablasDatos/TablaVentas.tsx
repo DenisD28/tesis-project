@@ -20,8 +20,8 @@ export const TablasVentas: React.FC = () => {
     const [data, setOrg] = useState()
     const navigation = useNavigate()
 
-    const [currentPage, setCurrentPage] = useState(0)
-    const [totalPages, setTotalPages] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);

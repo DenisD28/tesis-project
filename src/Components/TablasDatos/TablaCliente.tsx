@@ -22,13 +22,13 @@ export const TablasCliente: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [datos, setDatos] = useState()
 
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
 
-    const [totalPages, setTotalPages] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
 
     useEffect(() => {
         lista()

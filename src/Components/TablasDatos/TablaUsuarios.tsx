@@ -29,7 +29,7 @@ export const TablasUsuarios: React.FC = () => {
     const { usuario } = useGlobalContext()
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);

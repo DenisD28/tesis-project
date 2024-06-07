@@ -39,7 +39,7 @@ export const TablasProveedores: React.FC = () => {
     const [datos, setDatos] = useState()
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
