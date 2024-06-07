@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { listaCompras } from "../../services/Purchase/ListaPurchaseServices"
 import { HeadType } from "../Table/types/HeadType"
 import { useNavigate } from "react-router-dom"
 import ButtonForm from "../Forms/ButtonComponents/ButtonForm"

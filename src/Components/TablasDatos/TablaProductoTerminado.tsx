@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 import { listaProductoTerminado } from "../../services/Products/ListaInventarioPTServices"
 import Head from "../Table/Head/Head"
 import { HeadType } from "../Table/types/HeadType"
-import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -21,7 +20,6 @@ export const TablaProductoTerminado: React.FC = () => {
 
     const navigate = useNavigate()
     const [data, setProduct] = useState([])
-    const navigation = useNavigate()
 
     const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
 
