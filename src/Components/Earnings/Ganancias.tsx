@@ -4,7 +4,7 @@ export default function Ganancias() {
     const { earnings } = useGetEarnings() 
 
     return (
-        <section className="md:col-span-6 col-span-12 flex justify-center items-center flex-col md:gap-4 gap-6 border-2 rounded-lg p-8">
+        <section className="2xl:col-span-6 col-span-12 flex justify-center items-center flex-col md:gap-4 gap-6 border-2 rounded-lg p-8">
             <h1 className="font-bold text-xl text-zinc-600">Ganancias totales</h1>
             <span className="w-full flex justify-center items-center flex-col">
                 <h1 className="text-lg font-semibold text-zinc-400">Ultimos 30 dias</h1>
