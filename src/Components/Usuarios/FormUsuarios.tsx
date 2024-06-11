@@ -86,13 +86,13 @@ export const FormUsuarios = () => {
                 {
                     isOpen && (
                         <ModalOrganizacion fnAgregar={agregar}
-                            setIsOpen={setIsOpen} />
+                                           setIsOpen={setIsOpen}/>
                     )
                 }
                 {
                     isShow && (
                         <ModalUsaurio data={userData}
-                            setIsOpen={setIsShow} />
+                                      setIsOpen={setIsShow}/>
                     )
                 }
                 <InputsForm
@@ -138,7 +138,7 @@ export const FormUsuarios = () => {
                         placeholder: "Rol del usuario",
                         fnChange: setRole,
                         options: data.map((rol) => {
-                            return { valor: rol.value, texto: rol.name };
+                            return {valor: rol.value, texto: rol.name};
                         }, []),
                         isRequerid: true,
                         value: role,
@@ -146,39 +146,54 @@ export const FormUsuarios = () => {
                 />
                 {
                     usuario?.role.id === 1 ? (<>
-                        <div className="flex justify-center items-center flex-col p-2">
-                            <div className="flex justify-center items-center flex-col p-2 mt-4">
-                                <br />
-                                <button className="w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white" type="button" onClick={() => setIsOpen(true)}>Buscar Organizacion</button>
+                            <div className="flex justify-center items-center flex-col p-2">
+                                <div className="flex justify-center items-center flex-col p-2 mt-4">
+                                    <br/>
+                                    <button
+                                        className="w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white"
+                                        type="button" onClick={() => setIsOpen(true)}>Buscar Organizacion
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex justify-center items-center flex-col p-2">
-                            <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Organizacion</label>
-                            <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="organization" placeholder="Nombre de la organizacion" onChange={() => setOrganizacion} value={organizacion} readOnly />
-                        </div>
-                    </>
+                            <div className="flex justify-center items-center flex-col p-2">
+                                <label
+                                    className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2"
+                                    htmlFor="nombre">Organizacion</label>
+                                <input
+                                    className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]"
+                                    type="text" name="organization" placeholder="Nombre de la organizacion"
+                                    onChange={() => setOrganizacion} value={organizacion} readOnly/>
+                            </div>
+                        </>
                     ) : (
                         <>
                             <div className="flex justify-center items-center flex-col p-2">
-                                <label className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2" htmlFor="nombre">Organizacion</label>
-                                <input className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]" type="text" name="organization" placeholder="Nombre de la organizacion" value={usuario?.organization.name} readOnly />
+                                <label
+                                    className="w-full h-10 flex justify-start items-center text-zinc-500 font-medium text-sm pl-2"
+                                    htmlFor="nombre">Organizacion</label>
+                                <input
+                                    className="w-full h-10 rounded border-2 border-[#ddd] px-4 font-medium bg-slate-100 text-[#555]"
+                                    type="text" name="organization" placeholder="Nombre de la organizacion"
+                                    value={usuario?.organization.name} readOnly/>
                             </div>
                         </>
                     )
                 }
-
+                <div className={"invisible"}></div>
                 <ButtonForm dataButton={{
                     'title': 'Cancelar',
                     'color': 'red',
                     'type': 'reset',
-                    'fnClick': () => { },
-                }} />
+                    'fnClick': () => {
+                    },
+                }}/>
                 <ButtonForm dataButton={{
                     'title': 'Guardar',
                     'color': 'green',
                     'type': 'submit',
-                    'fnClick': () => { },
-                }} />
+                    'fnClick': () => {
+                    },
+                }}/>
             </form>
         </>
 
