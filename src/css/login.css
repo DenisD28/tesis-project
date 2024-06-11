@@ -15,10 +15,6 @@
     width: 50%;
 }
 
-.slider{
-    height: 100%;
-}
-
 .Form {
     display: flex;
     flex-direction: column;
