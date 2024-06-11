@@ -29,9 +29,9 @@ export const TablasVentas: React.FC = () => {
     const lista = async () => {
         try {
             // const { links, meta, purchases } = await listaCompras()
-            const { meta, purchases } = await ListaVentas(currentPage)
+            const { meta, sales } = await ListaVentas(currentPage)
 
-            setOrg(purchases)
+            setOrg(sales)
             setTotalPages(meta.last_page)
         } catch (e) {
             // console.log(e)
