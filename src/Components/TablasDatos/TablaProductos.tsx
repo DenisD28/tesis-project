@@ -3,8 +3,8 @@ import { SetStateAction, useEffect, useState } from "react"
 import { HeadType } from "../Table/types/HeadType"
 import { VerMasProducto } from "../VerMas/VerMasProducto"
 import { Tablev2 } from "../Tablev2/Tablev2"
-import { Pagination } from "flowbite-react"
 import { ListaProductos } from "../../services/Products/ListaProductosServices"
+import PaginationComponent from "../Pagination/PaginationComponent.tsx";
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -32,7 +32,6 @@ export const TablasProductos: React.FC = () => {
 
     const lista = async () => {
         try {
-            // const { links, meta, inventario } = await listaInventario()
             const { products, meta } = await ListaProductos(currentPage)
             setProduct(products)
 
@@ -60,12 +59,10 @@ export const TablasProductos: React.FC = () => {
                 data={data}
                 fnClick={vermas}
             />
-            <Pagination
-                layout="navigation"
+            <PaginationComponent
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={handlePageChange}
-                showIcons
             />
         </>
     )

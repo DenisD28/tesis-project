@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { listaCompras } from "../../services/Purchase/ListaPurchaseServices"
 import { HeadType } from "../Table/types/HeadType"
-import { Pagination } from "flowbite-react"
 import { Tablev2 } from "../Tablev2/Tablev2"
+import PaginationComponent from "../Pagination/PaginationComponent.tsx";
 
 const headers: HeadType[] = [
     { name: "N° Factura", prop: "number_bill" },
@@ -45,12 +45,10 @@ export const TablasCompras: React.FC = () => {
                 data={data}
                 fnClick={() => { }}
             />
-            <Pagination
-                layout="navigation"
+            <PaginationComponent
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={handlePageChange}
-                showIcons
             />
         </>
     )
