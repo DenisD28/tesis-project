@@ -2,8 +2,6 @@ import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
 import { listaCliente } from "../../services/Clients/ListaClientesServices"
 import { HeadType } from "../Table/types/HeadType"
-import { useNavigate } from "react-router-dom"
-import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Pagination } from "flowbite-react"
 import { VerMasCliente } from "../VerMas/VerMasCliente"
 import { Tablev2 } from "../Tablev2/Tablev2"
@@ -13,15 +11,11 @@ const headers: HeadType[] = [
     { name: "Municipio", prop: "municipality_id" },
 ]
 
-const titleTable = 'Clientes'
-
 export const TablasCliente: React.FC = () => {
 
     const [data, setOrg] = useState()
-    const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
     const [datos, setDatos] = useState()
-
     const [currentPage, setCurrentPage] = useState(1)
 
     const handlePageChange = (page: number) => {
@@ -46,11 +40,6 @@ export const TablasCliente: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        navigation("/addcliente")
-    }
-
     const vermas = (dat: SetStateAction<undefined>) => {
         setDatos(dat)
         setIsOpen(true)
@@ -58,16 +47,6 @@ export const TablasCliente: React.FC = () => {
 
     return (
         <>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="button">
-                    <ButtonForm dataButton={{
-                        'title': 'Ingresar',
-                        'color': 'green',
-                        'type': 'submit',
-                        'fnClick': () => { }
-                    }} />
-                </div>
-            </form>
             {
                 isOpen && (
                     <VerMasCliente data={datos} setIsOpen={setIsOpen} />
@@ -76,7 +55,6 @@ export const TablasCliente: React.FC = () => {
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={vermas}
             />
             <Pagination

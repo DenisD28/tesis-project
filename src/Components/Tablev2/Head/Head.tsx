@@ -15,12 +15,12 @@ export default function Head({ headers }: { headers: HeadType[] }) {
 
         // </thead>
 
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 {headers.map((head, index) => (
                     <th scope="clo" className="px-6 py-3" key={index}>{head.name}</th>
                 ))}
-                <th>
+                <th className={"text-center"}>
                     Acciones
                 </th>
                 {/* <th scope="col" className="px-6 py-3">

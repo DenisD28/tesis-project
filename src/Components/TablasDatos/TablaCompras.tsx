@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import { listaCompras } from "../../services/Purchase/ListaPurchaseServices"
 import { HeadType } from "../Table/types/HeadType"
-import { useNavigate } from "react-router-dom"
-import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Pagination } from "flowbite-react"
 import { Tablev2 } from "../Tablev2/Tablev2"
 
@@ -13,13 +11,9 @@ const headers: HeadType[] = [
     { name: "Total", prop: "total" },
 ]
 
-const titleTable = 'Registro de compras'
-
 export const TablasCompras: React.FC = () => {
 
     const [data, setOrg] = useState()
-    const navigation = useNavigate()
-
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
 
@@ -44,27 +38,11 @@ export const TablasCompras: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        navigation("/addcompras")
-    }
-
     return (
         <>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="w-52">
-                    <ButtonForm dataButton={{
-                        'title': 'Ingresar',
-                        'color': 'green',
-                        'type': 'submit',
-                        'fnClick': () => { }
-                    }} />
-                </div>
-            </form>
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={() => { }}
             />
             <Pagination

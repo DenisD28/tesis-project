@@ -3,8 +3,6 @@ import { SetStateAction, useEffect, useState } from "react"
 import { listaUsuarios } from "../../services/Users/ListaUsuariosServices"
 import { listaUsuariosOrganizacion } from "../../services/Users/ListaUsuariosXOrganizacionServices"
 import { HeadType } from "../Table/types/HeadType"
-import { useNavigate } from "react-router-dom"
-import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Pagination } from "flowbite-react"
 import { VerMasUsuarios } from "../VerMas/VerMasUsuarios"
 import { useGlobalContext } from "../../hooks/useUserContext"
@@ -18,12 +16,9 @@ const headers: HeadType[] = [
     { name: "Ultima Conexion", prop: "last_login_at" },
 ]
 
-const titleTable = 'Usuarios del Sistema'
-
 export const TablasUsuarios: React.FC = () => {
 
     const [data, setOrg] = useState()
-    const navigation = useNavigate()
     const [datos, setDatos] = useState()
     const [isOpen, setIsOpen] = useState(false);
     const { usuario } = useGlobalContext()
@@ -57,11 +52,6 @@ export const TablasUsuarios: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        navigation("/addusuarios")
-    }
-
     const vermas = (dat: SetStateAction<undefined>) => {
         setDatos(dat)
         setIsOpen(true)
@@ -69,16 +59,6 @@ export const TablasUsuarios: React.FC = () => {
 
     return (
         <>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="button">
-                    <ButtonForm dataButton={{
-                        'title': 'Ingresar',
-                        'color': 'green',
-                        'type': 'submit',
-                        'fnClick': () => { }
-                    }} />
-                </div>
-            </form>
             {
                 isOpen && (
                     <VerMasUsuarios data={datos} setIsOpen={setIsOpen} />
@@ -87,7 +67,6 @@ export const TablasUsuarios: React.FC = () => {
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={vermas}
             />
             <Pagination
