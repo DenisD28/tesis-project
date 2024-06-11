@@ -25,17 +25,18 @@ export const Imagenes: React.FC = () => {
     }, []);
 
     return (
-        <div className="w-full h-full bg-gray-200 ">
-            <div className="max-w-screen-xl mx-auto">
+        <div className="w-full h-full">
+            <div className="w-full h-full">
                 <Carousel
                     showThumbs={false}
                     autoPlay={true}
                     interval={3000}
                     selectedItem={carouselIndex}
+                    className={"w-full h-full"}
                 >
                     {images.map((image, index) => (
-                        <div key={index}>
-                            <img src={image} alt={`Imagen ${index + 1}`} />
+                        <div key={index} className={"w-full h-full"}>
+                            <img src={image} alt={`Imagen ${index + 1}`} className={"w-full h-full object-cover object-center"} />
                         </div>
                     ))}
                 </Carousel>
