@@ -49,8 +49,7 @@ export const FormLogin = () => {
 
     return (
         <div className="flex justify-start items-stretch">
-            {/* <img className="img_login w-6/12 object-cover" src="src\img\pexels-ivan-j.jpg" alt="" /> */}
-            <div className="img_login">
+            <div className="w-full max-w-2xl md:block hidden">
                 <Imagenes />
             </div>
 
