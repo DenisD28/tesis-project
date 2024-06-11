@@ -49,7 +49,7 @@ export const FormLogin = () => {
 
     return (
         <div className="flex justify-start items-stretch">
-            <div className="w-full max-w-md md:block hidden">
+            <div className="w-full max-w-2xl md:block hidden">
                 <Imagenes />
             </div>
 
