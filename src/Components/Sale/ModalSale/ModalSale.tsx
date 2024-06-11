@@ -84,7 +84,7 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                             <option value="">Selecciona el producto</option>
                             {
                                 productos.map(pro => (
-                                    <option value={pro.id}>{pro.product.name}</option>
+                                    <option key={pro.id} value={pro.id}>{pro.product.name}</option>
                                 ))
                             }
                         </select>

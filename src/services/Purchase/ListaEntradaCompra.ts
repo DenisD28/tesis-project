@@ -10,8 +10,11 @@ export const listaEntradas = async (id: string) => {
         'Accept': 'application/json'
     }
 
+
+
     const response = await axios.get(url, {
         headers: headers
     })
+
     return response.data
 }

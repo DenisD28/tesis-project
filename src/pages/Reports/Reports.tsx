@@ -2,6 +2,7 @@ import ReportsModal from "../../Components/Modal/Reports/ReportsModal"
 import { useState } from "react"
 import { DownloadSQL } from "../../services/Reportes/BackupServices"
 import { Toaster } from "react-hot-toast";
+import SectionComponent from "../../Components/Section/SectionComponent.tsx";
 
 export const Reports = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +43,11 @@ export const Reports = () => {
     ]
 
     return (
-        <main>
-            <h1 className=' text-purple-icons font-bold text-2xl mb-8'>Reportes</h1>
+        <SectionComponent
+            title="Reportes"
+            url=""
+            showButtonAdd={false}
+        >
             <div className="w-full max-w-[80rem] flex flex-col justify-center items-start">
                 <section className="w-full h-14 bg-purple-icons rounded-t-md text-white flex justify-between pl-4 pr-8 items-center font-bold">
                     <h1>Tipos de reporte</h1>
@@ -64,6 +68,6 @@ export const Reports = () => {
                 isOpen && <ReportsModal isOpen={isOpen} onClose={() => setIsOpen(false)} typeProduct={typeProduct} selelectProduct={selectProduct} typeReport={typeReport} />
             }
             <Toaster />
-        </main>
+        </SectionComponent>
     )
 }

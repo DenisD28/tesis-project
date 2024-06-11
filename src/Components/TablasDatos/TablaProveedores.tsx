@@ -2,8 +2,6 @@ import "../../css/App.css"
 import { SetStateAction, useEffect, useState } from "react"
 import { TablaProveedores } from "../../services/Provider/ListaProveedoresServices"
 import { HeadType } from "../Table/types/HeadType"
-import { useNavigate } from "react-router-dom"
-import ButtonForm from "../Forms/ButtonComponents/ButtonForm"
 import { Pagination } from 'flowbite-react'
 import { VerMasProveedores } from "../VerMas/VerMasProveedores"
 import { Tablev2 } from "../Tablev2/Tablev2"
@@ -13,8 +11,6 @@ const headers: HeadType[] = [
     { name: "Telefono", prop: "phone_main" },
     { name: "Ruc", prop: "ruc" },
 ]
-
-const titleTable = 'Proveedores'
 
 function pages(url: string) {
     let lastDigit = ""
@@ -34,10 +30,8 @@ function pages(url: string) {
 export const TablasProveedores: React.FC = () => {
 
     const [data, setOrg] = useState()
-    const navigation = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [datos, setDatos] = useState()
-
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0)
 
@@ -61,11 +55,6 @@ export const TablasProveedores: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        navigation("/addproveedores")
-    }
-
     const vermas = (dat: SetStateAction<undefined>) => {
         setDatos(dat)
         setIsOpen(true)
@@ -73,16 +62,6 @@ export const TablasProveedores: React.FC = () => {
 
     return (
         <>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="button">
-                    <ButtonForm dataButton={{
-                        'title': 'Ingresar',
-                        'color': 'green',
-                        'type': 'submit',
-                        'fnClick': () => { }
-                    }} />
-                </div>
-            </form>
             {
                 isOpen && (
                     <VerMasProveedores data={datos} setIsOpen={setIsOpen} />
@@ -91,7 +70,6 @@ export const TablasProveedores: React.FC = () => {
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={vermas}
             />
             <Pagination

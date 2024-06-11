@@ -12,8 +12,6 @@ const headers: HeadType[] = [
     { name: "Unidad de medida", prop: "measurement_type" },
 ]
 
-const titleTable = 'Catalogo de Productos'
-
 export const TablasProductos: React.FC = () => {
 
     //**********************************Consulta a base de datos******************************************
@@ -60,7 +58,6 @@ export const TablasProductos: React.FC = () => {
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={vermas}
             />
             <Pagination
