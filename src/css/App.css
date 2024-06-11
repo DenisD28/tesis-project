@@ -8,6 +8,18 @@
     justify-content: space-between;
 }
 
+.scroll-style::-webkit-scrollbar {
+    background-color: #ddd;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.scroll-style::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 5px;
+}
+
 .card {
     display: flex;
     flex-direction: column;

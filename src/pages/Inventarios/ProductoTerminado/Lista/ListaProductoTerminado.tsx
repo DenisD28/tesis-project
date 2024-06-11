@@ -1,8 +1,14 @@
 import { TablaProductoTerminado } from "../../../../Components/TablasDatos/TablaProductoTerminado"
+import SectionComponent from "../../../../Components/Section/SectionComponent.tsx";
 
 export const IngresoProductoTerminado: React.FC = () => {
 
     return (<>
-        <TablaProductoTerminado />
+        <SectionComponent
+            title="Producto Terminado"
+            url="/IngresoInventarioPT"
+        >
+            <TablaProductoTerminado />
+        </SectionComponent>
     </>)
 }

@@ -26,9 +26,9 @@ import { AddInventarioMP } from './pages/Inventarios/MateriaPrima/Ingreso/AddInv
 import { AddInventarioPT } from './pages/Inventarios/ProductoTerminado/Ingreso/AddInventarioPT';
 import { SalidaDeMateriaPrima } from './pages/Inventarios/MateriaPrima/Salida/SalidaDeMateriaPrima';
 import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/Lista/ListaProductoTerminado';
-import { TablasVentas } from './Components/TablasDatos/TablaVentas';
 import { AddInventario } from './pages/Inventarios/IngresoV2/AddInventario';
-import { TablasProductos } from './Components/TablasDatos/TablaProductos';
+import Catalogo from "./pages/Productos/Catalogo.tsx";
+import {Sales} from "./pages/Sale/Sales.tsx";
 
 const router = createHashRouter([
   {
@@ -121,7 +121,7 @@ const router = createHashRouter([
       },
       {
         path: "/ventas",
-        element: <TablasVentas />
+        element: <Sales />
       },
       {
         path: "/reportes",
@@ -145,7 +145,7 @@ const router = createHashRouter([
       },
       {
         path: "/listproduct",
-        element: <TablasProductos />
+        element: <Catalogo />
       },
     ]
   },
