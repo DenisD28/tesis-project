@@ -3,10 +3,10 @@ import { SetStateAction, useEffect, useState } from "react"
 import { listaUsuarios } from "../../services/Users/ListaUsuariosServices"
 import { listaUsuariosOrganizacion } from "../../services/Users/ListaUsuariosXOrganizacionServices"
 import { HeadType } from "../Table/types/HeadType"
-import { Pagination } from "flowbite-react"
 import { VerMasUsuarios } from "../VerMas/VerMasUsuarios"
 import { useGlobalContext } from "../../hooks/useUserContext"
 import { Tablev2 } from "../Tablev2/Tablev2"
+import PaginationComponent from "../Pagination/PaginationComponent.tsx";
 
 
 const headers: HeadType[] = [
@@ -69,12 +69,10 @@ export const TablasUsuarios: React.FC = () => {
                 data={data}
                 fnClick={vermas}
             />
-            <Pagination
-                layout="navigation"
+            <PaginationComponent
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={handlePageChange}
-                showIcons
             />
         </>
     )

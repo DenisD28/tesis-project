@@ -4,14 +4,13 @@ import { listaInventario } from "../../services/Products/ListaInventariosMPServi
 import { HeadType } from "../Table/types/HeadType"
 import { VerMasProducto } from "../VerMas/VerMasProducto"
 import { Tablev2 } from "../Tablev2/Tablev2"
+import PaginationComponent from "../Pagination/PaginationComponent.tsx";
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
     { name: "Nombre", prop: "product" },
     { name: "Stock", prop: "stock" },
 ]
-
-const titleTable = 'Materia Prima'
 
 export const Tablas: React.FC = () => {
 
@@ -20,20 +19,23 @@ export const Tablas: React.FC = () => {
     const [datos, setDatos] = useState()
     const [isOpen, setIsOpen] = useState(false);
 
-    const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
 
     useEffect(() => {
-        if (!haObtenidoDatos) {
-            lista();
-            setHaObtenidoDatos(true);
-        }
-    }, [haObtenidoDatos])
+        lista()
+    }, [currentPage])
 
     const lista = async () => {
         try {
-            // const { links, meta, inventario } = await listaInventario()
-            const { inventario } = await listaInventario()
+            const { meta, inventario } = await listaInventario(currentPage)
             setProduct(inventario)
+            setTotalPages(meta.last_page)
         } catch (e) {
             // console.log(e)
         }
@@ -55,8 +57,12 @@ export const Tablas: React.FC = () => {
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={vermas}
+            />
+            <PaginationComponent
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
             />
         </>
     )

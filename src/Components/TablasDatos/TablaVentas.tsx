@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { HeadType } from "../Table/types/HeadType"
-import { Pagination } from "flowbite-react"
 import { Tablev2 } from "../Tablev2/Tablev2"
 import { ListaVentas } from "../../services/Sales/ListaVentaServices"
+import PaginationComponent from "../Pagination/PaginationComponent.tsx";
 
 const headers: HeadType[] = [
     { name: "N° Factura", prop: "number_bill" },
@@ -28,7 +28,6 @@ export const TablasVentas: React.FC = () => {
 
     const lista = async () => {
         try {
-            // const { links, meta, purchases } = await listaCompras()
             const { meta, sales } = await ListaVentas(currentPage)
 
             setOrg(sales)
@@ -45,12 +44,10 @@ export const TablasVentas: React.FC = () => {
                 data={data}
                 fnClick={() => { }}
             />
-            <Pagination
-                layout="navigation"
+            <PaginationComponent
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={handlePageChange}
-                showIcons
             />
         </>
     )

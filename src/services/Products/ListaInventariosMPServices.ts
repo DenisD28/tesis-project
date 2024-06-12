@@ -1,10 +1,10 @@
 import axios from "axios";
 import { getDecryptedToken } from "../Token/getDecryptedToken";
 
-export const listaInventario = async () => {
+export const listaInventario = async (currentPage: number) => {
     const maxRetries: number = 3;
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}inventory?type=MP`;
+    const url = `${import.meta.env.VITE_API_URL}inventory?type=MP&page=${currentPage}`;
     const waitTime = 6000; // Tiempo de espera constante, puedes ajustarlo según tus necesidades.
 
     const headers = {
