@@ -32,7 +32,7 @@ export const Imagenes: React.FC = () => {
                     autoPlay={true}
                     interval={3000}
                     selectedItem={carouselIndex}
-                    className={"w-full h-full"}
+                    className={"w-full h-full [&>div]:h-full [&>div>ul]:hidden [&>div>p]:hidden [&>div>button]:hidden [&>div>div]:h-full [&>div>div>ul]:h-full"}
                 >
                     {images.map((image, index) => (
                         <div key={index} className={"w-full h-full"}>
