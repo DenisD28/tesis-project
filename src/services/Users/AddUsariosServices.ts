@@ -3,8 +3,7 @@ import { getDecryptedToken } from "../Token/getDecryptedToken";
 
 export const agregarUsuario = async (user: FormData) => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.get("name")}&email=${user.get("email")}&username=${user.get("username")}&role_id=${user.get("role")}&organization_id=${user.get("id")}`
-
+    const url = `${import.meta.env.VITE_API_URL}auth/register?name=${user.get("name")}&email=${user.get("email")}&username=${user.get("username")}&role_id=${user.get("role")}&organization_id=${user.get("organizacion")}`
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json'
