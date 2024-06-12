@@ -67,8 +67,13 @@ export const AddInventario = () => {
             const response = await agregarInventario(formData)
 
             if (response.status === 201) {
+                if (formData.get("type") == "MP") {
+                    navigation("/ListaInventarioMP")
+                } else {
+                    navigation("/ListaInventarioPT")
+                }
                 toast.success("Producto Agregado")
-                navigation("/inventario")
+
             }
 
         } catch (e: any) {

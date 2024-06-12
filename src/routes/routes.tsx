@@ -81,13 +81,13 @@ const routesInventory: Route[] = [
         "type": "tipo2"
     },
     {
-        "path": "/inventario",
+        "path": "/ListaInventarioMP",
         "title": "Materia prima",
         "icon": <LiaMoneyBillSolid className="w-6 h-auto" />,
         "type": "tipo2"
     },
     {
-        "path": "/pTerminado",
+        "path": "/ListaInventarioPT",
         "title": "Producto Terminado",
         "icon": <LiaMoneyBillSolid className="w-6 h-auto" />,
         "type": "tipo2"

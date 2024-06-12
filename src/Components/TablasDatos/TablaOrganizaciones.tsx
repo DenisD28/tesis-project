@@ -77,7 +77,6 @@ export const TablasOrganizaciones: React.FC = () => {
             <Tablev2
                 headers={headers}
                 data={data}
-                titleTable={titleTable}
                 fnClick={vermas}
             />
             <Pagination

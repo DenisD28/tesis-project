@@ -28,7 +28,7 @@ import { SalidaDeMateriaPrima } from './pages/Inventarios/MateriaPrima/Salida/Sa
 import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/Lista/ListaProductoTerminado';
 import { AddInventario } from './pages/Inventarios/IngresoV2/AddInventario';
 import Catalogo from "./pages/Productos/Catalogo.tsx";
-import {Sales} from "./pages/Sale/Sales.tsx";
+import { Sales } from "./pages/Sale/Sales.tsx";
 
 const router = createHashRouter([
   {
@@ -40,7 +40,7 @@ const router = createHashRouter([
     element: <App />,
     children: [
       {
-        path: "/inventario",
+        path: "/ListaInventarioMP",
         element: <Inventarios />
       },
       {
@@ -56,7 +56,7 @@ const router = createHashRouter([
         element: <Organizaciones />
       },
       {
-        path: "/pTerminado",
+        path: "/ListaInventarioPT",
         element: <IngresoProductoTerminado />
       },
       {

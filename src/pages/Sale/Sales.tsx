@@ -1,7 +1,7 @@
 import SectionComponent from "../../Components/Section/SectionComponent.tsx";
-import {useEffect, useState} from "react";
-import {HeadType} from "../../Components/Table/types/HeadType.ts";
-import {ListaVentas} from "../../services/Sales/ListaVentaServices.ts";
+import { useEffect, useState } from "react";
+import { HeadType } from "../../Components/Table/types/HeadType.ts";
+import { ListaVentas } from "../../services/Sales/ListaVentaServices.ts";
 import ShowInfoComponent from "../../Components/Section/ShowInfo/ShowInfoComponent.tsx";
 import ModalComponent from "../../Components/Modal/ModalComponent/ModalComponent.tsx";
 
@@ -42,7 +42,7 @@ export const Sales = () => {
                 isOpen && (
                     <ModalComponent
                         isOpen={isOpen}
-                        onClose={()=>{setIsOpen(false)}}
+                        onClose={() => { setIsOpen(false) }}
                     >
                         <div>
                             <p>test</p>
