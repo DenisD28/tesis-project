@@ -153,15 +153,6 @@
 }
 
 @media (max-width: 425px) {
-    .buscador {
-        display: none;
-    }
-
-    .div-user .nombre,
-    .div-user .Rol {
-        display: none;
-    }
-
     .btnMenu {
         background-color: var(--second-color);
         height: 40px;
