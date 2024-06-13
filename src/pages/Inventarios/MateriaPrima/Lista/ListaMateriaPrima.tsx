@@ -1,9 +1,9 @@
 import SectionComponent from "../../../../Components/Section/SectionComponent.tsx";
-import {useEffect, useState} from "react";
-import {HeadType} from "../../../../Components/Table/types/HeadType.ts";
+import { useEffect, useState } from "react";
+import { HeadType } from "../../../../Components/Table/types/HeadType.ts";
 import ShowInfoComponent from "../../../../Components/Section/ShowInfo/ShowInfoComponent.tsx";
-import {VerMasProducto} from "../../../../Components/VerMas/VerMasProducto.tsx";
-import {listaInventario} from "../../../../services/Products/ListaInventariosMPServices.ts";
+import { VerMasProducto } from "../../../../Components/VerMas/VerMasProducto.tsx";
+import { listaInventario } from "../../../../services/Products/ListaInventariosMPServices.ts";
 
 export const Inventarios = () => {
     const [data, setOrg] = useState<[]>([])
@@ -44,7 +44,7 @@ export const Inventarios = () => {
             }
             <SectionComponent
                 title="Materia Prima"
-                url="/IngresoInventarioMP"
+                url="/addinventary"
             >
                 <ShowInfoComponent
                     headers={headers}

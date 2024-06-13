@@ -99,11 +99,18 @@ const routesInventory: Route[] = [
         "type": "tipo1"
     },
     {
+        "path": "/addprod",
+        "title": "Ingresar Produccion",
+        "icon": <LiaMoneyBillSolid className="w-6 h-auto" />,
+        "type": "tipo4"
+    },
+    {
         "path": "/listproduct",
         "title": "Catalogo de productos",
         "icon": <LiaMoneyBillSolid className="w-6 h-auto" />,
         "type": "tipo4"
     },
+
 ]
 
 export { routesMain, routesInventory }

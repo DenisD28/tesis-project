@@ -1,10 +1,9 @@
 import axios from "axios";
 import { getDecryptedToken } from "../Token/getDecryptedToken";
 
-export const agregarProductoTerminado = async (data: string, cantidad: string) => {
+export const agregarProductoTerminado = async (inventory_id: string, data: string, cantidad: string) => {
     const token = getDecryptedToken();
-    const id = localStorage.getItem('idProducto')
-    const url = `${import.meta.env.VITE_API_URL}register/finished_product?inventory_id=${id}&quantity=${cantidad}`
+    const url = `${import.meta.env.VITE_API_URL}register/finished_product?inventory_id=${inventory_id}&quantity=${cantidad}`
 
     const headers = {
         'Authorization': `Bearer ${token}`,

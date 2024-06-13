@@ -16,16 +16,16 @@ export default function BoxModalSale({ isSelected, fnOnSelect, Data }: BoxModalS
             <div className='grid grid-cols-12 md:[&>span]:col-span-4 [&>span]:col-span-12 w-full'>
                 <span className='flex justify-center items-center flex-col'>
                     <p className='font-medium'>Produccion</p>
-                    <p className='font-medium text-green-500'>{Data.quantity}</p>
+                    <p className='font-medium text-green-500'>{Data.purchase.details[0].purchase_id}</p>
                 </span>
                 <span className='flex justify-center items-center flex-col'>
                     <p className='font-medium'>Disponibilidad</p>
-                    <p className='font-medium text-green-500'>{Data.disponibility}</p>
+                    <p className='font-medium text-green-500'>{Data.purchase.details[0].disponibility}</p>
                 </span>
-                <span className='flex justify-center items-center flex-col'>
+                {/* <span className='flex justify-center items-center flex-col'>
                     <p className='font-medium'>Costo de p.</p>
-                    <p className='font-medium text-green-500'>{Data.total}</p>
-                </span>
+                    <p className='font-medium text-green-500'>{Data.purchase.details[0].}</p>
+                </span> */}
                 <h3 className='text-sm mt-2 font-semibold text-zinc-400 col-span-12'>Produccion registrada el {Data.date}</h3>
             </div>
             <div className='w-8 flex justify-start items-center'>

@@ -47,7 +47,7 @@ export const SalidaDeMateriaPrima: React.FC = () => {
             if (cantidad != "") {
                 if (product.length != 0) {
 
-                    await agregarProductoTerminado(JSON.stringify(list), cantidad)
+                    // await agregarProductoTerminado(JSON.stringify(list), cantidad)
                     navigate("/pTerminado")
                 } else {
                     toast.error("Debe agregar la materia prima utilizada")

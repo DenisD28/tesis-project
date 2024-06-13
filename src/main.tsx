@@ -29,6 +29,7 @@ import { IngresoProductoTerminado } from './pages/Inventarios/ProductoTerminado/
 import { AddInventario } from './pages/Inventarios/IngresoV2/AddInventario';
 import Catalogo from "./pages/Productos/Catalogo.tsx";
 import { Sales } from "./pages/Sale/Sales.tsx";
+import { AddProduccion } from './pages/Inventarios/Produccion/AddProduccion.tsx';
 
 const router = createHashRouter([
   {
@@ -147,6 +148,10 @@ const router = createHashRouter([
         path: "/listproduct",
         element: <Catalogo />
       },
+      {
+        path: "/addprod",
+        element: <AddProduccion />
+      }
     ]
   },
 ]);

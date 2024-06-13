@@ -1,9 +1,9 @@
 import axios from "axios";
 import { getDecryptedToken } from "../Token/getDecryptedToken";
 
-export const listaProductoTerminado = async (currentPage: number) => {
+export const listaProductoDisponible = async () => {
     const token = getDecryptedToken();
-    const url = `${import.meta.env.VITE_API_URL}inventory?type=PT&&page=${currentPage}`
+    const url = `${import.meta.env.VITE_API_URL}inventory?type=PT&is_available=true`
 
     const headers = {
         'Authorization': `Bearer ${token}`,
