@@ -3,6 +3,7 @@ import "../../css/App.css"
 import { listaProductoFaltante } from "../../services/Products/ListaInvetarioFaltanteServices"
 import { HeadType } from "../Table/types/HeadType"
 import { Tablev2 } from "../Tablev2/Tablev2"
+import TitleSectionComponent from "../Section/TitleComponents/TitleSectionComponent.tsx";
 
 let headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -10,11 +11,9 @@ let headers: HeadType[] = [
     { name: "Stock", prop: "stock" },
 ]
 
-const titleTable = 'Productos con stock minimo'
-
 export const TablaProductoFaltante: React.FC = () => {
 
-    const [data, setProduct] = useState()
+    const [data, setProduct] = useState<[]>([])
     const [haObtenidoDatos, setHaObtenidoDatos] = useState(false);
 
     useEffect(() => {
@@ -26,7 +25,6 @@ export const TablaProductoFaltante: React.FC = () => {
 
     const lista = async () => {
         try {
-            // const { links, meta, inventario_stock_min } = await listaProductoFaltante()
             const { inventario_stock_min } = await listaProductoFaltante()
 
             setProduct(inventario_stock_min)
@@ -35,10 +33,18 @@ export const TablaProductoFaltante: React.FC = () => {
         }
     }
     return (
-        <Tablev2
-            headers={headers}
-            data={data}
-            fnClick={null}
-        />
+        <>
+            {
+                !data || data?.length === 0
+                ? <TitleSectionComponent title={"No hay productos con stock minimo"} />
+                : (
+                    <Tablev2
+                        headers={headers}
+                        data={data}
+                        fnClick={null}
+                    />
+                )
+            }
+        </>
     )
 }
