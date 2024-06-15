@@ -6,7 +6,7 @@ export const IngresoProductoTerminado: React.FC = () => {
     return (<>
         <SectionComponent
             title="Producto Terminado"
-            url="/IngresoInventarioPT"
+            url="/addinventary"
         >
             <TablaProductoTerminado />
         </SectionComponent>

@@ -82,7 +82,6 @@ export const FormAddProveedores = () => {
             await agregarProveedor(formData)
             navigation("/proveedores")
         } catch (e: any) {
-            console.log(e)
             toast.error(e.response.data.message)
         }
     }
@@ -146,7 +145,7 @@ export const FormAddProveedores = () => {
                         placeholder: "Seleccione un sector",
                         fnChange: setSector_id,
                         options: listSectors.map((sector) => {
-                            return {valor: sector.id, texto: sector.name};
+                            return { valor: sector.id, texto: sector.name };
                         }, []),
                         isRequerid: true,
                         value: sector_id,
@@ -159,7 +158,7 @@ export const FormAddProveedores = () => {
                         placeholder: "Selecciona el departamento del cliente",
                         fnChange: setCity_id,
                         options: listCity.map((city) => {
-                            return {valor: city.id, texto: city.name};
+                            return { valor: city.id, texto: city.name };
                         }, []),
                         isRequerid: true,
                         value: city_id,
@@ -196,7 +195,7 @@ export const FormAddProveedores = () => {
                         placeholder: "Selecciona el municipio del cliente",
                         fnChange: setMunicipality_id,
                         options: listaMunicipios.map((municipio) => {
-                            return {valor: municipio.id, texto: municipio.name};
+                            return { valor: municipio.id, texto: municipio.name };
                         }, []),
                         isRequerid: true,
                         value: municipality_id,
@@ -209,14 +208,14 @@ export const FormAddProveedores = () => {
                     'type': 'reset',
                     'fnClick': () => {
                     },
-                }}/>
+                }} />
                 <ButtonForm dataButton={{
                     'title': 'Guardar',
                     'color': 'green',
                     'type': 'submit',
                     'fnClick': () => {
                     },
-                }}/>
+                }} />
             </form>
         </>
     )

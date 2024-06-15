@@ -38,7 +38,6 @@ export const TablaProductoFaltante: React.FC = () => {
         <Tablev2
             headers={headers}
             data={data}
-            titleTable={titleTable}
             fnClick={null}
         />
     )

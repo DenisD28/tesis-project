@@ -6,24 +6,24 @@ import SelectInputSale from './SelectInputSale/SelectInputSale'
 import InfoSaleSelected from './InfoSaleSelected/InfoSaleSelected'
 import { ModalSaleProps } from './ModalSalePropsType'
 import { InputSale } from '../../../types/SaleTypes/InputSale'
-import { listaEntradas, } from '../../../services/Purchase/ListaEntradaCompra'
 import { inven, inventario } from '../../types.d'
-import { listaProductoDisponible } from '../../../services/Products/ListaInventarioDisponibleServices'
+import { listaInventario } from '../../../services/Products/ListaInventariosMPServices'
+import { listaDetalleCompra } from '../../../services/Purchase/ListaDetalleCompraServices'
 
-export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {
+export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {
 
     const [Quantity, setQuantity] = useState<string>('')
     const [UnitPrice, setUnitPrice] = useState<string>('')
     const [ItemsSelected, setItemsSelected] = useState<InputSale[]>([])
     const [productos, setProduct] = useState<inventario[]>([])
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
-    const [DataInput, setDataInput] = useState<InputSale[]>([])
+    const [DataPurcharse, setDetalle] = useState([])
 
     useEffect(() => {
         const lista = async () => {
             try {
                 // const { links, meta, inventario } = await listaProductoTerminado()
-                const { inventario } = await listaProductoDisponible()
+                const { inventario } = await listaInventario(1)
 
                 setProduct(inventario)
             } catch (e) {
@@ -34,10 +34,11 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
     }, [])
 
 
-    const listaEntrada = async () => {
+    const listaCompras = async () => {
         try {
-            const response = await listaEntradas(formProducto.id.toString())
-            setDataInput(response.entradas)
+            const response = await listaDetalleCompra(formProducto.id)
+            console.log(response.detalles_de_compra)
+            setDetalle(response)
         } catch (e) {
 
         }
@@ -69,7 +70,6 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
             console.log(data)
             fnAddDetailsSale(data)
             toggleModal()
-            console.log(data)
         }
     }
 
@@ -91,11 +91,11 @@ export default function ModalSale({ isModalOpen, toggleModal, fnAddDetailsSale }
                     </div>
                 </section>
                 <section className='md:col-span-4 col-span-12 grid items-end p-2'>
-                    <button className='bg-blue-600 h-10 px-8 text-white font-semibold rounded-md' onClick={() => listaEntrada()}> Buscar</button>
+                    <button className='bg-blue-600 h-10 px-8 text-white font-semibold rounded-md' onClick={() => listaCompras()}> Buscar</button>
                 </section>
                 {
                     ItemsSelected.length == 0
-                        ? <SelectInputSale handleOnClickInput={handleOnClickInput} DataInput={DataInput} />
+                        ? <SelectInputSale handleOnClickInput={handleOnClickInput} DataInput={DataPurcharse} />
                         : <InfoSaleSelected Data={ItemsSelected[0]} fnDeleteInput={handleDeleteInput} />
                 }
                 <section className='md:col-span-6 col-span-12'>

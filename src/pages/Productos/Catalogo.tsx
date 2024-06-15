@@ -1,12 +1,11 @@
 import SectionComponent from "../../Components/Section/SectionComponent.tsx";
-import {useEffect, useState} from "react";
-import {HeadType} from "../../Components/Table/types/HeadType.ts";
-import {VerMasProducto} from "../../Components/VerMas/VerMasProducto.tsx";
+import { useEffect, useState } from "react";
+import { HeadType } from "../../Components/Table/types/HeadType.ts";
 import ShowInfoComponent from "../../Components/Section/ShowInfo/ShowInfoComponent.tsx";
-import {ListaProductos} from "../../services/Products/ListaProductosServices.ts";
+import { ListaProductos } from "../../services/Products/ListaProductosServices.ts";
 import ModalComponent from "../../Components/Modal/ModalComponent/ModalComponent.tsx";
 
-export default function Catalogo () {
+export default function Catalogo() {
     const [data, setOrg] = useState<[]>([])
     const [datos, setDatos] = useState({})
     const [currentPage, setCurrentPage] = useState(1)
@@ -42,7 +41,7 @@ export default function Catalogo () {
                 isOpen && (
                     <ModalComponent
                         isOpen={isOpen}
-                        onClose={()=>{setIsOpen(false)}}
+                        onClose={() => { setIsOpen(false) }}
                     >
                         <div>
                             <p>test</p>
