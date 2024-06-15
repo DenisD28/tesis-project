@@ -11,6 +11,7 @@ import {
     Filler,
 } from "chart.js"
 import useEarningsForMonth from "./useEarningsForMonth"
+import ChartEmpty from "./ChartEmpty.tsx";
 
 ChartJS.register(
     CategoryScale,
@@ -39,17 +40,22 @@ export default function GananciasMensuales() {
         for(let j = 0; j < ganancias.length; j++){
             if(ganancias[j].date == label[i]){
                 total = parseFloat(ganancias[j].total.replace(/,/g, ''));
+                const date = new Date(label[i]);
+                let dateFormated = date.toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: 'short',
+                }).replace('.', '');
+                data.push({
+                    label: dateFormated,
+                    total: total
+                });
             }
         }
-        data.push({
-            label: label[i],
-            total: total
-        });
     }
     const midata = {
         labels: data.map((item) => item.label),
         datasets: [{
-            label: 'Ganancias ultimos 30 días',
+            label: 'Ganancias del dia',
             data: data.map((item) => item.total),
             backgroundColor: 'rgba(153, 102, 255, 0.2)',
             borderColor: 'rgb(79, 70, 229)',
@@ -58,5 +64,13 @@ export default function GananciasMensuales() {
             tension: 0.4
         }]
     }
-    return <Line data={midata} />
+    return (
+        <>
+            {
+                EarningsForMonth && EarningsForMonth?.length > 0
+                ? <Line data={midata} />
+                : <ChartEmpty />
+            }
+        </>
+    )
 }
