@@ -38,14 +38,11 @@ export const TablaProductoFaltante: React.FC = () => {
                 !data || data?.length === 0
                 ? <TitleSectionComponent title={"No hay productos con stock minimo"} />
                 : (
-                    <>
-                        <TitleSectionComponent title={"Productos con stock minimo"} />
-                        <Tablev2
-                            headers={headers}
-                            data={data}
-                            fnClick={null}
-                        />
-                    </>
+                    <Tablev2
+                        headers={headers}
+                        data={data}
+                        fnClick={null}
+                    />
                 )
             }
         </>

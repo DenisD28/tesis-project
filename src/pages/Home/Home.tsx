@@ -27,7 +27,7 @@ export default function Home({ userInfo }: HomeProps) {
           </>
           : null
         }
-        <section className="col-span-12 h-auto rounded-md border-2 md:flex justify-center items-center p-4">
+        <section className="col-span-12 h-auto rounded-md border-2 md:flex justify-center items-center px-4 py-6">
           <TablaProductoFaltante />
         </section>
       </div>
