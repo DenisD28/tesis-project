@@ -9,6 +9,141 @@ export default function TableKardexComponent() {
     ]
     const data = [
         {
+            "id": 2,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-05",
+            "quantity": 6,
+            "price": "20.00",
+            "total": "120.00",
+            "observation": "Registro de producto terminado el 05/06/2024",
+            "disponibility": 0,
+            "created_at": "2024-06-06T04:05:34.000000Z",
+            "updated_at": "2024-06-13T00:15:47.000000Z",
+            "type": "Input",
+            "input": 6,
+            "output": 0
+        },
+        {
+            "id": 2,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-05",
+            "quantity": "2.0000",
+            "price": "20.0000",
+            "total": "40.0000",
+            "observation": "Salida de producto el 05/06/2024 por venta.",
+            "created_at": "2024-06-06T04:08:42.000000Z",
+            "updated_at": "2024-06-06T04:08:42.000000Z",
+            "type": "Output",
+            "input": 0,
+            "output": "2.0000"
+        },
+        {
+            "id": 3,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-12",
+            "quantity": 6,
+            "price": "20.00",
+            "total": "120.00",
+            "observation": "Registro de producto terminado el 12/06/2024",
+            "disponibility": 6,
+            "created_at": "2024-06-12T23:41:30.000000Z",
+            "updated_at": "2024-06-12T23:41:30.000000Z",
+            "type": "Input",
+            "input": 6,
+            "output": 0
+        },
+        {
+            "id": 5,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-12",
+            "quantity": 6,
+            "price": "460.00",
+            "total": "2760.00",
+            "observation": "Registro de producto terminado el 12/06/2024",
+            "disponibility": 6,
+            "created_at": "2024-06-12T23:43:28.000000Z",
+            "updated_at": "2024-06-12T23:43:28.000000Z",
+            "type": "Input",
+            "input": 6,
+            "output": 0
+        },
+        {
+            "id": 8,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-12",
+            "quantity": 6,
+            "price": "460.00",
+            "total": "2760.00",
+            "observation": "Registro de producto terminado el 12/06/2024",
+            "disponibility": 6,
+            "created_at": "2024-06-13T00:08:57.000000Z",
+            "updated_at": "2024-06-13T00:08:57.000000Z",
+            "type": "Input",
+            "input": 6,
+            "output": 0
+        },
+        {
+            "id": 9,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-12",
+            "quantity": 1000,
+            "price": "2.76",
+            "total": "2760.00",
+            "observation": "Registro de producto terminado el 12/06/2024",
+            "disponibility": 950,
+            "created_at": "2024-06-13T00:09:33.000000Z",
+            "updated_at": "2024-06-13T00:11:02.000000Z",
+            "type": "Input",
+            "input": 1000,
+            "output": 0
+        },
+        {
+            "id": 7,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-12",
+            "quantity": "50.0000",
+            "price": "2.7600",
+            "total": "138.0000",
+            "observation": "Salida de producto el 12/06/2024 por venta.",
+            "created_at": "2024-06-13T00:11:02.000000Z",
+            "updated_at": "2024-06-13T00:11:02.000000Z",
+            "type": "Output",
+            "input": 0,
+            "output": "50.0000"
+        },
+        {
+            "id": 9,
+            "inventory_id": 120,
+            "organization_id": 3,
+            "user_id": 2,
+            "date": "2024-06-12",
+            "quantity": "4.0000",
+            "price": "20.0000",
+            "total": "80.0000",
+            "observation": "Salida de producto el 12/06/2024 por venta.",
+            "created_at": "2024-06-13T00:15:47.000000Z",
+            "updated_at": "2024-06-13T00:15:47.000000Z",
+            "type": "Output",
+            "input": 0,
+            "output": "4.0000"
+        }
+    ];
+    const data1 = [
+        {
             date: '12/12/2021',
             description: 'Compra de productos',
             input: 10,
@@ -77,9 +212,14 @@ export default function TableKardexComponent() {
                         }
                     </div>
                     {
-                        data.map((dat, index) => (
-                            <BoxTableKardexComponent key={index} dat={dat} headers={headers} />
-                        ))
+                        data.map((dat, index) => {
+                            dat.input = dat.input ? parseFloat(dat.input.toString()) : 0;
+                            dat.output = dat.output ? parseFloat(dat.output.toString()) : 0;
+                            dat.price = (parseFloat(dat.price).toFixed(2)).toString();
+                            dat.total = (parseFloat(dat.total).toFixed(2)).toString();
+                            dat.created_at = new Date(dat.created_at).toLocaleDateString();
+                            return <BoxTableKardexComponent key={index} dat={dat} headers={headers} />
+                        })
                     }
                 </div>
             </div>

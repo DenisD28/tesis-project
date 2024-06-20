@@ -20,11 +20,11 @@ export default function BoxTableKardexComponent({dat, headers}: {dat: any, heade
                     className='px-6 py-3 text-center border-t-2 col-span-4'
                 >
                     <BoxShowInformationComponent title={"Registrado por"} value={"Andres Alexander Cornejo Lira"}/>
-                    <BoxShowInformationComponent title={"Fecha"} value={"2021-10-10"}/>
-                    <BoxShowInformationComponent title={"Descripción"} value={"Compra de materia prima a proveedor Quitzon, Schaefer and Ritchie. Fact No.3123 el 11-06-2024."}/>
-                    <BoxShowInformationComponent title={"Cantidad"} value={"100"}/>
-                    <BoxShowInformationComponent title={"Valor Unitario"} value={"C$ 100.00"}/>
-                    <BoxShowInformationComponent title={"Valor Total"} value={"C$ 10000.00"}/>
+                    <BoxShowInformationComponent title={"Fecha"} value={dat.created_at}/>
+                    <BoxShowInformationComponent title={"Descripción"} value={dat.observation}/>
+                    <BoxShowInformationComponent title={"Cantidad"} value={dat.input>0 ? dat.input : dat.output}/>
+                    <BoxShowInformationComponent title={"Valor Unitario"} value={`C$ ${dat.price}`}/>
+                    <BoxShowInformationComponent title={"Valor Total"} value={`C$ ${dat.total}`}/>
                 </div>
             )}
         </div>
