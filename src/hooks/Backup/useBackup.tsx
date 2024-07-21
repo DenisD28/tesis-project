@@ -47,6 +47,29 @@ export default function useBackup() {
             })
     }
 
+    function exportBackup(){
+        setTitleModal("Exportando copia de seguridad")
+        setMessageModal("Por favor espere, estamos exportando la copia de seguridad")
+        setFinish(false)
+        setFnFinish(() => () => {
+            getBackups()
+            setShowModal(false)
+        })
+        setShowModal(true)
+        BackupService.export()
+            .then(() => {
+                setFinish(true)
+                setTitleModal("Copia de seguridad exportada")
+                setMessageModal("La copia de seguridad ha sido exportada con exito")
+            })
+            .catch(err => {
+                setFinish(true)
+                setTitleModal("Error al exportar la copia de seguridad")
+                setMessageModal("Ha ocurrido un error al exportar la copia de seguridad")
+                console.error(err)
+            })
+    }
+
     function deleteBackup(request: any) {
         setTitleModal("Eliminando copia de seguridad")
         setMessageModal("Por favor espere, estamos eliminando la copia de seguridad")
@@ -90,6 +113,7 @@ export default function useBackup() {
         restoreBackup,
         deleteBackup,
         downloadBackup,
-        setShowModal
+        setShowModal,
+        exportBackup
     }
 }

@@ -33,7 +33,7 @@ class ApiServices {
         })
     }
 
-    public post<T>(url: string, data: any) {
+    public post<T>(url: string, data?: any) {
         return new Promise((resolve, reject) => {
             this.request.post<T>(url, data)
                 .then(res => resolve(res.data))

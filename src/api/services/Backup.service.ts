@@ -13,7 +13,10 @@ class BackupService{
         },
         download: function (request: any) {
             return ApiServices.downloadFile('/backup/download', request, 'backup.sql', 'post');
-        }
+        },
+        export: function () {
+            return ApiServices.post('/backup/export');
+        },
     }
 }
 
