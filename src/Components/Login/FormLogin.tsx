@@ -9,6 +9,7 @@ import Footer from "../../Components/Footer/Footer"
 import CryptoJS from 'crypto-js'
 import toast from "react-hot-toast"
 import { Imagenes } from "../Carousel/Imagenes"
+import ApiServices from "../../api/ApiServices.ts";
 
 export const FormLogin = () => {
 
@@ -29,6 +30,7 @@ export const FormLogin = () => {
         try {
             userToken = await login(formtext)
             setEncryptedToken(userToken.token)
+            ApiServices.setToken();
 
             if (userToken.token != "") {
                 navigate("/dashboard")
