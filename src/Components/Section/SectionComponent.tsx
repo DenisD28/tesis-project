@@ -2,15 +2,20 @@ import HeaderSectionComponent from "./HeaderSectionComponents/HeaderSectionCompo
 
 interface SectionComponentProps {
     children: React.ReactNode;
-    title: string;
-    url: string;
+    title?: string;
+    url?: string;
     showButtonAdd?: boolean;
+    showHeader?: boolean;
 }
 
-export default function SectionComponent({ children, title, url, showButtonAdd }: SectionComponentProps) {
+export default function SectionComponent({ children, title, url, showButtonAdd, showHeader }: SectionComponentProps) {
     return (
         <div className="my-4 mx-auto w-full max-w-[80rem] flex-col flex justify-center items-start">
-            <HeaderSectionComponent title={title} url={url} showButtonAdd={showButtonAdd ?? true}/>
+            {
+                showHeader !== false && (
+                    <HeaderSectionComponent title={title ?? ""} url={url ?? ""} showButtonAdd={showButtonAdd ?? true}/>
+                )
+            }
             <div className="py-6 w-full overflow-x-auto scroll-style">
                 {children}
             </div>
