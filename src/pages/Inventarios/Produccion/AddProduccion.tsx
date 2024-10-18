@@ -6,6 +6,8 @@ import FormProd from "../../../Components/Produccion/FormProd/FormProd"
 import GeneralInfoProd from "../../../Components/Produccion/GeneralInfoProd/GeneralInfoProd"
 import ModalSale from "../../../Components/Produccion/ModalProd/ModalPurcharseDetail"
 import InfoProd from "../../../Components/Produccion/InfoProduct/InfoProd"
+import ConfirmProduccion from "../../../Components/Produccion/ConfirmProduccion/ConfirmProduccion"
+import { Navigate, useNavigate } from "react-router-dom"
 
 export const AddProduccion: React.FC = () => {
 
@@ -25,18 +27,25 @@ export const AddProduccion: React.FC = () => {
         DeleteDetailsSale
     } = useAddProduccion()
 
+    const navigate = useNavigate()
+
     const registrar = async () => {
         try {
+            console.log("inventory_id " + inventory_id)
+            console.log("cantidad " + quantity)
+            console.log("DetailsSale " + JSON.stringify(DetailsSale))
+
             const response = await agregarProductoTerminado(inventory_id, JSON.stringify(list), quantity)
-            if (response.status === 200) {
-                toast.success("Venta Registrada")
+            console.log(response)
+            if (response.status === 201) {
+                toast.success("Producto Registrado")
+                navigate("/ListaInventarioPT")
             }
         } catch (e: any) {
             console.log(e)
             toast.error(e.response.data.error)
         }
     }
-
     return (<>
         <SectionComponent
             title="Producto Terminado"
@@ -46,7 +55,7 @@ export const AddProduccion: React.FC = () => {
             {
                 !StatusFormPT
                     ? <FormProd setCodigo={setInventoryId} HandleNextOperation={HandleNextOperation} />
-                    : <GeneralInfoProd Codigo={inventory_id} />
+                    : <GeneralInfoProd Codigo={inventory_id} cant={quantity} Cantidad={setQuatity} />
             }
             {
                 StatusFormPT && <InfoProd fnClick={toggleModal} Data={DetailsSale} fnDeleteDetailsSale={DeleteDetailsSale} />
@@ -54,7 +63,11 @@ export const AddProduccion: React.FC = () => {
             {
                 isModalOpen && <ModalSale isModalOpen={isModalOpen} toggleModal={toggleModal} fnAddDetailsSale={AddDetailsSale} />
             }
+            {
 
+                DetailsSale.length > 0
+                && <ConfirmProduccion SendPurchase={registrar} />
+            }
         </SectionComponent >
     </>
     )

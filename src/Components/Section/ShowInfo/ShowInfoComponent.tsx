@@ -1,9 +1,9 @@
 import LoadingComponent from "../../Loading/LoadingComponent.tsx";
 import TableEmptyComponent from "../../Message/TableEmptyComponent.tsx";
-import {Tablev2} from "../../Tablev2/Tablev2.tsx";
+import { Tablev2 } from "../../Tablev2/Tablev2.tsx";
 import PaginationComponent from "../../Pagination/PaginationComponent.tsx";
-import {HeadType} from "../../Tablev2/types/HeadType.ts";
-import {SetStateAction} from "react";
+import { HeadType } from "../../Tablev2/types/HeadType.ts";
+import { SetStateAction } from "react";
 
 interface ShowInfoComponentProps {
     headers: HeadType[];
@@ -16,7 +16,7 @@ interface ShowInfoComponentProps {
     loading: boolean;
 }
 
-export default function ShowInfoComponent({headers, data, currentPage, totalPages, loading, setCurrentPage, setData, setIsOpen}: ShowInfoComponentProps) {
+export default function ShowInfoComponent({ headers, data, currentPage, totalPages, loading, setCurrentPage, setData, setIsOpen }: ShowInfoComponentProps) {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -33,7 +33,7 @@ export default function ShowInfoComponent({headers, data, currentPage, totalPage
                 ? <LoadingComponent />
                 : (
                     data && data.length === 0
-                        ?(
+                        ? (
                             <TableEmptyComponent />
                         ) : (
                             <>
@@ -49,7 +49,6 @@ export default function ShowInfoComponent({headers, data, currentPage, totalPage
                                 />
                             </>
                         )
-
                 )
             }
         </>

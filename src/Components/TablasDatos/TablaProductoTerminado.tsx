@@ -7,6 +7,7 @@ import Head from "../Table/Head/Head"
 import { HeadType } from "../Table/types/HeadType"
 import SectionComponent from "../Section/SectionComponent"
 import ShowInfoComponent from "../Section/ShowInfo/ShowInfoComponent"
+import { VerMasProducto } from "../VerMas/VerMasProducto"
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
@@ -63,6 +64,11 @@ export const TablaProductoTerminado: React.FC = () => {
 
     return (
         <>
+            {
+                isOpen && (
+                    <VerMasProducto data={datos} setIsOpen={setIsOpen} />
+                )
+            }
             <ShowInfoComponent
                 headers={headers}
                 data={data}

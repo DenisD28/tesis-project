@@ -4,6 +4,7 @@ import { getDecryptedToken } from "../Token/getDecryptedToken";
 export const listaDetalleCompra = async (id: number) => {
     const maxRetries: number = 1;
     const token = getDecryptedToken();
+
     const url = `${import.meta.env.VITE_API_URL}details_purchase?product_id=${id}`;
 
     const headers = {

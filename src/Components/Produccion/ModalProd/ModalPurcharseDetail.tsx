@@ -5,19 +5,18 @@ import ButtonForm from '../../Forms/ButtonComponents/ButtonForm'
 import SelectInputSale from './SelectInputSale/SelectInputSale'
 import InfoSaleSelected from './InfoSaleSelected/InfoSaleSelected'
 import { ModalSaleProps } from './ModalSalePropsType'
-import { InputSale } from '../../../types/SaleTypes/InputSale'
-import { inven, inventario } from '../../types.d'
+import { inven, inventario, purchase } from '../../types.d'
 import { listaInventario } from '../../../services/Products/ListaInventariosMPServices'
 import { listaDetalleCompra } from '../../../services/Purchase/ListaDetalleCompraServices'
+import { InputPurcharse } from '../../../types/PurchaseTypes/InputPurcharse'
 
 export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {
 
     const [Quantity, setQuantity] = useState<string>('')
-    const [UnitPrice, setUnitPrice] = useState<string>('')
-    const [ItemsSelected, setItemsSelected] = useState<InputSale[]>([])
+    const [ItemsSelected, setItemsSelected] = useState<InputPurcharse[]>([])
     const [productos, setProduct] = useState<inventario[]>([])
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
-    const [DataPurcharse, setDetalle] = useState([])
+    const [DataPurcharse, setDetalle] = useState<purchase[]>([])
 
     useEffect(() => {
         const lista = async () => {
@@ -34,17 +33,18 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
     }, [])
 
 
-    const listaCompras = async () => {
+    const listaCompras = async (id: number) => {
         try {
-            const response = await listaDetalleCompra(formProducto.id)
-            console.log(response.detalles_de_compra)
-            setDetalle(response)
-        } catch (e) {
+            const response = await listaDetalleCompra(id)
 
+            setDetalle(response.detalles_de_compra)
+
+        } catch (e) {
+            // console.log(e)
         }
     }
 
-    const handleOnClickInput = (data: InputSale) => {
+    const handleOnClickInput = (data: InputPurcharse) => {
         setItemsSelected([data])
     }
 
@@ -54,6 +54,7 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
+
         setFormProduct((prevData) => ({
             ...prevData,
             [name]: value,
@@ -61,13 +62,12 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
     };
 
     const handleSubmition = () => {
-        if (Quantity != '' && UnitPrice != '' && ItemsSelected.length != 0) {
+        if (Quantity != '' && ItemsSelected.length != 0) {
             const data = {
+                'detail_purchase_id': ItemsSelected[0].id,
                 'quantity': parseInt(Quantity),
-                'price': parseInt(UnitPrice),
-                'product_input': ItemsSelected[0],
+                'observation': "test",
             }
-            console.log(data)
             fnAddDetailsSale(data)
             toggleModal()
         }
@@ -84,14 +84,14 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
                             <option value="">Selecciona el producto</option>
                             {
                                 productos.map(pro => (
-                                    <option key={pro.id} value={pro.id}>{pro.product.name}</option>
+                                    <option key={pro.product.id} value={pro.product.id}>{pro.product.name}</option>
                                 ))
                             }
                         </select>
                     </div>
                 </section>
                 <section className='md:col-span-4 col-span-12 grid items-end p-2'>
-                    <button className='bg-blue-600 h-10 px-8 text-white font-semibold rounded-md' onClick={() => listaCompras()}> Buscar</button>
+                    <button className='bg-blue-600 h-10 px-8 text-white font-semibold rounded-md' onClick={() => listaCompras(formProducto.id)}> Buscar</button>
                 </section>
                 {
                     ItemsSelected.length == 0
@@ -100,23 +100,12 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
                 }
                 <section className='md:col-span-6 col-span-12'>
                     <InputsForm DataInputs={{
-                        'title': 'Cantidad',
+                        'title': 'Cantidad Utilizada',
                         'type': 'number',
                         'placeholder': 'Ingrese la cantidad',
                         'name': 'cantidad',
                         'value': Quantity,
                         'fnChange': setQuantity,
-                        isRequire: true
-                    }} />
-                </section>
-                <section className='md:col-span-6 col-span-12'>
-                    <InputsForm DataInputs={{
-                        'title': 'Precio unitario',
-                        'type': 'number',
-                        'placeholder': 'Ingrese el precio unitario',
-                        'name': 'precio_unitario',
-                        'value': UnitPrice,
-                        'fnChange': setUnitPrice,
                         isRequire: true
                     }} />
                 </section>

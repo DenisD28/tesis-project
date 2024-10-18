@@ -101,7 +101,7 @@ export const AddInventario = () => {
             )
         }
         <div className='py-4 pb-28 px-8 h-screen overflow-y-auto'>
-            <h1 className='text-[#4F46E5] text-2xl font-bold my-4'>Registro de Materia Prima</h1>
+            <h1 className='text-[#4F46E5] text-2xl font-bold my-4'>Registro de Inventario</h1>
             <div>
                 <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                     <ButtonForm
