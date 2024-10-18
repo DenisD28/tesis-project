@@ -73,6 +73,15 @@ const routesMain: Route[] = [
     },
 ]
 
+const routesBackup: Route[] = [
+    {
+        "path": "/backup",
+        "title": "Copias de seguridad",
+        "icon": <LiaMoneyBillSolid className="w-6 h-auto" />,
+        "type": "tipo1"
+    },
+]
+
 const routesInventory: Route[] = [
     {
         "path": "/addinventary",
@@ -113,4 +122,4 @@ const routesInventory: Route[] = [
 
 ]
 
-export { routesMain, routesInventory }
+export { routesMain, routesInventory, routesBackup }
