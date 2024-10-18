@@ -6,6 +6,7 @@ import ButtonForm from '../../Components/Forms/ButtonComponents/ButtonForm'
 import useAddSale from '../../hooks/SaleHooks/useAddSale'
 import toast, { Toaster } from 'react-hot-toast'
 import { agregarVenta } from '../../services/Sales/AddVentaServices'
+import { useNavigate } from 'react-router-dom'
 
 export default function AddSale() {
     const { Cliente,
@@ -27,18 +28,20 @@ export default function AddSale() {
         toggleModal,
     } = useAddSale()
 
+    const navigate = useNavigate()
 
     const registrar = async () => {
 
-        console.log(DetailsSale)
         try {
             const response = await agregarVenta(DetailsSale, NumeroFactura, Nota, Cliente, TipoPago, PaymentStatus)
+            console.log(response)
             if (response.status === 200) {
                 toast.success("Venta Registrada")
+                navigate("/ventas")
             }
         } catch (e: any) {
             console.log(e)
-            toast.error(e.response.data.error)
+            toast.error(e.response.data.message)
         }
 
     }
