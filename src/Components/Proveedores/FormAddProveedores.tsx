@@ -29,6 +29,8 @@ export const FormAddProveedores = () => {
     const [listSectors, setListSectors] = useState<CityType[]>([]);;
     const [listCity, setDepartamento] = useState<ciudad>([]);
     const [listaMunicipios, setMunicipio] = useState<municipioCiudad>([]);
+    const [details, setDetails] = useState("")
+    const [email, setEmail] = useState("")
     const navigation = useNavigate()
 
 
@@ -77,6 +79,8 @@ export const FormAddProveedores = () => {
         formData.append("city", city_id)
         formData.append("phone_main", phone_main)
         formData.append("phone_secondary", phone_secondary)
+        formData.append("contact_name", contact_name)
+        formData.append("details", details)
 
         try {
             await agregarProveedor(formData)
@@ -136,6 +140,30 @@ export const FormAddProveedores = () => {
                         isRequire: false,
                         isDisabled: false,
                         fnChange: setPhone_secondary,
+                    }}
+                />
+                <InputsForm
+                    DataInputs={{
+                        name: "details",
+                        title: "Detalle",
+                        value: details || "",
+                        type: "text",
+                        placeholder: "Escribe el detalle del proveedor",
+                        isRequire: false,
+                        isDisabled: false,
+                        fnChange: setDetails,
+                    }}
+                />
+                <InputsForm
+                    DataInputs={{
+                        name: "emails",
+                        title: "Correo Electronico",
+                        value: email || "",
+                        type: "text",
+                        placeholder: "Escribe el correo electronico del proveedor",
+                        isRequire: false,
+                        isDisabled: false,
+                        fnChange: setEmail,
                     }}
                 />
                 <SelectForm

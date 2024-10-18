@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import "../../css/App.css"
 import React from "react"
 
@@ -9,6 +10,19 @@ interface Props {
 const titleTable = 'Usuario Registrado'
 
 export const ModalUsaurio: React.FC<Props> = ({ data, setIsOpen }) => {
+
+
+    const navigation = useNavigate()
+
+    const copiarContenido = async (texto: string) => {
+        try {
+            await navigator.clipboard.writeText(texto);
+            console.log('Contenido copiado al portapapeles');
+            navigation("/usuarios")
+        } catch (err) {
+            console.error('Error al copiar: ', err);
+        }
+    }
 
     return (<>
         <div
@@ -46,6 +60,8 @@ export const ModalUsaurio: React.FC<Props> = ({ data, setIsOpen }) => {
                     </div>
                     {/*footer*/}
                     <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            onClick={() => copiarContenido(data.password)}>Copiar contraseña</button>
                         <button
                             className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                             type="button"
