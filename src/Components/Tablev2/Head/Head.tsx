@@ -20,9 +20,7 @@ export default function Head({ headers }: { headers: HeadType[] }) {
                 {headers.map((head, index) => (
                     <th scope="clo" className="px-6 py-3" key={index}>{head.name}</th>
                 ))}
-                <th className={"text-center"}>
-                    Acciones
-                </th>
+
                 {/* <th scope="col" className="px-6 py-3">
                     <span className="sr-only">Edit</span>
                 </th> */}

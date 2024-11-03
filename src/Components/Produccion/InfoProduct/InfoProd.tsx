@@ -1,3 +1,4 @@
+import { DetailsPurcharse } from '../../../types/SaleTypes/DetailsPurcharse'
 import ShowInfoSale from '../ShowInfoProd/ShowInfoSale'
 import { InfoProdProps } from './InfoProdPropsTypes'
 
@@ -14,7 +15,9 @@ export default function InfoProd({ fnClick, Data, fnDeleteDetailsSale }: InfoPro
         }
         {
           Data.map((data, index) => (
-            <ShowInfoSale key={index} Data={data} fnDeleteDetailsSale={fnDeleteDetailsSale} />
+            <ShowInfoSale key={index} Data={data} fnDeleteDetailsSale={function (data: DetailsPurcharse): void {
+              throw new Error('Function not implemented.')
+            }} />
           ))
         }
       </section>

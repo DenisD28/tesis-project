@@ -3,11 +3,18 @@ import ButtonForm from '../../Forms/ButtonComponents/ButtonForm'
 import { Receipt } from 'lucide-react'
 import { FormProdProps } from './FormProdPropsTypes'
 import { useEffect, useState } from 'react'
-import { inventario } from '../../types.d'
+import { inventario, Product } from '../../types.d'
 import { listaProductoTerminado } from '../../../services/Products/ListaInventarioPTServices'
+import { ModalProducto } from '../../Modal/ModalProducto'
+import InputsForm from '../../Forms/InputsComponents/InputsForm'
 
 export default function FormProd({ setCodigo, HandleNextOperation, }: FormProdProps) {
   const [producto, setProducto] = useState<inventario[]>([])
+  const [isOpen, setIsOpen] = useState(false);
+  const [unidadMedida, setUnidadMedida] = useState("")
+  const [id, setId] = useState("0")
+  const [name, setName] = useState("")
+
 
   useEffect(() => {
     lista()
@@ -17,11 +24,17 @@ export default function FormProd({ setCodigo, HandleNextOperation, }: FormProdPr
     try {
       // const { links, meta, clients } = await listaCliente()
       const { inventario } = await listaProductoTerminado(1)
-
       setProducto(inventario)
     } catch (e) {
       // console.log(e)
     }
+  }
+
+  const agregar = (id: Product) => {
+    setCodigo(id.id.toString())
+    setName(id.name)
+    setUnidadMedida(id.measurement_type)
+    setIsOpen(false)
   }
 
   return (
@@ -31,14 +44,41 @@ export default function FormProd({ setCodigo, HandleNextOperation, }: FormProdPr
         Informaci&oacute;n del producto
       </h2>
       <section>
-        <SelectForm dataSelect={{
+        {
+          isOpen && (
+            <ModalProducto fnAgregar={agregar}
+              setIsOpen={setIsOpen} />
+          )
+        }
+
+        <InputsForm
+          DataInputs={{
+            name: "name",
+            title: "Nombre del Producto",
+            value: name || "",
+            type: "text",
+            placeholder: "Producto a agregar",
+            isRequire: true,
+            isDisabled: true,
+            fnChange: setName,
+          }}
+        />
+        <ButtonForm
+          dataButton={{
+            title: "BuscarProducto",
+            color: "blue",
+            type: "button",
+            fnClick: () => { setIsOpen(true) },
+          }}
+        />
+        {/* <SelectForm dataSelect={{
           title: 'Producto a Ingresar',
           name: 'producto',
           placeholder: 'Seleccione el producto',
           options: producto.map((item: inventario) => ({ 'valor': item.id, 'texto': item.product.name })),
           fnChange: setCodigo,
           isRequerid: true
-        }} />
+        }} /> */}
       </section>
       <div className="col-span-12 grid items-center">
         <ButtonForm dataButton={{
