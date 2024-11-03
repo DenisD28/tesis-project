@@ -80,6 +80,7 @@ export const FormAddOrganizacion = () => {
 
         try {
             await agregarOrganizacion(formData)
+
             navigation("/Organizaciones")
 
         } catch (e: any) {

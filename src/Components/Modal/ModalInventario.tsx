@@ -33,7 +33,7 @@ export const ModalInventario: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     const lista = async () => {
         try {
-            const { inventario } = await listaInventario()
+            const { inventario } = await listaInventario(1)
             setProduct(inventario)
         } catch (e) {
         }

@@ -20,7 +20,7 @@ export const AddProduccion: React.FC = () => {
         DetailsSale,
         setInventoryId,
         setQuatity,
-        setLista,
+        // setLista,
         HandleNextOperation,
         toggleModal,
         AddDetailsSale,

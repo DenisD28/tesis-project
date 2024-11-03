@@ -23,7 +23,6 @@ export default function ShowInfoComponent({ headers, data, currentPage, totalPag
 
     const vermas = (dat: SetStateAction<object>) => {
         setData(dat)
-        console.log(dat)
         setIsOpen(true)
     }
 

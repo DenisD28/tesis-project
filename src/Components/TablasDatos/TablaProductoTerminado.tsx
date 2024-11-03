@@ -1,11 +1,7 @@
 import "../../css/App.css"
-import { Inventary } from "../types.d"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { listaProductoTerminado } from "../../services/Products/ListaInventarioPTServices"
-import Head from "../Table/Head/Head"
 import { HeadType } from "../Table/types/HeadType"
-import SectionComponent from "../Section/SectionComponent"
 import ShowInfoComponent from "../Section/ShowInfo/ShowInfoComponent"
 import { VerMasProducto } from "../VerMas/VerMasProducto"
 
@@ -17,11 +13,9 @@ const headers: HeadType[] = [
 
 
 
-const titleTable = 'Productos Terminados'
 
 export const TablaProductoTerminado: React.FC = () => {
 
-    const navigate = useNavigate()
     const [data, setProduct] = useState<[]>([])
     const [datos, setDatos] = useState({})
     const [currentPage, setCurrentPage] = useState(1)
@@ -55,12 +49,12 @@ export const TablaProductoTerminado: React.FC = () => {
         }
     }
 
-    const agregar = (data?: Inventary) => {
-        localStorage.setItem("idProducto", JSON.stringify(data?.id))
-        localStorage.setItem("nombre", JSON.stringify(data?.product.name))
-        localStorage.setItem("codigo", JSON.stringify(data?.code))
-        navigate("/ingresoProducto")
-    }
+    // const agregar = (data?: Inventary) => {
+    //     localStorage.setItem("idProducto", JSON.stringify(data?.id))
+    //     localStorage.setItem("nombre", JSON.stringify(data?.product.name))
+    //     localStorage.setItem("codigo", JSON.stringify(data?.code))
+    //     navigate("/ingresoProducto")
+    // }
 
     return (
         <>

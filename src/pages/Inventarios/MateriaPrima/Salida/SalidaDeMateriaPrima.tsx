@@ -6,7 +6,6 @@ import { ModalInventario } from "../../../../Components/Modal/ModalInventario"
 import ButtonForm from "../../../../Components/Forms/ButtonComponents/ButtonForm"
 import { ModalDetalleCompra } from "../../../../Components/Modal/ModalDetalleCompra"
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
-import { agregarProductoTerminado } from "../../../../services/Products/AddProductoTerminadoServices"
 import { ModalInput } from "../../../../Components/Modal/ModalInput"
 
 interface DetalleRegistro {
