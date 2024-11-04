@@ -7,7 +7,7 @@ import GeneralInfoProd from "../../../Components/Produccion/GeneralInfoProd/Gene
 import ModalSale from "../../../Components/Produccion/ModalProd/ModalPurcharseDetail"
 import InfoProd from "../../../Components/Produccion/InfoProduct/InfoProd"
 import ConfirmProduccion from "../../../Components/Produccion/ConfirmProduccion/ConfirmProduccion"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export const AddProduccion: React.FC = () => {
 

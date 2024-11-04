@@ -21,11 +21,6 @@ export default function ShowInfoComponent({ headers, data, currentPage, totalPag
         setCurrentPage(page);
     };
 
-    const vermas = (dat: SetStateAction<object>) => {
-        setData(dat)
-        setIsOpen(true)
-    }
-
     return (
         <>
             {loading
@@ -39,7 +34,7 @@ export default function ShowInfoComponent({ headers, data, currentPage, totalPag
                                 <Tablev2
                                     headers={headers}
                                     data={data}
-                                    fnClick={vermas}
+                                    fnClick={()=>{}}
                                 />
                                 <PaginationComponent
                                     currentPage={currentPage}
