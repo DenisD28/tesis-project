@@ -1,12 +1,12 @@
-import SelectForm from '../../Forms/SelectComponents/SelectForm'
 import ButtonForm from '../../Forms/ButtonComponents/ButtonForm'
 import { Receipt } from 'lucide-react'
 import { FormProdProps } from './FormProdPropsTypes'
 import { useEffect, useState } from 'react'
 import { inventario, Product } from '../../types.d'
 import { listaProductoTerminado } from '../../../services/Products/ListaInventarioPTServices'
-import { ModalProducto } from '../../Modal/ModalProducto'
 import InputsForm from '../../Forms/InputsComponents/InputsForm'
+import { ModalProductoTP } from '../../Modal/ModalProducto2/ModalProductoTP'
+
 
 export default function FormProd({ setCodigo, HandleNextOperation, }: FormProdProps) {
   const [producto, setProducto] = useState<inventario[]>([])
@@ -30,10 +30,9 @@ export default function FormProd({ setCodigo, HandleNextOperation, }: FormProdPr
     }
   }
 
-  const agregar = (id: Product) => {
+  const agregar = (id: inventario) => {
     setCodigo(id.id.toString())
-    setName(id.name)
-    setUnidadMedida(id.measurement_type)
+    setName(id.product.name)
     setIsOpen(false)
   }
 
@@ -46,7 +45,7 @@ export default function FormProd({ setCodigo, HandleNextOperation, }: FormProdPr
       <section>
         {
           isOpen && (
-            <ModalProducto fnAgregar={agregar}
+            <ModalProductoTP fnAgregar={agregar}
               setIsOpen={setIsOpen} />
           )
         }

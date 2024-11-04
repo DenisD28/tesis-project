@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 import conversiones from '../../../../utils/Conversiones.json'
 import { Product } from "../../../../Components/types.d"
-import { ModalProducto } from "../../../../Components/Modal/ModalProducto"
 import InputsForm from "../../../../Components/Forms/InputsComponents/InputsForm"
 import ButtonForm from "../../../../Components/Forms/ButtonComponents/ButtonForm"
 import { agregarInventario } from "../../../../services/Products/AddInventarioMPServices"
+import { ModalProducto } from "../../../../Components/Modal/ModalProducto"
 
 type Conversiones = {
     [key: string]: string[]

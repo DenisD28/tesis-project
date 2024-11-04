@@ -1,25 +1,24 @@
-import "../../css/App.css"
+import "../../../css/App.css"
 import React, { useState } from "react"
-import { Product, tipo } from "../types.d";
-import { listaProductos } from "../../services/Products/ListaProductoCategoriaServices";
-import { HeadType } from "../Table/types/HeadType";
-import Head from "../Table/Head/Head";
+import { inventario, tipo } from "../../types.d";
+import { HeadType } from "../../Table/types/HeadType";
+import Head from "../../Table/Head/Head";
+import { buscarProductoTerminado } from "../../../services/Products/ListaProductoTerminado";
 
 interface Props {
-    fnAgregar(dat: Product): void
+    fnAgregar(dat: inventario): void
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const headers: HeadType[] = [
     { name: "Codigo", prop: "id" },
-    { name: "Nombre", prop: "name" },
+    { name: "Nombre", prop: "product" },
 ]
 
-
-export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
+export const ModalProductoTP: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
 
     const [formProducto, setFormProduct] = useState<tipo>({ type: "" })
-    const [data, setProduct] = useState([])
+    const [data, setProduct] = useState<inventario[]>([]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -33,14 +32,15 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
         e.preventDefault()
         const lista = async () => {
             try {
-                const response = await listaProductos(formProducto)
-                console.log(response)
-                setProduct(response)
-                //console.log(response)
-            } catch (e) {
-                // console.log(e)
+                const response = await buscarProductoTerminado(formProducto);
+                const busqueda = response.busqueda || []; // Asegúrate de que busqueda sea un arreglo
+                if (busqueda.length > 0) {
+                    setProduct(busqueda);
+                }
+            } catch (error) {
+                console.error(error);
             }
-        }
+        };
         lista();
     }
 
@@ -80,23 +80,32 @@ export const ModalProducto: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                             <table className='w-full h-full'>
                                 <Head headers={headers} />
                                 <tbody>
-                                    {data?.map((dat, index) => (
-                                        <tr
-                                            key={index}
-                                            className='border-b-[1px] border-[#eee] h-14 sm:h-12'
-                                        >
-                                            {headers.map((h, i) => (
-                                                <td
-                                                    key={i}
-                                                    className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                                    {h.prop === 'product' ? (dat[h.prop] as { name: string }).name : dat[h.prop]}
+                                    {
+                                        // data.length > 0 ? (
+                                        data.map((dat, index) => (
+                                            <tr
+                                                key={index}
+                                                className='border-b-[1px] border-[#eee] h-14 sm:h-12'
+                                            >
+                                                {headers.map((h, i) => (
+                                                    <td
+                                                        key={i}
+                                                        className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
+                                                        {h.prop === 'product' ? (dat[h.prop] as { name: string }).name : dat[h.prop]}
+                                                    </td>
+                                                ))}
+                                                <td>
+                                                    <button onClick={() => fnAgregar(dat)}>Agregar</button>
                                                 </td>
-                                            ))}
-                                            <td>
-                                                <button onClick={() => fnAgregar(dat)}>Agregar</button>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                            </tr>
+                                        ))
+                                        // ) : (
+                                        // <tr>
+                                        //     <td colSpan={headers.length + 1} className='text-center'>
+                                        //         No hay datos disponibles.
+                                        //     </td>
+                                        // </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
