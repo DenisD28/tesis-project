@@ -98,7 +98,7 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
                         ? <SelectInputSale handleOnClickInput={handleOnClickInput} DataInput={DataPurcharse} />
                         : <InfoSaleSelected Data={ItemsSelected[0]} fnDeleteInput={handleDeleteInput} />
                 }
-                <section className='md:col-span-6 col-span-12'>
+                <section className='col-span-12'>
                     <InputsForm DataInputs={{
                         'title': 'Cantidad Utilizada',
                         'type': 'number',

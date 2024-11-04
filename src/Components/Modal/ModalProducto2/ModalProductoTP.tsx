@@ -73,39 +73,42 @@ export const ModalProductoTP: React.FC<Props> = ({ fnAgregar, setIsOpen }) => {
                             </div>
                             <div className="flex justify-center items-center flex-col p-2 mt-4">
                                 <br />
-                                <button className={`w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-green-600 text-white`} type="submit">Buscar</button>
+                                <button className={`w-full h-10 rounded-md border-2 border-[#ddd] px-4 font-medium bg-blue-600 text-white`} type="submit">Buscar</button>
                             </div>
                         </form>
-                        <div className='px-8 rounded-xl bg-white md:h-50 h-80 overflow-y-auto hidden-scroll shadow-lg shadow-[#ddd] border-2'>
+                        <div
+                            className='px-0 scroll-hidden border-2 border-zinc-100 rounded-t-md bg-white md:h-50 h-auto max-h-80 overflow-y-auto hidden-scroll my-4'>
                             <table className='w-full h-full'>
-                                <Head headers={headers} />
+                                <Head headers={headers}/>
                                 <tbody>
-                                    {
-                                        // data.length > 0 ? (
-                                        data.map((dat, index) => (
-                                            <tr
-                                                key={index}
-                                                className='border-b-[1px] border-[#eee] h-14 sm:h-12'
-                                            >
-                                                {headers.map((h, i) => (
-                                                    <td
-                                                        key={i}
-                                                        className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
-                                                        {h.prop === 'product' ? (dat[h.prop] as { name: string }).name : dat[h.prop]}
-                                                    </td>
-                                                ))}
-                                                <td>
-                                                    <button onClick={() => fnAgregar(dat)}>Agregar</button>
+                                {
+                                    // data.length > 0 ? (
+                                    data.map((dat, index) => (
+                                        <tr
+                                            key={index}
+                                            className='border-b-[1px] border-[#eee] h-14 sm:h-12'
+                                        >
+                                            {headers.map((h, i) => (
+                                                <td
+                                                    key={i}
+                                                    className='text-[#3d333a]/90 text-center font-base sm:text-base text-sm'>
+                                                    {h.prop === 'product' ? (dat[h.prop] as {
+                                                        name: string
+                                                    }).name : dat[h.prop]}
                                                 </td>
-                                            </tr>
-                                        ))
-                                        // ) : (
-                                        // <tr>
-                                        //     <td colSpan={headers.length + 1} className='text-center'>
-                                        //         No hay datos disponibles.
-                                        //     </td>
-                                        // </tr>
-                                    }
+                                            ))}
+                                            <td>
+                                                <button className="w-11/12 h-8 bg-green-600 text-white font-semibold rounded-md flex justify-center items-center" onClick={() => fnAgregar(dat)}>Agregar</button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                    // ) : (
+                                    // <tr>
+                                    //     <td colSpan={headers.length + 1} className='text-center'>
+                                    //         No hay datos disponibles.
+                                    //     </td>
+                                    // </tr>
+                                }
                                 </tbody>
                             </table>
                         </div>
