@@ -29,10 +29,6 @@ export default function FormProd({setCodigo, HandleNextOperation}: FormProdProps
             // console.log(e)
         }
     }
-    console.log({
-        inventory_id,
-        name
-    })
 
 
     const agregar = (id: inventario) => {
