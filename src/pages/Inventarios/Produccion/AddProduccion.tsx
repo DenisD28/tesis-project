@@ -30,11 +30,11 @@ export const AddProduccion: React.FC = () => {
     const navigate = useNavigate()
     const registrar = async () => {
         try {
-            // console.log("inventory_id " + inventory_id)
-            // console.log("cantidad " + quantity)
-            // console.log("DetailsSale " + JSON.stringify(DetailsSale))
+            console.log("inventory_id " + inventory_id)
+            console.log("cantidad " + quantity)
+            console.log("DetailsSale " + JSON.stringify(DetailsSale))
 
-            const response = await agregarProductoTerminado(inventory_id, JSON.stringify(list), quantity)
+            const response = await agregarProductoTerminado(inventory_id, JSON.stringify(DetailsSale), quantity)
             if (response.status === 201) {
                 toast.success("Producto Registrado")
                 navigate("/ListaInventarioPT")

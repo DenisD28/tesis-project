@@ -22,6 +22,7 @@ function useAddProduccion() {
             setStatusFormPT(true)
         }
     }
+
     const AddDetailsSale = (data: DetailsSale) => {
         setDetailsSale([...DetailsSale, data])
         setTotal(Total + (data.quantity * data.price))

@@ -3,7 +3,6 @@ import ShowInfoSale from '../ShowInfoProd/ShowInfoSale'
 import { InfoProdProps } from './InfoProdPropsTypes'
 
 export default function InfoProd({ DataPurcharse, fnClick, Data, fnDeleteDetailsSale }: InfoProdProps) {
-  console.log(DataPurcharse)
   return (
     <article className='mt-8'>
       <section className='flex justify-between md:flex-row flex-col md:items-center gap-4 md:gap-0 md:h-14 pr-2'>

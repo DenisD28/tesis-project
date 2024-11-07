@@ -17,6 +17,7 @@ export default function ModalPurcharseDetail({ DataPurcharse, setDetalle, isModa
     const [productos, setProduct] = useState<inventario[]>([])
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
     // const [DataPurcharse, setDetalle] = useState<purchase[]>([])
+    const [detalle, setDetalle2] = useState<purchase[]>([])
     useEffect(() => {
         const lista = async () => {
             try {
@@ -35,7 +36,14 @@ export default function ModalPurcharseDetail({ DataPurcharse, setDetalle, isModa
     const listaCompras = async (id: number) => {
         try {
             const response = await listaDetalleCompra(id)
-            setDetalle(response.detalles_de_compra)
+            const data = response.detalles_de_compra
+            setDetalle2(data)
+            if (DataPurcharse.length > 0) {
+                setDetalle(prevList => [...prevList, data]);
+            } else {
+                setDetalle(data)
+            }
+
 
         } catch (e) {
             // console.log(e)
@@ -93,7 +101,7 @@ export default function ModalPurcharseDetail({ DataPurcharse, setDetalle, isModa
                 </section>
                 {
                     ItemsSelected.length == 0
-                        ? <SelectInputSale handleOnClickInput={handleOnClickInput} DataInput={DataPurcharse} />
+                        ? <SelectInputSale handleOnClickInput={handleOnClickInput} DataInput={detalle} />
                         : <InfoSaleSelected Data={ItemsSelected[0]} fnDeleteInput={handleDeleteInput} />
                 }
                 <section className='col-span-12'>
