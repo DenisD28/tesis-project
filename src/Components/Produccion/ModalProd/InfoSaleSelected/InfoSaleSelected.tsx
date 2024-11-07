@@ -9,16 +9,10 @@ export default function InfoSaleSelected({ Data, fnDeleteInput }: InfoSaleSelect
         <span className="font-bold">ID:</span> {Data.id}
       </p>
       <p>
-        <span className="font-bold">Producción:</span> {Data.quantity}
-      </p>
-      <p>
         <span className="font-bold">Disponibilidad:</span> {Data.disponibility}
       </p>
       <p>
         <span className="font-bold">Costo:</span> {Data.price}
-      </p>
-      <p>
-        <span className="font-bold">Fecha:</span> {Data.date}
       </p>
       <ButtonForm dataButton={{
         'title': 'Eliminar selección',

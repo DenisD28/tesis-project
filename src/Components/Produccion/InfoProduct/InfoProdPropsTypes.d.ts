@@ -4,4 +4,5 @@ export interface InfoProdProps {
     fnClick: () => void,
     Data: DetailsSale[],
     fnDeleteDetailsSale: (data: DetailsSale) => void,
+    DataPurcharse: purchase[]
 }

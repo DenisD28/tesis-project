@@ -10,14 +10,13 @@ import { listaInventario } from '../../../services/Products/ListaInventariosMPSe
 import { listaDetalleCompra } from '../../../services/Purchase/ListaDetalleCompraServices'
 import { InputPurcharse } from '../../../types/PurchaseTypes/InputPurcharse'
 
-export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {
+export default function ModalPurcharseDetail({ DataPurcharse, setDetalle, isModalOpen, toggleModal, fnAddDetailsSale }: ModalSaleProps) {
 
     const [Quantity, setQuantity] = useState<string>('')
     const [ItemsSelected, setItemsSelected] = useState<InputPurcharse[]>([])
     const [productos, setProduct] = useState<inventario[]>([])
     const [formProducto, setFormProduct] = useState<inven>({ stock_min: 0, unit_of_measurement: "", code: "", description: "", id: 0, name: "" })
-    const [DataPurcharse, setDetalle] = useState<purchase[]>([])
-
+    // const [DataPurcharse, setDetalle] = useState<purchase[]>([])
     useEffect(() => {
         const lista = async () => {
             try {
@@ -36,7 +35,6 @@ export default function ModalPurcharseDetail({ isModalOpen, toggleModal, fnAddDe
     const listaCompras = async (id: number) => {
         try {
             const response = await listaDetalleCompra(id)
-
             setDetalle(response.detalles_de_compra)
 
         } catch (e) {

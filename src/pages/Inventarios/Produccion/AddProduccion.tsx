@@ -20,7 +20,7 @@ export const AddProduccion: React.FC = () => {
         DetailsSale,
         setInventoryId,
         setQuatity,
-        // setLista,
+        setLista,
         HandleNextOperation,
         toggleModal,
         AddDetailsSale,
@@ -28,15 +28,13 @@ export const AddProduccion: React.FC = () => {
     } = useAddProduccion()
 
     const navigate = useNavigate()
-
     const registrar = async () => {
         try {
-            console.log("inventory_id " + inventory_id)
-            console.log("cantidad " + quantity)
-            console.log("DetailsSale " + JSON.stringify(DetailsSale))
+            // console.log("inventory_id " + inventory_id)
+            // console.log("cantidad " + quantity)
+            // console.log("DetailsSale " + JSON.stringify(DetailsSale))
 
             const response = await agregarProductoTerminado(inventory_id, JSON.stringify(list), quantity)
-            console.log(response)
             if (response.status === 201) {
                 toast.success("Producto Registrado")
                 navigate("/ListaInventarioPT")
@@ -48,7 +46,7 @@ export const AddProduccion: React.FC = () => {
     }
     return (<>
         <SectionComponent
-            title="Producto Terminado"
+            title="Registro de Produccion"
             url="/addinventary"
             showButtonAdd={false} >
             <div> <Toaster /></div >
@@ -58,10 +56,10 @@ export const AddProduccion: React.FC = () => {
                     : <GeneralInfoProd Codigo={inventory_id} cant={quantity} Cantidad={setQuatity} />
             }
             {
-                StatusFormPT && <InfoProd fnClick={toggleModal} Data={DetailsSale} fnDeleteDetailsSale={DeleteDetailsSale} />
+                StatusFormPT && <InfoProd DataPurcharse={list} fnClick={toggleModal} Data={DetailsSale} fnDeleteDetailsSale={DeleteDetailsSale} />
             }
             {
-                isModalOpen && <ModalSale isModalOpen={isModalOpen} toggleModal={toggleModal} fnAddDetailsSale={AddDetailsSale} />
+                isModalOpen && <ModalSale DataPurcharse={list} setDetalle={setLista} isModalOpen={isModalOpen} toggleModal={toggleModal} fnAddDetailsSale={AddDetailsSale} />
             }
             {
 
