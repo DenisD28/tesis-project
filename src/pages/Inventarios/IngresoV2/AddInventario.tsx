@@ -106,7 +106,7 @@ export const AddInventario = () => {
                 <form onSubmit={(e) => handleSubmit(e)} className='grid grid-cols-1 md:grid-cols-2 grid-rows-2'>
                     <ButtonForm
                         dataButton={{
-                            title: "BuscarProducto",
+                            title: "Buscar producto",
                             color: "blue",
                             type: "button",
                             fnClick: () => { setIsOpen(true) },
